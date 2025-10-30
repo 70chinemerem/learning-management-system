@@ -22,7 +22,7 @@
       <a class="md:hidden text-sm text-blue-700" href="signin.html" aria-label="Sign in">Sign in</a>
     </div>
   </header>
-  <section class="flex-1">
+  <section class="flex-1 bg-gradient-to-b from-blue-50/60 to-transparent">
     <div class="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
         <h1 class="text-4xl font-bold text-gray-900 mb-3">Learning Management System</h1>
@@ -49,19 +49,111 @@
     </div>
   </section>
 
+  <!-- Trusted logos -->
+  <section class="bg-gray-50 border-t">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <div class="text-center text-sm text-gray-500 mb-4">Trusted by teams and creators</div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 items-center opacity-80">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+        <img src="src/assets/logo.svg" alt="Brand" class="h-6 mx-auto">
+      </div>
+    </div>
+  </section>
+
   <section id="features" class="bg-white border-t">
     <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="p-6 border rounded">
-        <div class="font-medium mb-1">Course Management</div>
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" aria-hidden="true">
+            <path
+              d="M4 6a2 2 0 0 1 2-2h9a1 1 0 1 1 0 2H6v12h11a1 1 0 1 1 0 2H6a2 2 0 0 1-2-2V6zm14 2h-6a1 1 0 0 0-1 1v9l4-2 4 2V9a1 1 0 0 0-1-1z" />
+          </svg>
+          <div class="font-medium">Course Management</div>
+        </div>
         <p class="text-sm text-gray-600">Build structured courses with lessons and assessments.</p>
       </div>
       <div class="p-6 border rounded">
-        <div class="font-medium mb-1">Assessments</div>
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" aria-hidden="true">
+            <path d="M5 4a1 1 0 0 0-1 1v14l3-2 3 2 3-2 3 2 3-2V5a1 1 0 0 0-1-1H5zm2 4h10v2H7V8zm0 4h10v2H7v-2z" />
+          </svg>
+          <div class="font-medium">Assessments</div>
+        </div>
         <p class="text-sm text-gray-600">Create quizzes to evaluate progress and understanding.</p>
       </div>
       <div class="p-6 border rounded">
-        <div class="font-medium mb-1">Insights</div>
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" aria-hidden="true">
+            <path d="M4 19h16v2H4v-2zm2-3h3v3H6v-3zm5-5h3v8h-3v-8zm5-6h3v14h-3V5z" />
+          </svg>
+          <div class="font-medium">Insights</div>
+        </div>
         <p class="text-sm text-gray-600">Track learner engagement and completion at a glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-gray-50 border-t">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold mb-6 text-center">What our users say</h2>
+      <div id="testimonials" class="relative max-w-3xl mx-auto">
+        <div class="testimonial hidden">
+          <blockquote class="text-lg text-gray-800 text-center">“Setup took minutes and my students love the clean UI.”
+          </blockquote>
+          <div class="text-center text-sm text-gray-500 mt-2">Amara, Instructor</div>
+        </div>
+        <div class="testimonial hidden">
+          <blockquote class="text-lg text-gray-800 text-center">“Quizzes and progress tracking made our bootcamp
+            smoother.”</blockquote>
+          <div class="text-center text-sm text-gray-500 mt-2">Luis, Program Lead</div>
+        </div>
+        <div class="testimonial hidden">
+          <blockquote class="text-lg text-gray-800 text-center">“Finally, a simple LMS that looks modern and works
+            fast.”</blockquote>
+          <div class="text-center text-sm text-gray-500 mt-2">Zara, Creator</div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-2 mt-4" id="testimonialDots" aria-label="Testimonial navigation"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold mb-6 text-center">Frequently asked questions</h2>
+      <div class="max-w-3xl mx-auto space-y-3">
+        <details class="faq-item border rounded">
+          <summary class="cursor-pointer select-none px-4 py-3 font-medium flex items-center justify-between">
+            <span>Is this free to use?</span>
+            <span class="faq-icon transition-transform">▾</span>
+          </summary>
+          <div class="faq-content px-4 pb-0 text-sm text-gray-600 overflow-hidden" style="max-height:0">
+            <div class="pb-4">Yes, this demo is free. You can extend it as needed.</div>
+          </div>
+        </details>
+        <details class="faq-item border rounded">
+          <summary class="cursor-pointer select-none px-4 py-3 font-medium flex items-center justify-between">
+            <span>Do I need to create an account?</span>
+            <span class="faq-icon transition-transform">▾</span>
+          </summary>
+          <div class="faq-content px-4 pb-0 text-sm text-gray-600 overflow-hidden" style="max-height:0">
+            <div class="pb-4">Create an account to save progress and access courses.</div>
+          </div>
+        </details>
+        <details class="faq-item border rounded">
+          <summary class="cursor-pointer select-none px-4 py-3 font-medium flex items-center justify-between">
+            <span>Can I import existing content?</span>
+            <span class="faq-icon transition-transform">▾</span>
+          </summary>
+          <div class="faq-content px-4 pb-0 text-sm text-gray-600 overflow-hidden" style="max-height:0">
+            <div class="pb-4">You can add courses manually now; import tools can be added later.</div>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -77,6 +169,53 @@
     </div>
   </footer>
   <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+  <script>
+    // Simple testimonial rotator
+    (function () {
+      const items = Array.from(document.querySelectorAll('#testimonials .testimonial'));
+      const dotsRoot = document.getElementById('testimonialDots');
+      if (!items.length) return;
+      let idx = 0;
+      function render() {
+        items.forEach((el, i) => {
+          el.classList.toggle('hidden', i !== idx);
+        });
+        if (dotsRoot && dotsRoot.childElementCount === 0) {
+          items.forEach((_, i) => {
+            const b = document.createElement('button');
+            b.className = 'h-2 w-2 rounded-full bg-gray-300' + (i === idx ? ' bg-gray-700' : '');
+            b.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+            b.addEventListener('click', () => { idx = i; render(); });
+            dotsRoot.appendChild(b);
+          });
+        }
+        Array.from(dotsRoot.children).forEach((d, i) => {
+          d.className = 'h-2 w-2 rounded-full ' + (i === idx ? 'bg-gray-700' : 'bg-gray-300');
+        });
+      }
+      render();
+      setInterval(() => { idx = (idx + 1) % items.length; render(); }, 5000);
+    })();
+    // FAQ smooth open/close
+    (function () {
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(d => {
+        const content = d.querySelector('.faq-content');
+        const icon = d.querySelector('.faq-icon');
+        d.addEventListener('toggle', () => {
+          const open = d.open;
+          if (open) {
+            const h = content.scrollHeight;
+            content.style.maxHeight = h + 'px';
+            if (icon) icon.style.transform = 'rotate(180deg)';
+          } else {
+            content.style.maxHeight = '0px';
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+    })();
+  </script>
   <script type="module" src="src/main.js"></script>
 </body>
 

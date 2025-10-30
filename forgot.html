@@ -9,6 +9,9 @@
 </head>
 
 <body data-page="forgot">
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
     <header class="border-b bg-white">
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
@@ -17,7 +20,7 @@
             </nav>
         </div>
     </header>
-    <div class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100">
+    <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">
         <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
             <h1 class="text-xl font-semibold mb-2">Reset your password</h1>
             <p class="text-sm text-gray-600 mb-4">Enter your email address and we'll send you reset instructions.</p>

@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
     <header class="border-b bg-white">
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
@@ -20,7 +23,7 @@
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-10">
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="flex items-end justify-between mb-6">
             <div>
                 <h1 class="text-2xl font-semibold">Browse our courses</h1>
@@ -44,30 +47,114 @@
         </div>
 
         <section id="courseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="JavaScript 101"
-                data-category="Programming" data-level="Beginner">
-                <div class="text-sm text-gray-500 mb-1">Beginner • Programming</div>
-                <h2 class="font-medium mb-2">JavaScript 101</h2>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="js-101"
+                data-title="JavaScript 101" data-category="Programming" data-level="Beginner">
+                <div class="absolute top-3 right-3 text-[10px] bg-green-600 text-white px-2 py-0.5 rounded">New</div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=JS" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">JavaScript 101</div>
+                        <div class="text-xs text-gray-500">Beginner • Programming</div>
+                    </div>
+                </div>
                 <p class="text-sm text-gray-600 mb-3">Learn the basics of JavaScript: variables, functions, DOM.</p>
-                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.7 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.7</span>
+                    </div>
+                    <div>18 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
             </article>
 
-            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="Python for Data"
-                data-category="Data" data-level="Intermediate">
-                <div class="text-sm text-gray-500 mb-1">Intermediate • Data</div>
-                <h2 class="font-medium mb-2">Python for Data</h2>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="py-201"
+                data-title="Python for Data" data-category="Data" data-level="Intermediate">
+                <div class="absolute top-3 right-3 text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded">Popular</div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=PY" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">Python for Data</div>
+                        <div class="text-xs text-gray-500">Intermediate • Data</div>
+                    </div>
+                </div>
                 <p class="text-sm text-gray-600 mb-3">Work with data using Python, pandas, and NumPy.</p>
-                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.8 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span>
+                        <span class="ml-1">4.8</span>
+                    </div>
+                    <div>22 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
             </article>
 
-            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="UX Fundamentals"
-                data-category="Design" data-level="Beginner">
-                <div class="text-sm text-gray-500 mb-1">Beginner • Design</div>
-                <h2 class="font-medium mb-2">UX Fundamentals</h2>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ux-101"
+                data-title="UX Fundamentals" data-category="Design" data-level="Beginner">
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=UX" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">UX Fundamentals</div>
+                        <div class="text-xs text-gray-500">Beginner • Design</div>
+                    </div>
+                </div>
                 <p class="text-sm text-gray-600 mb-3">Core principles of user experience and interface design.</p>
-                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.5 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.5</span>
+                    </div>
+                    <div>12 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
             </article>
         </section>
+        <!-- Preview Modal -->
+        <div id="previewModal" class="fixed inset-0 hidden items-center justify-center z-50">
+            <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+            <div role="dialog" aria-modal="true" aria-labelledby="previewTitle"
+                class="relative bg-white rounded-lg shadow-lg max-w-lg w-full p-6">
+                <button id="previewClose" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                    aria-label="Close">✕</button>
+                <div class="text-xs text-gray-500 mb-1" id="previewMeta"></div>
+                <h2 id="previewTitle" class="text-xl font-semibold mb-2">Course Title</h2>
+                <p id="previewDesc" class="text-sm text-gray-700 mb-4">Short course description will appear here.</p>
+                <div class="mb-4">
+                    <div class="text-sm font-medium mb-1">What you'll learn</div>
+                    <ul id="previewOutcomes" class="list-disc pl-5 text-sm text-gray-700 space-y-1"></ul>
+                </div>
+                <div class="mb-4">
+                    <div class="text-sm font-medium mb-1">Syllabus</div>
+                    <ol id="previewSyllabus" class="list-decimal pl-5 text-sm text-gray-700 space-y-1"></ol>
+                </div>
+                <div class="flex gap-2">
+                    <a id="previewStart" href="signin.html"
+                        class="bg-blue-600 text-white rounded px-3 py-1.5 text-sm hover:bg-blue-700">Start now</a>
+                    <button id="previewCancel" class="border rounded px-3 py-1.5 text-sm">Close</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="text-center text-xs text-gray-500 py-6">
@@ -102,6 +189,118 @@
                 if (category) category.addEventListener(evt, applyFilters);
             });
             applyFilters();
+        })();
+    </script>
+    <script>
+        (function () {
+            const key = 'saved.courses';
+            function read() { try { return JSON.parse(localStorage.getItem(key)) || []; } catch { return []; } }
+            function write(list) { try { localStorage.setItem(key, JSON.stringify(list)); } catch { } }
+
+            function updateButton(btn, saved) {
+                btn.textContent = saved ? 'Saved' : 'Save';
+                btn.classList.toggle('bg-blue-600', saved);
+                btn.classList.toggle('text-white', saved);
+                btn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+            }
+
+            const savedList = new Set(read());
+            document.querySelectorAll('#courseGrid article').forEach(card => {
+                const id = card.getAttribute('data-id');
+                const btn = card.querySelector('.saveBtn');
+                if (!id || !btn) return;
+                updateButton(btn, savedList.has(id));
+                btn.addEventListener('click', () => {
+                    const isSaved = savedList.has(id);
+                    if (isSaved) savedList.delete(id); else savedList.add(id);
+                    updateButton(btn, savedList.has(id));
+                    write(Array.from(savedList));
+                });
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            const modal = document.getElementById('previewModal');
+            const closeBtn = document.getElementById('previewClose');
+            const cancelBtn = document.getElementById('previewCancel');
+            const meta = document.getElementById('previewMeta');
+            const title = document.getElementById('previewTitle');
+            const desc = document.getElementById('previewDesc');
+            const outcomes = document.getElementById('previewOutcomes');
+            const syllabus = document.getElementById('previewSyllabus');
+
+            const courseData = {
+                'js-101': {
+                    outcomes: [
+                        'Understand variables, types, and functions',
+                        'Manipulate the DOM and handle events',
+                        'Build a small interactive page'
+                    ],
+                    syllabus: [
+                        'Introduction to JavaScript',
+                        'Functions and scope',
+                        'DOM basics',
+                        'Events and interactivity'
+                    ]
+                },
+                'py-201': {
+                    outcomes: [
+                        'Load and clean datasets with pandas',
+                        'Analyze data with NumPy and pandas',
+                        'Visualize results and export'
+                    ],
+                    syllabus: [
+                        'Python refresher',
+                        'Pandas DataFrames',
+                        'Aggregation and groupby',
+                        'Visualization'
+                    ]
+                },
+                'ux-101': {
+                    outcomes: [
+                        'Apply core UX principles',
+                        'Create wireframes and simple prototypes',
+                        'Conduct quick usability checks'
+                    ],
+                    syllabus: [
+                        'What is UX?',
+                        'Heuristics and patterns',
+                        'Wireframing basics',
+                        'Testing with users'
+                    ]
+                }
+            };
+
+            function openFor(card) {
+                const t = card.getAttribute('data-title') || 'Course';
+                const cat = card.getAttribute('data-category') || '';
+                const lev = card.getAttribute('data-level') || '';
+                const id = card.getAttribute('data-id') || '';
+                const p = card.querySelector('p');
+                title.textContent = t;
+                meta.textContent = (lev ? lev : '') + (lev && cat ? ' • ' : '') + (cat ? cat : '');
+                desc.textContent = p ? p.textContent : '';
+                const details = courseData[id] || { outcomes: [], syllabus: [] };
+                outcomes.innerHTML = (details.outcomes || []).map(o => `<li>${o}</li>`).join('');
+                syllabus.innerHTML = (details.syllabus || []).map(s => `<li>${s}</li>`).join('');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            function close() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+
+            document.querySelectorAll('.previewBtn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const card = e.currentTarget.closest('article');
+                    if (card) openFor(card);
+                });
+            });
+            [closeBtn, cancelBtn].forEach(b => b && b.addEventListener('click', close));
+            modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
         })();
     </script>
     <script type="module" src="src/main.js"></script>

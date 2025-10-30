@@ -33,6 +33,8 @@ function toast(message, type = 'info') {
     const div = document.createElement('div');
     div.className = `px-3 py-2 rounded shadow text-sm ${type === 'error' ? 'bg-red-600 text-white' : 'bg-gray-900 text-white'}`;
     div.textContent = message;
+    div.setAttribute('role', 'status');
+    div.setAttribute('aria-live', 'polite');
     root.appendChild(div);
     setTimeout(() => div.remove(), 3000);
 }
@@ -124,4 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     bindSignin();
     bindSignup();
+    // Social buttons placeholder
+    document.querySelectorAll('.socialBtn').forEach(btn => {
+        btn.addEventListener('click', () => toast('Social sign-in not configured', 'info'));
+    });
 });
