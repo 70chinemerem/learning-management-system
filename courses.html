@@ -19,10 +19,9 @@
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
                 <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
                 <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
-                <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
-                <a class="btn-primary" href="signup.html">Sign up</a>
+                <a class="btn-primary" href="signin.html">Sign in</a>
             </nav>
-            <a href="signin.html" class="md:hidden text-blue-700 text-sm mr-2">Sign in</a>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
@@ -139,6 +138,175 @@
                         <span class="ml-1">4.5</span>
                     </div>
                     <div>12 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <!-- New courses -->
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="react-301"
+                data-title="React Fundamentals" data-category="Programming" data-level="Intermediate">
+                <div class="absolute top-3 right-3 text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded">Updated
+                </div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=RE" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">React Fundamentals</div>
+                        <div class="text-xs text-gray-500">Intermediate • Programming</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Build interactive UIs with components, props, and state.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.6 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.6</span>
+                    </div>
+                    <div>20 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ds-101"
+                data-title="Data Science Basics" data-category="Data" data-level="Beginner">
+                <div class="absolute top-3 right-3 text-[10px] bg-green-700 text-white px-2 py-0.5 rounded">New</div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=DS" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">Data Science Basics</div>
+                        <div class="text-xs text-gray-500">Beginner • Data</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Understand the data lifecycle, analysis, and visualization.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.4 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.4</span>
+                    </div>
+                    <div>14 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="css-advanced"
+                data-title="Advanced CSS" data-category="Design" data-level="Advanced">
+                <div class="absolute top-3 right-3 text-[10px] bg-orange-600 text-white px-2 py-0.5 rounded">Hot</div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=CSS" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">Advanced CSS</div>
+                        <div class="text-xs text-gray-500">Advanced • Design</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Master layout, responsive design, and modern CSS features.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.7 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.7</span>
+                    </div>
+                    <div>16 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="node-101"
+                data-title="Node.js 101" data-category="Programming" data-level="Beginner">
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=ND" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">Node.js 101</div>
+                        <div class="text-xs text-gray-500">Beginner • Programming</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Learn server-side JavaScript and build simple APIs.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.3 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.3</span>
+                    </div>
+                    <div>15 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="sql-101"
+                data-title="SQL for Beginners" data-category="Data" data-level="Beginner">
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=SQL" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">SQL for Beginners</div>
+                        <div class="text-xs text-gray-500">Beginner • Data</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Query relational databases with SELECT, JOIN, and GROUP BY.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.6 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.6</span>
+                    </div>
+                    <div>19 lessons</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
+                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
+                        aria-pressed="false">Save</button>
+                </div>
+            </article>
+
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ui-201"
+                data-title="UI Design Patterns" data-category="Design" data-level="Intermediate">
+                <div class="absolute top-3 right-3 text-[10px] bg-blue-700 text-white px-2 py-0.5 rounded">Trending
+                </div>
+                <div class="flex items-center gap-3 mb-3">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=UI" alt="Instructor avatar"
+                        class="h-8 w-8 rounded-full border">
+                    <div>
+                        <div class="text-sm font-medium">UI Design Patterns</div>
+                        <div class="text-xs text-gray-500">Intermediate • Design</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Apply proven patterns for forms, nav, and feedback.</p>
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <div class="flex items-center gap-1" aria-label="Rating 4.5 out of 5">
+                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
+                            class="text-gray-300">★</span>
+                        <span class="ml-1">4.5</span>
+                    </div>
+                    <div>17 lessons</div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
                     <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
@@ -285,6 +453,84 @@
                         'Heuristics and patterns',
                         'Wireframing basics',
                         'Testing with users'
+                    ]
+                },
+                'react-301': {
+                    outcomes: [
+                        'Understand components, props, and state',
+                        'Manage events and side effects',
+                        'Build a small multi-component app'
+                    ],
+                    syllabus: [
+                        'React component model',
+                        'Props and state',
+                        'Lists and keys',
+                        'Effects and data fetching'
+                    ]
+                },
+                'ds-101': {
+                    outcomes: [
+                        'Define the data science workflow',
+                        'Explore and visualize datasets',
+                        'Communicate insights effectively'
+                    ],
+                    syllabus: [
+                        'Intro to data science',
+                        'EDA with notebooks',
+                        'Visualization basics',
+                        'Presenting findings'
+                    ]
+                },
+                'css-advanced': {
+                    outcomes: [
+                        'Create responsive, accessible layouts',
+                        'Use modern CSS features',
+                        'Optimize for performance'
+                    ],
+                    syllabus: [
+                        'Flexbox and Grid',
+                        'Custom properties',
+                        'Animations and transitions',
+                        'Best practices'
+                    ]
+                },
+                'node-101': {
+                    outcomes: [
+                        'Use Node.js modules and npm',
+                        'Create a simple HTTP API',
+                        'Handle async operations'
+                    ],
+                    syllabus: [
+                        'Node.js fundamentals',
+                        'Working with npm',
+                        'HTTP servers',
+                        'Async patterns'
+                    ]
+                },
+                'sql-101': {
+                    outcomes: [
+                        'Query and filter data',
+                        'Join tables effectively',
+                        'Aggregate and group results'
+                    ],
+                    syllabus: [
+                        'SELECT and WHERE',
+                        'JOINs',
+                        'GROUP BY and HAVING',
+                        'Subqueries'
+                    ]
+                },
+                'ui-201': {
+                    outcomes: [
+                        'Recognize common UI patterns',
+                        'Apply patterns to real interfaces',
+                        'Evaluate usability impacts'
+                    ],
+                    syllabus: [
+                        'Forms and inputs',
+                        'Navigation systems',
+                        'Feedback and status',
+                        'Pattern libraries'
                     ]
                 }
             };
