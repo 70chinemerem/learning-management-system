@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password • Learning Management System</title>
+    <title>Saved Courses • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
 </head>
 
-<body data-page="forgot">
+<body>
     <a href="#main"
         class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
         to main content</a>
@@ -39,27 +39,49 @@
             </nav>
         </div>
     </header>
-    <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">
-        <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-            <h1 class="text-xl font-semibold mb-2">Reset your password</h1>
-            <p class="text-sm text-gray-600 mb-4">Enter your email address and we'll send you reset instructions.</p>
-            <form class="flex flex-col gap-4" novalidate>
-                <div>
-                    <label for="email" class="block text-gray-600 mb-1">Email</label>
-                    <input type="email" id="email" name="email" required
-                        class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="you@example.com" />
-                </div>
-                <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send
-                    reset link</button>
-            </form>
-            <div class="mt-6 text-center text-gray-500 text-sm">
-                <a href="signin.html" class="text-blue-600 hover:underline">Back to sign in</a>
-            </div>
-        </main>
-    </div>
-    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <h1 class="text-2xl font-semibold mb-2">Saved courses</h1>
+        <p class="text-sm text-gray-600 mb-6">Courses you've saved while browsing.</p>
+
+        <section id="savedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- populated by JS -->
+        </section>
+        <div id="emptyState" class="hidden text-sm text-gray-600">No saved courses yet. Go to <a class="text-blue-700"
+                href="courses.html">Browse courses</a> to add some.</div>
+    </main>
+
     <script type="module" src="src/main.js"></script>
+    <script>
+        (function () {
+            const grid = document.getElementById('savedGrid');
+            const empty = document.getElementById('emptyState');
+            function read() { try { return JSON.parse(localStorage.getItem('saved.courses')) || []; } catch { return []; } }
+            const saved = read();
+            const courseMap = {
+                'js-101': { title: 'JavaScript 101', level: 'Beginner', desc: 'Learn the basics of JavaScript.' },
+                'py-201': { title: 'Python for Data', level: 'Intermediate', desc: 'Data analysis with Python.' },
+                'ux-101': { title: 'UX Fundamentals', level: 'Beginner', desc: 'Principles of UX design.' }
+            };
+            if (!saved.length) {
+                empty.classList.remove('hidden');
+                return;
+            }
+            saved.forEach(id => {
+                const c = courseMap[id];
+                if (!c) return;
+                const card = document.createElement('article');
+                card.className = 'p-4 border rounded bg-white hover:shadow transition';
+                card.innerHTML = `
+          <div class="text-sm text-gray-500 mb-1">${c.level}</div>
+          <h2 class="font-medium mb-2">${c.title}</h2>
+          <p class="text-sm text-gray-600 mb-3">${c.desc}</p>
+          <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+        `;
+                grid.appendChild(card);
+            });
+        })();
+    </script>
 </body>
 
 </html>

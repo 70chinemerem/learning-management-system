@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password • Learning Management System</title>
+    <title>Features • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
 </head>
 
-<body data-page="forgot">
+<body>
     <a href="#main"
         class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
         to main content</a>
@@ -39,25 +39,41 @@
             </nav>
         </div>
     </header>
-    <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">
-        <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-            <h1 class="text-xl font-semibold mb-2">Reset your password</h1>
-            <p class="text-sm text-gray-600 mb-4">Enter your email address and we'll send you reset instructions.</p>
-            <form class="flex flex-col gap-4" novalidate>
-                <div>
-                    <label for="email" class="block text-gray-600 mb-1">Email</label>
-                    <input type="email" id="email" name="email" required
-                        class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="you@example.com" />
-                </div>
-                <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send
-                    reset link</button>
-            </form>
-            <div class="mt-6 text-center text-gray-500 text-sm">
-                <a href="signin.html" class="text-blue-600 hover:underline">Back to sign in</a>
-            </div>
-        </main>
-    </div>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <h1 class="text-2xl font-semibold mb-2">All features</h1>
+        <p class="text-sm text-gray-600 mb-6">A quick overview of what this LMS offers out of the box.</p>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <article class="p-6 border rounded bg-white">
+                <div class="font-medium mb-1">Course Management</div>
+                <p class="text-sm text-gray-600">Create and organize courses with lessons and resources.</p>
+            </article>
+            <article class="p-6 border rounded bg-white">
+                <div class="font-medium mb-1">Quizzes</div>
+                <p class="text-sm text-gray-600">Assess learners with quick quizzes and instant scoring.</p>
+            </article>
+            <article class="p-6 border rounded bg-white">
+                <div class="font-medium mb-1">Analytics</div>
+                <p class="text-sm text-gray-600">Track engagement, completion, and risk signals.</p>
+            </article>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <article class="p-6 border rounded bg-white">
+                <div class="font-medium mb-1">Authentication</div>
+                <p class="text-sm text-gray-600">Sign in/up flows with validation and social placeholders.</p>
+            </article>
+            <article class="p-6 border rounded bg-white">
+                <div class="font-medium mb-1">Accessibility</div>
+                <p class="text-sm text-gray-600">Skip links, focus outlines, aria-live toasts.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
     <script type="module" src="src/main.js"></script>
 </body>

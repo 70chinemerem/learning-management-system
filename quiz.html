@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a Quiz • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
+                <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5"
+                    href="signup.html">Sign up</a>
+            </nav>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html">Features</a>
+                <a class="block text-gray-700" href="saved.html">Saved</a>
+                <a class="block text-gray-700" href="courses.html">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html">View analytics</a>
+                <a class="inline-block mt-1 bg-blue-600 text-white rounded px-3 py-1.5 w-max" href="signup.html">Sign
+                    up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-2xl font-semibold mb-2">Quick quiz</h1>
+            <p class="text-sm text-gray-600 mb-6">Answer the questions below and submit to see your score.</p>
+
+            <form id="quizForm" class="space-y-6">
+                <fieldset class="p-4 border rounded bg-white">
+                    <legend class="font-medium">1) JavaScript runs primarily in the ...</legend>
+                    <label class="block mt-2 text-sm"><input type="radio" name="q1" value="A"> Database</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q1" value="B"> Browser</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q1" value="C"> Router</label>
+                </fieldset>
+
+                <fieldset class="p-4 border rounded bg-white">
+                    <legend class="font-medium">2) In HTML, the tag for a link is ...</legend>
+                    <label class="block mt-2 text-sm"><input type="radio" name="q2" value="A"> &lt;div&gt;</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q2" value="B"> &lt;a&gt;</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q2" value="C"> &lt;p&gt;</label>
+                </fieldset>
+
+                <fieldset class="p-4 border rounded bg-white">
+                    <legend class="font-medium">3) CSS controls ...</legend>
+                    <label class="block mt-2 text-sm"><input type="radio" name="q3" value="A"> Structure</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q3" value="B"> Behavior</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q3" value="C"> Presentation</label>
+                </fieldset>
+
+                <fieldset class="p-4 border rounded bg-white">
+                    <legend class="font-medium">4) Which HTTP status means "Not Found"?</legend>
+                    <label class="block mt-2 text-sm"><input type="radio" name="q4" value="A"> 200</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q4" value="B"> 301</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q4" value="C"> 404</label>
+                </fieldset>
+
+                <fieldset class="p-4 border rounded bg-white">
+                    <legend class="font-medium">5) In Git, which command creates a local copy of a remote repo?</legend>
+                    <label class="block mt-2 text-sm"><input type="radio" name="q5" value="A"> git pull</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q5" value="B"> git clone</label>
+                    <label class="block mt-1 text-sm"><input type="radio" name="q5" value="C"> git commit</label>
+                </fieldset>
+
+                <div class="flex items-center gap-3">
+                    <button id="submitQuiz" type="submit"
+                        class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Submit</button>
+                    <button id="resetQuiz" type="button" class="border rounded px-4 py-2">Reset</button>
+                </div>
+            </form>
+
+            <div id="quizResult" class="mt-6 hidden p-4 border rounded bg-white" role="status" aria-live="polite"></div>
+        </div>
+    </main>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+    <script>
+        (function () {
+            const form = document.getElementById('quizForm');
+            const result = document.getElementById('quizResult');
+            const resetBtn = document.getElementById('resetQuiz');
+            const answers = { q1: 'B', q2: 'B', q3: 'C', q4: 'C', q5: 'B' };
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let correct = 0; const total = Object.keys(answers).length;
+                for (const k of Object.keys(answers)) {
+                    const val = (new FormData(form)).get(k);
+                    if (val === answers[k]) correct++;
+                }
+                const pct = Math.round((correct / total) * 100);
+                const passed = pct >= 60;
+                const badge = passed
+                    ? '<span class="ml-2 inline-block text-xs bg-green-600 text-white rounded px-2 py-0.5">Pass</span>'
+                    : '<span class="ml-2 inline-block text-xs bg-red-600 text-white rounded px-2 py-0.5">Fail</span>';
+                result.classList.remove('hidden');
+                result.innerHTML = `<div class="text-sm text-gray-700">Score: <span class="font-medium">${correct}/${total}</span> (${pct}%) ${badge}</div>`;
+            });
+
+            resetBtn.addEventListener('click', () => {
+                form.reset();
+                result.classList.add('hidden');
+                result.innerHTML = '';
+            });
+        })();
+    </script>
+</body>
+
+</html>

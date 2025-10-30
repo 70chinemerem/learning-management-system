@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
 </head>
 
 <body data-page="signup">
@@ -15,6 +16,27 @@
     <header class="border-b bg-white">
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
+                <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5"
+                    href="signup.html">Sign up</a>
+            </nav>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html">Features</a>
+                <a class="block text-gray-700" href="saved.html">Saved</a>
+                <a class="block text-gray-700" href="courses.html">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html">View analytics</a>
+                <a class="inline-block mt-1 bg-blue-600 text-white rounded px-3 py-1.5 w-max" href="signup.html">Sign
+                    up</a>
+            </nav>
         </div>
     </header>
     <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">

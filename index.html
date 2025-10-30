@@ -7,6 +7,7 @@
   <meta name="description" content="A clean, modern Learning Management System to create, organize, and track courses.">
   <title>Learning Management System</title>
   <link rel="stylesheet" href="src/style.css">
+  <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
 </head>
 
 <body data-page="home">
@@ -14,12 +15,23 @@
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
       <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-        <a class="text-gray-700 hover:text-blue-700" href="#features">Features</a>
-        <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
-        <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5" href="signup.html">Sign
-          up</a>
+        <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+        <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+        <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5" href="signin.html">Sign
+          in</a>
       </nav>
-      <a class="md:hidden text-sm text-blue-700" href="signin.html" aria-label="Sign in">Sign in</a>
+      <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+        aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t">
+      <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+        <a class="block text-gray-700" href="features.html">Features</a>
+        <a class="block text-gray-700" href="saved.html">Saved</a>
+        <a class="block text-gray-700" href="courses.html">Browse courses</a>
+        <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
+        <a class="block text-gray-700" href="analytics.html">View analytics</a>
+        <a class="inline-block mt-1 bg-blue-600 text-white rounded px-3 py-1.5 w-max" href="signup.html">Sign up</a>
+      </nav>
     </div>
   </header>
   <section class="flex-1 bg-gradient-to-b from-blue-50/60 to-transparent">
@@ -42,8 +54,8 @@
         <div class="grid grid-cols-2 gap-3">
           <a href="signin.html" class="block p-4 border rounded hover:shadow text-center">Sign in</a>
           <a href="courses.html" class="block p-4 border rounded hover:shadow text-center">Browse courses</a>
-          <a href="#" class="block p-4 border rounded hover:shadow text-center">Take a quiz</a>
-          <a href="#" class="block p-4 border rounded hover:shadow text-center">View analytics</a>
+          <a href="quiz.html" class="block p-4 border rounded hover:shadow text-center">Take a quiz</a>
+          <a href="analytics.html" class="block p-4 border rounded hover:shadow text-center">View analytics</a>
         </div>
       </div>
     </div>
@@ -165,7 +177,7 @@
       <span aria-hidden="true">•</span>
       <a href="#" class="text-gray-400 hover:text-gray-600">Privacy</a>
       <span aria-hidden="true">•</span>
-      <a href="#features" class="text-gray-400 hover:text-gray-600">Features</a>
+      <a href="features.html" class="text-gray-400 hover:text-gray-600">Features</a>
     </div>
   </footer>
   <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
+                <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5"
+                    href="signup.html">Sign up</a>
+            </nav>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html">Features</a>
+                <a class="block text-gray-700" href="saved.html">Saved</a>
+                <a class="block text-gray-700" href="courses.html">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html">View analytics</a>
+                <a class="inline-block mt-1 bg-blue-600 text-white rounded px-3 py-1.5 w-max" href="signup.html">Sign
+                    up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <h1 class="text-2xl font-semibold mb-2">Analytics overview</h1>
+        <p class="text-sm text-gray-600 mb-6">A simple demo of key metrics. Replace with your real data later.</p>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 border rounded bg-white">
+                <div class="text-sm text-gray-500">Active learners</div>
+                <div id="metricActive" class="text-2xl font-semibold">—</div>
+            </div>
+            <div class="p-4 border rounded bg-white">
+                <div class="text-sm text-gray-500">Completion rate</div>
+                <div id="metricCompletion" class="text-2xl font-semibold">—</div>
+            </div>
+            <div class="p-4 border rounded bg-white">
+                <div class="text-sm text-gray-500">At-risk learners</div>
+                <div id="metricRisk" class="text-2xl font-semibold">—</div>
+            </div>
+        </section>
+
+        <section class="p-4 border rounded bg-white">
+            <div class="flex items-center justify-between mb-3">
+                <div class="font-medium">Engagement (last 7 days)</div>
+                <select id="range" class="px-2 py-1 border rounded text-sm">
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                </select>
+            </div>
+            <div id="chart" class="grid grid-cols-7 gap-2 h-24 items-end">
+                <!-- bars injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+    <script>
+        (function () {
+            const metricsKey = 'analytics.metrics.v1';
+            const rangeKey = 'analytics.range.v1';
+
+            function read(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } }
+            function write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { } }
+
+            // Demo metrics (persisted)
+            let metrics = read(metricsKey, null);
+            if (!metrics) {
+                metrics = {
+                    active: Math.floor(50 + Math.random() * 150),
+                    completion: Math.floor(40 + Math.random() * 50),
+                    risk: Math.floor(5 + Math.random() * 20)
+                };
+                write(metricsKey, metrics);
+            }
+            document.getElementById('metricActive').textContent = metrics.active;
+            document.getElementById('metricCompletion').textContent = metrics.completion + '%';
+            document.getElementById('metricRisk').textContent = metrics.risk;
+
+            const chart = document.getElementById('chart');
+            const range = document.getElementById('range');
+            function renderBars(days) {
+                chart.innerHTML = '';
+                const values = Array.from({ length: days }).map(() => Math.floor(10 + Math.random() * 90));
+                const max = Math.max(...values);
+                values.forEach(v => {
+                    const h = Math.max(6, Math.round((v / max) * 100));
+                    const bar = document.createElement('div');
+                    bar.className = 'bg-blue-600 rounded';
+                    bar.style.height = h + '%';
+                    bar.title = v + ' events';
+                    chart.appendChild(bar);
+                });
+            }
+            const savedRange = read(rangeKey, '7');
+            range.value = savedRange;
+            renderBars(parseInt(savedRange, 10));
+            range.addEventListener('change', () => { write(rangeKey, range.value); renderBars(parseInt(range.value, 10)); });
+        })();
+    </script>
+</body>
+
+</html>

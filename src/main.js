@@ -130,4 +130,87 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.socialBtn').forEach(btn => {
         btn.addEventListener('click', () => toast('Social sign-in not configured', 'info'));
     });
+    // Back to top button and header shadow
+    (function () {
+        const header = document.querySelector('header');
+        const btn = document.createElement('button');
+        btn.textContent = '↑ Top';
+        btn.className = 'fixed bottom-4 right-4 px-3 py-2 text-sm rounded shadow bg-blue-600 text-white hidden';
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.body.appendChild(btn);
+        function onScroll() {
+            const y = window.scrollY || document.documentElement.scrollTop;
+            if (header) header.classList.toggle('shadow', y > 8);
+            btn.classList.toggle('hidden', y < 200);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    })();
+    // Mobile menu toggle (index page)
+    (function () {
+        const toggle = document.getElementById('mobileMenuToggle');
+        const menu = document.getElementById('mobileMenu');
+        if (!toggle || !menu) return;
+        toggle.addEventListener('click', () => {
+            const wasHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            const open = wasHidden;
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.textContent = open ? '✕' : '☰';
+        });
+    })();
+    // Language selector in header (applies to all pages)
+    (function () {
+        const headerRow = document.querySelector('header .max-w-6xl');
+        if (!headerRow) return;
+        const select = document.createElement('select');
+        select.id = 'langSelect';
+        select.className = 'hidden md:inline px-2 py-1 border rounded text-sm';
+        const options = [['en', 'EN'], ['fr', 'FR'], ['es', 'ES']];
+        const savedLang = (() => { try { return localStorage.getItem('ui.lang') || 'en'; } catch { return 'en'; } })();
+        document.documentElement.setAttribute('lang', savedLang);
+        options.forEach(([value, label]) => {
+            const opt = document.createElement('option');
+            opt.value = value; opt.textContent = label; if (value === savedLang) opt.selected = true; select.appendChild(opt);
+        });
+        select.addEventListener('change', () => {
+            const val = select.value || 'en';
+            try { localStorage.setItem('ui.lang', val); } catch { }
+            document.documentElement.setAttribute('lang', val);
+            toast(`Language set to ${val.toUpperCase()}`);
+        });
+        // Insert before the mobile toggle if present, else append
+        const mobileBtn = document.getElementById('mobileMenuToggle');
+        if (mobileBtn && mobileBtn.parentElement === headerRow) {
+            headerRow.insertBefore(select, mobileBtn);
+        } else {
+            headerRow.appendChild(select);
+        }
+    })();
+    // Footer enhancement: add socials if missing
+    (function () {
+        const footer = document.querySelector('footer');
+        if (!footer) return;
+        const hasSocials = footer.querySelector('[data-footer-socials]');
+        if (hasSocials) return;
+        const wrap = document.createElement('div');
+        wrap.setAttribute('data-footer-socials', '');
+        wrap.className = 'mt-3 flex items-center justify-center gap-4 text-sm';
+        wrap.innerHTML = '<a href="#" aria-label="Twitter" class="text-gray-400 hover:text-gray-600">Twitter</a>\n<a href="#" aria-label="GitHub" class="text-gray-400 hover:text-gray-600">GitHub</a>\n<a href="#" aria-label="LinkedIn" class="text-gray-400 hover:text-gray-600">LinkedIn</a>';
+        footer.appendChild(wrap);
+    })();
+    // Mark active nav links
+    (function () {
+        const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+        const links = document.querySelectorAll('nav a[href$=".html"]');
+        links.forEach(a => {
+            const href = (a.getAttribute('href') || '').toLowerCase();
+            const file = href.split('/').pop();
+            const isIndex = (file === 'index.html' && (path === '' || path === 'index.html'));
+            if (file === path || isIndex) {
+                a.classList.add('text-blue-700', 'font-medium');
+                a.setAttribute('aria-current', 'page');
+            }
+        });
+    })();
 });
