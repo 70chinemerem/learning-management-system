@@ -4,11 +4,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="description" content="A clean, modern Learning Management System to create, organize, and track courses.">
+  <title>Learning Management System</title>
+  <link rel="stylesheet" href="src/style.css">
 </head>
 
-<body>
+<body data-page="home">
+  <header class="border-b bg-white">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+      <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+        <a class="text-gray-700 hover:text-blue-700" href="#features">Features</a>
+        <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
+        <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5" href="signup.html">Sign
+          up</a>
+      </nav>
+      <a class="md:hidden text-sm text-blue-700" href="signin.html" aria-label="Sign in">Sign in</a>
+    </div>
+  </header>
+  <section class="flex-1">
+    <div class="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-3">Learning Management System</h1>
+        <p class="text-gray-700 mb-6">Create, organize, and track courses with a clean, modern interface.</p>
+        <div class="flex gap-3">
+          <a href="signin.html" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Get
+            Started</a>
+          <a href="signup.html"
+            class="border border-blue-200 text-blue-700 rounded px-4 py-2 hover:bg-blue-50 transition">Create
+            account</a>
+          <a href="#features"
+            class="border border-gray-300 text-gray-700 rounded px-4 py-2 hover:bg-white transition">Learn More</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="text-sm text-gray-600 mb-3">Quick actions</div>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="signin.html" class="block p-4 border rounded hover:shadow text-center">Sign in</a>
+          <a href="courses.html" class="block p-4 border rounded hover:shadow text-center">Browse courses</a>
+          <a href="#" class="block p-4 border rounded hover:shadow text-center">Take a quiz</a>
+          <a href="#" class="block p-4 border rounded hover:shadow text-center">View analytics</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="features" class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 border rounded">
+        <div class="font-medium mb-1">Course Management</div>
+        <p class="text-sm text-gray-600">Build structured courses with lessons and assessments.</p>
+      </div>
+      <div class="p-6 border rounded">
+        <div class="font-medium mb-1">Assessments</div>
+        <p class="text-sm text-gray-600">Create quizzes to evaluate progress and understanding.</p>
+      </div>
+      <div class="p-6 border rounded">
+        <div class="font-medium mb-1">Insights</div>
+        <p class="text-sm text-gray-600">Track learner engagement and completion at a glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center text-xs text-gray-500 py-6">
+    &copy; 2024 Learning Management System. All rights reserved.
+    <div class="mt-2 space-x-3">
+      <a href="#" class="text-gray-400 hover:text-gray-600">Terms</a>
+      <span aria-hidden="true">•</span>
+      <a href="#" class="text-gray-400 hover:text-gray-600">Privacy</a>
+      <span aria-hidden="true">•</span>
+      <a href="#features" class="text-gray-400 hover:text-gray-600">Features</a>
+    </div>
+  </footer>
+  <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+  <script type="module" src="src/main.js"></script>
 </body>
 
 </html>

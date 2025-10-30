@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body data-page="signup">
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+        </div>
+    </header>
+    <div class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100">
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-blue-700 mb-2">Create your account</h1>
+            <p class="text-gray-700">Join the Learning Management System today.</p>
+        </header>
+        <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+            <form id="signupForm" class="flex flex-col gap-4" novalidate>
+                <div>
+                    <label for="fullName" class="block text-gray-600 mb-1">Full name</label>
+                    <input type="text" id="fullName" name="fullName" required
+                        class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Jane Doe" />
+                    <p id="nameError" class="mt-1 text-xs text-red-600 hidden">Full name is required.</p>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-600 mb-1">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="you@example.com" />
+                    <p id="emailError" class="mt-1 text-xs text-red-600 hidden">Please enter a valid email.</p>
+                </div>
+                <div>
+                    <label for="password" class="block text-gray-600 mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required
+                            class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            placeholder="••••••••" />
+                        <button type="button" id="togglePassword"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600">Show</button>
+                    </div>
+                    <div class="mt-1 h-1 bg-gray-200 rounded">
+                        <div id="pwStrength" class="h-1 w-0 bg-red-500 rounded transition-all"></div>
+                    </div>
+                    <p id="passwordError" class="mt-1 text-xs text-red-600 hidden">Password must be at least 8
+                        characters.</p>
+                </div>
+                <div>
+                    <label for="confirm" class="block text-gray-600 mb-1">Confirm password</label>
+                    <input type="password" id="confirm" name="confirm" required
+                        class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="••••••••" />
+                    <p id="confirmError" class="mt-1 text-xs text-red-600 hidden">Passwords do not match.</p>
+                </div>
+                <label class="inline-flex items-center gap-2 text-sm text-gray-600">
+                    <input type="checkbox" required class="rounded border-gray-300" /> I agree to the <a href="#"
+                        class="text-blue-600 hover:underline">Terms</a> and <a href="#"
+                        class="text-blue-600 hover:underline">Privacy Policy</a>
+                </label>
+                <button id="signupSubmit" type="submit"
+                    class="mt-2 bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition duration-200">Create
+                    account</button>
+            </form>
+            <div class="mt-6 text-center text-gray-500 text-sm">
+                <p>Already have an account? <a href="signin.html" class="text-blue-600 hover:underline">Sign in</a></p>
+            </div>
+        </main>
+        <footer class="mt-10 text-gray-400 text-xs">
+            &copy; 2024 Learning Management System. All rights reserved.
+        </footer>
+    </div>
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

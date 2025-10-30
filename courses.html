@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Courses • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="flex items-center gap-4 text-sm">
+                <a class="text-gray-700 hover:text-blue-700" href="signin.html">Sign in</a>
+                <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5"
+                    href="signup.html">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10">
+        <div class="flex items-end justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-semibold">Browse our courses</h1>
+                <p class="text-sm text-gray-600">Explore categories and pick a course to get started.</p>
+            </div>
+            <form id="filters" class="flex items-center gap-2" onsubmit="event.preventDefault();">
+                <input id="q" type="search" placeholder="Search courses" class="px-3 py-2 border rounded w-48 md:w-64">
+                <select id="category" class="px-3 py-2 border rounded">
+                    <option value="">All categories</option>
+                    <option>Programming</option>
+                    <option>Data</option>
+                    <option>Design</option>
+                </select>
+                <select id="level" class="px-3 py-2 border rounded">
+                    <option value="">All levels</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </form>
+        </div>
+
+        <section id="courseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="JavaScript 101"
+                data-category="Programming" data-level="Beginner">
+                <div class="text-sm text-gray-500 mb-1">Beginner • Programming</div>
+                <h2 class="font-medium mb-2">JavaScript 101</h2>
+                <p class="text-sm text-gray-600 mb-3">Learn the basics of JavaScript: variables, functions, DOM.</p>
+                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+            </article>
+
+            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="Python for Data"
+                data-category="Data" data-level="Intermediate">
+                <div class="text-sm text-gray-500 mb-1">Intermediate • Data</div>
+                <h2 class="font-medium mb-2">Python for Data</h2>
+                <p class="text-sm text-gray-600 mb-3">Work with data using Python, pandas, and NumPy.</p>
+                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+            </article>
+
+            <article class="p-4 border rounded bg-white hover:shadow transition" data-title="UX Fundamentals"
+                data-category="Design" data-level="Beginner">
+                <div class="text-sm text-gray-500 mb-1">Beginner • Design</div>
+                <h2 class="font-medium mb-2">UX Fundamentals</h2>
+                <p class="text-sm text-gray-600 mb-3">Core principles of user experience and interface design.</p>
+                <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
+            </article>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+
+    <script>
+        (function () {
+            const q = document.getElementById('q');
+            const level = document.getElementById('level');
+            const category = document.getElementById('category');
+            const cards = Array.from(document.querySelectorAll('#courseGrid article'));
+
+            function applyFilters() {
+                const query = (q && q.value || '').toLowerCase();
+                const lev = level && level.value || '';
+                const cat = category && category.value || '';
+                cards.forEach(card => {
+                    const title = (card.getAttribute('data-title') || '').toLowerCase();
+                    const c = card.getAttribute('data-category') || '';
+                    const l = card.getAttribute('data-level') || '';
+                    const matchesQuery = !query || title.includes(query);
+                    const matchesLevel = !lev || l === lev;
+                    const matchesCat = !cat || c === cat;
+                    card.style.display = (matchesQuery && matchesLevel && matchesCat) ? '' : 'none';
+                });
+            }
+
+            ['input', 'change'].forEach(evt => {
+                if (q) q.addEventListener(evt, applyFilters);
+                if (level) level.addEventListener(evt, applyFilters);
+                if (category) category.addEventListener(evt, applyFilters);
+            });
+            applyFilters();
+        })();
+    </script>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
