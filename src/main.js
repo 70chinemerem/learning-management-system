@@ -159,16 +159,34 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.textContent = open ? '✕' : '☰';
         });
     })();
-    // Language selector in header (applies to all pages)
+    // Language selector + basic i18n (applies to all pages)
     (function () {
         const headerRow = document.querySelector('header .max-w-6xl');
         if (!headerRow) return;
         const select = document.createElement('select');
         select.id = 'langSelect';
-        select.className = 'hidden md:inline px-2 py-1 border rounded text-sm';
-        const options = [['en', 'EN'], ['fr', 'FR'], ['es', 'ES']];
+        // Visible on mobile and desktop
+        select.className = 'px-2 py-1 border rounded text-sm';
+        const options = [['en', 'EN'], ['fr', 'FR'], ['es', 'ES'], ['de', 'DE'], ['pt', 'PT'], ['it', 'IT'], ['ar', 'AR'], ['zh', 'ZH'], ['hi', 'HI'], ['ja', 'JA']];
         const savedLang = (() => { try { return localStorage.getItem('ui.lang') || 'en'; } catch { return 'en'; } })();
         document.documentElement.setAttribute('lang', savedLang);
+        document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+
+        // Minimal dictionary for key UI strings
+        const dict = {
+            en: { 'nav.features': 'Features', 'nav.saved': 'Saved', 'nav.signin': 'Sign in', 'nav.signup': 'Sign up', 'hero.title': 'Learning Management System', 'hero.subtitle': 'Create, organize, and track courses with a clean, modern interface.', 'hero.getStarted': 'Get Started', 'hero.createAccount': 'Create account', 'hero.learnMore': 'Learn More', 'quick.signin': 'Sign in', 'quick.browse': 'Browse courses', 'quick.quiz': 'Take a quiz', 'quick.analytics': 'View analytics', 'testimonials.heading': 'What our users say', 'faq.heading': 'Frequently asked questions', 'signin.title': 'Sign in to your account', 'signin.helper': 'Welcome back. Please enter your details.', 'signin.submit': 'Sign In', 'signin.remember': 'Remember me', 'signin.forgot': 'Forgot password?', 'signup.title': 'Create your account', 'signup.helper': 'Join the Learning Management System today.', 'signup.submit': 'Create account' },
+            fr: { 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte', 'hero.title': 'Plateforme de formation', 'hero.subtitle': 'Créez, organisez et suivez vos cours avec une interface moderne.', 'hero.getStarted': 'Commencer', 'hero.createAccount': 'Créer un compte', 'hero.learnMore': 'En savoir plus', 'quick.signin': 'Se connecter', 'quick.browse': 'Parcourir les cours', 'quick.quiz': 'Passer un quiz', 'quick.analytics': 'Voir les analyses', 'testimonials.heading': 'Ce que disent nos utilisateurs', 'faq.heading': 'Foire aux questions', 'signin.title': 'Connectez-vous à votre compte', 'signin.helper': 'Bon retour. Entrez vos identifiants.', 'signin.submit': 'Se connecter', 'signin.remember': 'Se souvenir de moi', 'signin.forgot': 'Mot de passe oublié ?', 'signup.title': 'Créez votre compte', 'signup.helper': 'Rejoignez la plateforme dès aujourd’hui.', 'signup.submit': 'Créer un compte' },
+            es: { 'nav.features': 'Funciones', 'nav.saved': 'Guardados', 'nav.signin': 'Iniciar sesión', 'nav.signup': 'Crear cuenta', 'hero.title': 'Plataforma de aprendizaje', 'hero.subtitle': 'Crea, organiza y sigue cursos con una interfaz moderna.', 'hero.getStarted': 'Empezar', 'hero.createAccount': 'Crear cuenta', 'hero.learnMore': 'Saber más', 'quick.signin': 'Iniciar sesión', 'quick.browse': 'Explorar cursos', 'quick.quiz': 'Hacer un quiz', 'quick.analytics': 'Ver analíticas', 'testimonials.heading': 'Lo que dicen nuestros usuarios', 'faq.heading': 'Preguntas frecuentes', 'signin.title': 'Inicia sesión en tu cuenta', 'signin.helper': 'Bienvenido de nuevo. Ingresa tus datos.', 'signin.submit': 'Iniciar sesión', 'signin.remember': 'Recordarme', 'signin.forgot': '¿Olvidaste tu contraseña?', 'signup.title': 'Crea tu cuenta', 'signup.helper': 'Únete hoy a la plataforma.', 'signup.submit': 'Crear cuenta' },
+            de: { 'nav.features': 'Funktionen', 'nav.saved': 'Gespeichert', 'nav.signin': 'Anmelden', 'nav.signup': 'Registrieren', 'hero.title': 'Lernplattform', 'hero.subtitle': 'Kurse erstellen, organisieren und nachverfolgen.', 'hero.getStarted': 'Loslegen', 'hero.createAccount': 'Konto erstellen', 'hero.learnMore': 'Mehr erfahren', 'quick.signin': 'Anmelden', 'quick.browse': 'Kurse durchsuchen', 'quick.quiz': 'Quiz machen', 'quick.analytics': 'Analysen ansehen', 'testimonials.heading': 'Das sagen unsere Nutzer', 'faq.heading': 'Häufige Fragen', 'signin.title': 'Anmeldung', 'signin.helper': 'Willkommen zurück. Bitte Daten eingeben.', 'signin.submit': 'Anmelden', 'signin.remember': 'Angemeldet bleiben', 'signin.forgot': 'Passwort vergessen?', 'signup.title': 'Konto erstellen', 'signup.helper': 'Treten Sie der Plattform bei.', 'signup.submit': 'Konto erstellen' },
+            pt: { 'nav.features': 'Recursos', 'nav.saved': 'Salvos', 'nav.signin': 'Entrar', 'nav.signup': 'Criar conta', 'hero.title': 'Plataforma de aprendizagem', 'hero.subtitle': 'Crie, organize e acompanhe cursos com interface moderna.', 'hero.getStarted': 'Começar', 'hero.createAccount': 'Criar conta', 'hero.learnMore': 'Saiba mais', 'quick.signin': 'Entrar', 'quick.browse': 'Explorar cursos', 'quick.quiz': 'Fazer um quiz', 'quick.analytics': 'Ver análises', 'testimonials.heading': 'O que dizem os usuários', 'faq.heading': 'Perguntas frequentes', 'signin.title': 'Entre na sua conta', 'signin.helper': 'Bem-vindo de volta. Informe seus dados.', 'signin.submit': 'Entrar', 'signin.remember': 'Lembrar-me', 'signin.forgot': 'Esqueceu a senha?', 'signup.title': 'Crie sua conta', 'signup.helper': 'Junte-se hoje à plataforma.', 'signup.submit': 'Criar conta' }
+        };
+        function applyTranslations(lang) {
+            const t = dict[lang] || dict.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (key && t[key]) el.textContent = t[key];
+            });
+        }
         options.forEach(([value, label]) => {
             const opt = document.createElement('option');
             opt.value = value; opt.textContent = label; if (value === savedLang) opt.selected = true; select.appendChild(opt);
@@ -177,7 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const val = select.value || 'en';
             try { localStorage.setItem('ui.lang', val); } catch { }
             document.documentElement.setAttribute('lang', val);
+            document.documentElement.setAttribute('dir', val === 'ar' ? 'rtl' : 'ltr');
             toast(`Language set to ${val.toUpperCase()}`);
+            applyTranslations(val);
         });
         // Insert before the mobile toggle if present, else append
         const mobileBtn = document.getElementById('mobileMenuToggle');
@@ -186,18 +206,29 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             headerRow.appendChild(select);
         }
+        // Initial apply
+        applyTranslations(savedLang);
     })();
-    // Footer enhancement: add socials if missing
+    // Announcement bar (dismissible)
     (function () {
-        const footer = document.querySelector('footer');
-        if (!footer) return;
-        const hasSocials = footer.querySelector('[data-footer-socials]');
-        if (hasSocials) return;
-        const wrap = document.createElement('div');
-        wrap.setAttribute('data-footer-socials', '');
-        wrap.className = 'mt-3 flex items-center justify-center gap-4 text-sm';
-        wrap.innerHTML = '<a href="#" aria-label="Twitter" class="text-gray-400 hover:text-gray-600">Twitter</a>\n<a href="#" aria-label="GitHub" class="text-gray-400 hover:text-gray-600">GitHub</a>\n<a href="#" aria-label="LinkedIn" class="text-gray-400 hover:text-gray-600">LinkedIn</a>';
-        footer.appendChild(wrap);
+        const key = 'ui.announce.dismissed.v1';
+        let dismissed = false; try { dismissed = localStorage.getItem(key) === '1'; } catch { }
+        if (dismissed) return;
+        const header = document.querySelector('header');
+        const bar = document.createElement('div');
+        bar.setAttribute('role', 'status');
+        bar.className = 'bg-blue-50 text-blue-900 text-sm';
+        bar.innerHTML = '<div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">\
+            <div>New: Analytics page with saved range + metrics — <a class="underline" href="analytics.html">check it out</a>.</div>\
+            <button aria-label="Dismiss" class="px-2 py-1 text-blue-900/80 hover:text-blue-900">✕</button>\
+        </div>';
+        const closeBtn = bar.querySelector('button');
+        closeBtn.addEventListener('click', () => { try { localStorage.setItem(key, '1'); } catch { }; bar.remove(); });
+        if (header && header.parentElement) {
+            header.parentElement.insertBefore(bar, header);
+        } else {
+            document.body.prepend(bar);
+        }
     })();
     // Mark active nav links
     (function () {

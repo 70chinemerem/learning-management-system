@@ -25,3 +25,22 @@ summary:focus-visible {
 .sr-only:focus:not(.not-sr-only) {
   position: fixed;
 }
+
+/* Reusable component styles (Tailwind utility composition) */
+@layer components {
+  .btn-primary {
+    @apply rounded px-4 py-2 text-white bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 transition;
+  }
+
+  .btn-outline-indigo {
+    @apply border border-indigo-200 text-indigo-700 rounded px-4 py-2 hover:bg-indigo-50 transition;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow p-6;
+  }
+
+  .card-glass {
+    @apply bg-white/70 backdrop-blur rounded-xl shadow p-6 ring-1 ring-indigo-100;
+  }
+}
