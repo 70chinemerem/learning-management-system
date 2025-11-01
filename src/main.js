@@ -546,14 +546,30 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (key && t[key]) {
-                    // Check if element has nested span/text node
+                    // Check if element has nested span/text node or icon
                     const span = el.querySelector('span');
-                    if (span && span.previousSibling && span.previousSibling.nodeType === 3) {
-                        // If it's like <a>Text <span>...</span></a>, update only the text
-                        const textNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
-                        if (textNode) textNode.textContent = t[key];
+                    const icon = el.querySelector('i[data-lucide]');
+                    if (span && !icon) {
+                        // If it's like <a>Text <span>...</span></a>, update only the span content
+                        span.textContent = t[key];
+                    } else if (icon && span) {
+                        // If it's like <a><span>Text</span> <i>...</i></a>, update only the span
+                        span.textContent = t[key];
                     } else {
-                        el.textContent = t[key];
+                        // Replace all text content but preserve icons and other elements
+                        const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === 3 && n.textContent.trim());
+                        if (textNodes.length > 0) {
+                            // Update first text node if exists
+                            textNodes[0].textContent = t[key];
+                            // Remove other text nodes
+                            textNodes.slice(1).forEach(n => n.remove());
+                        } else {
+                            // No text nodes, replace all content but preserve non-text children
+                            const children = Array.from(el.children);
+                            el.textContent = t[key];
+                            // Re-add non-text children (icons, etc.)
+                            children.forEach(child => el.appendChild(child));
+                        }
                     }
                 }
             });
@@ -573,6 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.title = t[pageTitleKey] + ' • Learning Management System';
             }
         }
+        // Expose translation function globally for dynamic content
+        window.applyTranslations = applyTranslations;
         options.forEach(([value, label]) => {
             const opt = document.createElement('option');
             opt.value = value; opt.textContent = label; if (value === savedLang) opt.selected = true; select.appendChild(opt);
