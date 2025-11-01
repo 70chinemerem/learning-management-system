@@ -168,8 +168,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!headerRow) return;
         const select = document.createElement('select');
         select.id = 'langSelect';
-        // Visible on mobile and desktop
-        select.className = 'px-2 py-1 border rounded text-sm';
+        // Visible on mobile and desktop - styled with icon
+        select.className = 'px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm appearance-none bg-white focus:border-indigo-300 focus:outline-none';
+        select.style.backgroundImage = 'none';
+        // Add wrapper with icon
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative inline-flex items-center';
+        const icon = document.createElement('i');
+        icon.setAttribute('data-lucide', 'globe');
+        icon.className = 'absolute right-2 w-4 h-4 text-gray-400 pointer-events-none';
+        wrapper.appendChild(select);
+        wrapper.appendChild(icon);
         // Extended language options with more languages
         const options = [
             ['en', 'English'], ['fr', 'Français'], ['es', 'Español'], ['de', 'Deutsch'], ['pt', 'Português'],
@@ -527,16 +536,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const val = select.value || 'en';
             try { localStorage.setItem('ui.lang', val); } catch { }
             document.documentElement.setAttribute('lang', val);
-            document.documentElement.setAttribute('dir', val === 'ar' ? 'rtl' : 'ltr');
-            toast(`Language set to ${val.toUpperCase()}`);
+            document.documentElement.setAttribute('dir', rtlLanguages.includes(val) ? 'rtl' : 'ltr');
+            const langName = options.find(([code]) => code === val)?.[1] || val.toUpperCase();
+            toast(`Language set to ${langName}`);
             applyTranslations(val);
+            // Re-initialize Lucide icons after language change (for dynamic content)
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                setTimeout(() => lucide.createIcons(), 50);
+            }
         });
         // Insert before the mobile toggle if present, else append
         const mobileBtn = document.getElementById('mobileMenuToggle');
         if (mobileBtn && mobileBtn.parentElement === headerRow) {
-            headerRow.insertBefore(select, mobileBtn);
+            headerRow.insertBefore(wrapper, mobileBtn);
         } else {
-            headerRow.appendChild(select);
+            headerRow.appendChild(wrapper);
+        }
+        // Initialize icon after insertion
+        if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+            setTimeout(() => lucide.createIcons(), 50);
         }
         // Initial apply
         applyTranslations(savedLang);
