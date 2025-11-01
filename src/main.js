@@ -219,7 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'signin.submit': 'Sign In', 'signin.remember': 'Remember me', 'signin.forgot': 'Forgot password?',
                 'signup.title': 'Create your account', 'signup.helper': 'Join the Learning Management System today.', 'signup.submit': 'Create account',
                 'page.features': 'All features', 'page.courses': 'Browse our courses', 'page.quiz': 'Web Development Quiz',
-                'page.analytics': 'Analytics overview', 'page.saved': 'Saved courses', 'page.about': 'About Us', 'page.careers': 'Join Our Team'
+                'page.analytics': 'Analytics overview', 'page.saved': 'Saved courses', 'page.about': 'About Us', 'page.careers': 'Join Our Team',
+                'saved.subtitle': 'Your bookmarked courses, ready to continue learning.',
+                'saved.empty.title': 'No saved courses yet', 'saved.empty.desc': 'Start exploring our course catalog and save courses you\'re interested in for easy access later.',
+                'saved.continue': 'Continue'
             },
             fr: {
                 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte',
@@ -246,7 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'signin.submit': 'Se connecter', 'signin.remember': 'Se souvenir de moi', 'signin.forgot': 'Mot de passe oublié ?',
                 'signup.title': 'Créez votre compte', 'signup.helper': "Rejoignez la plateforme dès aujourd'hui.", 'signup.submit': 'Créer un compte',
                 'page.features': 'Toutes les fonctionnalités', 'page.courses': 'Parcourir nos cours', 'page.quiz': 'Quiz Développement Web',
-                'page.analytics': "Vue d'ensemble des analyses", 'page.saved': 'Cours enregistrés', 'page.about': 'À propos', 'page.careers': 'Rejoignez notre équipe'
+                'page.analytics': "Vue d'ensemble des analyses", 'page.saved': 'Cours enregistrés', 'page.about': 'À propos', 'page.careers': 'Rejoignez notre équipe',
+                'saved.subtitle': 'Vos cours enregistrés, prêts à poursuivre votre apprentissage.',
+                'saved.empty.title': 'Aucun cours enregistré pour le moment', 'saved.empty.desc': 'Commencez à explorer notre catalogue de cours et enregistrez les cours qui vous intéressent pour y accéder facilement plus tard.',
+                'saved.continue': 'Continuer'
             },
             es: {
                 'nav.features': 'Funciones', 'nav.saved': 'Guardados', 'nav.signin': 'Iniciar sesión', 'nav.signup': 'Crear cuenta',
@@ -273,7 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'signin.submit': 'Iniciar sesión', 'signin.remember': 'Recordarme', 'signin.forgot': '¿Olvidaste tu contraseña?',
                 'signup.title': 'Crea tu cuenta', 'signup.helper': 'Únete hoy a la plataforma.', 'signup.submit': 'Crear cuenta',
                 'page.features': 'Todas las funciones', 'page.courses': 'Explora nuestros cursos', 'page.quiz': 'Quiz de Desarrollo Web',
-                'page.analytics': 'Resumen de analíticas', 'page.saved': 'Cursos guardados', 'page.about': 'Sobre nosotros', 'page.careers': 'Únete a nuestro equipo'
+                'page.analytics': 'Resumen de analíticas', 'page.saved': 'Cursos guardados', 'page.about': 'Sobre nosotros', 'page.careers': 'Únete a nuestro equipo',
+                'saved.subtitle': 'Tus cursos guardados, listos para continuar aprendiendo.',
+                'saved.empty.title': 'Aún no hay cursos guardados', 'saved.empty.desc': 'Comienza a explorar nuestro catálogo de cursos y guarda los cursos que te interesen para acceder fácilmente más tarde.',
+                'saved.continue': 'Continuar'
             },
             de: {
                 'nav.features': 'Funktionen', 'nav.saved': 'Gespeichert', 'nav.signin': 'Anmelden', 'nav.signup': 'Registrieren',
