@@ -18,14 +18,17 @@
             <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
                 <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
                 <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                    <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
+                    <a class="text-gray-700 hover:text-blue-700" href="features.html"
+                        data-i18n="nav.features">Features</a>
                     <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
 
                 </nav>
-                <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2" data-i18n="nav.signin">Sign in</a>
+                <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2"
+                    data-i18n="nav.signin">Sign in</a>
                 <button id="mobileMenuToggle"
                     class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
+                        class="w-5 h-5"></i></button>
             </div>
             <div id="mobileMenu" class="md:hidden hidden border-t">
                 <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -39,9 +42,10 @@
             </div>
         </header>
         <div id="main" class="min-h-screen flex flex-col items-center justify-center bg-gray-100" role="main">
-                    <div class="w-full max-w-md mb-4 px-4"><a href="index.html"
+            <div class="w-full max-w-md mb-4 px-4"><a href="index.html"
                     class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                    data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to home</span></a>
+                    data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to
+                        home</span></a>
             </div>
             <header class="mb-8 text-center">
                 <h1 class="text-4xl font-bold text-blue-700 mb-2" data-i18n="signin.title">Sign in to your account</h1>
@@ -49,7 +53,8 @@
             </header>
             <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
                 <div class="mb-4">
-                    <button type="button" class="socialBtn w-full border rounded px-4 py-2 text-sm" data-i18n="signin.google">Continue with
+                    <button type="button" class="socialBtn w-full border rounded px-4 py-2 text-sm"
+                        data-i18n="signin.google">Continue with
                         Google</button>
                     <div class="flex items-center gap-2 my-4">
                         <div class="h-px bg-gray-200 flex-1"></div>
@@ -63,19 +68,23 @@
                         <input type="email" id="email" name="email" autocomplete="username" required
                             class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             data-i18n-placeholder="signin.emailPlaceholder" placeholder="you@example.com" />
-                        <p id="emailError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.emailError">Please enter a valid email.</p>
+                        <p id="emailError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.emailError">Please
+                            enter a valid email.</p>
                     </div>
                     <div>
-                        <label for="password" class="block text-gray-600 mb-1" data-i18n="signin.password">Password</label>
+                        <label for="password" class="block text-gray-600 mb-1"
+                            data-i18n="signin.password">Password</label>
                         <div class="relative">
                             <input type="password" id="password" name="password" autocomplete="current-password"
                                 required
                                 class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 data-i18n-placeholder="signin.passwordPlaceholder" placeholder="••••••••" />
                             <button type="button" id="togglePassword"
-                                class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600" data-i18n="signin.show">Show</button>
+                                class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600"
+                                data-i18n="signin.show">Show</button>
                         </div>
-                        <p id="passwordError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.passwordError">Password is required.</p>
+                        <p id="passwordError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.passwordError">
+                            Password is required.</p>
                     </div>
                     <div class="flex items-center justify-between text-sm">
                         <label class="inline-flex items-center gap-2">
@@ -90,7 +99,8 @@
                         In</button>
                 </form>
                 <div class="mt-6 text-center text-gray-500 text-sm">
-                    <p><span data-i18n="signin.noAccount">Don't have an account?</span> <a href="signup.html" class="text-blue-600 hover:underline" data-i18n="signin.createAccount">Create
+                    <p><span data-i18n="signin.noAccount">Don't have an account?</span> <a href="signup.html"
+                            class="text-blue-600 hover:underline" data-i18n="signin.createAccount">Create
                             account</a>
                     </p>
                 </div>

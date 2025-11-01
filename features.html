@@ -17,11 +17,12 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
-                <a class="btn-primary" href="signin.html">Sign in</a>
+                <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="btn-primary" href="signin.html" data-i18n="nav.signin">Sign in</a>
             </nav>
-            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2" data-i18n="nav.signin">Sign
+                in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
@@ -35,7 +36,7 @@
                 <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
                 <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
                 <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
-                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html" data-i18n="nav.signup">Sign
                     up</a>
             </nav>
         </div>
@@ -53,7 +54,8 @@
         <section class="mb-12 text-center">
             <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
                 <h1 class="text-4xl font-bold text-gray-900 mb-3" data-i18n="page.features">All features</h1>
-                <p class="text-lg text-gray-700 max-w-2xl mx-auto">Discover everything our Learning Management System
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto" data-i18n="features.hero.subtitle">Discover
+                    everything our Learning Management System
                     has to offer. From course creation to analytics, we've got you covered.</p>
             </div>
         </section>
@@ -62,7 +64,7 @@
         <section class="mb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <i data-lucide="sparkles" class="w-6 h-6"></i>
-                <span>Core Features</span>
+                <span data-i18n="features.core.title">Core Features</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <article
@@ -71,13 +73,15 @@
                         class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition">
                         <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">Course Management</div>
-                    <p class="text-sm text-gray-600 mb-3">Create and organize courses with lessons, videos, and
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.course.title">Course
+                        Management</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.course.desc">Create and organize
+                        courses with lessons, videos, and
                         resources. Build structured learning paths.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• Multi-format content support</li>
-                        <li>• Course templates</li>
-                        <li>• Drag-and-drop organization</li>
+                        <li data-i18n="features.core.course.item1">• Multi-format content support</li>
+                        <li data-i18n="features.core.course.item2">• Course templates</li>
+                        <li data-i18n="features.core.course.item3">• Drag-and-drop organization</li>
                     </ul>
                 </article>
 
@@ -87,13 +91,15 @@
                         class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition">
                         <i data-lucide="clipboard-list" class="w-6 h-6 text-purple-600"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">Quizzes & Assessments</div>
-                    <p class="text-sm text-gray-600 mb-3">Assess learners with interactive quizzes, instant scoring, and
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.quiz.title">Quizzes &
+                        Assessments</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.quiz.desc">Assess learners with
+                        interactive quizzes, instant scoring, and
                         detailed feedback.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• Multiple question types</li>
-                        <li>• Auto-grading</li>
-                        <li>• Performance tracking</li>
+                        <li data-i18n="features.core.quiz.item1">• Multiple question types</li>
+                        <li data-i18n="features.core.quiz.item2">• Auto-grading</li>
+                        <li data-i18n="features.core.quiz.item3">• Performance tracking</li>
                     </ul>
                 </article>
 
@@ -103,13 +109,15 @@
                         class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition">
                         <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">Analytics & Reporting</div>
-                    <p class="text-sm text-gray-600 mb-3">Track engagement, completion rates, and identify at-risk
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.analytics.title">
+                        Analytics & Reporting</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.analytics.desc">Track engagement,
+                        completion rates, and identify at-risk
                         learners with comprehensive analytics.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• Real-time dashboards</li>
-                        <li>• Exportable reports</li>
-                        <li>• Learner insights</li>
+                        <li data-i18n="features.core.analytics.item1">• Real-time dashboards</li>
+                        <li data-i18n="features.core.analytics.item2">• Exportable reports</li>
+                        <li data-i18n="features.core.analytics.item3">• Learner insights</li>
                     </ul>
                 </article>
 
@@ -119,13 +127,15 @@
                         class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition">
                         <i data-lucide="users" class="w-6 h-6"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">User Management</div>
-                    <p class="text-sm text-gray-600 mb-3">Manage learners, instructors, and admins with role-based
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.users.title">User
+                        Management</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.users.desc">Manage learners,
+                        instructors, and admins with role-based
                         permissions and access control.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• Role-based access</li>
-                        <li>• Bulk user import</li>
-                        <li>• User activity tracking</li>
+                        <li data-i18n="features.core.users.item1">• Role-based access</li>
+                        <li data-i18n="features.core.users.item2">• Bulk user import</li>
+                        <li data-i18n="features.core.users.item3">• User activity tracking</li>
                     </ul>
                 </article>
 
@@ -135,13 +145,15 @@
                         class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-200 transition">
                         <i data-lucide="shield" class="w-6 h-6"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">Authentication & Security</div>
-                    <p class="text-sm text-gray-600 mb-3">Secure sign-in/up flows with validation, password recovery,
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.security.title">
+                        Authentication & Security</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.security.desc">Secure sign-in/up
+                        flows with validation, password recovery,
                         and social login options.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• Email verification</li>
-                        <li>• Social authentication</li>
-                        <li>• Password encryption</li>
+                        <li data-i18n="features.core.security.item1">• Email verification</li>
+                        <li data-i18n="features.core.security.item2">• Social authentication</li>
+                        <li data-i18n="features.core.security.item3">• Password encryption</li>
                     </ul>
                 </article>
 
@@ -151,13 +163,15 @@
                         class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal-200 transition">
                         <i data-lucide="accessibility" class="w-6 h-6"></i>
                     </div>
-                    <div class="font-semibold text-lg mb-2 text-gray-900">Accessibility</div>
-                    <p class="text-sm text-gray-600 mb-3">Built with accessibility in mind - skip links, ARIA labels,
+                    <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="features.core.accessibility.title">
+                        Accessibility</div>
+                    <p class="text-sm text-gray-600 mb-3" data-i18n="features.core.accessibility.desc">Built with
+                        accessibility in mind - skip links, ARIA labels,
                         and keyboard navigation support.</p>
                     <ul class="text-xs text-gray-500 space-y-1">
-                        <li>• WCAG 2.1 compliant</li>
-                        <li>• Screen reader support</li>
-                        <li>• Keyboard navigation</li>
+                        <li data-i18n="features.core.accessibility.item1">• WCAG 2.1 compliant</li>
+                        <li data-i18n="features.core.accessibility.item2">• Screen reader support</li>
+                        <li data-i18n="features.core.accessibility.item3">• Keyboard navigation</li>
                     </ul>
                 </article>
             </div>
@@ -167,18 +181,20 @@
         <section class="mb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <i data-lucide="rocket" class="w-6 h-6"></i>
-                <span>Additional Features</span>
+                <span data-i18n="features.additional.title">Additional Features</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-blue-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="bookmark" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Save Courses</div>
+                        <div class="font-semibold text-lg text-gray-900" data-i18n="features.additional.save.title">Save
+                            Courses</div>
                     </div>
-                    <p class="text-sm text-gray-700">Bookmark and save your favorite courses for easy access later.</p>
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.save.desc">Bookmark and save your
+                        favorite courses for easy access later.</p>
                     <a href="saved.html"
                         class="inline-flex items-center gap-1 mt-3 text-blue-700 hover:underline text-sm font-medium">
-                        <span>View saved courses</span>
+                        <span data-i18n="features.additional.save.link">View saved courses</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </article>
@@ -186,45 +202,55 @@
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-purple-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="languages" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Multi-language Support</div>
+                        <div class="font-semibold text-lg text-gray-900" data-i18n="features.additional.lang.title">
+                            Multi-language Support</div>
                     </div>
-                    <p class="text-sm text-gray-700">Access the platform in 10+ languages with RTL support for Arabic
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.lang.desc">Access the platform in
+                        20+ languages with RTL support for Arabic
                         and Hebrew.</p>
                 </article>
 
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-green-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="palette" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Modern UI/UX</div>
+                        <div class="font-semibold text-lg text-gray-900" data-i18n="features.additional.ui.title">Modern
+                            UI/UX</div>
                     </div>
-                    <p class="text-sm text-gray-700">Clean, intuitive interface with responsive design that works on all
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.ui.desc">Clean, intuitive interface
+                        with responsive design that works on all
                         devices.</p>
                 </article>
 
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-orange-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="zap" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Fast Performance</div>
+                        <div class="font-semibold text-lg text-gray-900"
+                            data-i18n="features.additional.performance.title">Fast Performance</div>
                     </div>
-                    <p class="text-sm text-gray-700">Lightning-fast page loads and smooth interactions powered by modern
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.performance.desc">Lightning-fast
+                        page loads and smooth interactions powered by modern
                         web technologies.</p>
                 </article>
 
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-pink-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="smartphone" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Mobile Responsive</div>
+                        <div class="font-semibold text-lg text-gray-900" data-i18n="features.additional.mobile.title">
+                            Mobile Responsive</div>
                     </div>
-                    <p class="text-sm text-gray-700">Full functionality on mobile, tablet, and desktop devices with
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.mobile.desc">Full functionality on
+                        mobile, tablet, and desktop devices with
                         optimized layouts.</p>
                 </article>
 
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-indigo-50/30">
                     <div class="flex items-center gap-3 mb-3">
                         <i data-lucide="bell" class="w-6 h-6"></i>
-                        <div class="font-semibold text-lg text-gray-900">Notifications</div>
+                        <div class="font-semibold text-lg text-gray-900"
+                            data-i18n="features.additional.notifications.title">Notifications</div>
                     </div>
-                    <p class="text-sm text-gray-700">Stay informed with toast notifications for important updates and
+                    <p class="text-sm text-gray-700" data-i18n="features.additional.notifications.desc">Stay informed
+                        with toast notifications for important updates and
                         actions.</p>
                 </article>
             </div>
@@ -234,14 +260,15 @@
         <section
             class="p-8 border-2 border-indigo-200 rounded-xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-center">
             <div class="mb-4"><i data-lucide="graduation-cap" class="w-12 h-12 mx-auto"></i></div>
-            <h2 class="text-2xl font-semibold mb-3 text-gray-900">Ready to get started?</h2>
-            <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
+            <h2 class="text-2xl font-semibold mb-3 text-gray-900" data-i18n="features.cta.title">Ready to get started?
+            </h2>
+            <p class="text-gray-700 mb-6 max-w-2xl mx-auto" data-i18n="features.cta.desc">
                 Join thousands of educators and learners who are already using our platform to create amazing learning
                 experiences.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="signup.html" class="btn-primary">Create your account</a>
-                <a href="courses.html" class="btn-outline-indigo">Browse courses</a>
+                <a href="signup.html" class="btn-primary" data-i18n="features.cta.createAccount">Create your account</a>
+                <a href="courses.html" class="btn-outline-indigo" data-i18n="features.cta.browse">Browse courses</a>
             </div>
         </section>
     </main>
@@ -251,8 +278,8 @@
     </footer>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script type="module" src="src/main.js"></script>
     <script src="src/lucide-init.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 
 </html>
