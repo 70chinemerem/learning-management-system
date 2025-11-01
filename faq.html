@@ -7,7 +7,6 @@
     <title>FAQ • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -25,7 +24,8 @@
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
+                    class="w-5 h-5"></i></button>
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -42,17 +42,25 @@
     <main id="main" class="max-w-4xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
+                data-i18n="common.backHome">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to home</span>
+            </a></div>
 
         <!-- Hero Section -->
         <section class="mb-12 text-center">
-            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-8">
-                <div class="text-5xl mb-4">❓</div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h1>
+            <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl p-8 mb-8">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i data-lucide="help-circle" class="w-12 h-12 text-indigo-600"></i>
+                    <h1 class="text-4xl font-bold text-gray-900">Frequently Asked Questions</h1>
+                </div>
                 <p class="text-lg text-gray-700 max-w-2xl mx-auto">
                     Find answers to common questions about using our Learning Management System. Can't find what you're
-                    looking for? <a href="#contact" class="text-blue-700 hover:underline font-medium">Contact
-                        support</a>.
+                    looking for? <a href="#contact"
+                        class="text-indigo-700 hover:text-indigo-800 hover:underline font-medium inline-flex items-center gap-1">
+                        <span>Contact support</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>.
                 </p>
             </div>
         </section>
@@ -61,23 +69,41 @@
         <div class="mb-8">
             <div class="flex flex-wrap gap-2 justify-center">
                 <button
-                    class="faq-filter active px-4 py-2 text-sm font-medium rounded-lg bg-indigo-100 text-indigo-700 border-2 border-indigo-300"
-                    data-category="all">All</button>
+                    class="faq-filter active px-4 py-2 text-sm font-medium rounded-lg bg-indigo-100 text-indigo-700 border-2 border-indigo-300 flex items-center gap-2"
+                    data-category="all">
+                    <i data-lucide="grid" class="w-4 h-4"></i>
+                    <span>All</span>
+                </button>
                 <button
-                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300"
-                    data-category="getting-started">Getting Started</button>
+                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 flex items-center gap-2"
+                    data-category="getting-started">
+                    <i data-lucide="rocket" class="w-4 h-4"></i>
+                    <span>Getting Started</span>
+                </button>
                 <button
-                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300"
-                    data-category="courses">Courses</button>
+                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 flex items-center gap-2"
+                    data-category="courses">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>Courses</span>
+                </button>
                 <button
-                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300"
-                    data-category="account">Account</button>
+                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 flex items-center gap-2"
+                    data-category="account">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                    <span>Account</span>
+                </button>
                 <button
-                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300"
-                    data-category="billing">Billing</button>
+                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 flex items-center gap-2"
+                    data-category="billing">
+                    <i data-lucide="credit-card" class="w-4 h-4"></i>
+                    <span>Billing</span>
+                </button>
                 <button
-                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300"
-                    data-category="technical">Technical</button>
+                    class="faq-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 flex items-center gap-2"
+                    data-category="technical">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                    <span>Technical</span>
+                </button>
             </div>
         </div>
 
@@ -86,12 +112,14 @@
             <!-- Getting Started -->
             <article class="faq-item group" data-category="getting-started">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-blue-500 text-xl">🚀</span>
-                        <span class="flex-1">How do I get started with the Learning Management System?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="rocket" class="w-5 h-5 text-blue-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">How do I get started with the Learning Management System?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">Getting started is easy! Follow these simple steps:</p>
@@ -102,7 +130,10 @@
                             <li>Start creating your own courses or enroll in existing ones</li>
                         </ol>
                         <div class="mt-4">
-                            <a href="signup.html" class="inline-block btn-primary text-sm">Get started now →</a>
+                            <a href="signup.html" class="inline-flex items-center gap-2 btn-primary text-sm">
+                                <span>Get started now</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -110,12 +141,14 @@
 
             <article class="faq-item group" data-category="getting-started">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-green-500 text-xl">✓</span>
-                        <span class="flex-1">Is there a free trial available?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Is there a free trial available?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Yes! We offer a free tier that allows you to create and manage a limited number of courses.
@@ -128,12 +161,14 @@
             <!-- Courses -->
             <article class="faq-item group" data-category="courses">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-purple-500 text-xl">📚</span>
-                        <span class="flex-1">How do I create a course?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="book-open" class="w-5 h-5 text-purple-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">How do I create a course?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">Creating a course is straightforward:</p>
@@ -146,8 +181,10 @@
                         </ul>
                         <div class="mt-4">
                             <a href="docs.html#creating-courses"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">View detailed
-                                guide →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>View detailed guide</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -155,12 +192,14 @@
 
             <article class="faq-item group" data-category="courses">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-orange-500 text-xl">📝</span>
-                        <span class="flex-1">Can I add quizzes to my courses?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="clipboard-list" class="w-5 h-5 text-orange-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Can I add quizzes to my courses?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">Absolutely! Quizzes are a great way to assess learner understanding. You can:
@@ -172,7 +211,10 @@
                             <li>Track quiz performance in analytics</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="quiz.html" class="inline-block btn-primary text-sm">Try a sample quiz →</a>
+                            <a href="quiz.html" class="inline-flex items-center gap-2 btn-primary text-sm">
+                                <span>Try a sample quiz</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -180,12 +222,14 @@
 
             <article class="faq-item group" data-category="courses">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-indigo-500 text-xl">💾</span>
-                        <span class="flex-1">Can I save courses for later?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="bookmark" class="w-5 h-5 text-indigo-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Can I save courses for later?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Yes! You can save courses you're interested in to your "Saved" section. Simply click the
@@ -193,8 +237,10 @@
                             later.</p>
                         <div class="mt-4">
                             <a href="saved.html"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">View saved
-                                courses →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>View saved courses</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -202,12 +248,14 @@
 
             <article class="faq-item group" data-category="courses">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-blue-500 text-xl">📊</span>
-                        <span class="flex-1">How do I track learner progress?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">How do I track learner progress?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">Our analytics dashboard provides comprehensive insights:</p>
@@ -220,8 +268,10 @@
                         </ul>
                         <div class="mt-4">
                             <a href="analytics.html"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">View analytics
-                                dashboard →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>View analytics dashboard</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -230,12 +280,14 @@
             <!-- Account -->
             <article class="faq-item group" data-category="account">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-red-500 text-xl">🔐</span>
-                        <span class="flex-1">I forgot my password. How do I reset it?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="lock" class="w-5 h-5 text-red-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">I forgot my password. How do I reset it?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">No problem! You can reset your password easily:</p>
@@ -247,7 +299,10 @@
                             <li>Follow the link to create a new password</li>
                         </ol>
                         <div class="mt-4">
-                            <a href="forgot.html" class="inline-block btn-primary text-sm">Reset password →</a>
+                            <a href="forgot.html" class="inline-flex items-center gap-2 btn-primary text-sm">
+                                <span>Reset password</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -255,12 +310,14 @@
 
             <article class="faq-item group" data-category="account">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-teal-500 text-xl">👤</span>
-                        <span class="flex-1">Can I change my account email address?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="user-circle" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Can I change my account email address?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Yes, you can update your email address from your account settings. After signing in, navigate
@@ -272,12 +329,14 @@
 
             <article class="faq-item group" data-category="account">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-pink-500 text-xl">🚫</span>
-                        <span class="flex-1">How do I delete my account?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="user-x" class="w-5 h-5 text-pink-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">How do I delete my account?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>We're sorry to see you go! To delete your account, please contact our support team. They will
@@ -285,8 +344,10 @@
                             account deletion is permanent and cannot be undone.</p>
                         <div class="mt-4">
                             <a href="signin.html"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">Contact support
-                                →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>Contact support</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -295,12 +356,14 @@
             <!-- Billing -->
             <article class="faq-item group" data-category="billing">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-green-500 text-xl">💳</span>
-                        <span class="flex-1">What payment methods do you accept?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="credit-card" class="w-5 h-5 text-green-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">What payment methods do you accept?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>We accept all major credit cards (Visa, Mastercard, American Express) and debit cards. We
@@ -312,12 +375,14 @@
 
             <article class="faq-item group" data-category="billing">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-yellow-500 text-xl">↩️</span>
-                        <span class="flex-1">Can I cancel my subscription anytime?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="refresh-ccw" class="w-5 h-5 text-yellow-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Can I cancel my subscription anytime?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Yes, you can cancel your subscription at any time from your account settings. Your access
@@ -329,12 +394,14 @@
 
             <article class="faq-item group" data-category="billing">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-indigo-500 text-xl">🎓</span>
-                        <span class="flex-1">Do you offer discounts for educational institutions?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Do you offer discounts for educational institutions?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Yes! We offer special educational pricing for schools, universities, and training
@@ -342,8 +409,10 @@
                             and volume discounts.</p>
                         <div class="mt-4">
                             <a href="signin.html"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">Contact sales
-                                →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>Contact sales</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -352,12 +421,14 @@
             <!-- Technical -->
             <article class="faq-item group" data-category="technical">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-blue-500 text-xl">🌐</span>
-                        <span class="flex-1">Which browsers are supported?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="globe" class="w-5 h-5 text-blue-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Which browsers are supported?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">We support all modern browsers:</p>
@@ -375,12 +446,14 @@
 
             <article class="faq-item group" data-category="technical">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-purple-500 text-xl">📱</span>
-                        <span class="flex-1">Is there a mobile app?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="smartphone" class="w-5 h-5 text-purple-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">Is there a mobile app?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p>Our platform is fully responsive and works great on mobile browsers! While we don't have
@@ -392,12 +465,14 @@
 
             <article class="faq-item group" data-category="technical">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-orange-500 text-xl">🔧</span>
-                        <span class="flex-1">I'm experiencing technical issues. What should I do?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="wrench" class="w-5 h-5 text-orange-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">I'm experiencing technical issues. What should I do?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">Try these troubleshooting steps first:</p>
@@ -412,11 +487,15 @@
                         </p>
                         <div class="flex gap-3">
                             <a href="docs.html#troubleshooting"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">View
-                                troubleshooting guide →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>View troubleshooting guide</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                             <a href="signin.html"
-                                class="inline-block text-blue-700 hover:underline text-sm font-medium">Contact support
-                                →</a>
+                                class="inline-flex items-center gap-1 text-blue-700 hover:underline text-sm font-medium">
+                                <span>Contact support</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
                 </details>
@@ -424,12 +503,14 @@
 
             <article class="faq-item group" data-category="technical">
                 <details
-                    class="p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                    class="p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
                     <summary class="font-semibold cursor-pointer text-gray-900 flex items-center gap-3 list-none">
-                        <span class="text-green-500 text-xl">🌍</span>
-                        <span class="flex-1">What languages are supported?</span>
-                        <span class="text-gray-400 group-open:hidden">▾</span>
-                        <span class="text-gray-400 hidden group-open:inline">▴</span>
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="languages" class="w-5 h-5 text-green-600"></i>
+                        </div>
+                        <span class="flex-1 text-lg">What languages are supported?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0"></i>
                     </summary>
                     <div class="mt-4 pt-4 border-t text-gray-700">
                         <p class="mb-3">We support multiple languages for the interface:</p>
@@ -455,15 +536,21 @@
         <!-- Contact Section -->
         <section id="contact"
             class="p-8 border-2 border-indigo-200 rounded-xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-center shadow-sm">
-            <div class="text-4xl mb-4">💬</div>
+            <div class="mb-4"><i data-lucide="message-circle" class="w-12 h-12 mx-auto text-indigo-600"></i></div>
             <h2 class="text-2xl font-semibold mb-3 text-gray-900">Still have questions?</h2>
             <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
                 Can't find the answer you're looking for? Our support team is here to help. Get in touch and we'll
                 respond as soon as possible.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="signin.html" class="btn-primary">Contact support</a>
-                <a href="docs.html" class="btn-outline-indigo">Browse documentation</a>
+                <a href="signin.html" class="inline-flex items-center gap-2 btn-primary">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>Contact support</span>
+                </a>
+                <a href="docs.html" class="inline-flex items-center gap-2 btn-outline-indigo">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>Browse documentation</span>
+                </a>
             </div>
         </section>
     </main>
@@ -473,6 +560,7 @@
     </footer>
 
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="src/main.js"></script>
     <script>
         // FAQ Filter Functionality
@@ -503,6 +591,7 @@
             });
         });
     </script>
+    <script src="src/lucide-init.js"></script>
 </body>
 
 </html>

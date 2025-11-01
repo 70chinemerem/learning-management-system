@@ -170,10 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
         select.id = 'langSelect';
         // Visible on mobile and desktop
         select.className = 'px-2 py-1 border rounded text-sm';
-        const options = [['en', 'EN'], ['fr', 'FR'], ['es', 'ES'], ['de', 'DE'], ['pt', 'PT'], ['it', 'IT'], ['ar', 'AR'], ['zh', 'ZH'], ['hi', 'HI'], ['ja', 'JA']];
+        // Extended language options with more languages
+        const options = [
+            ['en', 'English'], ['fr', 'Français'], ['es', 'Español'], ['de', 'Deutsch'], ['pt', 'Português'],
+            ['it', 'Italiano'], ['ar', 'العربية'], ['zh', '中文'], ['hi', 'हिन्दी'], ['ja', '日本語'],
+            ['ru', 'Русский'], ['ko', '한국어'], ['tr', 'Türkçe'], ['nl', 'Nederlands'], ['pl', 'Polski'],
+            ['sv', 'Svenska'], ['no', 'Norsk'], ['fi', 'Suomi'], ['vi', 'Tiếng Việt'], ['th', 'ไทย']
+        ];
         const savedLang = (() => { try { return localStorage.getItem('ui.lang') || 'en'; } catch { return 'en'; } })();
         document.documentElement.setAttribute('lang', savedLang);
-        document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+        // RTL languages: Arabic and Hebrew (if added later)
+        const rtlLanguages = ['ar', 'he'];
+        document.documentElement.setAttribute('dir', rtlLanguages.includes(savedLang) ? 'rtl' : 'ltr');
 
         // Expanded dictionary for key UI strings across all pages
         const dict = {
