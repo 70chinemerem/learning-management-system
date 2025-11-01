@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="btn-primary" href="signin.html">Sign in</a>
+            </nav>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <div class="mb-4"><a href="index.html"
+                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                data-i18n="common.backHome">← Back to home</a></div>
+
+        <!-- Hero Section -->
+        <section class="mb-12 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-3" data-i18n="page.careers">Join Our Team</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Help us build the future of online learning. We're looking for passionate people who want to make
+                education accessible to everyone.
+            </p>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6">Why work with us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">💼</div>
+                    <h3 class="font-semibold mb-2">Flexible Work</h3>
+                    <p class="text-sm text-gray-600">Remote-first culture with flexible hours and time-off policies.</p>
+                </div>
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">📈</div>
+                    <h3 class="font-semibold mb-2">Growth Opportunities</h3>
+                    <p class="text-sm text-gray-600">Continuous learning, mentorship, and career development programs.
+                    </p>
+                </div>
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">🏥</div>
+                    <h3 class="font-semibold mb-2">Health & Wellness</h3>
+                    <p class="text-sm text-gray-600">Comprehensive health benefits and wellness programs for all
+                        employees.</p>
+                </div>
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">💰</div>
+                    <h3 class="font-semibold mb-2">Competitive Pay</h3>
+                    <p class="text-sm text-gray-600">Fair compensation packages with equity and performance bonuses.</p>
+                </div>
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">🌍</div>
+                    <h3 class="font-semibold mb-2">Diverse Team</h3>
+                    <p class="text-sm text-gray-600">Inclusive workplace with team members from around the world.</p>
+                </div>
+                <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h3 class="font-semibold mb-2">Impact</h3>
+                    <p class="text-sm text-gray-600">Make a real difference in how people learn and grow.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Positions -->
+        <section class="mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-semibold">Open positions</h2>
+                <select id="filterDepartment" class="px-3 py-2 border rounded text-sm">
+                    <option value="">All departments</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Design">Design</option>
+                    <option value="Product">Product</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Support">Support</option>
+                </select>
+            </div>
+
+            <div id="jobListings" class="space-y-4">
+                <!-- Engineering -->
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Engineering">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Senior Frontend Developer</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $90k - $130k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Build beautiful, responsive interfaces using modern JavaScript frameworks. Lead frontend
+                                architecture decisions and mentor junior developers.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">React</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">TypeScript</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Engineering">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Backend Engineer</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $85k - $125k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Design and implement scalable APIs and services. Work with databases, caching, and
+                                microservices architecture.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Node.js</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">PostgreSQL</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+
+                <!-- Design -->
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Design">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">UX Designer</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote / Hybrid</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $70k - $100k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Create intuitive user experiences for our learning platform. Conduct user research and
+                                collaborate with product and engineering teams.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Figma</span>
+                                <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">User
+                                    Research</span>
+                                <span
+                                    class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+
+                <!-- Product -->
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Product">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Product Manager</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $100k - $140k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Drive product strategy and roadmap. Work with cross-functional teams to deliver features
+                                that delight our users.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Product
+                                    Strategy</span>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Agile</span>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+
+                <!-- Marketing -->
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Marketing">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Content Marketing Specialist</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $50k - $75k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Create engaging content that educates and inspires. Write blog posts, guides, and social
+                                media content about online learning.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Content
+                                    Writing</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">SEO</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Social
+                                    Media</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+
+                <!-- Support -->
+                <article class="job-card p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-department="Support">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-1">Customer Success Manager</h3>
+                            <div class="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                                <span>📍 Remote</span>
+                                <span>•</span>
+                                <span>💼 Full-time</span>
+                                <span>•</span>
+                                <span>💰 $55k - $80k</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Help our customers succeed with our platform. Provide support, onboarding, and build
+                                relationships with educators.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">Customer
+                                    Support</span>
+                                <span
+                                    class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">Onboarding</span>
+                                <span
+                                    class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">Communication</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signin.html" class="inline-block btn-primary text-sm" data-i18n="common.apply">Apply
+                        now</a>
+                </article>
+            </div>
+
+            <div id="noJobsMessage" class="hidden text-center py-8 text-gray-600">
+                No positions found in this department. Check back soon!
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="p-8 border rounded-lg bg-gradient-to-r from-indigo-50 to-purple-50 text-center">
+            <h2 class="text-2xl font-semibold mb-2">Don't see a role that fits?</h2>
+            <p class="text-gray-600 mb-4">We're always looking for talented people. Send us your resume and we'll keep
+                you in mind for future opportunities.</p>
+            <a href="signin.html" class="inline-block btn-primary">Send your resume</a>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Filter jobs by department
+        (function () {
+            const filter = document.getElementById('filterDepartment');
+            const jobCards = Array.from(document.querySelectorAll('.job-card'));
+            const noJobsMessage = document.getElementById('noJobsMessage');
+
+            function applyFilter() {
+                const selectedDept = filter.value;
+                let visibleCount = 0;
+
+                jobCards.forEach(card => {
+                    const dept = card.getAttribute('data-department');
+                    if (!selectedDept || dept === selectedDept) {
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                noJobsMessage.classList.toggle('hidden', visibleCount > 0);
+            }
+
+            filter.addEventListener('change', applyFilter);
+        })();
+    </script>
+</body>
+
+</html>

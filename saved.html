@@ -19,9 +19,7 @@
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
                 <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
                 <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
-                <a class="text-white hover:text-white" href="signin.html">Sign in</a>
-                <a class="text-white bg-blue-600 hover:bg-blue-700 transition rounded px-3 py-1.5"
-                    href="signup.html">Sign up</a>
+                <a class="btn-primary" href="signin.html">Sign in</a>
             </nav>
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
@@ -30,11 +28,11 @@
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
-                <a class="block text-gray-700" href="features.html">Features</a>
-                <a class="block text-gray-700" href="saved.html">Saved</a>
-                <a class="block text-gray-700" href="courses.html">Browse courses</a>
-                <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
-                <a class="block text-gray-700" href="analytics.html">View analytics</a>
+                <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
                 <a class="inline-block mt-1 bg-blue-600 text-white rounded px-3 py-1.5 w-max" href="signup.html">Sign
                     up</a>
             </nav>
@@ -43,8 +41,9 @@
 
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
-                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline">← Back to home</a></div>
-        <h1 class="text-2xl font-semibold mb-2">Saved courses</h1>
+                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                data-i18n="common.backHome">← Back to home</a></div>
+        <h1 class="text-2xl font-semibold mb-2" data-i18n="page.saved">Saved courses</h1>
         <p class="text-sm text-gray-600 mb-6">Courses you've saved while browsing.</p>
 
         <section id="savedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

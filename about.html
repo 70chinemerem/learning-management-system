@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="btn-primary" href="signin.html">Sign in</a>
+            </nav>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+        <div class="mb-4"><a href="index.html"
+                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                data-i18n="common.backHome">← Back to home</a></div>
+
+        <!-- Hero Section -->
+        <section class="mb-12 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="page.about">About Us</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                We're on a mission to make quality education accessible to everyone, everywhere. Founded in 2020, we've
+                helped thousands of learners achieve their learning goals through our modern, intuitive platform.
+            </p>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-semibold mb-4">Our Mission</h2>
+                    <p class="text-gray-600 mb-4">
+                        Education should be accessible, engaging, and effective for everyone. We believe that learning
+                        doesn't stop after school—it's a lifelong journey. Our platform empowers educators and learners
+                        to create, share, and discover knowledge in ways that work for them.
+                    </p>
+                    <p class="text-gray-600">
+                        Whether you're teaching a class, running a bootcamp, or learning a new skill, we provide the
+                        tools you need to succeed. No complexity, no barriers—just learning made simple.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-8">
+                    <div class="text-6xl mb-4">🎓</div>
+                    <h3 class="text-xl font-semibold mb-2">Building the future of learning</h3>
+                    <p class="text-gray-600">Join us in transforming how people learn and teach online.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Our Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">✨</div>
+                    <h3 class="font-semibold text-lg mb-2">Innovation</h3>
+                    <p class="text-sm text-gray-600">
+                        We continuously improve our platform with new features and technologies to enhance the learning
+                        experience.
+                    </p>
+                </div>
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">🤝</div>
+                    <h3 class="font-semibold text-lg mb-2">Community</h3>
+                    <p class="text-sm text-gray-600">
+                        We believe learning is a collaborative journey. We foster connections between educators and
+                        learners.
+                    </p>
+                </div>
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">🌍</div>
+                    <h3 class="font-semibold text-lg mb-2">Accessibility</h3>
+                    <p class="text-sm text-gray-600">
+                        Education should be available to everyone, regardless of background, location, or resources.
+                    </p>
+                </div>
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">💡</div>
+                    <h3 class="font-semibold text-lg mb-2">Simplicity</h3>
+                    <p class="text-sm text-gray-600">
+                        We keep things simple and intuitive, so you can focus on what matters: teaching and learning.
+                    </p>
+                </div>
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">📊</div>
+                    <h3 class="font-semibold text-lg mb-2">Data-Driven</h3>
+                    <p class="text-sm text-gray-600">
+                        We use analytics and insights to help educators understand learner progress and improve
+                        outcomes.
+                    </p>
+                </div>
+                <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
+                    <div class="text-4xl mb-3">🔒</div>
+                    <h3 class="font-semibold text-lg mb-2">Security & Privacy</h3>
+                    <p class="text-sm text-gray-600">
+                        We protect your data and privacy with industry-leading security practices and transparency.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-semibold mb-6">Our Story</h2>
+            <div class="prose max-w-none">
+                <div class="bg-white border rounded-lg p-8 shadow-sm">
+                    <p class="text-gray-700 mb-4">
+                        It started with a simple observation: existing learning management systems were too complex,
+                        expensive, or outdated. Educators and learners deserved better.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        In 2020, our founding team—comprising educators, developers, and designers—came together to
+                        build a platform that put the user experience first. We launched with a focus on simplicity,
+                        beautiful design, and powerful features that actually work.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Today, we serve thousands of users worldwide, from individual instructors to large
+                        organizations. But our mission remains the same: make learning accessible, engaging, and
+                        effective for everyone.
+                    </p>
+                    <p class="text-gray-700">
+                        We're just getting started. Join us as we continue to innovate and expand our platform to meet
+                        the evolving needs of the education community.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Meet the Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
+                        AS
+                    </div>
+                    <h3 class="font-semibold mb-1">Alex Smith</h3>
+                    <p class="text-sm text-gray-600 mb-2">CEO & Co-founder</p>
+                    <p class="text-xs text-gray-500">Former educator turned tech entrepreneur</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
+                        MJ
+                    </div>
+                    <h3 class="font-semibold mb-1">Maria Johnson</h3>
+                    <p class="text-sm text-gray-600 mb-2">CTO & Co-founder</p>
+                    <p class="text-xs text-gray-500">Full-stack engineer with 10+ years experience</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-green-400 to-teal-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
+                        DC
+                    </div>
+                    <h3 class="font-semibold mb-1">David Chen</h3>
+                    <p class="text-sm text-gray-600 mb-2">Head of Design</p>
+                    <p class="text-xs text-gray-500">UX/UI designer passionate about education</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
+                        SK
+                    </div>
+                    <h3 class="font-semibold mb-1">Sarah Kim</h3>
+                    <p class="text-sm text-gray-600 mb-2">Head of Product</p>
+                    <p class="text-xs text-gray-500">Product strategist and former instructor</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                <h2 class="text-2xl font-semibold mb-6 text-center">By the Numbers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-4xl font-bold mb-2">10K+</div>
+                        <div class="text-sm opacity-90">Active Learners</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">500+</div>
+                        <div class="text-sm opacity-90">Instructors</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">50+</div>
+                        <div class="text-sm opacity-90">Countries</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">95%</div>
+                        <div class="text-sm opacity-90">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="text-center">
+            <div class="p-8 border rounded-lg bg-gradient-to-r from-indigo-50 to-purple-50">
+                <h2 class="text-2xl font-semibold mb-3">Ready to get started?</h2>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                    Join thousands of educators and learners who are already using our platform to create amazing
+                    learning experiences.
+                </p>
+                <div class="flex items-center justify-center gap-3">
+                    <a href="signup.html" class="btn-primary">Create your account</a>
+                    <a href="careers.html" class="btn-outline-indigo">Join our team</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

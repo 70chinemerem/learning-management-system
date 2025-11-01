@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+    <header class="border-b bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
+            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="btn-primary" href="signin.html">Sign in</a>
+            </nav>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <button id="mobileMenuToggle"
+                class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t">
+            <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
+                <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-7xl mx-auto px-4 py-10" role="main">
+        <div class="mb-4"><a href="index.html"
+                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                data-i18n="common.backHome">← Back to home</a></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Sidebar Navigation -->
+            <aside class="lg:col-span-1">
+                <div class="sticky top-4">
+                    <nav class="bg-white border rounded-lg p-4 shadow-sm" aria-label="Documentation navigation">
+                        <div class="text-sm font-semibold text-gray-900 mb-3">On this page</div>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#getting-started" class="block text-gray-600 hover:text-blue-700 py-1">Getting
+                                    started</a></li>
+                            <li><a href="#creating-courses"
+                                    class="block text-gray-600 hover:text-blue-700 py-1">Creating courses</a></li>
+                            <li><a href="#quizzes" class="block text-gray-600 hover:text-blue-700 py-1">Quizzes &
+                                    assessments</a></li>
+                            <li><a href="#analytics" class="block text-gray-600 hover:text-blue-700 py-1">Analytics</a>
+                            </li>
+                            <li><a href="#user-management" class="block text-gray-600 hover:text-blue-700 py-1">User
+                                    management</a></li>
+                            <li><a href="#troubleshooting"
+                                    class="block text-gray-600 hover:text-blue-700 py-1">Troubleshooting</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                <!-- Hero Section -->
+                <section class="mb-12">
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-3">Documentation</h1>
+                        <p class="text-lg text-gray-700 max-w-3xl">
+                            Everything you need to know about using the Learning Management System. From getting started
+                            to advanced
+                            features, we've got you covered.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                        <a href="#getting-started"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">🚀</div>
+                            <div class="font-semibold mb-1 text-gray-900">Getting started</div>
+                            <div class="text-sm text-gray-600">Learn the basics and create your first course</div>
+                        </a>
+                        <a href="#creating-courses"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">📚</div>
+                            <div class="font-semibold mb-1 text-gray-900">Creating courses</div>
+                            <div class="text-sm text-gray-600">Step-by-step guide to building courses</div>
+                        </a>
+                        <a href="#quizzes"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">📝</div>
+                            <div class="font-semibold mb-1 text-gray-900">Quizzes & assessments</div>
+                            <div class="text-sm text-gray-600">Create and manage quizzes for your learners</div>
+                        </a>
+                        <a href="#analytics"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">📊</div>
+                            <div class="font-semibold mb-1 text-gray-900">Analytics</div>
+                            <div class="text-sm text-gray-600">Track learner progress and engagement</div>
+                        </a>
+                        <a href="#user-management"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">👥</div>
+                            <div class="font-semibold mb-1 text-gray-900">User management</div>
+                            <div class="text-sm text-gray-600">Manage learners, instructors, and permissions</div>
+                        </a>
+                        <a href="#troubleshooting"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-3xl mb-2">🔧</div>
+                            <div class="font-semibold mb-1 text-gray-900">Troubleshooting</div>
+                            <div class="text-sm text-gray-600">Common issues and solutions</div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Getting Started -->
+                <section id="getting-started" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-xl">🚀
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-900">Getting started</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-sm">
+                                    1</div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Create your account</h3>
+                                    <p class="text-gray-600 mb-4">
+                                        Sign up for a free account to get started. You can use your email or sign in
+                                        with Google or
+                                        GitHub.
+                                    </p>
+                                    <a href="signup.html" class="inline-block btn-primary text-sm">Sign up now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-700 font-bold text-sm">
+                                    2</div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Explore the dashboard</h3>
+                                    <p class="text-gray-600 mb-3">
+                                        Once logged in, you'll see your dashboard where you can access all features
+                                        including courses,
+                                        quizzes, and analytics.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold text-sm">
+                                    3</div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Browse example courses</h3>
+                                    <p class="text-gray-600 mb-3">
+                                        Visit the courses page to see sample courses and get inspiration for creating
+                                        your own content.
+                                    </p>
+                                    <a href="courses.html"
+                                        class="inline-block text-blue-700 hover:underline text-sm font-medium">Browse
+                                        courses →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Creating Courses -->
+                <section id="creating-courses" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-xl">📚
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-900">Creating courses</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-blue-50/30 shadow-sm">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">📋</span>
+                                <h3 class="text-lg font-semibold text-gray-900">Step 1: Plan your course structure</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                Before creating your course, outline the learning objectives, lessons, and assessments.
+                                This helps
+                                ensure a clear learning path.
+                            </p>
+                            <div class="bg-white/60 rounded-lg p-4 border border-blue-100">
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">✓</span>
+                                        <span>Define your learning objectives</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">✓</span>
+                                        <span>Break content into manageable lessons</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">✓</span>
+                                        <span>Plan assessments and quizzes</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">✓</span>
+                                        <span>Consider prerequisite knowledge</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-purple-50/30 shadow-sm">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">✏️</span>
+                                <h3 class="text-lg font-semibold text-gray-900">Step 2: Add course content</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                Use the course editor to add your content. You can include text, videos, images, and
+                                interactive
+                                elements.
+                            </p>
+                            <div class="bg-white/60 rounded-lg p-4 border border-purple-100">
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-purple-600 mt-0.5">✓</span>
+                                        <span>Write clear, engaging lesson content</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-purple-600 mt-0.5">✓</span>
+                                        <span>Add multimedia resources where helpful</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-purple-600 mt-0.5">✓</span>
+                                        <span>Include examples and practice exercises</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-purple-600 mt-0.5">✓</span>
+                                        <span>Organize content in a logical sequence</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-green-50/30 shadow-sm">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🚀</span>
+                                <h3 class="text-lg font-semibold text-gray-900">Step 3: Publish and share</h3>
+                            </div>
+                            <p class="text-gray-700 mb-3">
+                                Once your course is ready, publish it and share it with learners. You can set access
+                                permissions and
+                                enrollment options.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quizzes -->
+                <section id="quizzes" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center text-xl">📝
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-900">Quizzes & assessments</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                                <span>✨</span>
+                                <span>Creating quizzes</span>
+                            </h3>
+                            <p class="text-gray-700 mb-4">
+                                Quizzes help you assess learner understanding and track progress. Create
+                                multiple-choice,
+                                true/false, or other question types.
+                            </p>
+                            <div
+                                class="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-100 p-5 rounded-lg">
+                                <p class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                                    <span>💡</span>
+                                    <span>Tips for effective quizzes:</span>
+                                </p>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <span>Keep questions clear and concise</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <span>Test key concepts, not trivia</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <span>Provide immediate feedback</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <span>Set appropriate passing scores</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 border-2 border-indigo-200 rounded-xl bg-gradient-to-r from-indigo-50 to-blue-50 shadow-sm">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">Try a sample quiz</h3>
+                            <p class="text-gray-700 mb-4">
+                                Experience how quizzes work from a learner's perspective by taking our sample quiz.
+                            </p>
+                            <a href="quiz.html" class="inline-block btn-primary">Take a quiz →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics -->
+                <section id="analytics" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">📊</div>
+                        <h2 class="text-3xl font-bold text-gray-900">Analytics & reporting</h2>
+                    </div>
+                    <div class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-900">Track learner progress</h3>
+                        <p class="text-gray-700 mb-6">
+                            Use analytics to monitor learner engagement, completion rates, and identify at-risk learners
+                            who may
+                            need additional support.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div
+                                class="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-lg border border-blue-100">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-xl">📈</span>
+                                    <div class="font-semibold text-gray-900">Key metrics</div>
+                                </div>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                        <span>Active learners</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                        <span>Completion rates</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                        <span>Average session time</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                        <span>Quiz pass rates</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-gradient-to-br from-purple-50 to-pink-50 p-5 rounded-lg border border-purple-100">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-xl">🔍</span>
+                                    <div class="font-semibold text-gray-900">Insights</div>
+                                </div>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-purple-600 rounded-full"></span>
+                                        <span>Identify struggling learners</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-purple-600 rounded-full"></span>
+                                        <span>Track course performance</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-purple-600 rounded-full"></span>
+                                        <span>Monitor engagement trends</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-purple-600 rounded-full"></span>
+                                        <span>Export reports</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="analytics.html" class="inline-block btn-primary">View analytics dashboard →</a>
+                    </div>
+                </section>
+
+                <!-- User Management -->
+                <section id="user-management" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-xl">👥</div>
+                        <h2 class="text-3xl font-bold text-gray-900">User management</h2>
+                    </div>
+                    <div class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900">Roles and permissions</h3>
+                        <p class="text-gray-700 mb-6">
+                            Our platform supports different user roles with appropriate permissions:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div
+                                class="p-5 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border-2 border-blue-200 hover:shadow-md transition">
+                                <div class="text-2xl mb-2">🎓</div>
+                                <div class="font-semibold mb-2 text-gray-900">Learner</div>
+                                <p class="text-sm text-gray-700">Enroll in courses, take quizzes, track progress</p>
+                            </div>
+                            <div
+                                class="p-5 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border-2 border-purple-200 hover:shadow-md transition">
+                                <div class="text-2xl mb-2">👨‍🏫</div>
+                                <div class="font-semibold mb-2 text-gray-900">Instructor</div>
+                                <p class="text-sm text-gray-700">Create courses, manage learners, view analytics</p>
+                            </div>
+                            <div
+                                class="p-5 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border-2 border-green-200 hover:shadow-md transition">
+                                <div class="text-2xl mb-2">⚙️</div>
+                                <div class="font-semibold mb-2 text-gray-900">Admin</div>
+                                <p class="text-sm text-gray-700">Full platform access and user management</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Troubleshooting -->
+                <section id="troubleshooting" class="mb-16 scroll-mt-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-xl">🔧</div>
+                        <h2 class="text-3xl font-bold text-gray-900">Troubleshooting</h2>
+                    </div>
+                    <div class="space-y-3">
+                        <details
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                            <summary
+                                class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
+                                <span class="text-red-500">❓</span>
+                                <span>Can't sign in to my account</span>
+                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
+                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                            </summary>
+                            <div class="mt-4 pt-4 border-t text-gray-700">
+                                <p class="mb-3 font-medium">If you're having trouble signing in:</p>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Check that you're using the correct email address</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Try resetting your password using the "Forgot password" link</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Clear your browser cache and cookies</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Ensure JavaScript is enabled in your browser</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                            <summary
+                                class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
+                                <span class="text-orange-500">⚠️</span>
+                                <span>Courses not loading</span>
+                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
+                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                            </summary>
+                            <div class="mt-4 pt-4 border-t text-gray-700">
+                                <p class="mb-3 font-medium">If courses aren't displaying properly:</p>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Refresh the page</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Check your internet connection</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Try a different browser</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Clear browser cache</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                            <summary
+                                class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
+                                <span class="text-purple-500">💾</span>
+                                <span>Quiz results not saving</span>
+                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
+                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                            </summary>
+                            <div class="mt-4 pt-4 border-t text-gray-700">
+                                <p class="mb-3 font-medium">If quiz results aren't being saved:</p>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Ensure you're signed in to your account</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Check that you've submitted the quiz (click "Submit Quiz")</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Verify your browser's localStorage is enabled</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
+                            <summary
+                                class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
+                                <span class="text-indigo-500">🌐</span>
+                                <span>Language selector not working</span>
+                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
+                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                            </summary>
+                            <div class="mt-4 pt-4 border-t text-gray-700">
+                                <p class="mb-3 font-medium">If the language selector isn't updating text:</p>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Refresh the page after selecting a language</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Clear browser cache and try again</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Check that JavaScript is enabled</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- Additional Resources -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold mb-6 text-gray-900">Additional resources</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="features.html"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-2xl mb-2">✨</div>
+                            <div class="font-semibold mb-2 text-gray-900">Feature overview</div>
+                            <p class="text-sm text-gray-600">Explore all available features and capabilities</p>
+                        </a>
+                        <a href="about.html"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-2xl mb-2">ℹ️</div>
+                            <div class="font-semibold mb-2 text-gray-900">About us</div>
+                            <p class="text-sm text-gray-600">Learn more about our mission and team</p>
+                        </a>
+                        <a href="careers.html"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-2xl mb-2">💼</div>
+                            <div class="font-semibold mb-2 text-gray-900">Join our team</div>
+                            <p class="text-sm text-gray-600">We're hiring! Check out open positions</p>
+                        </a>
+                        <a href="index.html#faq"
+                            class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
+                            <div class="text-2xl mb-2">❓</div>
+                            <div class="font-semibold mb-2 text-gray-900">FAQ</div>
+                            <p class="text-sm text-gray-600">Frequently asked questions and answers</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Support Section -->
+                <section
+                    class="p-8 border-2 border-indigo-200 rounded-xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-center shadow-sm">
+                    <div class="text-4xl mb-4">💬</div>
+                    <h2 class="text-2xl font-semibold mb-3 text-gray-900">Need more help?</h2>
+                    <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
+                        If you can't find what you're looking for, feel free to reach out. We're here to help you
+                        succeed.
+                    </p>
+                    <div class="flex items-center justify-center gap-3">
+                        <a href="signin.html" class="btn-primary">Contact support</a>
+                        <a href="index.html" class="btn-outline-indigo">Return home</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

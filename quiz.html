@@ -19,7 +19,6 @@
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
                 <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
                 <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
-                <a class="text-white hover:text-white" href="signin.html">Sign in</a>
                 <a class="btn-primary" href="signin.html">Sign in</a>
             </nav>
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
@@ -29,11 +28,11 @@
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
-                <a class="block text-gray-700" href="features.html">Features</a>
-                <a class="block text-gray-700" href="saved.html">Saved</a>
-                <a class="block text-gray-700" href="courses.html">Browse courses</a>
-                <a class="block text-gray-700" href="quiz.html">Take a quiz</a>
-                <a class="block text-gray-700" href="analytics.html">View analytics</a>
+                <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
                 <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign
                     up</a>
             </nav>
@@ -43,54 +42,217 @@
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="max-w-2xl mx-auto">
             <div class="mb-4"><a href="index.html"
-                    class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline">← Back to home</a>
+                    class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                    data-i18n="common.backHome">← Back to home</a>
             </div>
-            <h1 class="text-2xl font-semibold mb-2">Quick quiz</h1>
-            <p class="text-sm text-gray-600 mb-6">Answer the questions below and submit to see your score.</p>
+            <div class="mb-6">
+                <h1 class="text-2xl font-semibold mb-2" data-i18n="page.quiz">Web Development Quiz</h1>
+                <p class="text-sm text-gray-600 mb-4">Test your knowledge across multiple web technologies. Answer all
+                    questions and submit to see your score.</p>
 
-            <form id="quizForm" class="space-y-6">
-                <fieldset class="p-4 border rounded bg-white">
-                    <legend class="font-medium">1) JavaScript runs primarily in the ...</legend>
-                    <label class="block mt-2 text-sm"><input type="radio" name="q1" value="A"> Database</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q1" value="B"> Browser</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q1" value="C"> Router</label>
+                <!-- Progress Bar -->
+                <div class="mb-4">
+                    <div class="flex items-center justify-between text-xs text-gray-600 mb-1">
+                        <span>Progress</span>
+                        <span id="progressText">0/8 answered</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div id="progressBar"
+                            class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-300"
+                            style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="quizForm" class="space-y-4">
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="1">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">1.</span>
+                        <span>JavaScript runs primarily in the ...</span>
+                        <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="A" class="mt-0.5"> <span
+                                class="text-sm">Database</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="mt-0.5"> <span class="text-sm">Browser</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="mt-0.5"> <span class="text-sm">Router</span>
+                        </label>
+                    </div>
                 </fieldset>
 
-                <fieldset class="p-4 border rounded bg-white">
-                    <legend class="font-medium">2) In HTML, the tag for a link is ...</legend>
-                    <label class="block mt-2 text-sm"><input type="radio" name="q2" value="A"> &lt;div&gt;</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q2" value="B"> &lt;a&gt;</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q2" value="C"> &lt;p&gt;</label>
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="2">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">2.</span>
+                        <span>In HTML, the tag for a link is ...</span>
+                        <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="A" class="mt-0.5"> <span
+                                class="text-sm">&lt;div&gt;</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="mt-0.5"> <span
+                                class="text-sm">&lt;a&gt;</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="mt-0.5"> <span
+                                class="text-sm">&lt;p&gt;</span>
+                        </label>
+                    </div>
                 </fieldset>
 
-                <fieldset class="p-4 border rounded bg-white">
-                    <legend class="font-medium">3) CSS controls ...</legend>
-                    <label class="block mt-2 text-sm"><input type="radio" name="q3" value="A"> Structure</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q3" value="B"> Behavior</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q3" value="C"> Presentation</label>
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="3">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">3.</span>
+                        <span>CSS controls ...</span>
+                        <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="A" class="mt-0.5"> <span
+                                class="text-sm">Structure</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="B" class="mt-0.5"> <span
+                                class="text-sm">Behavior</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="C" class="mt-0.5"> <span
+                                class="text-sm">Presentation</span>
+                        </label>
+                    </div>
                 </fieldset>
 
-                <fieldset class="p-4 border rounded bg-white">
-                    <legend class="font-medium">4) Which HTTP status means "Not Found"?</legend>
-                    <label class="block mt-2 text-sm"><input type="radio" name="q4" value="A"> 200</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q4" value="B"> 301</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q4" value="C"> 404</label>
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="4">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">4.</span>
+                        <span>Which HTTP status means "Not Found"?</span>
+                        <span class="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Web</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q4" value="A" class="mt-0.5"> <span class="text-sm">200</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q4" value="B" class="mt-0.5"> <span class="text-sm">301</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q4" value="C" class="mt-0.5"> <span class="text-sm">404</span>
+                        </label>
+                    </div>
                 </fieldset>
 
-                <fieldset class="p-4 border rounded bg-white">
-                    <legend class="font-medium">5) In Git, which command creates a local copy of a remote repo?</legend>
-                    <label class="block mt-2 text-sm"><input type="radio" name="q5" value="A"> git pull</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q5" value="B"> git clone</label>
-                    <label class="block mt-1 text-sm"><input type="radio" name="q5" value="C"> git commit</label>
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="5">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">5.</span>
+                        <span>In Git, which command creates a local copy of a remote repo?</span>
+                        <span class="ml-auto text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">Git</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q5" value="A" class="mt-0.5"> <span class="text-sm">git
+                                pull</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q5" value="B" class="mt-0.5"> <span class="text-sm">git
+                                clone</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q5" value="C" class="mt-0.5"> <span class="text-sm">git
+                                commit</span>
+                        </label>
+                    </div>
                 </fieldset>
 
-                <div class="flex items-center gap-3">
-                    <button id="submitQuiz" type="submit" class="btn-primary">Submit</button>
-                    <button id="resetQuiz" type="button" class="btn-outline-indigo">Reset</button>
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="6">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">6.</span>
+                        <span>What does CSS stand for?</span>
+                        <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q6" value="A" class="mt-0.5"> <span class="text-sm">Computer Style
+                                Sheets</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q6" value="B" class="mt-0.5"> <span class="text-sm">Cascading
+                                Style Sheets</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q6" value="C" class="mt-0.5"> <span class="text-sm">Creative Style
+                                Sheets</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="7">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">7.</span>
+                        <span>Which HTML tag is used for the largest heading?</span>
+                        <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q7" value="A" class="mt-0.5"> <span
+                                class="text-sm">&lt;head&gt;</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q7" value="B" class="mt-0.5"> <span
+                                class="text-sm">&lt;h1&gt;</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q7" value="C" class="mt-0.5"> <span
+                                class="text-sm">&lt;heading&gt;</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                    data-question="8">
+                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600 font-semibold">8.</span>
+                        <span>Which JavaScript method adds a new element to an array?</span>
+                        <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
+                    </legend>
+                    <div class="space-y-2 ml-6">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q8" value="A" class="mt-0.5"> <span class="text-sm">push()</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q8" value="B" class="mt-0.5"> <span class="text-sm">pop()</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q8" value="C" class="mt-0.5"> <span class="text-sm">shift()</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="flex items-center gap-3 pt-4">
+                    <button id="submitQuiz" type="submit" class="btn-primary" data-i18n="common.submit">Submit
+                        Quiz</button>
+                    <button id="resetQuiz" type="button" class="btn-outline-indigo" data-i18n="common.reset">Reset
+                        All</button>
                 </div>
             </form>
 
-            <div id="quizResult" class="mt-6 hidden p-4 border rounded bg-white" role="status" aria-live="polite"></div>
+            <div id="quizResult" class="mt-6 hidden p-6 border rounded-lg bg-white shadow-sm" role="status"
+                aria-live="polite">
+                <!-- Result content injected by JS -->
+            </div>
         </div>
     </main>
 
@@ -101,28 +263,129 @@
             const form = document.getElementById('quizForm');
             const result = document.getElementById('quizResult');
             const resetBtn = document.getElementById('resetQuiz');
-            const answers = { q1: 'B', q2: 'B', q3: 'C', q4: 'C', q5: 'B' };
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const answers = { q1: 'B', q2: 'B', q3: 'C', q4: 'C', q5: 'B', q6: 'B', q7: 'B', q8: 'A' };
+            const totalQuestions = Object.keys(answers).length;
+            let submitted = false;
+
+            // Progress tracking
+            function updateProgress() {
+                if (submitted) return;
+                const formData = new FormData(form);
+                let answered = 0;
+                Object.keys(answers).forEach(k => {
+                    if (formData.get(k)) answered++;
+                });
+                const pct = Math.round((answered / totalQuestions) * 100);
+                progressBar.style.width = pct + '%';
+                progressText.textContent = `${answered}/${totalQuestions} answered`;
+            }
+
+            form.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', updateProgress);
+            });
+            updateProgress();
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                let correct = 0; const total = Object.keys(answers).length;
-                for (const k of Object.keys(answers)) {
-                    const val = (new FormData(form)).get(k);
-                    if (val === answers[k]) correct++;
-                }
-                const pct = Math.round((correct / total) * 100);
+                submitted = true;
+                const formData = new FormData(form);
+                let correct = 0;
+                const results = [];
+
+                Object.keys(answers).forEach(k => {
+                    const userAnswer = formData.get(k);
+                    const correctAnswer = answers[k];
+                    const isCorrect = userAnswer === correctAnswer;
+                    if (isCorrect) correct++;
+                    results.push({
+                        question: k,
+                        userAnswer,
+                        correctAnswer,
+                        isCorrect
+                    });
+                });
+
+                const pct = Math.round((correct / totalQuestions) * 100);
                 const passed = pct >= 60;
-                const badge = passed
-                    ? '<span class="ml-2 inline-block text-xs bg-green-600 text-white rounded px-2 py-0.5">Pass</span>'
-                    : '<span class="ml-2 inline-block text-xs bg-red-600 text-white rounded px-2 py-0.5">Fail</span>';
+
+                // Show answer feedback on each question
+                results.forEach(r => {
+                    const questionEl = form.querySelector(`[data-question="${r.question.replace('q', '')}"]`);
+                    if (!questionEl) return;
+                    const labels = questionEl.querySelectorAll('label');
+                    labels.forEach(label => {
+                        const input = label.querySelector('input');
+                        const textSpan = label.querySelector('span');
+                        if (!input) return;
+                        const optionValue = input.value;
+                        label.classList.remove('bg-green-100', 'bg-red-100', 'text-green-700', 'text-red-700');
+
+                        if (r.userAnswer && optionValue === r.correctAnswer) {
+                            label.classList.add('bg-green-100', 'text-green-700');
+                            if (textSpan) {
+                                textSpan.innerHTML += ' <span class="text-green-700 font-medium">✓ Correct</span>';
+                            }
+                        } else if (r.userAnswer && optionValue === r.userAnswer && !r.isCorrect) {
+                            label.classList.add('bg-red-100', 'text-red-700');
+                            if (textSpan) {
+                                textSpan.innerHTML += ' <span class="text-red-700 font-medium">✗ Your answer</span>';
+                            }
+                        }
+                        input.disabled = true;
+                    });
+                });
+
+                // Enhanced result display
+                const emoji = passed ? '🎉' : '📚';
+                const badgeClass = passed ? 'bg-green-600' : 'bg-red-600';
+                const badgeText = passed ? 'Passed' : 'Failed';
+
                 result.classList.remove('hidden');
-                result.innerHTML = `<div class="text-sm text-gray-700">Score: <span class="font-medium">${correct}/${total}</span> (${pct}%) ${badge}</div>`;
+                result.innerHTML = `
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">${emoji}</div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">Your Score</div>
+                        <div class="text-4xl font-bold text-blue-600 mb-3">${correct}/${totalQuestions}</div>
+                        <div class="text-xl font-semibold text-gray-700 mb-2">${pct}%</div>
+                        <span class="inline-block ${badgeClass} text-white rounded-full px-4 py-1 text-sm font-medium">${badgeText}</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t">
+                        <div class="text-sm text-gray-600">
+                            ${passed
+                        ? 'Great job! You passed the quiz. Keep learning and practicing!'
+                        : 'Don\'t worry! Review the material and try again. You can retake the quiz anytime.'}
+                        </div>
+                    </div>
+                `;
+
+                // Scroll to results
+                result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
 
             resetBtn.addEventListener('click', () => {
                 form.reset();
                 result.classList.add('hidden');
                 result.innerHTML = '';
+                submitted = false;
+                updateProgress();
+
+                // Re-enable inputs and remove feedback
+                form.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.disabled = false;
+                });
+                form.querySelectorAll('.quiz-question label').forEach(label => {
+                    label.classList.remove('bg-green-100', 'bg-red-100', 'text-green-700', 'text-red-700');
+                    const textSpan = label.querySelector('span');
+                    if (textSpan) {
+                        const text = textSpan.textContent.trim();
+                        const match = text.match(/^(.*?)(✓ Correct|✗ Your answer)$/);
+                        if (match) {
+                            textSpan.textContent = match[1].trim();
+                        }
+                    }
+                });
             });
         })();
     </script>
