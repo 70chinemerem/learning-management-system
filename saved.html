@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saved Courses • Learning Management System</title>
-  <link rel="stylesheet" href="src/style.css">
-  <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -25,7 +25,9 @@
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">☰</button>
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -49,7 +51,7 @@
         <section class="mb-8">
             <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8">
                 <div class="flex items-center gap-3 mb-3">
-                    <span class="text-4xl">📚</span>
+                    <i data-lucide="book-open" class="w-10 h-10"></i>
                     <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.saved">Saved courses</h1>
                 </div>
                 <p class="text-lg text-gray-700">Your bookmarked courses, ready to continue learning.</p>
@@ -64,7 +66,7 @@
         <!-- Empty State -->
         <div id="emptyState" class="hidden text-center py-16">
             <div class="max-w-md mx-auto">
-                <div class="text-6xl mb-4">📖</div>
+                <div class="mb-4"><i data-lucide="book" class="w-16 h-16 mx-auto"></i></div>
                 <h2 class="text-2xl font-semibold text-gray-900 mb-3">No saved courses yet</h2>
                 <p class="text-gray-600 mb-6">Start exploring our course catalog and save courses you're interested in
                     for easy access later.</p>
@@ -183,9 +185,7 @@
                     <div class="flex items-start justify-between mb-3">
                         <span class="px-3 py-1 text-xs font-semibold rounded-full border ${colorClasses[c.color] || colorClasses.blue}">${c.category}</span>
                         <button class="text-red-500 hover:text-red-700 transition" onclick="this.closest('article').remove(); const saved = ${JSON.stringify(saved.filter(x => x !== id))}; localStorage.setItem('saved.courses', JSON.stringify(saved)); if(!saved.length) { document.getElementById('emptyState').classList.remove('hidden'); document.getElementById('savedGrid').style.display = 'none'; }" aria-label="Remove from saved">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
                         </button>
                     </div>
                     <h2 class="font-semibold text-lg mb-2 text-gray-900 group-hover:text-indigo-700 transition">${c.title}</h2>
@@ -193,21 +193,25 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4 text-xs text-gray-500">
                             <span class="flex items-center gap-1">
-                                <span>📊</span>
+                                <i data-lucide="bar-chart-2" class="w-3 h-3"></i>
                                 <span>${c.level}</span>
                             </span>
                             <span class="flex items-center gap-1">
-                                <span>⏱️</span>
+                                <i data-lucide="clock" class="w-3 h-3"></i>
                                 <span>${c.duration}</span>
                             </span>
                         </div>
                         <a href="courses.html#${id}" class="text-blue-700 hover:text-blue-800 font-medium text-sm flex items-center gap-1">
-                            Continue <span>→</span>
+                            Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
                 `;
                 grid.appendChild(card);
             });
+            // Initialize Lucide icons after creating cards
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         })();
     </script>
     <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
