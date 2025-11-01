@@ -7,7 +7,6 @@
     <title>Browse Courses • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -25,7 +24,8 @@
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
+                    class="w-5 h-5"></i></button>
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -43,32 +43,58 @@
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
-        <div class="flex items-end justify-between mb-6">
-            <div>
-                <h1 class="text-2xl font-semibold" data-i18n="page.courses">Browse our courses</h1>
-                <p class="text-sm text-gray-600">Explore categories and pick a course to get started.</p>
+                data-i18n="common.backHome">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to home</span>
+            </a></div>
+        <!-- Hero Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <i data-lucide="book-open" class="w-10 h-10 text-indigo-600"></i>
+                    <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.courses">Browse our courses</h1>
+                </div>
+                <p class="text-lg text-gray-700">Explore categories and pick a course to get started.</p>
             </div>
-            <form id="filters" class="flex items-center gap-2" onsubmit="event.preventDefault();">
-                <input id="q" type="search" placeholder="Search courses" class="px-3 py-2 border rounded w-48 md:w-64">
-                <select id="category" class="px-3 py-2 border rounded">
-                    <option value="">All categories</option>
-                    <option>Programming</option>
-                    <option>Data</option>
-                    <option>Design</option>
-                </select>
-                <select id="level" class="px-3 py-2 border rounded">
-                    <option value="">All levels</option>
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
-                </select>
+        </section>
+
+        <!-- Filters Section -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <form id="filters" class="flex flex-wrap items-center gap-2" onsubmit="event.preventDefault();">
+                <div class="relative flex-1 min-w-[200px]">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                    <input id="q" type="search" placeholder="Search courses"
+                        class="pl-9 pr-3 py-2 border-2 border-gray-200 rounded-lg w-full focus:border-indigo-300 focus:outline-none">
+                </div>
+                <div class="relative">
+                    <i data-lucide="folder"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"></i>
+                    <select id="category"
+                        class="pl-9 pr-8 py-2 border-2 border-gray-200 rounded-lg focus:border-indigo-300 focus:outline-none appearance-none bg-white">
+                        <option value="">All categories</option>
+                        <option>Programming</option>
+                        <option>Data</option>
+                        <option>Design</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <i data-lucide="trending-up"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"></i>
+                    <select id="level"
+                        class="pl-9 pr-8 py-2 border-2 border-gray-200 rounded-lg focus:border-indigo-300 focus:outline-none appearance-none bg-white">
+                        <option value="">All levels</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </div>
             </form>
         </div>
 
         <section id="courseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="js-101"
-                data-title="JavaScript 101" data-category="Programming" data-level="Beginner">
+            <article
+                class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:shadow-md hover:border-indigo-300 transition relative"
+                data-id="js-101" data-title="JavaScript 101" data-category="Programming" data-level="Beginner">
                 <div class="absolute top-3 right-3 text-[10px] bg-green-600 text-white px-2 py-0.5 rounded">New</div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=JS" alt="Instructor avatar"
@@ -81,17 +107,30 @@
                 <p class="text-sm text-gray-600 mb-3">Learn the basics of JavaScript: variables, functions, DOM.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.7 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.7</span>
                     </div>
-                    <div>18 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>18 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -109,17 +148,30 @@
                 <p class="text-sm text-gray-600 mb-3">Work with data using Python, pandas, and NumPy.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.8 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
                         <span class="ml-1">4.8</span>
                     </div>
-                    <div>22 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>22 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -136,17 +188,30 @@
                 <p class="text-sm text-gray-600 mb-3">Core principles of user experience and interface design.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.5 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.5</span>
                     </div>
-                    <div>12 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>12 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -166,17 +231,30 @@
                 <p class="text-sm text-gray-600 mb-3">Build interactive UIs with components, props, and state.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.6 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.6</span>
                     </div>
-                    <div>20 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>20 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -194,17 +272,30 @@
                 <p class="text-sm text-gray-600 mb-3">Understand the data lifecycle, analysis, and visualization.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.4 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.4</span>
                     </div>
-                    <div>14 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>14 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -222,17 +313,30 @@
                 <p class="text-sm text-gray-600 mb-3">Master layout, responsive design, and modern CSS features.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.7 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.7</span>
                     </div>
-                    <div>16 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>16 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -249,17 +353,30 @@
                 <p class="text-sm text-gray-600 mb-3">Learn server-side JavaScript and build simple APIs.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.3 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.3</span>
                     </div>
-                    <div>15 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>15 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -276,17 +393,30 @@
                 <p class="text-sm text-gray-600 mb-3">Query relational databases with SELECT, JOIN, and GROUP BY.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.6 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.6</span>
                     </div>
-                    <div>19 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>19 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
 
@@ -305,17 +435,30 @@
                 <p class="text-sm text-gray-600 mb-3">Apply proven patterns for forms, nav, and feedback.</p>
                 <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
                     <div class="flex items-center gap-1" aria-label="Rating 4.5 out of 5">
-                        <span class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-yellow-500">★</span><span class="text-yellow-500">★</span><span
-                            class="text-gray-300">★</span>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
                         <span class="ml-1">4.5</span>
                     </div>
-                    <div>17 lessons</div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-gray-500"></i>
+                        <span>17 lessons</span>
+                    </div>
                 </div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button type="button" class="px-3 py-1 border rounded text-sm previewBtn">Preview</button>
-                    <button type="button" class="px-3 py-1 border rounded text-sm saveBtn"
-                        aria-pressed="false">Save</button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-indigo-200 rounded-lg text-sm text-indigo-700 hover:bg-indigo-50 previewBtn">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                        <span>Preview</span>
+                    </button>
+                    <button type="button"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 saveBtn"
+                        aria-pressed="false">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+                        <span>Save</span>
+                    </button>
                 </div>
             </article>
         </section>
@@ -323,33 +466,53 @@
         <div id="previewModal" class="fixed inset-0 hidden items-center justify-center z-50">
             <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
             <div role="dialog" aria-modal="true" aria-labelledby="previewTitle"
-                class="relative bg-white rounded-lg shadow-lg max-w-lg w-full p-6">
-                <button id="previewClose" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
-                    aria-label="Close">✕</button>
+                class="relative bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 border-2 border-gray-100">
+                <button id="previewClose"
+                    class="absolute right-3 top-3 p-1.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition"
+                    aria-label="Close">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
                 <div class="text-xs text-gray-500 mb-1" id="previewMeta"></div>
-                <h2 id="previewTitle" class="text-xl font-semibold mb-2">Course Title</h2>
+                <h2 id="previewTitle" class="text-2xl font-bold text-gray-900 mb-2">Course Title</h2>
                 <p id="previewDesc" class="text-sm text-gray-700 mb-4">Short course description will appear here.</p>
                 <div class="mb-4">
-                    <div class="text-sm font-medium mb-1">What you'll learn</div>
-                    <ul id="previewOutcomes" class="list-disc pl-5 text-sm text-gray-700 space-y-1"></ul>
+                    <div class="text-sm font-semibold mb-2 flex items-center gap-2 text-gray-900">
+                        <i data-lucide="target" class="w-4 h-4 text-indigo-600"></i>
+                        <span>What you'll learn</span>
+                    </div>
+                    <ul id="previewOutcomes" class="list-none pl-0 text-sm text-gray-700 space-y-2">
+                        <!-- Will be populated by JS -->
+                    </ul>
                 </div>
                 <div class="mb-4">
-                    <div class="text-sm font-medium mb-1">Syllabus</div>
+                    <div class="text-sm font-semibold mb-2 flex items-center gap-2 text-gray-900">
+                        <i data-lucide="list-ordered" class="w-4 h-4 text-indigo-600"></i>
+                        <span>Syllabus</span>
+                    </div>
                     <ol id="previewSyllabus" class="list-decimal pl-5 text-sm text-gray-700 space-y-1"></ol>
                 </div>
                 <div class="flex gap-2">
                     <a id="previewStart" href="signin.html"
-                        class="bg-blue-600 text-white rounded px-3 py-1.5 text-sm hover:bg-blue-700">Start now</a>
-                    <button id="previewCancel" class="border rounded px-3 py-1.5 text-sm">Close</button>
+                        class="flex items-center gap-2 bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm hover:bg-indigo-700 transition">
+                        <i data-lucide="play" class="w-4 h-4"></i>
+                        <span>Start now</span>
+                    </a>
+                    <button id="previewCancel"
+                        class="flex items-center gap-2 border-2 border-gray-200 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                        <span>Close</span>
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="text-center text-xs text-gray-500 py-6">
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
         &copy; 2024 Learning Management System. All rights reserved.
     </footer>
 
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         (function () {
             const q = document.getElementById('q');
@@ -387,10 +550,20 @@
             function write(list) { try { localStorage.setItem(key, JSON.stringify(list)); } catch { } }
 
             function updateButton(btn, saved) {
-                btn.textContent = saved ? 'Saved' : 'Save';
-                btn.classList.toggle('bg-blue-600', saved);
+                const span = btn.querySelector('span');
+                if (span) span.textContent = saved ? 'Saved' : 'Save';
+                const icon = btn.querySelector('i[data-lucide]');
+                if (icon) icon.setAttribute('data-lucide', saved ? 'bookmark-check' : 'bookmark');
+                btn.classList.toggle('bg-indigo-600', saved);
                 btn.classList.toggle('text-white', saved);
+                btn.classList.toggle('border-indigo-600', saved);
+                btn.classList.toggle('border-gray-200', !saved);
                 btn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+                // Re-initialize Lucide icon
+                if (window.lucide) {
+                    const iconEl = btn.querySelector('i[data-lucide]');
+                    if (iconEl) lucide.createIcons();
+                }
             }
 
             const savedList = new Set(read());
@@ -549,8 +722,12 @@
                 meta.textContent = (lev ? lev : '') + (lev && cat ? ' • ' : '') + (cat ? cat : '');
                 desc.textContent = p ? p.textContent : '';
                 const details = courseData[id] || { outcomes: [], syllabus: [] };
-                outcomes.innerHTML = (details.outcomes || []).map(o => `<li>${o}</li>`).join('');
+                outcomes.innerHTML = (details.outcomes || []).map(o => `<li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0"></i><span>${o}</span></li>`).join('');
                 syllabus.innerHTML = (details.syllabus || []).map(s => `<li>${s}</li>`).join('');
+                // Re-initialize Lucide icons for the modal
+                if (window.lucide) {
+                    setTimeout(() => lucide.createIcons(), 10);
+                }
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             }
@@ -571,6 +748,7 @@
         })();
     </script>
     <script type="module" src="src/main.js"></script>
+    <script src="src/lucide-init.js"></script>
 </body>
 
 </html>
