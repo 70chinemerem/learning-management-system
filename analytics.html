@@ -7,7 +7,6 @@
     <title>Analytics • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -25,7 +24,8 @@
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
+                    class="w-5 h-5"></i></button>
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -43,17 +43,29 @@
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
-        <h1 class="text-2xl font-semibold mb-2" data-i18n="page.analytics">Analytics overview</h1>
-        <p class="text-sm text-gray-600 mb-6">Track learner engagement, course performance, and key metrics at a glance.
-        </p>
+                data-i18n="common.backHome">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to home</span>
+            </a></div>
+        <!-- Hero Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <i data-lucide="bar-chart-3" class="w-10 h-10 text-indigo-600"></i>
+                    <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.analytics">Analytics overview</h1>
+                </div>
+                <p class="text-lg text-gray-700">Track learner engagement, course performance, and key metrics at a
+                    glance.</p>
+            </div>
+        </section>
 
         <!-- Key Metrics -->
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-sm text-gray-500">Active learners</div>
-                    <div class="text-blue-600">👥</div>
+                    <i data-lucide="users" class="w-5 h-5 text-blue-600"></i>
                 </div>
                 <div id="metricActive" class="text-3xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">+12% from last month</div>
@@ -61,7 +73,7 @@
             <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-sm text-gray-500">Completion rate</div>
-                    <div class="text-green-600">✓</div>
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
                 </div>
                 <div id="metricCompletion" class="text-3xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">+5% from last month</div>
@@ -69,7 +81,7 @@
             <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-sm text-gray-500">At-risk learners</div>
-                    <div class="text-orange-600">⚠</div>
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-orange-600"></i>
                 </div>
                 <div id="metricRisk" class="text-3xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">-8% from last month</div>
@@ -77,7 +89,7 @@
             <div class="p-5 border rounded-lg bg-white shadow-sm hover:shadow transition">
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-sm text-gray-500">Total courses</div>
-                    <div class="text-purple-600">📚</div>
+                    <i data-lucide="book-open" class="w-5 h-5 text-purple-600"></i>
                 </div>
                 <div id="metricCourses" class="text-3xl font-bold text-gray-900">9</div>
                 <div class="text-xs text-gray-500 mt-1">3 new this month</div>
@@ -87,9 +99,12 @@
         <!-- Charts Row -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
             <!-- Engagement Chart -->
-            <div class="p-5 border rounded-lg bg-white shadow-sm">
+            <div class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="font-medium text-gray-900">Daily engagement</div>
+                    <div class="font-semibold text-gray-900 flex items-center gap-2">
+                        <i data-lucide="trending-up" class="w-5 h-5 text-blue-600"></i>
+                        <span>Daily engagement</span>
+                    </div>
                     <select id="range" class="px-3 py-1.5 border rounded text-sm">
                         <option value="7">Last 7 days</option>
                         <option value="30">Last 30 days</option>
@@ -104,8 +119,11 @@
             </div>
 
             <!-- Course Performance -->
-            <div class="p-5 border rounded-lg bg-white shadow-sm">
-                <div class="font-medium text-gray-900 mb-4">Top performing courses</div>
+            <div class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
+                <div class="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <i data-lucide="star" class="w-5 h-5 text-yellow-600"></i>
+                    <span>Top performing courses</span>
+                </div>
                 <div id="coursePerformance" class="space-y-3">
                     <!-- injected by JS -->
                 </div>
@@ -114,25 +132,38 @@
 
         <!-- Additional Metrics -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="p-5 border rounded-lg bg-white shadow-sm">
-                <div class="text-sm text-gray-500 mb-1">Average time per session</div>
+            <div class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Average time per session</div>
+                    <i data-lucide="clock" class="w-5 h-5 text-indigo-600"></i>
+                </div>
                 <div id="metricSessionTime" class="text-2xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">Last 7 days</div>
             </div>
-            <div class="p-5 border rounded-lg bg-white shadow-sm">
-                <div class="text-sm text-gray-500 mb-1">Quiz pass rate</div>
+            <div class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Quiz pass rate</div>
+                    <i data-lucide="award" class="w-5 h-5 text-yellow-600"></i>
+                </div>
                 <div id="metricQuizPass" class="text-2xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">All quizzes</div>
             </div>
-            <div class="p-5 border rounded-lg bg-white shadow-sm">
-                <div class="text-sm text-gray-500 mb-1">New enrollments</div>
+            <div class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">New enrollments</div>
+                    <i data-lucide="user-plus" class="w-5 h-5 text-green-600"></i>
+                </div>
                 <div id="metricEnrollments" class="text-2xl font-bold text-gray-900">—</div>
                 <div class="text-xs text-gray-500 mt-1">This month</div>
             </div>
         </section>
     </main>
 
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="src/main.js"></script>
     <script>
         (function () {
@@ -238,6 +269,7 @@
             });
         })();
     </script>
+    <script src="src/lucide-init.js"></script>
 </body>
 
 </html>

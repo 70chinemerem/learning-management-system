@@ -7,7 +7,6 @@
     <title>Features • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -45,7 +44,10 @@
     <main id="main" class="max-w-7xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
+                data-i18n="common.backHome">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to home</span>
+            </a></div>
 
         <!-- Hero Section -->
         <section class="mb-12 text-center">
@@ -175,8 +177,10 @@
                     </div>
                     <p class="text-sm text-gray-700">Bookmark and save your favorite courses for easy access later.</p>
                     <a href="saved.html"
-                        class="inline-block mt-3 text-blue-700 hover:underline text-sm font-medium">View saved courses
-                        →</a>
+                        class="inline-flex items-center gap-1 mt-3 text-blue-700 hover:underline text-sm font-medium">
+                        <span>View saved courses</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
                 </article>
 
                 <article class="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-white to-purple-50/30">
@@ -242,11 +246,13 @@
         </section>
     </main>
 
-    <footer class="text-center text-xs text-gray-500 py-6">
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
         &copy; 2024 Learning Management System. All rights reserved.
     </footer>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="src/main.js"></script>
+    <script src="src/lucide-init.js"></script>
 </body>
 
 </html>
