@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation • Learning Management System</title>
-  <link rel="stylesheet" href="src/style.css">
-  <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
 </head>
 
 <body>
@@ -24,7 +24,8 @@
             <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
+                    class="w-5 h-5"></i></button>
         </div>
         <div id="mobileMenu" class="md:hidden hidden border-t">
             <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -319,19 +320,23 @@
                                 </p>
                                 <ul class="space-y-2 text-sm text-gray-700">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <i data-lucide="circle"
+                                            class="w-2 h-2 text-orange-600 mt-1.5 flex-shrink-0"></i>
                                         <span>Keep questions clear and concise</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <i data-lucide="circle"
+                                            class="w-2 h-2 text-orange-600 mt-1.5 flex-shrink-0"></i>
                                         <span>Test key concepts, not trivia</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <i data-lucide="circle"
+                                            class="w-2 h-2 text-orange-600 mt-1.5 flex-shrink-0"></i>
                                         <span>Provide immediate feedback</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-orange-600 mt-0.5">•</span>
+                                        <i data-lucide="circle"
+                                            class="w-2 h-2 text-orange-600 mt-1.5 flex-shrink-0"></i>
                                         <span>Set appropriate passing scores</span>
                                     </li>
                                 </ul>
@@ -428,7 +433,9 @@
                 <!-- User Management -->
                 <section id="user-management" class="mb-16 scroll-mt-4">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-xl">👥</div>
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="users" class="w-6 h-6 text-teal-600"></i>
+                        </div>
                         <h2 class="text-3xl font-bold text-gray-900">User management</h2>
                     </div>
                     <div class="p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm">
@@ -439,19 +446,19 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div
                                 class="p-5 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border-2 border-blue-200 hover:shadow-md transition">
-                                <div class="text-2xl mb-2">🎓</div>
+                                <i data-lucide="graduation-cap" class="w-8 h-8 text-blue-600 mb-2"></i>
                                 <div class="font-semibold mb-2 text-gray-900">Learner</div>
                                 <p class="text-sm text-gray-700">Enroll in courses, take quizzes, track progress</p>
                             </div>
                             <div
                                 class="p-5 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border-2 border-purple-200 hover:shadow-md transition">
-                                <div class="text-2xl mb-2">👨‍🏫</div>
+                                <i data-lucide="user-check" class="w-8 h-8 text-purple-600 mb-2"></i>
                                 <div class="font-semibold mb-2 text-gray-900">Instructor</div>
                                 <p class="text-sm text-gray-700">Create courses, manage learners, view analytics</p>
                             </div>
                             <div
                                 class="p-5 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border-2 border-green-200 hover:shadow-md transition">
-                                <div class="text-2xl mb-2">⚙️</div>
+                                <i data-lucide="settings" class="w-8 h-8 text-green-600 mb-2"></i>
                                 <div class="font-semibold mb-2 text-gray-900">Admin</div>
                                 <p class="text-sm text-gray-700">Full platform access and user management</p>
                             </div>
@@ -462,7 +469,9 @@
                 <!-- Troubleshooting -->
                 <section id="troubleshooting" class="mb-16 scroll-mt-4">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-xl">🔧</div>
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="wrench" class="w-6 h-6 text-red-600"></i>
+                        </div>
                         <h2 class="text-3xl font-bold text-gray-900">Troubleshooting</h2>
                     </div>
                     <div class="space-y-3">
@@ -470,28 +479,34 @@
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
                             <summary
                                 class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
-                                <span class="text-red-500">❓</span>
+                                <i data-lucide="help-circle" class="w-5 h-5 text-red-500"></i>
                                 <span>Can't sign in to my account</span>
-                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
-                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                                <i data-lucide="chevron-down"
+                                    class="ml-auto w-5 h-5 text-gray-400 group-open:hidden"></i>
+                                <i data-lucide="chevron-up"
+                                    class="ml-auto w-5 h-5 text-gray-400 hidden group-open:inline"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t text-gray-700">
                                 <p class="mb-3 font-medium">If you're having trouble signing in:</p>
                                 <ul class="space-y-2 text-sm">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Check that you're using the correct email address</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Try resetting your password using the "Forgot password" link</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Clear your browser cache and cookies</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Ensure JavaScript is enabled in your browser</span>
                                     </li>
                                 </ul>
@@ -501,28 +516,34 @@
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
                             <summary
                                 class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
-                                <span class="text-orange-500">⚠️</span>
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-orange-500"></i>
                                 <span>Courses not loading</span>
-                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
-                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                                <i data-lucide="chevron-down"
+                                    class="ml-auto w-5 h-5 text-gray-400 group-open:hidden"></i>
+                                <i data-lucide="chevron-up"
+                                    class="ml-auto w-5 h-5 text-gray-400 hidden group-open:inline"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t text-gray-700">
                                 <p class="mb-3 font-medium">If courses aren't displaying properly:</p>
                                 <ul class="space-y-2 text-sm">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Refresh the page</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Check your internet connection</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Try a different browser</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Clear browser cache</span>
                                     </li>
                                 </ul>
@@ -532,24 +553,29 @@
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
                             <summary
                                 class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
-                                <span class="text-purple-500">💾</span>
+                                <i data-lucide="save" class="w-5 h-5 text-purple-500"></i>
                                 <span>Quiz results not saving</span>
-                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
-                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                                <i data-lucide="chevron-down"
+                                    class="ml-auto w-5 h-5 text-gray-400 group-open:hidden"></i>
+                                <i data-lucide="chevron-up"
+                                    class="ml-auto w-5 h-5 text-gray-400 hidden group-open:inline"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t text-gray-700">
                                 <p class="mb-3 font-medium">If quiz results aren't being saved:</p>
                                 <ul class="space-y-2 text-sm">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Ensure you're signed in to your account</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Check that you've submitted the quiz (click "Submit Quiz")</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Verify your browser's localStorage is enabled</span>
                                     </li>
                                 </ul>
@@ -559,24 +585,29 @@
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 transition shadow-sm">
                             <summary
                                 class="font-semibold cursor-pointer text-gray-900 flex items-center gap-2 list-none">
-                                <span class="text-indigo-500">🌐</span>
+                                <i data-lucide="globe" class="w-5 h-5 text-indigo-500"></i>
                                 <span>Language selector not working</span>
-                                <span class="ml-auto text-gray-400 group-open:hidden">▾</span>
-                                <span class="ml-auto text-gray-400 hidden group-open:inline">▴</span>
+                                <i data-lucide="chevron-down"
+                                    class="ml-auto w-5 h-5 text-gray-400 group-open:hidden"></i>
+                                <i data-lucide="chevron-up"
+                                    class="ml-auto w-5 h-5 text-gray-400 hidden group-open:inline"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t text-gray-700">
                                 <p class="mb-3 font-medium">If the language selector isn't updating text:</p>
                                 <ul class="space-y-2 text-sm">
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Refresh the page after selecting a language</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Clear browser cache and try again</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
                                         <span>Check that JavaScript is enabled</span>
                                     </li>
                                 </ul>
@@ -591,25 +622,25 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <a href="features.html"
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
-                            <div class="text-2xl mb-2">✨</div>
+                            <i data-lucide="sparkles" class="w-8 h-8 text-indigo-600 mb-2"></i>
                             <div class="font-semibold mb-2 text-gray-900">Feature overview</div>
                             <p class="text-sm text-gray-600">Explore all available features and capabilities</p>
                         </a>
                         <a href="about.html"
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
-                            <div class="text-2xl mb-2">ℹ️</div>
+                            <i data-lucide="info" class="w-8 h-8 text-blue-600 mb-2"></i>
                             <div class="font-semibold mb-2 text-gray-900">About us</div>
                             <p class="text-sm text-gray-600">Learn more about our mission and team</p>
                         </a>
                         <a href="careers.html"
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
-                            <div class="text-2xl mb-2">💼</div>
+                            <i data-lucide="briefcase" class="w-8 h-8 text-purple-600 mb-2"></i>
                             <div class="font-semibold mb-2 text-gray-900">Join our team</div>
                             <p class="text-sm text-gray-600">We're hiring! Check out open positions</p>
                         </a>
                         <a href="faq.html"
                             class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all block">
-                            <div class="text-2xl mb-2">❓</div>
+                            <i data-lucide="help-circle" class="w-8 h-8 text-green-600 mb-2"></i>
                             <div class="font-semibold mb-2 text-gray-900">FAQ</div>
                             <p class="text-sm text-gray-600">Frequently asked questions and answers</p>
                         </a>
@@ -619,7 +650,8 @@
                 <!-- Support Section -->
                 <section
                     class="p-8 border-2 border-indigo-200 rounded-xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-center shadow-sm">
-                    <div class="text-4xl mb-4">💬</div>
+                    <div class="mb-4"><i data-lucide="message-circle" class="w-12 h-12 mx-auto text-indigo-600"></i>
+                    </div>
                     <h2 class="text-2xl font-semibold mb-3 text-gray-900">Need more help?</h2>
                     <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
                         If you can't find what you're looking for, feel free to reach out. We're here to help you
@@ -639,7 +671,9 @@
     </footer>
 
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="src/main.js"></script>
+    <script src="src/lucide-init.js"></script>
 </body>
 
 </html>
