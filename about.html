@@ -7,7 +7,6 @@
     <title>About Us • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -17,12 +16,12 @@
     <header class="border-b bg-white">
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
-            <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
-                <a class="btn-primary" href="signin.html">Sign in</a>
+                <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
+                <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="btn-primary" href="signin.html" data-i18n="nav.signin">Sign in</a>
             </nav>
-            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2" data-i18n="nav.signin">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
@@ -34,7 +33,7 @@
                 <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
                 <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
                 <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
-                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign up</a>
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html" data-i18n="nav.signup">Sign up</a>
             </nav>
         </div>
     </header>
@@ -42,12 +41,12 @@
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
+                data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to home</span></a></div>
 
         <!-- Hero Section -->
         <section class="mb-12 text-center">
             <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="page.about">About Us</h1>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="about.hero.desc">
                 We're on a mission to make quality education accessible to everyone, everywhere. Founded in 2020, we've
                 helped thousands of learners achieve their learning goals through our modern, intuitive platform.
             </p>
@@ -57,71 +56,71 @@
         <section class="mb-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h2 class="text-3xl font-semibold mb-4">Our Mission</h2>
-                    <p class="text-gray-600 mb-4">
+                    <h2 class="text-3xl font-semibold mb-4" data-i18n="about.mission.title">Our Mission</h2>
+                    <p class="text-gray-600 mb-4" data-i18n="about.mission.desc1">
                         Education should be accessible, engaging, and effective for everyone. We believe that learning
                         doesn't stop after school—it's a lifelong journey. Our platform empowers educators and learners
                         to create, share, and discover knowledge in ways that work for them.
                     </p>
-                    <p class="text-gray-600">
+                    <p class="text-gray-600" data-i18n="about.mission.desc2">
                         Whether you're teaching a class, running a bootcamp, or learning a new skill, we provide the
                         tools you need to succeed. No complexity, no barriers—just learning made simple.
                     </p>
                 </div>
                 <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-8">
-                    <div class="text-6xl mb-4">🎓</div>
-                    <h3 class="text-xl font-semibold mb-2">Building the future of learning</h3>
-                    <p class="text-gray-600">Join us in transforming how people learn and teach online.</p>
+                    <i data-lucide="graduation-cap" class="w-16 h-16 text-indigo-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-i18n="about.mission.future">Building the future of learning</h3>
+                    <p class="text-gray-600" data-i18n="about.mission.join">Join us in transforming how people learn and teach online.</p>
                 </div>
             </div>
         </section>
 
         <!-- Values Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-semibold mb-6 text-center">Our Values</h2>
+            <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="about.values.title">Our Values</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">✨</div>
-                    <h3 class="font-semibold text-lg mb-2">Innovation</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="sparkles" class="w-10 h-10 text-indigo-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.innovation">Innovation</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.innovation.desc">
                         We continuously improve our platform with new features and technologies to enhance the learning
                         experience.
                     </p>
                 </div>
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">🤝</div>
-                    <h3 class="font-semibold text-lg mb-2">Community</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="users" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.community">Community</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.community.desc">
                         We believe learning is a collaborative journey. We foster connections between educators and
                         learners.
                     </p>
                 </div>
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">🌍</div>
-                    <h3 class="font-semibold text-lg mb-2">Accessibility</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="globe" class="w-10 h-10 text-green-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.accessibility">Accessibility</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.accessibility.desc">
                         Education should be available to everyone, regardless of background, location, or resources.
                     </p>
                 </div>
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">💡</div>
-                    <h3 class="font-semibold text-lg mb-2">Simplicity</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="lightbulb" class="w-10 h-10 text-yellow-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.simplicity">Simplicity</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.simplicity.desc">
                         We keep things simple and intuitive, so you can focus on what matters: teaching and learning.
                     </p>
                 </div>
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">📊</div>
-                    <h3 class="font-semibold text-lg mb-2">Data-Driven</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="bar-chart-3" class="w-10 h-10 text-purple-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.data">Data-Driven</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.data.desc">
                         We use analytics and insights to help educators understand learner progress and improve
                         outcomes.
                     </p>
                 </div>
                 <div class="p-6 border rounded-lg bg-white shadow-sm hover:shadow transition">
-                    <div class="text-4xl mb-3">🔒</div>
-                    <h3 class="font-semibold text-lg mb-2">Security & Privacy</h3>
-                    <p class="text-sm text-gray-600">
+                    <i data-lucide="shield" class="w-10 h-10 text-red-600 mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2" data-i18n="about.values.security">Security & Privacy</h3>
+                    <p class="text-sm text-gray-600" data-i18n="about.values.security.desc">
                         We protect your data and privacy with industry-leading security practices and transparency.
                     </p>
                 </div>
@@ -130,24 +129,24 @@
 
         <!-- Story Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-semibold mb-6">Our Story</h2>
+            <h2 class="text-3xl font-semibold mb-6" data-i18n="about.story.title">Our Story</h2>
             <div class="prose max-w-none">
                 <div class="bg-white border rounded-lg p-8 shadow-sm">
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-4" data-i18n="about.story.p1">
                         It started with a simple observation: existing learning management systems were too complex,
                         expensive, or outdated. Educators and learners deserved better.
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-4" data-i18n="about.story.p2">
                         In 2020, our founding team—comprising educators, developers, and designers—came together to
                         build a platform that put the user experience first. We launched with a focus on simplicity,
                         beautiful design, and powerful features that actually work.
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-4" data-i18n="about.story.p3">
                         Today, we serve thousands of users worldwide, from individual instructors to large
                         organizations. But our mission remains the same: make learning accessible, engaging, and
                         effective for everyone.
                     </p>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700" data-i18n="about.story.p4">
                         We're just getting started. Join us as we continue to innovate and expand our platform to meet
                         the evolving needs of the education community.
                     </p>
@@ -157,7 +156,7 @@
 
         <!-- Team Section -->
         <section class="mb-12">
-            <h2 class="text-3xl font-semibold mb-6 text-center">Meet the Team</h2>
+            <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="about.team.title">Meet the Team</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="text-center">
                     <div

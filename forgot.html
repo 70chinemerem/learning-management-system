@@ -7,7 +7,6 @@
     <title>Forgot Password • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body data-page="forgot">
@@ -17,7 +16,7 @@
     <header class="border-b bg-white">
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
-            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2">Sign in</a>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2" data-i18n="nav.signin">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
@@ -29,7 +28,7 @@
                 <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
                 <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
                 <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
-                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html" data-i18n="nav.signup">Sign
                     up</a>
             </nav>
         </div>
@@ -37,26 +36,31 @@
     <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">
         <div class="w-full max-w-md mb-4 px-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
+                data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to home</span></a></div>
         <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-            <h1 class="text-xl font-semibold mb-2">Reset your password</h1>
-            <p class="text-sm text-gray-600 mb-4">Enter your email address and we'll send you reset instructions.</p>
+            <h1 class="text-xl font-semibold mb-2" data-i18n="forgot.title">Reset your password</h1>
+            <p class="text-sm text-gray-600 mb-4" data-i18n="forgot.helper">Enter your email address and we'll send you reset instructions.</p>
             <form class="flex flex-col gap-4" novalidate>
                 <div>
-                    <label for="email" class="block text-gray-600 mb-1">Email</label>
+                    <label for="email" class="block text-gray-600 mb-1" data-i18n="forgot.email">Email</label>
                     <input type="email" id="email" name="email" required
                         class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="you@example.com" />
+                        data-i18n-placeholder="forgot.emailPlaceholder" placeholder="you@example.com" />
                 </div>
-                <button type="submit" class="btn-primary">Send
+                <button type="submit" class="btn-primary" data-i18n="forgot.submit">Send
                     reset link</button>
             </form>
             <div class="mt-6 text-center text-gray-500 text-sm">
-                <a href="signin.html" class="text-blue-600 hover:underline">Back to sign in</a>
+                <a href="signin.html" class="text-blue-600 hover:underline" data-i18n="forgot.backToSignin">Back to sign in</a>
             </div>
         </main>
     </div>
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="src/lucide-init.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>
 

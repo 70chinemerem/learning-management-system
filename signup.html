@@ -7,7 +7,6 @@
     <title>Sign Up • Learning Management System</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body data-page="signup">
@@ -18,10 +17,11 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+                <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
+                <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
 
             </nav>
+            <a href="signin.html" class="md:hidden text-white hover:text-white text-sm mr-2" data-i18n="nav.signin">Sign in</a>
             <button id="mobileMenuToggle"
                 class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
@@ -33,7 +33,7 @@
                 <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
                 <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
                 <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
-                <a class="inline-block mt-1 btn-primary w-max" href="signup.html">Sign
+                <a class="inline-block mt-1 btn-primary w-max" href="signup.html" data-i18n="nav.signup">Sign
                     up</a>
             </nav>
         </div>
@@ -41,78 +41,80 @@
     <div id="main" class="min-h-[calc(100vh-56px)] flex flex-col items-center justify-center bg-gray-100" role="main">
         <div class="w-full max-w-md mb-4 px-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                data-i18n="common.backHome">← Back to home</a></div>
+                data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to home</span></a></div>
         <header class="mb-8 text-center">
             <h1 class="text-4xl font-bold text-blue-700 mb-2" data-i18n="signup.title">Create your account</h1>
             <p class="text-gray-700" data-i18n="signup.helper">Join the Learning Management System today.</p>
         </header>
         <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
             <div class="mb-4">
-                <button type="button" class="socialBtn w-full mb-2 border rounded px-4 py-2 text-sm">Sign up with
+                <button type="button" class="socialBtn w-full mb-2 border rounded px-4 py-2 text-sm" data-i18n="signup.google">Sign up with
                     Google</button>
-                <button type="button" class="socialBtn w-full border rounded px-4 py-2 text-sm">Sign up with
+                <button type="button" class="socialBtn w-full border rounded px-4 py-2 text-sm" data-i18n="signup.github">Sign up with
                     GitHub</button>
                 <div class="flex items-center gap-2 my-4">
                     <div class="h-px bg-gray-200 flex-1"></div>
-                    <span class="text-xs text-gray-400">or</span>
+                    <span class="text-xs text-gray-400" data-i18n="common.or">or</span>
                     <div class="h-px bg-gray-200 flex-1"></div>
                 </div>
             </div>
             <form id="signupForm" class="flex flex-col gap-4" novalidate>
                 <div>
-                    <label for="fullName" class="block text-gray-600 mb-1">Full name</label>
+                    <label for="fullName" class="block text-gray-600 mb-1" data-i18n="signup.fullName">Full name</label>
                     <input type="text" id="fullName" name="fullName" required
                         class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="Jane Doe" />
-                    <p id="nameError" class="mt-1 text-xs text-red-600 hidden">Full name is required.</p>
+                        data-i18n-placeholder="signup.fullNamePlaceholder" placeholder="Jane Doe" />
+                    <p id="nameError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signup.nameError">Full name is required.</p>
                 </div>
                 <div>
-                    <label for="email" class="block text-gray-600 mb-1">Email</label>
+                    <label for="email" class="block text-gray-600 mb-1" data-i18n="signup.email">Email</label>
                     <input type="email" id="email" name="email" required
                         class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="you@example.com" />
-                    <p id="emailError" class="mt-1 text-xs text-red-600 hidden">Please enter a valid email.</p>
+                        data-i18n-placeholder="signup.emailPlaceholder" placeholder="you@example.com" />
+                    <p id="emailError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signup.emailError">Please enter a valid email.</p>
                 </div>
                 <div>
-                    <label for="password" class="block text-gray-600 mb-1">Password</label>
+                    <label for="password" class="block text-gray-600 mb-1" data-i18n="signup.password">Password</label>
                     <div class="relative">
                         <input type="password" id="password" name="password" required
                             class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            placeholder="••••••••" />
+                            data-i18n-placeholder="signup.passwordPlaceholder" placeholder="••••••••" />
                         <button type="button" id="togglePassword"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600">Show</button>
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600" data-i18n="signup.show">Show</button>
                     </div>
                     <div class="mt-1 h-1 bg-gray-200 rounded">
                         <div id="pwStrength" class="h-1 w-0 bg-red-500 rounded transition-all"></div>
                     </div>
-                    <p id="passwordError" class="mt-1 text-xs text-red-600 hidden">Password must be at least 8
+                    <p id="passwordError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signup.passwordError">Password must be at least 8
                         characters.</p>
                 </div>
                 <div>
-                    <label for="confirm" class="block text-gray-600 mb-1">Confirm password</label>
+                    <label for="confirm" class="block text-gray-600 mb-1" data-i18n="signup.confirmPassword">Confirm password</label>
                     <input type="password" id="confirm" name="confirm" required
                         class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="••••••••" />
-                    <p id="confirmError" class="mt-1 text-xs text-red-600 hidden">Passwords do not match.</p>
+                        data-i18n-placeholder="signup.passwordPlaceholder" placeholder="••••••••" />
+                    <p id="confirmError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signup.confirmError">Passwords do not match.</p>
                 </div>
                 <label class="inline-flex items-center gap-2 text-sm text-gray-600">
-                    <input type="checkbox" required class="rounded border-gray-300" /> I agree to the <a href="#"
-                        class="text-blue-600 hover:underline">Terms</a> and <a href="#"
-                        class="text-blue-600 hover:underline">Privacy Policy</a>
+                    <input type="checkbox" required class="rounded border-gray-300" /> <span data-i18n="signup.agree">I agree to the</span> <a href="#"
+                        class="text-blue-600 hover:underline" data-i18n="signup.terms">Terms</a> <span data-i18n="signup.and">and</span> <a href="#"
+                        class="text-blue-600 hover:underline" data-i18n="signup.privacy">Privacy Policy</a>
                 </label>
                 <button id="signupSubmit" type="submit" class="mt-2 btn-primary duration-200"
                     data-i18n="signup.submit">Create
                     account</button>
             </form>
             <div class="mt-6 text-center text-gray-500 text-sm">
-                <p>Already have an account? <a href="signin.html" class="text-blue-600 hover:underline">Sign in</a></p>
+                <p><span data-i18n="signup.haveAccount">Already have an account?</span> <a href="signin.html" class="text-blue-600 hover:underline" data-i18n="signup.signin">Sign in</a></p>
             </div>
         </main>
-        <footer class="mt-10 text-gray-400 text-xs">
+        <footer class="mt-10 text-center text-xs text-gray-500 py-6 border-t">
             &copy; 2024 Learning Management System. All rights reserved.
         </footer>
     </div>
     <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="src/lucide-init.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>
 
