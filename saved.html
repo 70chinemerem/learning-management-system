@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saved Courses • Learning Management System</title>
-    <link rel="stylesheet" href="src/style.css">
-    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -39,18 +40,37 @@
         </div>
     </header>
 
-    <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
+    <main id="main" class="max-w-7xl mx-auto px-4 py-10" role="main">
         <div class="mb-4"><a href="index.html"
                 class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
                 data-i18n="common.backHome">← Back to home</a></div>
-        <h1 class="text-2xl font-semibold mb-2" data-i18n="page.saved">Saved courses</h1>
-        <p class="text-sm text-gray-600 mb-6">Courses you've saved while browsing.</p>
 
-        <section id="savedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Hero Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-4xl">📚</span>
+                    <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.saved">Saved courses</h1>
+                </div>
+                <p class="text-lg text-gray-700">Your bookmarked courses, ready to continue learning.</p>
+            </div>
+        </section>
+
+        <!-- Saved Courses Grid -->
+        <section id="savedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <!-- populated by JS -->
         </section>
-        <div id="emptyState" class="hidden text-sm text-gray-600">No saved courses yet. Go to <a class="text-blue-700"
-                href="courses.html">Browse courses</a> to add some.</div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-16">
+            <div class="max-w-md mx-auto">
+                <div class="text-6xl mb-4">📖</div>
+                <h2 class="text-2xl font-semibold text-gray-900 mb-3">No saved courses yet</h2>
+                <p class="text-gray-600 mb-6">Start exploring our course catalog and save courses you're interested in
+                    for easy access later.</p>
+                <a href="courses.html" class="inline-block btn-primary">Browse courses →</a>
+            </div>
+        </div>
     </main>
 
     <script type="module" src="src/main.js"></script>
@@ -61,29 +81,139 @@
             function read() { try { return JSON.parse(localStorage.getItem('saved.courses')) || []; } catch { return []; } }
             const saved = read();
             const courseMap = {
-                'js-101': { title: 'JavaScript 101', level: 'Beginner', desc: 'Learn the basics of JavaScript.' },
-                'py-201': { title: 'Python for Data', level: 'Intermediate', desc: 'Data analysis with Python.' },
-                'ux-101': { title: 'UX Fundamentals', level: 'Beginner', desc: 'Principles of UX design.' }
+                'js-101': {
+                    title: 'JavaScript 101',
+                    level: 'Beginner',
+                    desc: 'Learn the basics of JavaScript programming, including variables, functions, and control flow.',
+                    category: 'Programming',
+                    duration: '8 hours',
+                    color: 'yellow'
+                },
+                'py-201': {
+                    title: 'Python for Data Science',
+                    level: 'Intermediate',
+                    desc: 'Master data analysis with Python using pandas, NumPy, and visualization libraries.',
+                    category: 'Data Science',
+                    duration: '12 hours',
+                    color: 'blue'
+                },
+                'ux-101': {
+                    title: 'UX Fundamentals',
+                    level: 'Beginner',
+                    desc: 'Principles of UX design, user research, and creating intuitive user interfaces.',
+                    category: 'Design',
+                    duration: '6 hours',
+                    color: 'purple'
+                },
+                'react-fund': {
+                    title: 'React Fundamentals',
+                    level: 'Intermediate',
+                    desc: 'Build modern web applications with React. Learn components, hooks, and state management.',
+                    category: 'Web Development',
+                    duration: '10 hours',
+                    color: 'cyan'
+                },
+                'ds-basics': {
+                    title: 'Data Science Basics',
+                    level: 'Beginner',
+                    desc: 'Introduction to data science concepts, statistical analysis, and data visualization.',
+                    category: 'Data Science',
+                    duration: '7 hours',
+                    color: 'green'
+                },
+                'css-advanced': {
+                    title: 'Advanced CSS',
+                    level: 'Advanced',
+                    desc: 'Master advanced CSS techniques including Grid, Flexbox, animations, and modern layouts.',
+                    category: 'Web Development',
+                    duration: '9 hours',
+                    color: 'pink'
+                },
+                'node-101': {
+                    title: 'Node.js 101',
+                    level: 'Intermediate',
+                    desc: 'Learn server-side JavaScript with Node.js. Build RESTful APIs and understand async programming.',
+                    category: 'Backend',
+                    duration: '11 hours',
+                    color: 'green'
+                },
+                'sql-beginners': {
+                    title: 'SQL for Beginners',
+                    level: 'Beginner',
+                    desc: 'Learn SQL from scratch. Master queries, joins, and database management fundamentals.',
+                    category: 'Database',
+                    duration: '5 hours',
+                    color: 'indigo'
+                },
+                'ui-patterns': {
+                    title: 'UI Design Patterns',
+                    level: 'Intermediate',
+                    desc: 'Explore common UI patterns, component libraries, and best practices for modern interfaces.',
+                    category: 'Design',
+                    duration: '8 hours',
+                    color: 'orange'
+                }
             };
+
             if (!saved.length) {
                 empty.classList.remove('hidden');
+                grid.style.display = 'none';
                 return;
             }
+
+            grid.style.display = 'grid';
             saved.forEach(id => {
                 const c = courseMap[id];
                 if (!c) return;
+
+                const colorClasses = {
+                    yellow: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+                    blue: 'bg-blue-100 text-blue-800 border-blue-200',
+                    purple: 'bg-purple-100 text-purple-800 border-purple-200',
+                    cyan: 'bg-cyan-100 text-cyan-800 border-cyan-200',
+                    green: 'bg-green-100 text-green-800 border-green-200',
+                    pink: 'bg-pink-100 text-pink-800 border-pink-200',
+                    indigo: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+                    orange: 'bg-orange-100 text-orange-800 border-orange-200'
+                };
+
                 const card = document.createElement('article');
-                card.className = 'p-4 border rounded bg-white hover:shadow transition';
+                card.className = 'group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all';
                 card.innerHTML = `
-          <div class="text-sm text-gray-500 mb-1">${c.level}</div>
-          <h2 class="font-medium mb-2">${c.title}</h2>
-          <p class="text-sm text-gray-600 mb-3">${c.desc}</p>
-          <a href="signin.html" class="inline-block text-blue-700 text-sm">View details →</a>
-        `;
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="px-3 py-1 text-xs font-semibold rounded-full border ${colorClasses[c.color] || colorClasses.blue}">${c.category}</span>
+                        <button class="text-red-500 hover:text-red-700 transition" onclick="this.closest('article').remove(); const saved = ${JSON.stringify(saved.filter(x => x !== id))}; localStorage.setItem('saved.courses', JSON.stringify(saved)); if(!saved.length) { document.getElementById('emptyState').classList.remove('hidden'); document.getElementById('savedGrid').style.display = 'none'; }" aria-label="Remove from saved">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h2 class="font-semibold text-lg mb-2 text-gray-900 group-hover:text-indigo-700 transition">${c.title}</h2>
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">${c.desc}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1">
+                                <span>📊</span>
+                                <span>${c.level}</span>
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span>⏱️</span>
+                                <span>${c.duration}</span>
+                            </span>
+                        </div>
+                        <a href="courses.html#${id}" class="text-blue-700 hover:text-blue-800 font-medium text-sm flex items-center gap-1">
+                            Continue <span>→</span>
+                        </a>
+                    </div>
+                `;
                 grid.appendChild(card);
             });
         })();
     </script>
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
 </body>
 
 </html>

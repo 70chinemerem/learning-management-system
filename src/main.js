@@ -2,6 +2,16 @@
 
 function getEl(id) { return document.getElementById(id); }
 
+// Initialize Lucide icons
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+    // Re-initialize after DOM mutations
+    const observer = new MutationObserver(() => {
+        lucide.createIcons();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
 // Theme toggle with localStorage persistence
 const themeKey = 'ui.theme';
 function setTheme(next) {
