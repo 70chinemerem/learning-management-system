@@ -169,14 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const select = document.createElement('select');
         select.id = 'langSelect';
         // Visible on mobile and desktop - styled with icon
-        select.className = 'px-3 py-1.5 border-2 border-gray-200 rounded-lg text-sm appearance-none bg-white focus:border-indigo-300 focus:outline-none';
+        select.className = 'pl-3 pr-8 py-1.5 border-2 border-gray-200 rounded-lg text-sm appearance-none bg-white focus:border-indigo-300 focus:outline-none';
         select.style.backgroundImage = 'none';
         // Add wrapper with icon
         const wrapper = document.createElement('div');
         wrapper.className = 'relative inline-flex items-center';
         const icon = document.createElement('i');
         icon.setAttribute('data-lucide', 'globe');
-        icon.className = 'absolute right-2 w-4 h-4 text-gray-400 pointer-events-none';
+        icon.className = 'absolute right-2.5 w-4 h-4 text-gray-400 pointer-events-none';
         wrapper.appendChild(select);
         wrapper.appendChild(icon);
         // Extended language options with more languages
