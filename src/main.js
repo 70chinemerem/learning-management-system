@@ -334,14 +334,190 @@ document.addEventListener('DOMContentLoaded', () => {
                 'signup.title': 'アカウントを作成', 'signup.helper': '今日からプラットフォームに参加しましょう。', 'signup.submit': 'アカウントを作成',
                 'page.features': 'すべての機能', 'page.courses': 'コースを閲覧', 'page.quiz': 'Web開発クイズ',
                 'page.analytics': '分析概要', 'page.saved': '保存されたコース', 'page.about': '私たちについて', 'page.careers': 'チームに参加'
+            },
+            ru: {
+                'nav.features': 'Функции', 'nav.saved': 'Сохранено', 'nav.signin': 'Войти', 'nav.signup': 'Регистрация',
+                'nav.browse': 'Просмотр курсов', 'nav.quiz': 'Пройти тест', 'nav.analytics': 'Просмотр аналитики',
+                'common.backHome': 'Вернуться на главную', 'common.submit': 'Отправить', 'common.reset': 'Сбросить', 'common.apply': 'Подать заявку',
+                'common.save': 'Сохранить', 'common.preview': 'Предпросмотр', 'common.close': 'Закрыть',
+                'hero.title': 'Система управления обучением', 'hero.subtitle': 'Создавайте, организуйте и отслеживайте курсы с современным интерфейсом.',
+                'hero.getStarted': 'Начать', 'hero.createAccount': 'Создать аккаунт', 'hero.learnMore': 'Узнать больше',
+                'quick.signin': 'Войти', 'quick.browse': 'Просмотр курсов', 'quick.quiz': 'Пройти тест', 'quick.analytics': 'Просмотр аналитики',
+                'testimonials.heading': 'Что говорят наши пользователи', 'faq.heading': 'Часто задаваемые вопросы',
+                'signin.title': 'Войти в аккаунт', 'signin.helper': 'С возвращением. Пожалуйста, введите свои данные.',
+                'signin.submit': 'Войти', 'signin.remember': 'Запомнить меня', 'signin.forgot': 'Забыли пароль?',
+                'signup.title': 'Создайте аккаунт', 'signup.helper': 'Присоединяйтесь к платформе сегодня.', 'signup.submit': 'Создать аккаунт',
+                'page.features': 'Все функции', 'page.courses': 'Просмотр наших курсов', 'page.quiz': 'Тест по веб-разработке',
+                'page.analytics': 'Обзор аналитики', 'page.saved': 'Сохраненные курсы', 'page.about': 'О нас', 'page.careers': 'Присоединиться к команде'
+            },
+            ko: {
+                'nav.features': '기능', 'nav.saved': '저장됨', 'nav.signin': '로그인', 'nav.signup': '가입하기',
+                'nav.browse': '과정 둘러보기', 'nav.quiz': '퀴즈 풀기', 'nav.analytics': '분석 보기',
+                'common.backHome': '홈으로 돌아가기', 'common.submit': '제출', 'common.reset': '재설정', 'common.apply': '지금 지원',
+                'common.save': '저장', 'common.preview': '미리보기', 'common.close': '닫기',
+                'hero.title': '학습 관리 시스템', 'hero.subtitle': '깔끔하고 현대적인 인터페이스로 과정을 생성, 구성 및 추적하세요.',
+                'hero.getStarted': '시작하기', 'hero.createAccount': '계정 만들기', 'hero.learnMore': '자세히 알아보기',
+                'quick.signin': '로그인', 'quick.browse': '과정 둘러보기', 'quick.quiz': '퀴즈 풀기', 'quick.analytics': '분석 보기',
+                'testimonials.heading': '사용자 후기', 'faq.heading': '자주 묻는 질문',
+                'signin.title': '계정에 로그인', 'signin.helper': '돌아오신 것을 환영합니다. 세부 정보를 입력하세요.',
+                'signin.submit': '로그인', 'signin.remember': '로그인 상태 유지', 'signin.forgot': '비밀번호를 잊으셨나요?',
+                'signup.title': '계정 만들기', 'signup.helper': '오늘 플랫폼에 가입하세요.', 'signup.submit': '계정 만들기',
+                'page.features': '모든 기능', 'page.courses': '우리 과정 둘러보기', 'page.quiz': '웹 개발 퀴즈',
+                'page.analytics': '분석 개요', 'page.saved': '저장된 과정', 'page.about': '회사 소개', 'page.careers': '팀에 합류하기'
+            },
+            tr: {
+                'nav.features': 'Özellikler', 'nav.saved': 'Kaydedilenler', 'nav.signin': 'Giriş yap', 'nav.signup': 'Kayıt ol',
+                'nav.browse': 'Kursları göz at', 'nav.quiz': 'Quiz yap', 'nav.analytics': 'Analizleri görüntüle',
+                'common.backHome': 'Ana sayfaya dön', 'common.submit': 'Gönder', 'common.reset': 'Sıfırla', 'common.apply': 'Şimdi başvur',
+                'common.save': 'Kaydet', 'common.preview': 'Önizleme', 'common.close': 'Kapat',
+                'hero.title': 'Öğrenme Yönetim Sistemi', 'hero.subtitle': 'Modern bir arayüzle kurs oluşturun, düzenleyin ve takip edin.',
+                'hero.getStarted': 'Başlayın', 'hero.createAccount': 'Hesap oluştur', 'hero.learnMore': 'Daha fazla bilgi',
+                'quick.signin': 'Giriş yap', 'quick.browse': 'Kursları göz at', 'quick.quiz': 'Quiz yap', 'quick.analytics': 'Analizleri görüntüle',
+                'testimonials.heading': 'Kullanıcılarımız ne diyor', 'faq.heading': 'Sık sorulan sorular',
+                'signin.title': 'Hesabınıza giriş yapın', 'signin.helper': 'Tekrar hoş geldiniz. Lütfen bilgilerinizi girin.',
+                'signin.submit': 'Giriş Yap', 'signin.remember': 'Beni hatırla', 'signin.forgot': 'Şifrenizi mi unuttunuz?',
+                'signup.title': 'Hesabınızı oluşturun', 'signup.helper': 'Bugün platforma katılın.', 'signup.submit': 'Hesap oluştur',
+                'page.features': 'Tüm özellikler', 'page.courses': 'Kurslarımızı göz atın', 'page.quiz': 'Web Geliştirme Quiz\'i',
+                'page.analytics': 'Analiz özeti', 'page.saved': 'Kaydedilen kurslar', 'page.about': 'Hakkımızda', 'page.careers': 'Ekibimize katılın'
+            },
+            nl: {
+                'nav.features': 'Functies', 'nav.saved': 'Opgeslagen', 'nav.signin': 'Inloggen', 'nav.signup': 'Registreren',
+                'nav.browse': 'Cursussen bekijken', 'nav.quiz': 'Quiz maken', 'nav.analytics': 'Analyses bekijken',
+                'common.backHome': 'Terug naar home', 'common.submit': 'Verzenden', 'common.reset': 'Resetten', 'common.apply': 'Nu solliciteren',
+                'common.save': 'Opslaan', 'common.preview': 'Voorvertoning', 'common.close': 'Sluiten',
+                'hero.title': 'Leerbeheersysteem', 'hero.subtitle': 'Maak, organiseer en volg cursussen met een modern interface.',
+                'hero.getStarted': 'Beginnen', 'hero.createAccount': 'Account aanmaken', 'hero.learnMore': 'Meer weten',
+                'quick.signin': 'Inloggen', 'quick.browse': 'Cursussen bekijken', 'quick.quiz': 'Quiz maken', 'quick.analytics': 'Analyses bekijken',
+                'testimonials.heading': 'Wat onze gebruikers zeggen', 'faq.heading': 'Veelgestelde vragen',
+                'signin.title': 'Log in op uw account', 'signin.helper': 'Welkom terug. Voer uw gegevens in.',
+                'signin.submit': 'Inloggen', 'signin.remember': 'Onthoud mij', 'signin.forgot': 'Wachtwoord vergeten?',
+                'signup.title': 'Maak uw account aan', 'signup.helper': 'Sluit vandaag aan bij het platform.', 'signup.submit': 'Account aanmaken',
+                'page.features': 'Alle functies', 'page.courses': 'Bekijk onze cursussen', 'page.quiz': 'Web Development Quiz',
+                'page.analytics': 'Analyses overzicht', 'page.saved': 'Opgeslagen cursussen', 'page.about': 'Over ons', 'page.careers': 'Word lid van ons team'
+            },
+            pl: {
+                'nav.features': 'Funkcje', 'nav.saved': 'Zapisane', 'nav.signin': 'Zaloguj się', 'nav.signup': 'Zarejestruj się',
+                'nav.browse': 'Przeglądaj kursy', 'nav.quiz': 'Rozwiąż quiz', 'nav.analytics': 'Zobacz analitykę',
+                'common.backHome': 'Wróć do strony głównej', 'common.submit': 'Wyślij', 'common.reset': 'Resetuj', 'common.apply': 'Złóż aplikację',
+                'common.save': 'Zapisz', 'common.preview': 'Podgląd', 'common.close': 'Zamknij',
+                'hero.title': 'System zarządzania nauczaniem', 'hero.subtitle': 'Twórz, organizuj i śledź kursy z nowoczesnym interfejsem.',
+                'hero.getStarted': 'Zacznij', 'hero.createAccount': 'Utwórz konto', 'hero.learnMore': 'Dowiedz się więcej',
+                'quick.signin': 'Zaloguj się', 'quick.browse': 'Przeglądaj kursy', 'quick.quiz': 'Rozwiąż quiz', 'quick.analytics': 'Zobacz analitykę',
+                'testimonials.heading': 'Co mówią nasi użytkownicy', 'faq.heading': 'Najczęściej zadawane pytania',
+                'signin.title': 'Zaloguj się na swoje konto', 'signin.helper': 'Witamy z powrotem. Proszę wprowadzić dane.',
+                'signin.submit': 'Zaloguj się', 'signin.remember': 'Zapamiętaj mnie', 'signin.forgot': 'Zapomniałeś hasła?',
+                'signup.title': 'Utwórz swoje konto', 'signup.helper': 'Dołącz dziś do platformy.', 'signup.submit': 'Utwórz konto',
+                'page.features': 'Wszystkie funkcje', 'page.courses': 'Przeglądaj nasze kursy', 'page.quiz': 'Quiz rozwoju web',
+                'page.analytics': 'Przegląd analityki', 'page.saved': 'Zapisane kursy', 'page.about': 'O nas', 'page.careers': 'Dołącz do naszego zespołu'
+            },
+            sv: {
+                'nav.features': 'Funktioner', 'nav.saved': 'Sparade', 'nav.signin': 'Logga in', 'nav.signup': 'Registrera dig',
+                'nav.browse': 'Bläddra kurser', 'nav.quiz': 'Gör ett quiz', 'nav.analytics': 'Visa analyser',
+                'common.backHome': 'Tillbaka till hem', 'common.submit': 'Skicka', 'common.reset': 'Återställ', 'common.apply': 'Ansök nu',
+                'common.save': 'Spara', 'common.preview': 'Förhandsgranska', 'common.close': 'Stäng',
+                'hero.title': 'Lärplattform', 'hero.subtitle': 'Skapa, organisera och spåra kurser med ett modernt gränssnitt.',
+                'hero.getStarted': 'Kom igång', 'hero.createAccount': 'Skapa konto', 'hero.learnMore': 'Läs mer',
+                'quick.signin': 'Logga in', 'quick.browse': 'Bläddra kurser', 'quick.quiz': 'Gör ett quiz', 'quick.analytics': 'Visa analyser',
+                'testimonials.heading': 'Vad våra användare säger', 'faq.heading': 'Vanliga frågor',
+                'signin.title': 'Logga in på ditt konto', 'signin.helper': 'Välkommen tillbaka. Vänligen ange din information.',
+                'signin.submit': 'Logga in', 'signin.remember': 'Kom ihåg mig', 'signin.forgot': 'Glömt lösenord?',
+                'signup.title': 'Skapa ditt konto', 'signup.helper': 'Gå med i plattformen idag.', 'signup.submit': 'Skapa konto',
+                'page.features': 'Alla funktioner', 'page.courses': 'Bläddra våra kurser', 'page.quiz': 'Webbutvecklingsquiz',
+                'page.analytics': 'Analysöversikt', 'page.saved': 'Sparade kurser', 'page.about': 'Om oss', 'page.careers': 'Gå med i vårt team'
+            },
+            no: {
+                'nav.features': 'Funksjoner', 'nav.saved': 'Lagret', 'nav.signin': 'Logg inn', 'nav.signup': 'Registrer deg',
+                'nav.browse': 'Bla gjennom kurs', 'nav.quiz': 'Ta en quiz', 'nav.analytics': 'Se analyser',
+                'common.backHome': 'Tilbake til hjem', 'common.submit': 'Send', 'common.reset': 'Tilbakestill', 'common.apply': 'Søk nå',
+                'common.save': 'Lagre', 'common.preview': 'Forhåndsvisning', 'common.close': 'Lukk',
+                'hero.title': 'Læringsplattform', 'hero.subtitle': 'Opprett, organiser og spor kurs med et moderne grensesnitt.',
+                'hero.getStarted': 'Kom i gang', 'hero.createAccount': 'Opprett konto', 'hero.learnMore': 'Lær mer',
+                'quick.signin': 'Logg inn', 'quick.browse': 'Bla gjennom kurs', 'quick.quiz': 'Ta en quiz', 'quick.analytics': 'Se analyser',
+                'testimonials.heading': 'Hva brukerne våre sier', 'faq.heading': 'Ofte stilte spørsmål',
+                'signin.title': 'Logg inn på kontoen din', 'signin.helper': 'Velkommen tilbake. Vennligst oppgi informasjonen din.',
+                'signin.submit': 'Logg inn', 'signin.remember': 'Husk meg', 'signin.forgot': 'Glemt passord?',
+                'signup.title': 'Opprett kontoen din', 'signup.helper': 'Bli med på plattformen i dag.', 'signup.submit': 'Opprett konto',
+                'page.features': 'Alle funksjoner', 'page.courses': 'Bla gjennom våre kurs', 'page.quiz': 'Webutviklingsquiz',
+                'page.analytics': 'Analyseoversikt', 'page.saved': 'Lagrede kurs', 'page.about': 'Om oss', 'page.careers': 'Bli med i teamet vårt'
+            },
+            fi: {
+                'nav.features': 'Ominaisuudet', 'nav.saved': 'Tallennetut', 'nav.signin': 'Kirjaudu sisään', 'nav.signup': 'Rekisteröidy',
+                'nav.browse': 'Selaa kursseja', 'nav.quiz': 'Tee tietokilpailu', 'nav.analytics': 'Näytä analytiikka',
+                'common.backHome': 'Takaisin etusivulle', 'common.submit': 'Lähetä', 'common.reset': 'Nollaa', 'common.apply': 'Hae nyt',
+                'common.save': 'Tallenna', 'common.preview': 'Esikatselu', 'common.close': 'Sulje',
+                'hero.title': 'Oppimisjärjestelmä', 'hero.subtitle': 'Luo, järjestä ja seuraa kursseja moderneilla käyttöliittymillä.',
+                'hero.getStarted': 'Aloita', 'hero.createAccount': 'Luo tili', 'hero.learnMore': 'Lisätietoja',
+                'quick.signin': 'Kirjaudu sisään', 'quick.browse': 'Selaa kursseja', 'quick.quiz': 'Tee tietokilpailu', 'quick.analytics': 'Näytä analytiikka',
+                'testimonials.heading': 'Mitä käyttäjämme sanovat', 'faq.heading': 'Usein kysytyt kysymykset',
+                'signin.title': 'Kirjaudu tilillesi', 'signin.helper': 'Tervetuloa takaisin. Syötä tietosi.',
+                'signin.submit': 'Kirjaudu sisään', 'signin.remember': 'Muista minut', 'signin.forgot': 'Unohtuiko salasana?',
+                'signup.title': 'Luo tilisi', 'signup.helper': 'Liity alustaan tänään.', 'signup.submit': 'Luo tili',
+                'page.features': 'Kaikki ominaisuudet', 'page.courses': 'Selaa kurssejamme', 'page.quiz': 'Web-kehitys tietokilpailu',
+                'page.analytics': 'Analytiikan yleiskuvaus', 'page.saved': 'Tallennetut kurssit', 'page.about': 'Tietoja meistä', 'page.careers': 'Liity joukkoomme'
+            },
+            vi: {
+                'nav.features': 'Tính năng', 'nav.saved': 'Đã lưu', 'nav.signin': 'Đăng nhập', 'nav.signup': 'Đăng ký',
+                'nav.browse': 'Duyệt khóa học', 'nav.quiz': 'Làm bài kiểm tra', 'nav.analytics': 'Xem phân tích',
+                'common.backHome': 'Về trang chủ', 'common.submit': 'Gửi', 'common.reset': 'Đặt lại', 'common.apply': 'Ứng tuyển ngay',
+                'common.save': 'Lưu', 'common.preview': 'Xem trước', 'common.close': 'Đóng',
+                'hero.title': 'Hệ thống quản lý học tập', 'hero.subtitle': 'Tạo, tổ chức và theo dõi khóa học với giao diện hiện đại.',
+                'hero.getStarted': 'Bắt đầu', 'hero.createAccount': 'Tạo tài khoản', 'hero.learnMore': 'Tìm hiểu thêm',
+                'quick.signin': 'Đăng nhập', 'quick.browse': 'Duyệt khóa học', 'quick.quiz': 'Làm bài kiểm tra', 'quick.analytics': 'Xem phân tích',
+                'testimonials.heading': 'Người dùng nói gì', 'faq.heading': 'Câu hỏi thường gặp',
+                'signin.title': 'Đăng nhập vào tài khoản', 'signin.helper': 'Chào mừng trở lại. Vui lòng nhập thông tin của bạn.',
+                'signin.submit': 'Đăng Nhập', 'signin.remember': 'Ghi nhớ đăng nhập', 'signin.forgot': 'Quên mật khẩu?',
+                'signup.title': 'Tạo tài khoản của bạn', 'signup.helper': 'Tham gia nền tảng ngay hôm nay.', 'signup.submit': 'Tạo tài khoản',
+                'page.features': 'Tất cả tính năng', 'page.courses': 'Duyệt khóa học của chúng tôi', 'page.quiz': 'Bài kiểm tra Phát triển Web',
+                'page.analytics': 'Tổng quan phân tích', 'page.saved': 'Khóa học đã lưu', 'page.about': 'Về chúng tôi', 'page.careers': 'Tham gia đội ngũ'
+            },
+            th: {
+                'nav.features': 'คุณสมบัติ', 'nav.saved': 'บันทึกไว้', 'nav.signin': 'เข้าสู่ระบบ', 'nav.signup': 'สมัครสมาชิก',
+                'nav.browse': 'เรียกดูหลักสูตร', 'nav.quiz': 'ทำแบบทดสอบ', 'nav.analytics': 'ดูการวิเคราะห์',
+                'common.backHome': 'กลับหน้าหลัก', 'common.submit': 'ส่ง', 'common.reset': 'รีเซ็ต', 'common.apply': 'สมัครเลย',
+                'common.save': 'บันทึก', 'common.preview': 'ตัวอย่าง', 'common.close': 'ปิด',
+                'hero.title': 'ระบบจัดการเรียนรู้', 'hero.subtitle': 'สร้าง จัดระเบียบ และติดตามหลักสูตรด้วยอินเทอร์เฟซที่ทันสมัย',
+                'hero.getStarted': 'เริ่มต้น', 'hero.createAccount': 'สร้างบัญชี', 'hero.learnMore': 'เรียนรู้เพิ่มเติม',
+                'quick.signin': 'เข้าสู่ระบบ', 'quick.browse': 'เรียกดูหลักสูตร', 'quick.quiz': 'ทำแบบทดสอบ', 'quick.analytics': 'ดูการวิเคราะห์',
+                'testimonials.heading': 'สิ่งที่ผู้ใช้ของเราพูด', 'faq.heading': 'คำถามที่พบบ่อย',
+                'signin.title': 'เข้าสู่ระบบบัญชีของคุณ', 'signin.helper': 'ยินดีต้อนรับกลับ กรุณากรอกข้อมูลของคุณ',
+                'signin.submit': 'เข้าสู่ระบบ', 'signin.remember': 'จดจำฉัน', 'signin.forgot': 'ลืมรหัสผ่าน?',
+                'signup.title': 'สร้างบัญชีของคุณ', 'signup.helper': 'เข้าร่วมแพลตฟอร์มวันนี้', 'signup.submit': 'สร้างบัญชี',
+                'page.features': 'คุณสมบัติทั้งหมด', 'page.courses': 'เรียกดูหลักสูตรของเรา', 'page.quiz': 'แบบทดสอบการพัฒนาเว็บ',
+                'page.analytics': 'ภาพรวมการวิเคราะห์', 'page.saved': 'หลักสูตรที่บันทึกไว้', 'page.about': 'เกี่ยวกับเรา', 'page.careers': 'เข้าร่วมทีมของเรา'
             }
         };
         function applyTranslations(lang) {
             const t = dict[lang] || dict.en;
+            // Update text content for elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (key && t[key]) el.textContent = t[key];
+                if (key && t[key]) {
+                    // Check if element has nested span/text node
+                    const span = el.querySelector('span');
+                    if (span && span.previousSibling && span.previousSibling.nodeType === 3) {
+                        // If it's like <a>Text <span>...</span></a>, update only the text
+                        const textNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
+                        if (textNode) textNode.textContent = t[key];
+                    } else {
+                        el.textContent = t[key];
+                    }
+                }
             });
+            // Update placeholder attributes
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (key && t[key]) el.placeholder = t[key];
+            });
+            // Update title attributes
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (key && t[key]) el.title = t[key];
+            });
+            // Update page title
+            const pageTitleKey = document.documentElement.getAttribute('data-i18n-title-key');
+            if (pageTitleKey && t[pageTitleKey]) {
+                document.title = t[pageTitleKey] + ' • Learning Management System';
+            }
         }
         options.forEach(([value, label]) => {
             const opt = document.createElement('option');
