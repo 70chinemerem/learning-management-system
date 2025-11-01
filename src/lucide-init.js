@@ -1,37 +1,69 @@
 // Initialize Lucide icons on page load
 (function initLucide() {
+    let initAttempts = 0;
+    const maxAttempts = 50; // Maximum attempts over 5 seconds
+
     function createIcons() {
-        if (typeof lucide !== 'undefined') {
+        if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
             try {
                 lucide.createIcons();
+                return true;
             } catch (e) {
-                console.warn('Lucide icons not ready:', e);
+                console.warn('Lucide icons initialization error:', e);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    function attemptInit() {
+        initAttempts++;
+        if (createIcons()) {
+            // Success - set up MutationObserver for dynamic content
+            setupObserver();
+        } else if (initAttempts < maxAttempts) {
+            // Retry after 100ms
+            setTimeout(attemptInit, 100);
+        }
+    }
+
+    function setupObserver() {
+        // Only set up observer if MutationObserver is available and lucide is ready
+        if (typeof MutationObserver !== 'undefined' && typeof lucide !== 'undefined') {
+            try {
+                const observer = new MutationObserver(() => {
+                    // Debounce icon creation to avoid excessive calls
+                    if (observer.debounceTimer) {
+                        clearTimeout(observer.debounceTimer);
+                    }
+                    observer.debounceTimer = setTimeout(() => {
+                        try {
+                            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                                lucide.createIcons();
+                            }
+                        } catch (e) {
+                            // Silently fail
+                        }
+                    }, 100);
+                });
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            } catch (e) {
+                // Silently fail if observer setup fails
             }
         }
     }
 
+    // Start initialization
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', createIcons);
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(attemptInit, 50);
+        });
     } else {
         // DOM already loaded
-        setTimeout(createIcons, 100);
+        setTimeout(attemptInit, 50);
     }
-
-    // Re-initialize after dynamic content is added
-    setTimeout(() => {
-        if (typeof lucide !== 'undefined' && typeof MutationObserver !== 'undefined') {
-            const observer = new MutationObserver(() => {
-                try {
-                    lucide.createIcons();
-                } catch (e) {
-                    // Silently fail
-                }
-            });
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        }
-    }, 200);
 })();
 
