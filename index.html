@@ -470,26 +470,31 @@
   </section>
 
   <!-- FAQ -->
-  <section class="bg-gradient-to-b from-white to-gray-50 border-t">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <div class="text-center mb-12">
-        <div class="flex items-center justify-center gap-3 mb-3">
-          <i data-lucide="help-circle" class="w-8 h-8 text-indigo-600"></i>
-          <h2 class="text-3xl font-bold text-gray-900" data-i18n="faq.heading">Frequently asked questions</h2>
+  <section class="relative bg-gradient-to-b from-white via-violet-50/10 to-white border-t overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-purple-200/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 left-0 w-96 h-96 bg-violet-200/5 rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-6">
+          <i data-lucide="help-circle" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">FAQ</span>
         </div>
-        <p class="text-lg text-gray-600" data-i18n="faq.subtitle">Have more questions?</p>
-        <p class="text-lg text-gray-600 mt-2">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent" data-i18n="faq.heading">Frequently asked questions</h2>
+        <p class="text-xl text-gray-600 mb-4" data-i18n="faq.subtitle">Have more questions?</p>
+        <p class="text-lg">
           <a href="faq.html"
-            class="text-indigo-700 hover:text-indigo-800 hover:underline font-medium inline-flex items-center gap-1"
+            class="text-violet-700 hover:text-violet-800 hover:underline font-semibold inline-flex items-center gap-2 group"
             data-i18n="faq.viewFull">
             <span>View our full FAQ</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </p>
       </div>
       <div class="max-w-3xl mx-auto space-y-4">
         <details
-          class="faq-item group border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
+          class="faq-item group border-2 border-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm hover:border-violet-300 hover:shadow-xl transition-all shadow-md">
           <summary
             class="cursor-pointer select-none px-6 py-5 font-semibold text-gray-900 flex items-center justify-between list-none">
             <span class="flex items-center gap-4">
@@ -510,7 +515,7 @@
           </div>
         </details>
         <details
-          class="faq-item group border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
+          class="faq-item group border-2 border-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm hover:border-violet-300 hover:shadow-xl transition-all shadow-md">
           <summary
             class="cursor-pointer select-none px-6 py-5 font-semibold text-gray-900 flex items-center justify-between list-none">
             <span class="flex items-center gap-4">
@@ -530,7 +535,7 @@
           </div>
         </details>
         <details
-          class="faq-item group border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all shadow-sm">
+          class="faq-item group border-2 border-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm hover:border-violet-300 hover:shadow-xl transition-all shadow-md">
           <summary
             class="cursor-pointer select-none px-6 py-5 font-semibold text-gray-900 flex items-center justify-between list-none">
             <span class="flex items-center gap-4">
@@ -551,17 +556,21 @@
           </div>
         </details>
       </div>
-      <div class="text-center mt-10">
-        <a href="faq.html" class="inline-flex items-center gap-2 btn-outline-indigo" data-i18n="faq.viewAll">
+      <div class="text-center mt-12">
+        <a href="faq.html" 
+          class="inline-flex items-center gap-2 px-6 py-3 border-2 border-violet-300 text-violet-700 rounded-xl hover:bg-violet-50 hover:border-violet-400 hover:shadow-lg transition-all font-semibold group" 
+          data-i18n="faq.viewAll">
           <span>View all FAQs</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
     </div>
   </section>
 
-  <footer class="border-t bg-white">
-    <div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+  <footer class="relative border-t bg-gradient-to-b from-white to-gray-50/50 overflow-hidden">
+    <!-- Footer decoration -->
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-violet-200 to-transparent"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
       <div>
         <div class="font-semibold mb-2" data-i18n="footer.product">Product</div>
         <ul class="space-y-1 text-gray-600">
@@ -596,10 +605,10 @@
           onsubmit="event.preventDefault(); const email = this.querySelector('input[type=email]').value; if(email) { const toast = document.createElement('div'); toast.className = 'bg-green-500 text-white px-4 py-2 rounded shadow-lg'; toast.textContent = 'Thanks for subscribing! Check your email.'; document.getElementById('toast-root').appendChild(toast); setTimeout(() => toast.remove(), 3000); this.reset(); }">
           <div class="flex gap-2">
             <input type="email" data-i18n-placeholder="footer.email.placeholder" placeholder="Enter your email" required
-              class="flex-1 px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition"
+              class="flex-1 px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition shadow-sm"
               aria-label="Email address" />
             <button type="submit"
-              class="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-500 hover:to-purple-500 transition font-medium whitespace-nowrap">
+              class="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-xl hover:from-violet-500 hover:to-purple-500 transition font-medium whitespace-nowrap shadow-lg hover:shadow-xl">
               <span data-i18n="footer.subscribe">Subscribe</span>
             </button>
           </div>
