@@ -36,47 +36,105 @@
       </nav>
     </div>
   </header>
-  <section class="relative flex-1 bg-gradient-to-b from-indigo-50/60 to-transparent overflow-hidden">
-    <svg aria-hidden="true" class="pointer-events-none absolute -top-24 -right-24 h-80 w-80 opacity-30 blur-2xl"
-      viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <section class="relative flex-1 bg-gradient-to-br from-indigo-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
+    <!-- Abstract Background Waves -->
+    <svg aria-hidden="true" class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 1200 600"
+      preserveAspectRatio="none">
       <defs>
-        <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#6366F1" />
-          <stop offset="100%" stop-color="#A855F7" />
+        <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6b21a8" stop-opacity="0.1" />
+          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.15" />
+        </linearGradient>
+        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.12" />
+          <stop offset="100%" stop-color="#ec4899" stop-opacity="0.08" />
         </linearGradient>
       </defs>
-      <path fill="url(#heroGrad)"
-        d="M45.5,-56.1C59.7,-47.4,71,-32.6,74.9,-16.4C78.8,-0.2,75.3,18.4,65.6,31.8C55.9,45.2,40,53.4,23.4,60.1C6.8,66.7,-10.4,71.7,-25.1,67.3C-39.8,62.9,-51.9,49.1,-59.6,34C-67.2,18.8,-70.4,2.3,-68.4,-14.3C-66.4,-30.9,-59.2,-47.6,-46.6,-56.8C-34,-65.9,-17,-67.5,-0.6,-66.6C15.8,-65.6,31.6,-62,45.5,-56.1Z"
-        transform="translate(100 100)" />
+      <!-- Wave 1 -->
+      <path d="M0,200 Q300,150 600,180 T1200,160 L1200,0 L0,0 Z" fill="url(#waveGrad1)" />
+      <!-- Wave 2 -->
+      <path d="M0,300 Q400,250 800,280 T1200,260 L1200,0 L0,0 Z" fill="url(#waveGrad2)" />
     </svg>
-    <div class="relative max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h1 class="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-indigo-600"
+
+    <!-- Floating Abstract Shapes -->
+    <div
+      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-violet-400/20 to-purple-400/20 rounded-full blur-3xl">
+    </div>
+    <div
+      class="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-indigo-400/15 to-pink-400/15 rounded-full blur-3xl">
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-violet-300/10 to-indigo-300/10 rounded-full blur-3xl">
+    </div>
+
+    <!-- Collaboration Illustration (Subtle) -->
+    <div class="absolute top-10 left-10 opacity-5">
+      <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" fill="#6b21a8" />
+        <circle cx="150" cy="50" r="30" fill="#6366f1" />
+        <circle cx="100" cy="150" r="30" fill="#a855f7" />
+        <path d="M50 50 L100 150 M150 50 L100 150" stroke="#6b21a8" stroke-width="3" opacity="0.3" />
+      </svg>
+    </div>
+
+    <div
+      class="relative max-w-6xl mx-auto px-4 py-20 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center z-10">
+      <div class="relative z-10">
+        <h1
+          class="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-indigo-700 to-violet-700"
           data-i18n="hero.title">Learning Management System</h1>
-        <p class="text-gray-700 mb-6" data-i18n="hero.subtitle">Create, organize, and track courses with a clean, modern
+        <p class="text-gray-700 mb-8 text-lg" data-i18n="hero.subtitle">Create, organize, and track courses with a
+          clean, modern
           interface.</p>
-        <div class="flex gap-3">
+        <div class="flex flex-wrap gap-3">
           <a href="signin.html"
-            class="rounded px-4 py-2 text-white bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 transition"
-            data-i18n="hero.getStarted">Get
-            Started</a>
+            class="rounded-lg px-6 py-3 text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 transition shadow-lg hover:shadow-xl font-medium"
+            data-i18n="hero.getStarted">Get Started</a>
           <a href="signup.html"
-            class="border border-indigo-200 text-indigo-700 rounded px-4 py-2 hover:bg-indigo-50 transition"
-            data-i18n="hero.createAccount">Create
-            account</a>
-          <a href="#features" class="border border-gray-300 text-gray-700 rounded px-4 py-2 hover:bg-white transition"
+            class="border-2 border-violet-200 text-violet-700 rounded-lg px-6 py-3 hover:bg-violet-50 hover:border-violet-300 transition font-medium"
+            data-i18n="hero.createAccount">Create account</a>
+          <a href="#features"
+            class="border-2 border-gray-300 text-gray-700 rounded-lg px-6 py-3 hover:bg-white hover:border-gray-400 transition font-medium"
             data-i18n="hero.learnMore">Learn More</a>
         </div>
       </div>
-      <div class="relative">
-        <!-- Hero Image -->
-        <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 p-6 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop"
-            alt="Learning Management System" class="w-full h-auto rounded-lg object-cover" loading="lazy">
-        </div>
-        <!-- Floating decoration -->
-        <div
-          class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-400 to-purple-400 rounded-full opacity-20 blur-2xl">
+      <div class="relative z-10">
+        <!-- Laptop with Dashboard Image -->
+        <div class="relative">
+          <!-- Glow effect behind laptop -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-violet-400/30 to-purple-400/30 rounded-2xl blur-2xl transform scale-110">
+          </div>
+
+          <!-- Laptop Frame -->
+          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-xl rounded-b-2xl p-3 shadow-2xl">
+            <!-- Laptop Screen -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-inner border-4 border-gray-800">
+              <div class="bg-gray-100 px-3 py-2 flex items-center gap-2 border-b">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div class="flex-1 bg-white rounded px-2 py-0.5 text-xs text-gray-500 text-center">lms-platform.com
+                </div>
+              </div>
+              <div class="p-4 bg-white">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
+                  alt="Student Dashboard" class="w-full h-auto rounded object-cover" loading="lazy">
+              </div>
+            </div>
+            <!-- Laptop Base -->
+            <div class="h-1 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-2xl"></div>
+          </div>
+
+          <!-- Floating Elements -->
+          <div
+            class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-violet-400 to-purple-400 rounded-lg shadow-lg transform rotate-12 opacity-80">
+          </div>
+          <div
+            class="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-indigo-400 to-violet-400 rounded-full shadow-lg transform -rotate-12 opacity-70">
+          </div>
         </div>
       </div>
     </div>
