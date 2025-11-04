@@ -68,7 +68,18 @@
             data-i18n="hero.learnMore">Learn More</a>
         </div>
       </div>
-      <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 p-6">
+      <div class="relative">
+        <!-- Hero Image -->
+        <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 p-6 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" 
+               alt="Learning Management System" 
+               class="w-full h-auto rounded-lg object-cover"
+               loading="lazy">
+        </div>
+        <!-- Floating decoration -->
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-400 to-purple-400 rounded-full opacity-20 blur-2xl"></div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg border-2 border-gray-100 p-6 md:col-span-2">
         <div class="text-sm font-semibold text-gray-700 mb-4">Quick actions</div>
         <div class="grid grid-cols-2 gap-3">
           <a href="signin.html"
@@ -152,39 +163,66 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
-          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all">
-          <div
-            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition">
-            <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
+          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-70 transition"></div>
+          <div class="relative">
+            <div
+              class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition">
+              <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
+            </div>
+            <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.course.title">Course Management
+            </div>
+            <p class="text-sm text-gray-600" data-i18n="home.feature.course.desc">Build structured courses with lessons,
+              videos, and assessments. Organize
+              content in a logical learning path.</p>
+            <div class="mt-4 rounded-lg overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop" 
+                   alt="Course Management" 
+                   class="w-full h-32 object-cover rounded-lg opacity-90 group-hover:opacity-100 transition"
+                   loading="lazy">
+            </div>
           </div>
-          <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.course.title">Course Management
-          </div>
-          <p class="text-sm text-gray-600" data-i18n="home.feature.course.desc">Build structured courses with lessons,
-            videos, and assessments. Organize
-            content in a logical learning path.</p>
         </div>
         <div
-          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all">
-          <div
-            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition">
-            <i data-lucide="clipboard-list" class="w-6 h-6 text-purple-600"></i>
+          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-70 transition"></div>
+          <div class="relative">
+            <div
+              class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition">
+              <i data-lucide="clipboard-list" class="w-6 h-6 text-purple-600"></i>
+            </div>
+            <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.assessment.title">Assessments
+            </div>
+            <p class="text-sm text-gray-600" data-i18n="home.feature.assessment.desc">Create interactive quizzes to
+              evaluate progress and understanding. Get
+              instant feedback and track performance.</p>
+            <div class="mt-4 rounded-lg overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=200&fit=crop" 
+                   alt="Assessments" 
+                   class="w-full h-32 object-cover rounded-lg opacity-90 group-hover:opacity-100 transition"
+                   loading="lazy">
+            </div>
           </div>
-          <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.assessment.title">Assessments
-          </div>
-          <p class="text-sm text-gray-600" data-i18n="home.feature.assessment.desc">Create interactive quizzes to
-            evaluate progress and understanding. Get
-            instant feedback and track performance.</p>
         </div>
         <div
-          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all">
-          <div
-            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition">
-            <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
+          class="group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-70 transition"></div>
+          <div class="relative">
+            <div
+              class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition">
+              <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
+            </div>
+            <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.insights.title">Insights</div>
+            <p class="text-sm text-gray-600" data-i18n="home.feature.insights.desc">Track learner engagement and
+              completion at a glance. Identify at-risk
+              students and measure course effectiveness.</p>
+            <div class="mt-4 rounded-lg overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" 
+                   alt="Analytics Insights" 
+                   class="w-full h-32 object-cover rounded-lg opacity-90 group-hover:opacity-100 transition"
+                   loading="lazy">
+            </div>
           </div>
-          <div class="font-semibold text-lg mb-2 text-gray-900" data-i18n="home.feature.insights.title">Insights</div>
-          <p class="text-sm text-gray-600" data-i18n="home.feature.insights.desc">Track learner engagement and
-            completion at a glance. Identify at-risk
-            students and measure course effectiveness.</p>
         </div>
       </div>
       <div class="text-center mt-10">
@@ -228,9 +266,11 @@
               </div>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div
-                class="w-14 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full flex items-center justify-center border-2 border-indigo-300">
-                <i data-lucide="user" class="w-7 h-7 text-indigo-600"></i>
+              <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-300 flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" 
+                     alt="Mrs Amara" 
+                     class="w-full h-full object-cover"
+                     loading="lazy">
               </div>
               <div class="flex-1">
                 <div class="font-semibold text-gray-900 flex items-center gap-2">
@@ -264,9 +304,11 @@
               </div>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div
-                class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center border-2 border-purple-300">
-                <i data-lucide="user" class="w-7 h-7 text-purple-600"></i>
+              <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-purple-300 flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" 
+                     alt="Mr Virus" 
+                     class="w-full h-full object-cover"
+                     loading="lazy">
               </div>
               <div class="flex-1">
                 <div class="font-semibold text-gray-900 flex items-center gap-2">
@@ -300,9 +342,11 @@
               </div>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div
-                class="w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center border-2 border-green-300">
-                <i data-lucide="user" class="w-7 h-7 text-green-600"></i>
+              <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-green-300 flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face" 
+                     alt="Mr Chinemerem" 
+                     class="w-full h-full object-cover"
+                     loading="lazy">
               </div>
               <div class="flex-1">
                 <div class="font-semibold text-gray-900 flex items-center gap-2">
