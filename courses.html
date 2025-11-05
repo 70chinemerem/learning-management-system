@@ -89,12 +89,22 @@
             </a></div>
         <!-- Hero Section -->
         <section class="mb-8">
-            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
-                <div class="flex items-center gap-3 mb-3">
-                    <i data-lucide="book-open" class="w-10 h-10 text-indigo-600"></i>
-                    <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.courses">Browse our courses</h1>
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6 overflow-hidden relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="book-open" class="w-10 h-10 text-indigo-600"></i>
+                            <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.courses">Browse our courses
+                            </h1>
+                        </div>
+                        <p class="text-lg text-gray-700">Explore categories and pick a course to get started.</p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop"
+                            alt="Browse courses" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
+                    </div>
                 </div>
-                <p class="text-lg text-gray-700">Explore categories and pick a course to get started.</p>
             </div>
         </section>
 
@@ -133,9 +143,17 @@
 
         <section id="courseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <article
-                class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:shadow-md hover:border-indigo-300 transition relative"
+                class="group p-5 border-2 border-gray-200 rounded-xl bg-white hover:shadow-md hover:border-indigo-300 transition relative overflow-hidden"
                 data-id="js-101" data-title="JavaScript 101" data-category="Programming" data-level="Beginner">
-                <div class="absolute top-3 right-3 text-[10px] bg-green-600 text-white px-2 py-0.5 rounded">New</div>
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop"
+                        alt="JavaScript 101"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-green-600 text-white px-2 py-0.5 rounded">New</span>
+                    </div>
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=JS" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -174,9 +192,17 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="py-201"
-                data-title="Python for Data" data-category="Data" data-level="Intermediate">
-                <div class="absolute top-3 right-3 text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded">Popular</div>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="py-201" data-title="Python for Data" data-category="Data" data-level="Intermediate">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=400&h=300&fit=crop"
+                        alt="Python for Data"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded">Popular</span>
+                    </div>
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=PY" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -215,8 +241,14 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ux-101"
-                data-title="UX Fundamentals" data-category="Design" data-level="Beginner">
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="ux-101" data-title="UX Fundamentals" data-category="Design" data-level="Beginner">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop"
+                        alt="UX Fundamentals"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=UX" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -256,9 +288,17 @@
             </article>
 
             <!-- New courses -->
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="react-301"
-                data-title="React Fundamentals" data-category="Programming" data-level="Intermediate">
-                <div class="absolute top-3 right-3 text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded">Updated
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="react-301" data-title="React Fundamentals" data-category="Programming"
+                data-level="Intermediate">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
+                        alt="React Fundamentals"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded">Updated</span>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=RE" alt="Instructor avatar"
@@ -298,9 +338,17 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ds-101"
-                data-title="Data Science Basics" data-category="Data" data-level="Beginner">
-                <div class="absolute top-3 right-3 text-[10px] bg-green-700 text-white px-2 py-0.5 rounded">New</div>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="ds-101" data-title="Data Science Basics" data-category="Data" data-level="Beginner">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop"
+                        alt="Data Science Basics"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-green-700 text-white px-2 py-0.5 rounded">New</span>
+                    </div>
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=DS" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -339,9 +387,17 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="css-advanced"
-                data-title="Advanced CSS" data-category="Design" data-level="Advanced">
-                <div class="absolute top-3 right-3 text-[10px] bg-orange-600 text-white px-2 py-0.5 rounded">Hot</div>
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="css-advanced" data-title="Advanced CSS" data-category="Design" data-level="Advanced">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop"
+                        alt="Advanced CSS"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-orange-600 text-white px-2 py-0.5 rounded">Hot</span>
+                    </div>
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=CSS" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -380,8 +436,14 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="node-101"
-                data-title="Node.js 101" data-category="Programming" data-level="Beginner">
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="node-101" data-title="Node.js 101" data-category="Programming" data-level="Beginner">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop"
+                        alt="Node.js 101"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=ND" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -420,8 +482,14 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="sql-101"
-                data-title="SQL for Beginners" data-category="Data" data-level="Beginner">
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="sql-101" data-title="SQL for Beginners" data-category="Data" data-level="Beginner">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop"
+                        alt="SQL for Beginners"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=SQL" alt="Instructor avatar"
                         class="h-8 w-8 rounded-full border">
@@ -460,9 +528,16 @@
                 </div>
             </article>
 
-            <article class="group p-4 border rounded bg-white hover:shadow transition relative" data-id="ui-201"
-                data-title="UI Design Patterns" data-category="Design" data-level="Intermediate">
-                <div class="absolute top-3 right-3 text-[10px] bg-blue-700 text-white px-2 py-0.5 rounded">Trending
+            <article class="group p-4 border rounded bg-white hover:shadow transition relative overflow-hidden"
+                data-id="ui-201" data-title="UI Design Patterns" data-category="Design" data-level="Intermediate">
+                <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop"
+                        alt="UI Design Patterns"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] bg-blue-700 text-white px-2 py-0.5 rounded">Trending</span>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3 mb-3">
                     <img src="https://api.dicebear.com/7.x/initials/svg?seed=UI" alt="Instructor avatar"
