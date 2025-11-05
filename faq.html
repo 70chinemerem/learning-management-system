@@ -17,8 +17,9 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+
+
+
                 <div class="h-6 w-px bg-gray-300 mx-2"></div>
                 <!-- Language Selector -->
                 <div id="langSelectorWrapper" class="relative">
@@ -59,20 +60,31 @@
             </a></div>
 
         <!-- Hero Section -->
-        <section class="mb-12 text-center">
-            <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl p-8 mb-8">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <i data-lucide="help-circle" class="w-12 h-12 text-indigo-600"></i>
-                    <h1 class="text-4xl font-bold text-gray-900">Frequently Asked Questions</h1>
+        <section class="mb-12">
+            <div
+                class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl p-8 mb-8 overflow-hidden relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="help-circle" class="w-12 h-12 text-indigo-600"></i>
+                            <h1 class="text-4xl font-bold text-gray-900">Frequently Asked Questions</h1>
+                        </div>
+                        <p class="text-lg text-gray-700">
+                            Find answers to common questions about using our Learning Management System. Can't find what
+                            you're
+                            looking for? <a href="#contact"
+                                class="text-indigo-700 hover:text-indigo-800 hover:underline font-medium inline-flex items-center gap-1">
+                                <span>Contact support</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>.
+                        </p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop"
+                            alt="FAQ illustration" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
+                    </div>
                 </div>
-                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                    Find answers to common questions about using our Learning Management System. Can't find what you're
-                    looking for? <a href="#contact"
-                        class="text-indigo-700 hover:text-indigo-800 hover:underline font-medium inline-flex items-center gap-1">
-                        <span>Contact support</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>.
-                </p>
             </div>
         </section>
 

@@ -228,14 +228,36 @@
                 };
 
                 const card = document.createElement('article');
-                card.className = 'group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all';
+                card.className = 'group p-6 border-2 border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all overflow-hidden';
                 const savedFiltered = saved.filter(x => x !== id);
+
+                // Course thumbnail images mapping
+                const courseImages = {
+                    'js-101': 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop',
+                    'py-201': 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=400&h=300&fit=crop',
+                    'ux-101': 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
+                    'react-fund': 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop',
+                    'ds-basics': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+                    'css-advanced': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+                    'node-101': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop',
+                    'sql-beginners': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop',
+                    'ui-patterns': 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop'
+                };
+
                 card.innerHTML = `
-                    <div class="flex items-start justify-between mb-3">
-                        <span class="px-3 py-1 text-xs font-semibold rounded-full border ${colorClasses[c.color] || colorClasses.blue}">${c.category}</span>
-                        <button class="text-red-500 hover:text-red-700 transition" onclick="const saved = ${JSON.stringify(savedFiltered)}; localStorage.setItem('saved.courses', JSON.stringify(saved)); this.closest('article').remove(); if(!saved.length) { document.getElementById('emptyState').classList.remove('hidden'); document.getElementById('savedGrid').style.display = 'none'; }" aria-label="Remove from saved">
-                            <i data-lucide="trash-2" class="w-5 h-5"></i>
-                        </button>
+                    <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                        <img src="${courseImages[id] || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop'}" 
+                            alt="${c.title}" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                            loading="lazy">
+                        <div class="absolute top-3 right-3">
+                            <button class="text-red-500 hover:text-red-700 bg-white/90 backdrop-blur-sm rounded-full p-2 transition" onclick="const saved = ${JSON.stringify(savedFiltered)}; localStorage.setItem('saved.courses', JSON.stringify(saved)); this.closest('article').remove(); if(!saved.length) { document.getElementById('emptyState').classList.remove('hidden'); document.getElementById('savedGrid').style.display = 'none'; }" aria-label="Remove from saved">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full border ${colorClasses[c.color] || colorClasses.blue} bg-white/90 backdrop-blur-sm">${c.category}</span>
+                        </div>
                     </div>
                     <h2 class="font-semibold text-lg mb-2 text-gray-900 group-hover:text-indigo-700 transition">${c.title}</h2>
                     <p class="text-sm text-gray-600 mb-4 line-clamp-2">${c.desc}</p>

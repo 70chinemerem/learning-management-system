@@ -17,8 +17,7 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+
                 <div class="h-6 w-px bg-gray-300 mx-2"></div>
                 <!-- Language Selector -->
                 <div id="langSelectorWrapper" class="relative">
@@ -59,16 +58,26 @@
             </a></div>
 
         <!-- Hero Section -->
-        <section class="mb-12 text-center">
-            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
-                <div class="flex items-center justify-center gap-3 mb-3">
-                    <i data-lucide="briefcase" class="w-10 h-10 text-indigo-600"></i>
-                    <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.careers">Join Our Team</h1>
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6 overflow-hidden relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="briefcase" class="w-10 h-10 text-indigo-600"></i>
+                            <h1 class="text-4xl font-bold text-gray-900" data-i18n="page.careers">Join Our Team</h1>
+                        </div>
+                        <p class="text-lg text-gray-700">
+                            Help us build the future of online learning. We're looking for passionate people who want to
+                            make
+                            education accessible to everyone.
+                        </p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+                            alt="Team workspace" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
+                    </div>
                 </div>
-                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                    Help us build the future of online learning. We're looking for passionate people who want to make
-                    education accessible to everyone.
-                </p>
             </div>
         </section>
 
@@ -152,8 +161,12 @@
             <div id="jobListings" class="space-y-4">
                 <!-- Engineering -->
                 <article
-                    class="job-card p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition"
+                    class="job-card p-6 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition overflow-hidden"
                     data-department="Engineering">
+                    <div class="relative rounded-lg overflow-hidden mb-4 h-32">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop"
+                            alt="Engineering workspace" class="w-full h-full object-cover" loading="lazy">
+                    </div>
                     <div class="flex items-start justify-between mb-3">
                         <div class="flex-1">
                             <h3 class="font-semibold text-lg text-gray-900 mb-1">Senior Frontend Developer</h3>

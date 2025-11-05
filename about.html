@@ -17,8 +17,10 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
+                <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                    href="features.html" data-i18n="nav.features">Features</a>
+                <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                    href="saved.html" data-i18n="nav.saved">Saved</a>
                 <div class="h-6 w-px bg-gray-300 mx-2"></div>
                 <!-- Language Selector -->
                 <div id="langSelectorWrapper" class="relative">
@@ -58,12 +60,25 @@
                     home</span></a></div>
 
         <!-- Hero Section -->
-        <section class="mb-12 text-center">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="page.about">About Us</h1>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="about.hero.desc">
-                We're on a mission to make quality education accessible to everyone, everywhere. Founded in 2020, we've
-                helped thousands of learners achieve their learning goals through our modern, intuitive platform.
-            </p>
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6 overflow-hidden relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="page.about">About Us</h1>
+                        <p class="text-lg text-gray-600" data-i18n="about.hero.desc">
+                            We're on a mission to make quality education accessible to everyone, everywhere. Founded in
+                            2020, we've
+                            helped thousands of learners achieve their learning goals through our modern, intuitive
+                            platform.
+                        </p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
+                            alt="Team collaboration" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Mission Section -->
@@ -81,8 +96,12 @@
                         tools you need to succeed. No complexity, no barriers—just learning made simple.
                     </p>
                 </div>
-                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-8">
-                    <i data-lucide="graduation-cap" class="w-16 h-16 text-indigo-600 mb-4"></i>
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-8 overflow-hidden relative">
+                    <div class="relative rounded-lg overflow-hidden shadow-md mb-4">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop"
+                            alt="Education technology" class="w-full h-48 object-cover" loading="lazy">
+                    </div>
+                    <i data-lucide="graduation-cap" class="w-12 h-12 text-indigo-600 mb-3"></i>
                     <h3 class="text-xl font-semibold mb-2" data-i18n="about.mission.future">Building the future of
                         learning</h3>
                     <p class="text-gray-600" data-i18n="about.mission.join">Join us in transforming how people learn and
@@ -146,26 +165,34 @@
         <!-- Story Section -->
         <section class="mb-12">
             <h2 class="text-3xl font-semibold mb-6" data-i18n="about.story.title">Our Story</h2>
-            <div class="prose max-w-none">
-                <div class="bg-white border rounded-lg p-8 shadow-sm">
-                    <p class="text-gray-700 mb-4" data-i18n="about.story.p1">
-                        It started with a simple observation: existing learning management systems were too complex,
-                        expensive, or outdated. Educators and learners deserved better.
-                    </p>
-                    <p class="text-gray-700 mb-4" data-i18n="about.story.p2">
-                        In 2020, our founding team—comprising educators, developers, and designers—came together to
-                        build a platform that put the user experience first. We launched with a focus on simplicity,
-                        beautiful design, and powerful features that actually work.
-                    </p>
-                    <p class="text-gray-700 mb-4" data-i18n="about.story.p3">
-                        Today, we serve thousands of users worldwide, from individual instructors to large
-                        organizations. But our mission remains the same: make learning accessible, engaging, and
-                        effective for everyone.
-                    </p>
-                    <p class="text-gray-700" data-i18n="about.story.p4">
-                        We're just getting started. Join us as we continue to innovate and expand our platform to meet
-                        the evolving needs of the education community.
-                    </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="relative rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+                        alt="Team working together" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30 to-transparent"></div>
+                </div>
+                <div class="prose max-w-none">
+                    <div class="bg-white border rounded-lg p-8 shadow-sm">
+                        <p class="text-gray-700 mb-4" data-i18n="about.story.p1">
+                            It started with a simple observation: existing learning management systems were too complex,
+                            expensive, or outdated. Educators and learners deserved better.
+                        </p>
+                        <p class="text-gray-700 mb-4" data-i18n="about.story.p2">
+                            In 2020, our founding team—comprising educators, developers, and designers—came together to
+                            build a platform that put the user experience first. We launched with a focus on simplicity,
+                            beautiful design, and powerful features that actually work.
+                        </p>
+                        <p class="text-gray-700 mb-4" data-i18n="about.story.p3">
+                            Today, we serve thousands of users worldwide, from individual instructors to large
+                            organizations. But our mission remains the same: make learning accessible, engaging, and
+                            effective for everyone.
+                        </p>
+                        <p class="text-gray-700" data-i18n="about.story.p4">
+                            We're just getting started. Join us as we continue to innovate and expand our platform to
+                            meet
+                            the evolving needs of the education community.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -174,37 +201,41 @@
         <section class="mb-12">
             <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="about.team.title">Meet the Team</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center">
+                <div class="text-center group">
                     <div
-                        class="w-24 h-24 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
-                        AS
+                        class="relative w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg ring-2 ring-gray-200 group-hover:ring-indigo-400 transition-all">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+                            alt="Alex Smith" class="w-full h-full object-cover" loading="lazy">
                     </div>
                     <h3 class="font-semibold mb-1">Alex Smith</h3>
                     <p class="text-sm text-gray-600 mb-2">CEO & Co-founder</p>
                     <p class="text-xs text-gray-500">Former educator turned tech entrepreneur</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center group">
                     <div
-                        class="w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
-                        MJ
+                        class="relative w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg ring-2 ring-gray-200 group-hover:ring-purple-400 transition-all">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+                            alt="Maria Johnson" class="w-full h-full object-cover" loading="lazy">
                     </div>
                     <h3 class="font-semibold mb-1">Maria Johnson</h3>
                     <p class="text-sm text-gray-600 mb-2">CTO & Co-founder</p>
                     <p class="text-xs text-gray-500">Full-stack engineer with 10+ years experience</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center group">
                     <div
-                        class="w-24 h-24 bg-gradient-to-br from-green-400 to-teal-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
-                        DC
+                        class="relative w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg ring-2 ring-gray-200 group-hover:ring-green-400 transition-all">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+                            alt="David Chen" class="w-full h-full object-cover" loading="lazy">
                     </div>
                     <h3 class="font-semibold mb-1">David Chen</h3>
                     <p class="text-sm text-gray-600 mb-2">Head of Design</p>
                     <p class="text-xs text-gray-500">UX/UI designer passionate about education</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center group">
                     <div
-                        class="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-600 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl text-white font-bold">
-                        SK
+                        class="relative w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg ring-2 ring-gray-200 group-hover:ring-orange-400 transition-all">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+                            alt="Sarah Kim" class="w-full h-full object-cover" loading="lazy">
                     </div>
                     <h3 class="font-semibold mb-1">Sarah Kim</h3>
                     <p class="text-sm text-gray-600 mb-2">Head of Product</p>

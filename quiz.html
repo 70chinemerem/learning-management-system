@@ -82,219 +82,225 @@
     </header>
 
     <main id="main" class="max-w-6xl mx-auto px-4 py-10" role="main">
-        <div class="max-w-2xl mx-auto">
-            <div class="mb-4"><a href="index.html"
-                    class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                    data-i18n="common.backHome">← Back to home</a>
-            </div>
-            <div class="mb-6">
-                <h1 class="text-2xl font-semibold mb-2" data-i18n="page.quiz">Web Development Quiz</h1>
-                <p class="text-sm text-gray-600 mb-4">Test your knowledge across multiple web technologies. Answer all
-                    questions and submit to see your score.</p>
+        <div class="mb-4"><a href="index.html"
+                class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
+                data-i18n="common.backHome">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to home</span>
+            </a></div>
 
-                <!-- Progress Bar -->
-                <div class="mb-4">
-                    <div class="flex items-center justify-between text-xs text-gray-600 mb-1">
-                        <span>Progress</span>
-                        <span id="progressText">0/8 answered</span>
+        <div class="mb-6">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 mb-6 overflow-hidden relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h1 class="text-2xl font-semibold mb-2" data-i18n="page.quiz">Web Development Quiz</h1>
+                        <p class="text-sm text-gray-600">Test your knowledge across multiple web technologies. Answer
+                            all
+                            questions and submit to see your score.</p>
                     </div>
-                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div id="progressBar"
-                            class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-300"
-                            style="width: 0%"></div>
+                    <div class="relative rounded-lg overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop"
+                            alt="Quiz illustration" class="w-full h-48 object-cover" loading="lazy">
                     </div>
                 </div>
             </div>
 
-            <form id="quizForm" class="space-y-4">
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="1">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">1.</span>
-                        <span>JavaScript runs primarily in the ...</span>
-                        <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q1" value="A" class="mt-0.5"> <span
-                                class="text-sm">Database</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q1" value="B" class="mt-0.5"> <span class="text-sm">Browser</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q1" value="C" class="mt-0.5"> <span class="text-sm">Router</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="2">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">2.</span>
-                        <span>In HTML, the tag for a link is ...</span>
-                        <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q2" value="A" class="mt-0.5"> <span
-                                class="text-sm">&lt;div&gt;</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q2" value="B" class="mt-0.5"> <span
-                                class="text-sm">&lt;a&gt;</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q2" value="C" class="mt-0.5"> <span
-                                class="text-sm">&lt;p&gt;</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="3">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">3.</span>
-                        <span>CSS controls ...</span>
-                        <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q3" value="A" class="mt-0.5"> <span
-                                class="text-sm">Structure</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q3" value="B" class="mt-0.5"> <span
-                                class="text-sm">Behavior</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q3" value="C" class="mt-0.5"> <span
-                                class="text-sm">Presentation</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="4">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">4.</span>
-                        <span>Which HTTP status means "Not Found"?</span>
-                        <span class="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Web</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q4" value="A" class="mt-0.5"> <span class="text-sm">200</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q4" value="B" class="mt-0.5"> <span class="text-sm">301</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q4" value="C" class="mt-0.5"> <span class="text-sm">404</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="5">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">5.</span>
-                        <span>In Git, which command creates a local copy of a remote repo?</span>
-                        <span class="ml-auto text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">Git</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q5" value="A" class="mt-0.5"> <span class="text-sm">git
-                                pull</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q5" value="B" class="mt-0.5"> <span class="text-sm">git
-                                clone</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q5" value="C" class="mt-0.5"> <span class="text-sm">git
-                                commit</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="6">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">6.</span>
-                        <span>What does CSS stand for?</span>
-                        <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q6" value="A" class="mt-0.5"> <span class="text-sm">Computer Style
-                                Sheets</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q6" value="B" class="mt-0.5"> <span class="text-sm">Cascading
-                                Style Sheets</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q6" value="C" class="mt-0.5"> <span class="text-sm">Creative Style
-                                Sheets</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="7">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">7.</span>
-                        <span>Which HTML tag is used for the largest heading?</span>
-                        <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q7" value="A" class="mt-0.5"> <span
-                                class="text-sm">&lt;head&gt;</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q7" value="B" class="mt-0.5"> <span
-                                class="text-sm">&lt;h1&gt;</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q7" value="C" class="mt-0.5"> <span
-                                class="text-sm">&lt;heading&gt;</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
-                    data-question="8">
-                    <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <span class="text-blue-600 font-semibold">8.</span>
-                        <span>Which JavaScript method adds a new element to an array?</span>
-                        <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
-                    </legend>
-                    <div class="space-y-2 ml-6">
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q8" value="A" class="mt-0.5"> <span class="text-sm">push()</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q8" value="B" class="mt-0.5"> <span class="text-sm">pop()</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="q8" value="C" class="mt-0.5"> <span class="text-sm">shift()</span>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <div class="flex items-center gap-3 pt-4">
-                    <button id="submitQuiz" type="submit" class="btn-primary" data-i18n="common.submit">Submit
-                        Quiz</button>
-                    <button id="resetQuiz" type="button" class="btn-outline-indigo" data-i18n="common.reset">Reset
-                        All</button>
+            <!-- Progress Bar -->
+            <div class="mb-4">
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span id="progressText">0/8 answered</span>
                 </div>
-            </form>
-
-            <div id="quizResult" class="mt-6 hidden p-6 border rounded-lg bg-white shadow-sm" role="status"
-                aria-live="polite">
-                <!-- Result content injected by JS -->
+                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progressBar"
+                        class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-300"
+                        style="width: 0%"></div>
+                </div>
             </div>
+        </div>
+
+        <form id="quizForm" class="space-y-4">
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="1">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">1.</span>
+                    <span>JavaScript runs primarily in the ...</span>
+                    <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q1" value="A" class="mt-0.5"> <span class="text-sm">Database</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q1" value="B" class="mt-0.5"> <span class="text-sm">Browser</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q1" value="C" class="mt-0.5"> <span class="text-sm">Router</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="2">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">2.</span>
+                    <span>In HTML, the tag for a link is ...</span>
+                    <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q2" value="A" class="mt-0.5"> <span class="text-sm">&lt;div&gt;</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q2" value="B" class="mt-0.5"> <span class="text-sm">&lt;a&gt;</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q2" value="C" class="mt-0.5"> <span class="text-sm">&lt;p&gt;</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="3">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">3.</span>
+                    <span>CSS controls ...</span>
+                    <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q3" value="A" class="mt-0.5"> <span class="text-sm">Structure</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q3" value="B" class="mt-0.5"> <span class="text-sm">Behavior</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q3" value="C" class="mt-0.5"> <span
+                            class="text-sm">Presentation</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="4">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">4.</span>
+                    <span>Which HTTP status means "Not Found"?</span>
+                    <span class="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Web</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q4" value="A" class="mt-0.5"> <span class="text-sm">200</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q4" value="B" class="mt-0.5"> <span class="text-sm">301</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q4" value="C" class="mt-0.5"> <span class="text-sm">404</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="5">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">5.</span>
+                    <span>In Git, which command creates a local copy of a remote repo?</span>
+                    <span class="ml-auto text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">Git</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q5" value="A" class="mt-0.5"> <span class="text-sm">git
+                            pull</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q5" value="B" class="mt-0.5"> <span class="text-sm">git
+                            clone</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q5" value="C" class="mt-0.5"> <span class="text-sm">git
+                            commit</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="6">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">6.</span>
+                    <span>What does CSS stand for?</span>
+                    <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">CSS</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q6" value="A" class="mt-0.5"> <span class="text-sm">Computer Style
+                            Sheets</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q6" value="B" class="mt-0.5"> <span class="text-sm">Cascading
+                            Style Sheets</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q6" value="C" class="mt-0.5"> <span class="text-sm">Creative Style
+                            Sheets</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="7">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">7.</span>
+                    <span>Which HTML tag is used for the largest heading?</span>
+                    <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">HTML</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q7" value="A" class="mt-0.5"> <span
+                            class="text-sm">&lt;head&gt;</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q7" value="B" class="mt-0.5"> <span class="text-sm">&lt;h1&gt;</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q7" value="C" class="mt-0.5"> <span
+                            class="text-sm">&lt;heading&gt;</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="quiz-question p-5 border rounded-lg bg-white shadow-sm hover:shadow transition"
+                data-question="8">
+                <legend class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                    <span class="text-blue-600 font-semibold">8.</span>
+                    <span>Which JavaScript method adds a new element to an array?</span>
+                    <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">JavaScript</span>
+                </legend>
+                <div class="space-y-2 ml-6">
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q8" value="A" class="mt-0.5"> <span class="text-sm">push()</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q8" value="B" class="mt-0.5"> <span class="text-sm">pop()</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="q8" value="C" class="mt-0.5"> <span class="text-sm">shift()</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="flex items-center gap-3 pt-4">
+                <button id="submitQuiz" type="submit" class="btn-primary" data-i18n="common.submit">Submit
+                    Quiz</button>
+                <button id="resetQuiz" type="button" class="btn-outline-indigo" data-i18n="common.reset">Reset
+                    All</button>
+            </div>
+        </form>
+
+        <div id="quizResult" class="mt-6 hidden p-6 border rounded-lg bg-white shadow-sm" role="status"
+            aria-live="polite">
+            <!-- Result content injected by JS -->
+        </div>
         </div>
     </main>
 

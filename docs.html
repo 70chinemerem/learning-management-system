@@ -17,8 +17,7 @@
         <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
             <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-                <a class="text-gray-700 hover:text-blue-700" href="features.html">Features</a>
-                <a class="text-gray-700 hover:text-blue-700" href="saved.html">Saved</a>
+
                 <div class="h-6 w-px bg-gray-300 mx-2"></div>
                 <!-- Language Selector -->
                 <div id="langSelectorWrapper" class="relative">
@@ -86,16 +85,27 @@
             <div class="lg:col-span-3">
                 <!-- Hero Section -->
                 <section class="mb-12">
-                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i data-lucide="book-open" class="w-10 h-10 text-indigo-600"></i>
-                            <h1 class="text-4xl font-bold text-gray-900">Documentation</h1>
+                    <div
+                        class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-6 overflow-hidden relative">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i data-lucide="book-open" class="w-10 h-10 text-indigo-600"></i>
+                                    <h1 class="text-4xl font-bold text-gray-900">Documentation</h1>
+                                </div>
+                                <p class="text-lg text-gray-700">
+                                    Everything you need to know about using the Learning Management System. From getting
+                                    started
+                                    to advanced
+                                    features, we've got you covered.
+                                </p>
+                            </div>
+                            <div class="relative rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop"
+                                    alt="Documentation" class="w-full h-64 md:h-80 object-cover" loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
+                            </div>
                         </div>
-                        <p class="text-lg text-gray-700 max-w-3xl">
-                            Everything you need to know about using the Learning Management System. From getting started
-                            to advanced
-                            features, we've got you covered.
-                        </p>
                     </div>
 
                     <!-- Quick Links -->
