@@ -137,19 +137,71 @@ document.addEventListener('DOMContentLoaded', () => {
     (function () {
         const mainHeader = document.getElementById('mainHeader');
         const header = mainHeader || document.querySelector('header');
+
+        // Create enhanced back-to-top button
         const btn = document.createElement('button');
-        btn.textContent = '↑ Top';
-        btn.className = 'fixed bottom-4 right-4 px-3 py-2 text-sm rounded shadow bg-blue-600 text-white hidden';
-        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        btn.id = 'backToTop';
+        btn.className = 'fixed bottom-6 right-6 z-40 group hidden';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.innerHTML = `
+            <div class="relative w-12 h-12 bg-gradient-to-br from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center transform hover:scale-110 active:scale-95">
+                <i data-lucide="arrow-up" class="w-5 h-5 text-white"></i>
+                <div class="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+        `;
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Add visual feedback
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => { btn.style.transform = ''; }, 150);
+        });
         document.body.appendChild(btn);
+
+        // Initialize icon after button is added
+        setTimeout(() => {
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+        }, 100);
+
         function onScroll() {
             const y = window.scrollY || document.documentElement.scrollTop;
             // Skip header shadow if mainHeader exists (handled by index.html)
             if (header && !mainHeader) {
                 header.classList.toggle('shadow', y > 8);
             }
-            btn.classList.toggle('hidden', y < 200);
+            // Show/hide button with smooth transition
+            if (y > 300) {
+                btn.classList.remove('hidden');
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            } else {
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    if (window.scrollY < 300) {
+                        btn.classList.add('hidden');
+                    }
+                }, 300);
+            }
         }
+
+        // Add CSS for smooth transitions
+        if (!document.getElementById('backToTopStyles')) {
+            const style = document.createElement('style');
+            style.id = 'backToTopStyles';
+            style.textContent = `
+                #backToTop {
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+                #backToTop:not(.hidden) {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
@@ -232,11 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function populateSelector(select) {
-            // Populate options with flags
+            // Clear existing options to prevent duplicates
+            select.innerHTML = '';
+
+            // Populate options with flags (flag only in display, short code in option text)
             options.forEach(([value, label, flag]) => {
                 const opt = document.createElement('option');
                 opt.value = value;
-                opt.textContent = `${flag} ${label}`;
+                opt.textContent = value.toUpperCase(); // Show short code (e.g., "EN", "FR") instead of full name
                 opt.setAttribute('data-flag', flag);
                 if (value === savedLang) opt.selected = true;
                 select.appendChild(opt);
@@ -253,48 +308,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Create flag display element
+            // Create flag display element only if it doesn't exist
             const wrapper = select.parentElement;
-            const flagDisplay = document.createElement('span');
-            flagDisplay.className = 'lang-flag-display absolute left-2.5 text-base pointer-events-none z-10';
+            let flagDisplay = wrapper.querySelector('.lang-flag-display');
+            if (!flagDisplay) {
+                flagDisplay = document.createElement('span');
+                flagDisplay.className = 'lang-flag-display absolute left-2.5 text-base pointer-events-none z-10';
+                wrapper.insertBefore(flagDisplay, select);
+            }
             const selectedOption = select.options[select.selectedIndex];
             flagDisplay.textContent = selectedOption ? selectedOption.getAttribute('data-flag') : '🌐';
-            wrapper.insertBefore(flagDisplay, select);
 
-            // Add change event listener
-            select.addEventListener('change', () => {
-                const val = select.value || 'en';
-                try { localStorage.setItem('ui.lang', val); } catch { }
-                document.documentElement.setAttribute('lang', val);
-                document.documentElement.setAttribute('dir', rtlLanguages.includes(val) ? 'rtl' : 'ltr');
-                const langData = options.find(([code]) => code === val);
-                const langName = langData ? langData[1] : val.toUpperCase();
-                toast(`Language set to ${langName}`);
-                applyTranslations(val);
+            // Add change event listener only if not already added
+            if (!select.hasAttribute('data-lang-listener')) {
+                select.setAttribute('data-lang-listener', 'true');
+                select.addEventListener('change', () => {
+                    const val = select.value || 'en';
+                    try { localStorage.setItem('ui.lang', val); } catch { }
+                    document.documentElement.setAttribute('lang', val);
+                    document.documentElement.setAttribute('dir', rtlLanguages.includes(val) ? 'rtl' : 'ltr');
+                    const langData = options.find(([code]) => code === val);
+                    const langName = langData ? langData[1] : val.toUpperCase();
+                    toast(`Language set to ${langName}`);
+                    applyTranslations(val);
 
-                // Update display
-                updateDisplay();
+                    // Update display
+                    updateDisplay();
 
-                // Update other selector if it exists
-                const allSelectors = document.querySelectorAll('.lang-select');
-                allSelectors.forEach(s => {
-                    if (s !== select) {
-                        s.value = val;
-                        // Update display for other selectors
-                        const otherWrapper = s.parentElement;
-                        const otherFlagDisplay = otherWrapper.querySelector('.lang-flag-display');
-                        if (otherFlagDisplay) {
-                            const otherOption = s.options[s.selectedIndex];
-                            otherFlagDisplay.textContent = otherOption ? otherOption.getAttribute('data-flag') : '🌐';
+                    // Update other selector if it exists
+                    const allSelectors = document.querySelectorAll('.lang-select');
+                    allSelectors.forEach(s => {
+                        if (s !== select) {
+                            s.value = val;
+                            // Update display for other selectors
+                            const otherWrapper = s.parentElement;
+                            const otherFlagDisplay = otherWrapper.querySelector('.lang-flag-display');
+                            if (otherFlagDisplay) {
+                                const otherOption = s.options[s.selectedIndex];
+                                otherFlagDisplay.textContent = otherOption ? otherOption.getAttribute('data-flag') : '🌐';
+                            }
                         }
+                    });
+
+                    // Re-initialize Lucide icons after language change
+                    if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                        setTimeout(() => lucide.createIcons(), 50);
                     }
                 });
-
-                // Re-initialize Lucide icons after language change
-                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-                    setTimeout(() => lucide.createIcons(), 50);
-                }
-            });
+            }
 
             // Initial display update
             updateDisplay();
