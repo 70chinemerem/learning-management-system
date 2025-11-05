@@ -50,28 +50,71 @@
 </head>
 
 <body data-page="home">
-  <header class="border-b bg-white">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
-      <nav class="hidden md:flex items-center gap-4 text-sm" aria-label="Primary">
-        <a class="text-gray-700 hover:text-blue-700" href="features.html" data-i18n="nav.features">Features</a>
-        <a class="text-gray-700 hover:text-blue-700" href="saved.html" data-i18n="nav.saved">Saved</a>
-        <a class="btn-primary" href="signin.html" data-i18n="nav.signin">Sign in</a>
-      </nav>
-      <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border"
-        aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
-        <i data-lucide="menu" class="w-5 h-5"></i>
-      </button>
-    </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t">
-      <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
-        <a class="block text-gray-700" href="features.html" data-i18n="nav.features">Features</a>
-        <a class="block text-gray-700" href="saved.html" data-i18n="nav.saved">Saved</a>
-        <a class="block text-gray-700" href="courses.html" data-i18n="nav.browse">Browse courses</a>
-        <a class="block text-gray-700" href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
-        <a class="block text-gray-700" href="analytics.html" data-i18n="nav.analytics">View analytics</a>
-        <a class="inline-block mt-1 btn-primary w-max" href="signup.html" data-i18n="nav.signup">Sign up</a>
-      </nav>
+  <header id="mainHeader"
+    class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-shadow duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group">
+          <img src="src/assets/logo.svg" alt="LMS Logo" class="h-8 md:h-9 transition-transform group-hover:scale-105">
+          <span
+            class="hidden sm:block text-lg font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">LMS</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
+          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="features.html" data-i18n="nav.features">Features</a>
+          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="saved.html" data-i18n="nav.saved">Saved</a>
+          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="courses.html" data-i18n="nav.browse">Courses</a>
+          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+          <div class="h-6 w-px bg-gray-300 mx-2"></div>
+          <!-- Language Selector -->
+          <div id="langSelectorWrapper" class="relative">
+            <!-- Language selector will be inserted here by main.js -->
+          </div>
+          <a class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all"
+            href="signin.html" data-i18n="nav.signin">Sign in</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuToggle"
+          class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all"
+          aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 bg-gray-50/50">
+        <nav class="px-4 py-4 space-y-1" aria-label="Mobile">
+          <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="features.html" data-i18n="nav.features">Features</a>
+          <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="saved.html" data-i18n="nav.saved">Saved</a>
+          <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="courses.html" data-i18n="nav.browse">Browse courses</a>
+          <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+          <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+            href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+          <!-- Mobile Language Selector -->
+          <div class="pt-2 border-t border-gray-200">
+            <div id="mobileLangSelectorWrapper" class="px-4 py-2">
+              <!-- Language selector will be inserted here by main.js -->
+            </div>
+          </div>
+          <div class="pt-2 mt-2 border-t border-gray-200">
+            <a class="block w-full px-4 py-2.5 text-sm font-semibold text-center text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md transition-all"
+              href="signin.html" data-i18n="nav.signin">Sign in</a>
+            <a class="block w-full mt-2 px-4 py-2.5 text-sm font-semibold text-center text-violet-700 border-2 border-violet-200 hover:bg-violet-50 rounded-lg transition-all"
+              href="signup.html" data-i18n="nav.signup">Sign up</a>
+          </div>
+        </nav>
+      </div>
     </div>
   </header>
   <!-- HERO TEMPLATE SECTION -->
@@ -828,6 +871,26 @@
         });
       });
     })();
+    // Header scroll effect (mobile menu is handled by main.js)
+    (function () {
+      const header = document.getElementById('mainHeader');
+      if (!header) return;
+
+      // Add shadow on scroll
+      function handleScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add('shadow-md');
+          header.classList.remove('shadow-sm');
+        } else {
+          header.classList.remove('shadow-md');
+          header.classList.add('shadow-sm');
+        }
+      }
+
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+    })();
+
     // Hero Carousel
     (function () {
       const carousel = document.getElementById('heroCarousel');

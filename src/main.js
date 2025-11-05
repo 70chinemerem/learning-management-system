@@ -135,7 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Back to top button and header shadow
     (function () {
-        const header = document.querySelector('header');
+        const mainHeader = document.getElementById('mainHeader');
+        const header = mainHeader || document.querySelector('header');
         const btn = document.createElement('button');
         btn.textContent = '↑ Top';
         btn.className = 'fixed bottom-4 right-4 px-3 py-2 text-sm rounded shadow bg-blue-600 text-white hidden';
@@ -143,13 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(btn);
         function onScroll() {
             const y = window.scrollY || document.documentElement.scrollTop;
-            if (header) header.classList.toggle('shadow', y > 8);
+            // Skip header shadow if mainHeader exists (handled by index.html)
+            if (header && !mainHeader) {
+                header.classList.toggle('shadow', y > 8);
+            }
             btn.classList.toggle('hidden', y < 200);
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
-    // Mobile menu toggle (index page)
+    // Mobile menu toggle (works with Lucide icons)
     (function () {
         const toggle = document.getElementById('mobileMenuToggle');
         const menu = document.getElementById('mobileMenu');
@@ -159,38 +163,142 @@ document.addEventListener('DOMContentLoaded', () => {
             menu.classList.toggle('hidden');
             const open = wasHidden;
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            toggle.textContent = open ? '✕' : '☰';
+            // Update Lucide icon if present
+            const icon = toggle.querySelector('i[data-lucide]');
+            if (icon) {
+                icon.setAttribute('data-lucide', open ? 'x' : 'menu');
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    lucide.createIcons();
+                }
+            } else {
+                // Fallback for text-based toggles
+                toggle.textContent = open ? '✕' : '☰';
+            }
         });
     })();
     // Language selector + basic i18n (applies to all pages)
     (function () {
-        const headerRow = document.querySelector('header .max-w-6xl');
-        if (!headerRow) return;
-        const select = document.createElement('select');
-        select.id = 'langSelect';
-        // Visible on mobile and desktop - styled with icon
-        select.className = 'pl-3 pr-8 py-1.5 border-2 border-gray-200 rounded-lg text-sm appearance-none bg-white focus:border-indigo-300 focus:outline-none';
-        select.style.backgroundImage = 'none';
-        // Add wrapper with icon
-        const wrapper = document.createElement('div');
-        wrapper.className = 'relative inline-flex items-center';
-        const icon = document.createElement('i');
-        icon.setAttribute('data-lucide', 'globe');
-        icon.className = 'absolute right-2.5 w-4 h-4 text-gray-400 pointer-events-none';
-        wrapper.appendChild(select);
-        wrapper.appendChild(icon);
-        // Extended language options with more languages
+        // Desktop language selector
+        const desktopWrapper = document.getElementById('langSelectorWrapper');
+        // Mobile language selector
+        const mobileWrapper = document.getElementById('mobileLangSelectorWrapper');
+
+        if (!desktopWrapper && !mobileWrapper) return;
+
+        function createLangSelector(isMobile = false) {
+            const select = document.createElement('select');
+            select.id = isMobile ? 'langSelectMobile' : 'langSelect';
+            select.className = 'lang-select pl-10 pr-8 py-1.5 border border-gray-200 rounded-lg text-sm appearance-none bg-white hover:border-violet-300 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-200 transition-all cursor-pointer';
+            select.style.backgroundImage = 'none';
+
+            // Add wrapper with dropdown arrow icon
+            const wrapper = document.createElement('div');
+            wrapper.className = 'relative inline-flex items-center';
+
+            // Dropdown arrow icon (replaces globe, flag will be shown separately)
+            const arrowIcon = document.createElement('i');
+            arrowIcon.setAttribute('data-lucide', 'chevron-down');
+            arrowIcon.className = 'absolute right-2.5 w-4 h-4 text-gray-400 pointer-events-none z-10';
+            wrapper.appendChild(select);
+            wrapper.appendChild(arrowIcon);
+            return { select, wrapper };
+        }
+        // Extended language options with more languages and flags
         const options = [
-            ['en', 'English'], ['fr', 'Français'], ['es', 'Español'], ['de', 'Deutsch'], ['pt', 'Português'],
-            ['it', 'Italiano'], ['ar', 'العربية'], ['zh', '中文'], ['hi', 'हिन्दी'], ['ja', '日本語'],
-            ['ru', 'Русский'], ['ko', '한국어'], ['tr', 'Türkçe'], ['nl', 'Nederlands'], ['pl', 'Polski'],
-            ['sv', 'Svenska'], ['no', 'Norsk'], ['fi', 'Suomi'], ['vi', 'Tiếng Việt'], ['th', 'ไทย']
+            ['en', 'English', '🇺🇸'], ['fr', 'Français', '🇫🇷'], ['es', 'Español', '🇪🇸'], ['de', 'Deutsch', '🇩🇪'], ['pt', 'Português', '🇵🇹'],
+            ['it', 'Italiano', '🇮🇹'], ['ar', 'العربية', '🇸🇦'], ['zh', '中文', '🇨🇳'], ['hi', 'हिन्दी', '🇮🇳'], ['ja', '日本語', '🇯🇵'],
+            ['ru', 'Русский', '🇷🇺'], ['ko', '한국어', '🇰🇷'], ['tr', 'Türkçe', '🇹🇷'], ['nl', 'Nederlands', '🇳🇱'], ['pl', 'Polski', '🇵🇱'],
+            ['sv', 'Svenska', '🇸🇪'], ['no', 'Norsk', '🇳🇴'], ['fi', 'Suomi', '🇫🇮'], ['vi', 'Tiếng Việt', '🇻🇳'], ['th', 'ไทย', '🇹🇭']
         ];
         const savedLang = (() => { try { return localStorage.getItem('ui.lang') || 'en'; } catch { return 'en'; } })();
         document.documentElement.setAttribute('lang', savedLang);
         // RTL languages: Arabic and Hebrew (if added later)
         const rtlLanguages = ['ar', 'he'];
         document.documentElement.setAttribute('dir', rtlLanguages.includes(savedLang) ? 'rtl' : 'ltr');
+
+        // Create desktop selector
+        if (desktopWrapper) {
+            const { select: desktopSelect, wrapper: desktopWrap } = createLangSelector(false);
+            desktopWrapper.appendChild(desktopWrap);
+            populateSelector(desktopSelect);
+        }
+
+        // Create mobile selector
+        if (mobileWrapper) {
+            const { select: mobileSelect, wrapper: mobileWrap } = createLangSelector(true);
+            mobileSelect.className += ' w-full'; // Full width on mobile
+            mobileWrapper.appendChild(mobileWrap);
+            populateSelector(mobileSelect);
+        }
+
+        function populateSelector(select) {
+            // Populate options with flags
+            options.forEach(([value, label, flag]) => {
+                const opt = document.createElement('option');
+                opt.value = value;
+                opt.textContent = `${flag} ${label}`;
+                opt.setAttribute('data-flag', flag);
+                if (value === savedLang) opt.selected = true;
+                select.appendChild(opt);
+            });
+
+            // Update display to show selected flag
+            function updateDisplay() {
+                const selectedOption = select.options[select.selectedIndex];
+                const flag = selectedOption ? selectedOption.getAttribute('data-flag') : '🌐';
+                const wrapper = select.parentElement;
+                const flagDisplay = wrapper.querySelector('.lang-flag-display');
+                if (flagDisplay) {
+                    flagDisplay.textContent = flag;
+                }
+            }
+
+            // Create flag display element
+            const wrapper = select.parentElement;
+            const flagDisplay = document.createElement('span');
+            flagDisplay.className = 'lang-flag-display absolute left-2.5 text-base pointer-events-none z-10';
+            const selectedOption = select.options[select.selectedIndex];
+            flagDisplay.textContent = selectedOption ? selectedOption.getAttribute('data-flag') : '🌐';
+            wrapper.insertBefore(flagDisplay, select);
+
+            // Add change event listener
+            select.addEventListener('change', () => {
+                const val = select.value || 'en';
+                try { localStorage.setItem('ui.lang', val); } catch { }
+                document.documentElement.setAttribute('lang', val);
+                document.documentElement.setAttribute('dir', rtlLanguages.includes(val) ? 'rtl' : 'ltr');
+                const langData = options.find(([code]) => code === val);
+                const langName = langData ? langData[1] : val.toUpperCase();
+                toast(`Language set to ${langName}`);
+                applyTranslations(val);
+
+                // Update display
+                updateDisplay();
+
+                // Update other selector if it exists
+                const allSelectors = document.querySelectorAll('.lang-select');
+                allSelectors.forEach(s => {
+                    if (s !== select) {
+                        s.value = val;
+                        // Update display for other selectors
+                        const otherWrapper = s.parentElement;
+                        const otherFlagDisplay = otherWrapper.querySelector('.lang-flag-display');
+                        if (otherFlagDisplay) {
+                            const otherOption = s.options[s.selectedIndex];
+                            otherFlagDisplay.textContent = otherOption ? otherOption.getAttribute('data-flag') : '🌐';
+                        }
+                    }
+                });
+
+                // Re-initialize Lucide icons after language change
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    setTimeout(() => lucide.createIcons(), 50);
+                }
+            });
+
+            // Initial display update
+            updateDisplay();
+        }
 
         // Expanded dictionary for key UI strings across all pages
         const dict = {
@@ -670,34 +778,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Expose translation function globally for dynamic content
         window.applyTranslations = applyTranslations;
-        options.forEach(([value, label]) => {
-            const opt = document.createElement('option');
-            opt.value = value; opt.textContent = label; if (value === savedLang) opt.selected = true; select.appendChild(opt);
-        });
-        select.addEventListener('change', () => {
-            const val = select.value || 'en';
-            try { localStorage.setItem('ui.lang', val); } catch { }
-            document.documentElement.setAttribute('lang', val);
-            document.documentElement.setAttribute('dir', rtlLanguages.includes(val) ? 'rtl' : 'ltr');
-            const langName = options.find(([code]) => code === val)?.[1] || val.toUpperCase();
-            toast(`Language set to ${langName}`);
-            applyTranslations(val);
-            // Re-initialize Lucide icons after language change (for dynamic content)
-            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-                setTimeout(() => lucide.createIcons(), 50);
-            }
-        });
-        // Insert before the mobile toggle if present, else append
-        const mobileBtn = document.getElementById('mobileMenuToggle');
-        if (mobileBtn && mobileBtn.parentElement === headerRow) {
-            headerRow.insertBefore(wrapper, mobileBtn);
-        } else {
-            headerRow.appendChild(wrapper);
-        }
-        // Initialize icon after insertion
+
+        // Initialize icons after selectors are created
         if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-            setTimeout(() => lucide.createIcons(), 50);
+            setTimeout(() => lucide.createIcons(), 100);
         }
+
         // Initial apply
         applyTranslations(savedLang);
     })();
