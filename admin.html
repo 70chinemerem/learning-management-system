@@ -185,7 +185,7 @@
                     <i data-lucide="book-marked" class="w-6 h-6 text-indigo-600"></i>
                     <span>Course Management</span>
                 </h2>
-                <div class="flex gap-2">
+                <div class="flex gap-2 flex-wrap">
                     <input type="search" id="courseSearch" placeholder="Search courses..."
                         class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <select id="courseFilter"
@@ -195,6 +195,12 @@
                         <option value="draft">Draft</option>
                         <option value="archived">Archived</option>
                     </select>
+                    <button onclick="bulkDeleteCourses()"
+                        class="px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50 transition-all"
+                        title="Bulk Actions">
+                        <i data-lucide="trash-2" class="w-4 h-4 inline mr-1"></i>
+                        Bulk Delete
+                    </button>
                 </div>
             </div>
             <div id="coursesTableContainer" class="bg-white border-2 border-gray-200 rounded-xl overflow-hidden">
@@ -202,6 +208,11 @@
                     <table class="w-full">
                         <thead class="bg-gray-50 border-b border-gray-200">
                             <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <input type="checkbox" id="selectAllCourses" class="rounded border-gray-300"
+                                        onchange="toggleAllCourses(this.checked)">
+                                </th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Course</th>
@@ -348,9 +359,12 @@
     </main>
 
     <!-- Course Modal -->
-    <div id="courseModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4" onclick="handleModalClick(event)">
-        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+    <div id="courseModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4"
+        onclick="handleModalClick(event)">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            onclick="event.stopPropagation()">
+            <div
+                class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
                 <h3 class="text-xl font-bold text-gray-900" id="modalTitle">Add New Course</h3>
                 <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600 transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
@@ -401,10 +415,10 @@
                     <label for="courseImage" class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
                     <input type="url" id="courseImage" name="image"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        placeholder="https://images.unsplash.com/..."
-                        oninput="previewCourseImage(this.value)">
+                        placeholder="https://images.unsplash.com/..." oninput="previewCourseImage(this.value)">
                     <div id="imagePreview" class="mt-2 hidden">
-                        <img id="previewImg" src="" alt="Preview" class="w-full h-48 object-cover rounded-lg border border-gray-200">
+                        <img id="previewImg" src="" alt="Preview"
+                            class="w-full h-48 object-cover rounded-lg border border-gray-200">
                     </div>
                 </div>
                 <div>
@@ -443,7 +457,12 @@
             // Check authentication
             const auth = JSON.parse(localStorage.getItem('auth') || '{}');
             if (!auth.email || auth.role !== 'admin') {
-                window.location.href = 'signin.html';
+                if (typeof toast === 'function') {
+                    toast('Please sign in as admin to access this page', 'error');
+                }
+                setTimeout(() => {
+                    window.location.href = 'signin.html';
+                }, 1000);
                 return;
             }
 
@@ -452,6 +471,20 @@
             document.getElementById('userEmail').textContent = auth.email;
             const mobileEmail = document.getElementById('mobileUserEmail');
             if (mobileEmail) mobileEmail.textContent = auth.email;
+
+            // Header scroll shadow
+            const mainHeader = document.getElementById('mainHeader');
+            if (mainHeader) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        mainHeader.classList.add('shadow-md');
+                        mainHeader.classList.remove('shadow-sm');
+                    } else {
+                        mainHeader.classList.remove('shadow-md');
+                        mainHeader.classList.add('shadow-sm');
+                    }
+                });
+            }
 
             // Mobile menu toggle
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -466,6 +499,19 @@
                         icon.setAttribute('data-lucide', isExpanded ? 'menu' : 'x');
                         setTimeout(() => lucide.createIcons(), 50);
                     }
+                });
+
+                // Close mobile menu when clicking a link
+                mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuToggle.querySelector('i');
+                        if (icon) {
+                            icon.setAttribute('data-lucide', 'menu');
+                            setTimeout(() => lucide.createIcons(), 50);
+                        }
+                    });
                 });
             }
 
@@ -537,7 +583,7 @@
                 if (filteredCourses.length === 0) {
                     tbody.innerHTML = `
                         <tr>
-                            <td colspan="6" class="px-6 py-12 text-center text-gray-500">
+                            <td colspan="7" class="px-6 py-12 text-center text-gray-500">
                                 <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
                                 <p>No courses found</p>
                             </td>
@@ -552,6 +598,9 @@
                     const enrollmentCount = enrollments.filter(id => id === course.id).length;
                     return `
                         <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <input type="checkbox" class="course-checkbox rounded border-gray-300" value="${course.id}">
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center gap-3">
                                     ${course.image ? `<img src="${course.image}" alt="${course.title}" class="w-12 h-12 rounded-lg object-cover">` : '<div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center"><i data-lucide="book-open" class="w-6 h-6 text-gray-400"></i></div>'}
@@ -570,11 +619,38 @@
                                 <span class="px-2 py-1 text-xs font-medium rounded ${course.status === 'active' ? 'bg-green-100 text-green-800' : course.status === 'draft' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}">${course.status}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex items-center gap-2">
-                                    <button onclick="editCourse('${course.id}')" class="text-indigo-600 hover:text-indigo-900" title="Edit">
+                                <div class="flex items-center gap-1">
+                                    <button onclick="viewCourseDetails('${course.id}')" 
+                                        class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-all" 
+                                        title="View Details">
+                                        <i data-lucide="eye" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="editCourse('${course.id}')" 
+                                        class="p-2 text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 rounded-lg transition-all" 
+                                        title="Edit Course">
                                         <i data-lucide="edit" class="w-4 h-4"></i>
                                     </button>
-                                    <button onclick="deleteCourse('${course.id}')" class="text-red-600 hover:text-red-900" title="Delete">
+                                    <button onclick="duplicateCourse('${course.id}')" 
+                                        class="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-lg transition-all" 
+                                        title="Duplicate Course">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                    ${course.status === 'active' ? `
+                                    <button onclick="toggleCourseStatus('${course.id}', 'draft')" 
+                                        class="p-2 text-yellow-600 hover:text-yellow-800 hover:bg-yellow-50 rounded-lg transition-all" 
+                                        title="Move to Draft">
+                                        <i data-lucide="archive" class="w-4 h-4"></i>
+                                    </button>
+                                    ` : course.status === 'draft' ? `
+                                    <button onclick="toggleCourseStatus('${course.id}', 'active')" 
+                                        class="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-lg transition-all" 
+                                        title="Activate Course">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </button>
+                                    ` : ''}
+                                    <button onclick="deleteCourse('${course.id}')" 
+                                        class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-all" 
+                                        title="Delete Course">
                                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </button>
                                 </div>
@@ -624,13 +700,19 @@
                     document.getElementById('courseLevel').value = course.level;
                     document.getElementById('courseImage').value = course.image || '';
                     document.getElementById('courseStatus').value = course.status;
+                    if (course.image) {
+                        previewCourseImage(course.image);
+                    }
                 } else {
                     form.reset();
                     document.getElementById('courseId').value = '';
+                    document.getElementById('imagePreview').classList.add('hidden');
                 }
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 setTimeout(() => lucide.createIcons(), 100);
+                // Focus on first input
+                document.getElementById('courseTitle').focus();
             }
 
             function closeModal() {
@@ -638,7 +720,38 @@
                 modal.classList.remove('flex');
                 form.reset();
                 editingCourseId = null;
+                document.getElementById('imagePreview').classList.add('hidden');
+                document.getElementById('previewImg').src = '';
             }
+
+            // Close modal when clicking outside
+            window.handleModalClick = function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            };
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Image preview function
+            window.previewCourseImage = function (url) {
+                const preview = document.getElementById('imagePreview');
+                const previewImg = document.getElementById('previewImg');
+                if (url && url.startsWith('http')) {
+                    previewImg.src = url;
+                    preview.classList.remove('hidden');
+                    previewImg.onerror = () => {
+                        preview.classList.add('hidden');
+                    };
+                } else {
+                    preview.classList.add('hidden');
+                }
+            };
 
             addBtn?.addEventListener('click', () => openModal());
             addFirstBtn?.addEventListener('click', () => openModal());
@@ -648,13 +761,29 @@
             // Form submission
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                // Basic validation
+                const title = document.getElementById('courseTitle').value.trim();
+                const description = document.getElementById('courseDescription').value.trim();
+                const category = document.getElementById('courseCategory').value;
+                const level = document.getElementById('courseLevel').value;
+
+                if (!title || !description || !category || !level) {
+                    if (typeof toast === 'function') {
+                        toast('Please fill in all required fields', 'error');
+                    } else {
+                        alert('Please fill in all required fields');
+                    }
+                    return;
+                }
+
                 const formData = new FormData(form);
                 const courseData = {
                     id: editingCourseId || 'course-' + Date.now(),
-                    title: formData.get('title'),
-                    description: formData.get('description'),
-                    category: formData.get('category'),
-                    level: formData.get('level'),
+                    title: title,
+                    description: description,
+                    category: category,
+                    level: level,
                     image: formData.get('image') || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
                     status: formData.get('status'),
                     createdAt: editingCourseId ? courses.find(c => c.id === editingCourseId)?.createdAt : new Date().toISOString(),
@@ -672,28 +801,131 @@
 
                 localStorage.setItem('admin.courses', JSON.stringify(courses));
                 loadCourses();
+                loadAnalytics(); // Refresh analytics
                 updateStats();
                 closeModal();
 
                 if (typeof toast === 'function') {
-                    toast(editingCourseId ? 'Course updated successfully' : 'Course added successfully');
+                    toast(editingCourseId ? 'Course updated successfully' : 'Course added successfully', 'success');
+                } else {
+                    alert(editingCourseId ? 'Course updated successfully' : 'Course added successfully');
                 }
             });
 
-            // Global functions for edit/delete
+            // Global functions for course actions
+            window.viewCourseDetails = function (id) {
+                const course = courses.find(c => c.id === id);
+                if (course) {
+                    const enrollments = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
+                    const enrollmentCount = enrollments.filter(e => e === id || (typeof e === 'object' && e.courseId === id)).length;
+                    const completed = JSON.parse(localStorage.getItem('completed.courses') || '[]');
+                    const completedCount = completed.filter(c => c === id || (typeof c === 'object' && c.courseId === id)).length;
+
+                    const details = `Course Details:\n\n` +
+                        `Title: ${course.title}\n` +
+                        `Description: ${course.description}\n` +
+                        `Category: ${course.category}\n` +
+                        `Level: ${course.level}\n` +
+                        `Status: ${course.status}\n` +
+                        `Enrollments: ${enrollmentCount}\n` +
+                        `Completed: ${completedCount}\n` +
+                        `Created: ${course.createdAt ? new Date(course.createdAt).toLocaleDateString() : 'N/A'}\n` +
+                        `Last Updated: ${course.updatedAt ? new Date(course.updatedAt).toLocaleDateString() : 'N/A'}`;
+
+                    alert(details);
+                }
+            };
+
             window.editCourse = function (id) {
                 const course = courses.find(c => c.id === id);
                 if (course) openModal(course);
             };
 
+            window.duplicateCourse = function (id) {
+                const course = courses.find(c => c.id === id);
+                if (course) {
+                    const duplicatedCourse = {
+                        ...course,
+                        id: 'course-' + Date.now(),
+                        title: course.title + ' (Copy)',
+                        status: 'draft',
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    };
+                    courses.push(duplicatedCourse);
+                    localStorage.setItem('admin.courses', JSON.stringify(courses));
+                    loadCourses();
+                    loadAnalytics();
+                    updateStats();
+                    if (typeof toast === 'function') {
+                        toast('Course duplicated successfully', 'success');
+                    } else {
+                        alert('Course duplicated successfully');
+                    }
+                }
+            };
+
+            window.toggleCourseStatus = function (id, newStatus) {
+                const course = courses.find(c => c.id === id);
+                if (course) {
+                    course.status = newStatus;
+                    course.updatedAt = new Date().toISOString();
+                    localStorage.setItem('admin.courses', JSON.stringify(courses));
+                    loadCourses();
+                    loadAnalytics();
+                    updateStats();
+                    if (typeof toast === 'function') {
+                        toast(`Course ${newStatus === 'active' ? 'activated' : 'moved to draft'} successfully`, 'success');
+                    } else {
+                        alert(`Course ${newStatus === 'active' ? 'activated' : 'moved to draft'} successfully`);
+                    }
+                }
+            };
+
             window.deleteCourse = function (id) {
-                if (confirm('Are you sure you want to delete this course?')) {
+                if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
                     courses = courses.filter(c => c.id !== id);
                     localStorage.setItem('admin.courses', JSON.stringify(courses));
                     loadCourses();
+                    loadAnalytics(); // Refresh analytics
                     updateStats();
                     if (typeof toast === 'function') {
-                        toast('Course deleted successfully');
+                        toast('Course deleted successfully', 'success');
+                    } else {
+                        alert('Course deleted successfully');
+                    }
+                }
+            };
+
+            // Bulk actions
+            window.toggleAllCourses = function (checked) {
+                document.querySelectorAll('.course-checkbox').forEach(checkbox => {
+                    checkbox.checked = checked;
+                });
+            };
+
+            window.bulkDeleteCourses = function () {
+                const selected = Array.from(document.querySelectorAll('.course-checkbox:checked')).map(cb => cb.value);
+                if (selected.length === 0) {
+                    if (typeof toast === 'function') {
+                        toast('Please select at least one course to delete', 'error');
+                    } else {
+                        alert('Please select at least one course to delete');
+                    }
+                    return;
+                }
+
+                if (confirm(`Are you sure you want to delete ${selected.length} course(s)? This action cannot be undone.`)) {
+                    courses = courses.filter(c => !selected.includes(c.id));
+                    localStorage.setItem('admin.courses', JSON.stringify(courses));
+                    loadCourses();
+                    loadAnalytics();
+                    updateStats();
+                    document.getElementById('selectAllCourses').checked = false;
+                    if (typeof toast === 'function') {
+                        toast(`${selected.length} course(s) deleted successfully`, 'success');
+                    } else {
+                        alert(`${selected.length} course(s) deleted successfully`);
                     }
                 }
             };
@@ -757,12 +989,34 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${userEnrollments}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${joinDate}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button onclick="viewUser('${user.id}')" class="text-indigo-600 hover:text-indigo-900 mr-3" title="View">
-                                    <i data-lucide="eye" class="w-4 h-4"></i>
-                                </button>
-                                ${user.role !== 'admin' ? `<button onclick="deleteUser('${user.id}')" class="text-red-600 hover:text-red-900" title="Delete">
-                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                </button>` : ''}
+                                <div class="flex items-center gap-1">
+                                    <button onclick="viewUser('${user.id}')" 
+                                        class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-all" 
+                                        title="View Details">
+                                        <i data-lucide="eye" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="viewUserEnrollments('${user.id}')" 
+                                        class="p-2 text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 rounded-lg transition-all" 
+                                        title="View Enrollments">
+                                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                                    </button>
+                                    ${user.role !== 'admin' ? `
+                                    <button onclick="toggleUserStatus('${user.id}')" 
+                                        class="p-2 text-yellow-600 hover:text-yellow-800 hover:bg-yellow-50 rounded-lg transition-all" 
+                                        title="Toggle Status">
+                                        <i data-lucide="user-x" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="deleteUser('${user.id}')" 
+                                        class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-all" 
+                                        title="Delete User">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                    ` : `
+                                    <span class="p-2 text-gray-400 cursor-not-allowed" title="Admin users cannot be modified">
+                                        <i data-lucide="shield" class="w-4 h-4"></i>
+                                    </span>
+                                    `}
+                                </div>
                             </td>
                         </tr>
                     `;
@@ -869,7 +1123,27 @@
                 const users = JSON.parse(localStorage.getItem('users') || '[]');
                 const user = users.find(u => u.id === id);
                 if (user) {
-                    alert(`User Details:\n\nName: ${user.name || 'N/A'}\nEmail: ${user.email}\nRole: ${user.role || 'student'}\nJoined: ${user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}`);
+                    const enrollments = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
+                    const completed = JSON.parse(localStorage.getItem('completed.courses') || '[]');
+                    const userEnrollments = enrollments.filter(e => e.userId === id || !e.userId).length;
+                    const userCompleted = completed.filter(c => c.userId === id || !c.userId).length;
+
+                    const details = `User Details:\n\n` +
+                        `Name: ${user.name || 'N/A'}\n` +
+                        `Email: ${user.email}\n` +
+                        `Role: ${user.role || 'student'}\n` +
+                        `User ID: ${user.id || 'N/A'}\n` +
+                        `Joined: ${user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}\n` +
+                        `Enrollments: ${userEnrollments}\n` +
+                        `Completed: ${userCompleted}`;
+
+                    alert(details);
+                } else {
+                    if (typeof toast === 'function') {
+                        toast('User not found', 'error');
+                    } else {
+                        alert('User not found');
+                    }
                 }
             };
 
@@ -901,11 +1175,78 @@
                 });
             });
 
+            // Export functionality
+            window.exportCourses = function () {
+                const dataStr = JSON.stringify(courses, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `courses-export-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                if (typeof toast === 'function') {
+                    toast('Courses exported successfully', 'success');
+                }
+            };
+
+            window.exportUsers = function () {
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const dataStr = JSON.stringify(users, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `users-export-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                if (typeof toast === 'function') {
+                    toast('Users exported successfully', 'success');
+                }
+            };
+
+            // Add export buttons to course management
+            const courseSection = document.querySelector('#courses .flex.items-center.justify-between');
+            if (courseSection) {
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all';
+                exportBtn.innerHTML = '<i data-lucide="download" class="w-4 h-4 inline mr-2"></i>Export';
+                exportBtn.onclick = exportCourses;
+                const searchContainer = courseSection.querySelector('.flex.gap-2');
+                if (searchContainer) {
+                    searchContainer.appendChild(exportBtn);
+                }
+            }
+
+            // Add export button to user management
+            const userSection = document.querySelector('#users .flex.items-center.justify-between');
+            if (userSection) {
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all';
+                exportBtn.innerHTML = '<i data-lucide="download" class="w-4 h-4 inline mr-2"></i>Export';
+                exportBtn.onclick = exportUsers;
+                const searchContainer = userSection.querySelector('.flex.gap-2');
+                if (searchContainer) {
+                    searchContainer.appendChild(exportBtn);
+                }
+            }
+
+            // Refresh data periodically (every 30 seconds)
+            setInterval(() => {
+                loadCourses();
+                loadUsers();
+                loadAnalytics();
+                updateStats();
+            }, 30000);
+
             // Initialize
             loadCourses();
             loadUsers();
             loadAnalytics();
             updateStats();
+
+            // Initialize icons after everything loads
+            setTimeout(() => lucide.createIcons(), 200);
         })();
     </script>
 </body>

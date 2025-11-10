@@ -140,6 +140,17 @@
                         <option>Advanced</option>
                     </select>
                 </div>
+                <div class="relative">
+                    <i data-lucide="arrow-up-down"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"></i>
+                    <select id="sortBy"
+                        class="pl-9 pr-8 py-2 border-2 border-gray-200 rounded-lg focus:border-indigo-300 focus:outline-none appearance-none bg-white">
+                        <option value="newest">Newest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
             </form>
         </div>
 
@@ -637,18 +648,71 @@
             const category = document.getElementById('category');
             const cards = Array.from(document.querySelectorAll('#courseGrid article'));
 
+            // Sorting functionality
+            document.getElementById('sortBy')?.addEventListener('change', function() {
+                applyFilters();
+            });
+
+            function sortCourses(courses, sortBy) {
+                const sorted = [...courses];
+                switch(sortBy) {
+                    case 'newest':
+                        return sorted.sort((a, b) => {
+                            const aDate = a.getAttribute('data-created') || '0';
+                            const bDate = b.getAttribute('data-created') || '0';
+                            return parseInt(bDate) - parseInt(aDate);
+                        });
+                    case 'popular':
+                        return sorted.sort((a, b) => {
+                            const aEnrollments = parseInt(a.getAttribute('data-enrollments') || '0');
+                            const bEnrollments = parseInt(b.getAttribute('data-enrollments') || '0');
+                            return bEnrollments - aEnrollments;
+                        });
+                    case 'rating':
+                        return sorted.sort((a, b) => {
+                            const aRating = parseFloat(a.getAttribute('data-rating') || '0');
+                            const bRating = parseFloat(b.getAttribute('data-rating') || '0');
+                            return bRating - aRating;
+                        });
+                    case 'title':
+                        return sorted.sort((a, b) => {
+                            const aTitle = a.getAttribute('data-title') || '';
+                            const bTitle = b.getAttribute('data-title') || '';
+                            return aTitle.localeCompare(bTitle);
+                        });
+                    default:
+                        return sorted;
+                }
+            }
+
             function applyFilters() {
                 const query = (q && q.value || '').toLowerCase();
                 const lev = level && level.value || '';
                 const cat = category && category.value || '';
-                cards.forEach(card => {
+                const sortBy = document.getElementById('sortBy')?.value || 'newest';
+                
+                // Filter cards
+                const visibleCards = cards.filter(card => {
                     const title = (card.getAttribute('data-title') || '').toLowerCase();
                     const c = card.getAttribute('data-category') || '';
                     const l = card.getAttribute('data-level') || '';
                     const matchesQuery = !query || title.includes(query);
                     const matchesLevel = !lev || l === lev;
                     const matchesCat = !cat || c === cat;
-                    card.style.display = (matchesQuery && matchesLevel && matchesCat) ? '' : 'none';
+                    return matchesQuery && matchesLevel && matchesCat;
+                });
+                
+                // Sort visible cards
+                const sortedCards = sortCourses(visibleCards, sortBy);
+                
+                // Hide all cards first
+                cards.forEach(card => card.style.display = 'none');
+                
+                // Show and reorder visible cards
+                const grid = document.getElementById('courseGrid');
+                sortedCards.forEach(card => {
+                    card.style.display = '';
+                    grid.appendChild(card); // Reorder in DOM
                 });
             }
 

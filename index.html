@@ -183,21 +183,35 @@
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-3 mb-8 justify-center lg:justify-start">
-            <a href="signin.html"
-              class="group inline-flex items-center justify-center gap-2 rounded-xl px-6 md:px-8 py-3 text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 transition-all shadow-lg hover:shadow-xl font-semibold text-base hover:scale-105">
-              <span data-i18n="hero.getStarted">Get Started</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-            </a>
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-start">
             <a href="signup.html"
-              class="inline-flex items-center justify-center rounded-xl px-6 md:px-8 py-3 border-2 border-violet-300 text-violet-700 bg-white/80 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all font-semibold text-base hover:scale-105 shadow">
-              <span data-i18n="hero.createAccount">Create account</span>
+              class="group relative inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-2xl hover:shadow-violet-500/50 hover:scale-105 transform duration-300 overflow-hidden">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+              <span data-i18n="hero.getStarted">Get Started Free</span>
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
             </a>
-            <a href="#features"
-              class="inline-flex items-center justify-center gap-2 rounded-xl px-6 md:px-8 py-3 border-2 border-gray-300 text-gray-700 bg-white/80 backdrop-blur-sm hover:bg-white hover:border-gray-400 transition-all font-semibold text-base hover:scale-105 shadow">
-              <i data-lucide="play-circle" class="w-4 h-4"></i>
-              <span data-i18n="hero.learnMore">Learn More</span>
+            <a href="signin.html"
+              class="inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-semibold border-2 border-violet-300 text-violet-700 bg-white/90 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all shadow-lg hover:scale-105 transform duration-300">
+              <i data-lucide="log-in" class="w-5 h-5"></i>
+              <span data-i18n="hero.signIn">Sign In</span>
             </a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 justify-center lg:justify-start">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span>Free to start</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-blue-500"></i>
+              <span>Secure & Private</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i>
+              <span>No credit card required</span>
+            </div>
           </div>
 
         </div>
@@ -762,6 +776,61 @@
           <span>View all FAQs</span>
           <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section
+    class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 overflow-hidden py-20 md:py-28">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+        <i data-lucide="rocket" class="w-5 h-5 text-white"></i>
+        <span class="text-sm font-semibold text-white">Ready to Start Learning?</span>
+      </div>
+
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        Start Your Learning Journey Today
+      </h2>
+
+      <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Join thousands of learners and educators. Create your free account and get instant access to our platform.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="signup.html"
+          class="group relative inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-bold text-violet-600 bg-white hover:bg-gray-50 transition-all shadow-2xl hover:shadow-white/50 hover:scale-105 transform duration-300 overflow-hidden">
+          <span
+            class="absolute inset-0 bg-gradient-to-r from-violet-50/0 via-violet-50/50 to-violet-50/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+          <span>Get Started Free</span>
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="signin.html"
+          class="inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-semibold border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/50 transition-all shadow-lg hover:scale-105 transform duration-300">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Sign In</span>
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
+        <div class="flex items-center gap-2">
+          <i data-lucide="check-circle" class="w-5 h-5"></i>
+          <span>100% Free</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="clock" class="w-5 h-5"></i>
+          <span>Setup in 2 minutes</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="users" class="w-5 h-5"></i>
+          <span>Join 10,000+ learners</span>
+        </div>
       </div>
     </div>
   </section>
