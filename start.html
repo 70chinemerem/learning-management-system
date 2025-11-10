@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Start your learning journey today. Join thousands of students and educators on our modern Learning Management System.">
+    <title>Get Started - Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+    <style>
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body data-page="start">
+    <!-- Header -->
+    <header id="mainHeader"
+        class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <img src="src/assets/logo.svg" alt="LMS Logo"
+                        class="h-8 md:h-9 transition-transform group-hover:scale-105">
+                    <span
+                        class="hidden sm:block text-lg font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">LMS</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="features.html" data-i18n="nav.features">Features</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="courses.html" data-i18n="nav.browse">Courses</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="about.html" data-i18n="page.about">About</a>
+                    <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <!-- Language Selector -->
+                    <div id="langSelectorWrapper" class="relative">
+                        <!-- Language selector will be inserted here by main.js -->
+                    </div>
+                    <a class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all"
+                        href="signin.html" data-i18n="nav.signin">Sign in</a>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuToggle"
+                    class="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+                    <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden border-t border-gray-200 bg-gray-50/50">
+                <nav class="px-4 py-4 space-y-1" aria-label="Mobile">
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="features.html" data-i18n="nav.features">Features</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="courses.html" data-i18n="nav.browse">Courses</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="about.html" data-i18n="page.about">About</a>
+                    <!-- Mobile Language Selector -->
+                    <div class="pt-2 border-t border-gray-200">
+                        <div id="mobileLangSelectorWrapper" class="px-4 py-2">
+                            <!-- Language selector will be inserted here by main.js -->
+                        </div>
+                    </div>
+                    <div class="pt-2 mt-2 border-t border-gray-200">
+            <a class="block w-full px-4 py-2.5 text-sm font-semibold text-center text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md transition-all"
+              href="signin.html" data-i18n="nav.signin">Sign in</a>
+            <a class="block w-full mt-2 px-4 py-2.5 text-sm font-semibold text-center text-violet-700 border-2 border-violet-200 hover:bg-violet-50 rounded-lg transition-all"
+              href="signup.html" data-i18n="nav.signup">Sign up</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50/30 to-pink-50/20">
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div
+                    class="absolute top-20 left-10 w-72 h-72 bg-violet-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float">
+                </div>
+                <div class="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
+                    style="animation-delay: 2s;"></div>
+                <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
+                    style="animation-delay: 4s;"></div>
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+                <div class="text-center animate-fade-in-up">
+                    <!-- Badge -->
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-6 text-sm font-semibold text-violet-700">
+                        <i data-lucide="rocket" class="w-4 h-4"></i>
+                        <span data-i18n="start.badge">Start Your Learning Journey Today</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight">
+                        <span class="gradient-text" data-i18n="start.hero.title1">Transform Your Future</span>
+                        <br>
+                        <span class="text-gray-900" data-i18n="start.hero.title2">Through Learning</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-xl sm:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed" data-i18n="start.hero.subtitle">
+                        Join thousands of learners and educators. Access courses, track progress, earn achievements, and
+                        build your skills with our modern learning platform.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                        <a href="signup.html"
+                            class="group inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+                            <span data-i18n="start.hero.getStarted">Get Started Free</span>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="signin.html"
+                            class="inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-violet-700 border-2 border-violet-300 hover:border-violet-400 hover:bg-violet-50 rounded-xl transition-all">
+                            <i data-lucide="log-in" class="w-5 h-5"></i>
+                            <span data-i18n="start.hero.signIn">Sign In</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="users" class="w-5 h-5 text-violet-600"></i>
+                            <span><strong class="text-gray-900">10,000+</strong> <span data-i18n="start.trust.learners">Active Learners</span></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-5 h-5 text-violet-600"></i>
+                            <span><strong class="text-gray-900">500+</strong> <span data-i18n="start.trust.courses">Courses</span></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="award" class="w-5 h-5 text-violet-600"></i>
+                            <span><strong class="text-gray-900">4.9/5</strong> <span data-i18n="start.trust.rating">Rating</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image/Illustration -->
+                <div class="mt-16 flex justify-center animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="relative max-w-4xl w-full">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop"
+                            alt="Students learning together" class="rounded-2xl shadow-2xl w-full h-auto"
+                            loading="eager">
+                        <div
+                            class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-xl shadow-xl p-4 border-2 border-gray-100">
+                            <div class="flex items-center gap-3">
+                                <div class="flex -space-x-2">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" alt="Student"
+                                        class="w-10 h-10 rounded-full border-2 border-white">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=2" alt="Student"
+                                        class="w-10 h-10 rounded-full border-2 border-white">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=3" alt="Student"
+                                        class="w-10 h-10 rounded-full border-2 border-white">
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Join the community</p>
+                                    <p class="text-xs text-gray-600">Start learning today</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span data-i18n="start.features.title">Everything You Need to</span> <span class="gradient-text" data-i18n="start.features.title2">Succeed</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-i18n="start.features.subtitle">
+            Powerful features designed to enhance your learning experience
+          </p>
+        </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border-2 border-violet-100 hover:border-violet-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.feature.courses.title">Interactive Courses</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.feature.courses.desc">
+                            Access hundreds of courses across multiple categories. Learn at your own pace with progress
+                            tracking and completion certificates.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border-2 border-blue-100 hover:border-blue-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Track Your Progress</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Set learning goals, track your study time, build streaks, and earn achievements as you
+                            progress through your courses.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl border-2 border-pink-100 hover:border-pink-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-pink-600 to-rose-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="award" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.feature.achievements.title">Earn Achievements</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.feature.achievements.desc">
+                            Unlock badges and certificates as you complete courses and reach milestones. Showcase your
+                            learning journey.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-2 border-green-100 hover:border-green-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="clipboard-check" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.feature.quizzes.title">Take Quizzes</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.feature.quizzes.desc">
+                            Test your knowledge with interactive quizzes. Get instant feedback and track your scores
+                            over time.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border-2 border-orange-100 hover:border-orange-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="flame" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.feature.streaks.title">Build Streaks</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.feature.streaks.desc">
+                            Maintain your learning momentum with daily study streaks. Stay motivated and build
+                            consistent learning habits.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div
+                        class="p-8 bg-gradient-to-br from-cyan-50 to-teal-50 rounded-2xl border-2 border-cyan-100 hover:border-cyan-300 transition-all hover:shadow-xl">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-cyan-600 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="bar-chart" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.feature.analytics.title">Analytics Dashboard</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.feature.analytics.desc">
+                            View detailed analytics of your learning progress, time spent, courses completed, and
+                            performance metrics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-20 bg-gradient-to-br from-gray-50 to-violet-50/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span data-i18n="start.how.title">Get Started in</span> <span class="gradient-text" data-i18n="start.how.title2">3 Simple Steps</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-i18n="start.how.subtitle">
+            Start learning in minutes, not hours
+          </p>
+        </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="relative inline-flex items-center justify-center mb-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-violet-600 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                                1
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-yellow-900"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.how.step1.title">Create Account</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.how.step1.desc">
+                            Sign up for free in less than a minute. No credit card required. Get instant access to all
+                            features.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="relative inline-flex items-center justify-center mb-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                                2
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-yellow-900"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Browse Courses</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Explore our extensive course library. Filter by category, level, or search for specific
+                            topics.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="relative inline-flex items-center justify-center mb-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-pink-600 to-rose-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                                3
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-yellow-900"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" data-i18n="start.how.step3.title">Start Learning</h3>
+                        <p class="text-gray-600 leading-relaxed" data-i18n="start.how.step3.desc">
+                            Enroll in courses, track your progress, earn achievements, and build your skills at your own
+                            pace.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section
+            class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 overflow-hidden py-20 md:py-28">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+          <i data-lucide="rocket" class="w-5 h-5 text-white"></i>
+          <span class="text-sm font-semibold text-white" data-i18n="start.cta.badge">Ready to Transform Your Learning?</span>
+        </div>
+
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-i18n="start.cta.title">
+          Start Your Journey Today
+        </h2>
+
+        <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="start.cta.desc">
+          Join thousands of learners who are already building their skills and achieving their goals.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="signup.html"
+            class="group inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-violet-600 bg-white hover:bg-gray-50 rounded-xl shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
+            <span data-i18n="start.cta.getStarted">Get Started Free</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+          <a href="signin.html"
+            class="inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-semibold border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-xl transition-all">
+            <i data-lucide="log-in" class="w-5 h-5"></i>
+            <span data-i18n="start.cta.signIn">Sign In</span>
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <span data-i18n="start.cta.free">100% Free to Start</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-5 h-5"></i>
+            <span data-i18n="start.cta.noCard">No Credit Card Required</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+            <span data-i18n="start.cta.instant">Instant Access</span>
+          </div>
+        </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="src/assets/logo.svg" alt="LMS Logo" class="h-8">
+                        <span class="text-lg font-bold text-white">LMS</span>
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        Transform your learning journey with our modern platform.
+                    </p>
+                </div>
+                <div>
+          <h3 class="text-white font-semibold mb-4" data-i18n="footer.product">Platform</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="features.html" class="hover:text-white transition" data-i18n="nav.features">Features</a></li>
+            <li><a href="courses.html" class="hover:text-white transition" data-i18n="nav.browse">Courses</a></li>
+            <li><a href="analytics.html" class="hover:text-white transition" data-i18n="nav.analytics">Analytics</a></li>
+            <li><a href="quiz.html" class="hover:text-white transition" data-i18n="nav.quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4" data-i18n="footer.company">Company</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="about.html" class="hover:text-white transition" data-i18n="page.about">About</a></li>
+            <li><a href="careers.html" class="hover:text-white transition" data-i18n="page.careers">Careers</a></li>
+            <li><a href="docs.html" class="hover:text-white transition" data-i18n="footer.docs">Documentation</a></li>
+            <li><a href="faq.html" class="hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4">Get Started</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="signup.html" class="hover:text-white transition" data-i18n="nav.signup">Sign Up</a></li>
+            <li><a href="signin.html" class="hover:text-white transition" data-i18n="nav.signin">Sign In</a></li>
+            <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+          </ul>
+        </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 Learning Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="src/lucide-init.js"></script>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

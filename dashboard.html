@@ -38,12 +38,16 @@
                     <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
                         href="analytics.html" data-i18n="nav.analytics">Analytics</a>
                     <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <!-- Language Selector -->
+                    <div id="langSelectorWrapper" class="relative">
+                        <!-- Language selector will be inserted here by main.js -->
+                    </div>
                     <div class="flex items-center gap-2">
                         <span class="text-sm text-gray-600" id="userEmail">Student</span>
                         <button id="logoutBtn"
                             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
                             <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
-                            <span>Logout</span>
+                            <span data-i18n="common.logout">Logout</span>
                         </button>
                     </div>
                 </nav>
@@ -67,12 +71,18 @@
                         href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
                     <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
                         href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+                    <!-- Mobile Language Selector -->
+                    <div class="pt-2 border-t border-gray-200">
+                        <div id="mobileLangSelectorWrapper" class="px-4 py-2">
+                            <!-- Language selector will be inserted here by main.js -->
+                        </div>
+                    </div>
                     <div class="pt-2 mt-2 border-t border-gray-200">
                         <div class="px-4 py-2 text-sm text-gray-600" id="mobileUserEmail">Student</div>
                         <button id="mobileLogoutBtn"
                             class="block w-full px-4 py-2.5 text-sm font-medium text-center text-red-600 hover:bg-red-50 rounded-lg transition-all">
                             <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
-                            <span>Logout</span>
+                            <span data-i18n="common.logout">Logout</span>
                         </button>
                     </div>
                 </nav>
@@ -244,20 +254,24 @@
                     <div class="text-center">
                         <div id="timerDisplay" class="text-4xl font-mono font-bold text-blue-600 mb-4">00:00:00</div>
                         <div class="flex gap-2 justify-center">
-                            <button id="startTimerBtn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                            <button id="startTimerBtn"
+                                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
                                 <i data-lucide="play" class="w-4 h-4 inline mr-1"></i>
                                 Start
                             </button>
-                            <button id="stopTimerBtn" class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-medium hidden">
+                            <button id="stopTimerBtn"
+                                class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-medium hidden">
                                 <i data-lucide="square" class="w-4 h-4 inline mr-1"></i>
                                 Stop
                             </button>
-                            <button id="resetTimerBtn" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium">
+                            <button id="resetTimerBtn"
+                                class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium">
                                 <i data-lucide="rotate-ccw" class="w-4 h-4 inline mr-1"></i>
                                 Reset
                             </button>
                         </div>
-                        <p class="text-xs text-gray-600 mt-4">Total study time today: <span id="todayStudyTime">0h 0m</span></p>
+                        <p class="text-xs text-gray-600 mt-4">Total study time today: <span id="todayStudyTime">0h
+                                0m</span></p>
                     </div>
                 </div>
             </div>
@@ -387,14 +401,14 @@
                 clearInterval(timerInterval);
                 startTimerBtn.classList.remove('hidden');
                 stopTimerBtn.classList.add('hidden');
-                
+
                 // Save study time
                 const today = new Date().toDateString();
                 const studyData = JSON.parse(localStorage.getItem('study.time') || '{}');
                 studyData[today] = (studyData[today] || 0) + timerSeconds;
                 localStorage.setItem('study.time', JSON.stringify(studyData));
                 updateTodayStudyTime();
-                
+
                 // Update study time stat
                 const totalToday = studyData[today];
                 const hours = Math.floor(totalToday / 3600);
@@ -418,7 +432,7 @@
                 const streakData = JSON.parse(localStorage.getItem('study.streak') || '{}');
                 const lastStudyDate = streakData.lastDate;
                 const currentStreak = streakData.streak || 0;
-                
+
                 if (lastStudyDate === today) {
                     // Already studied today
                     document.getElementById('streakCount').textContent = currentStreak;
@@ -445,7 +459,7 @@
             function loadGoals() {
                 const goals = JSON.parse(localStorage.getItem('learning.goals') || '[]');
                 const goalsList = document.getElementById('goalsList');
-                
+
                 if (goals.length === 0) {
                     goalsList.innerHTML = `
                         <div class="text-center py-8 text-gray-500 text-sm">
@@ -482,7 +496,7 @@
                 setTimeout(() => lucide.createIcons(), 100);
             }
 
-            window.deleteGoal = function(index) {
+            window.deleteGoal = function (index) {
                 const goals = JSON.parse(localStorage.getItem('learning.goals') || '[]');
                 goals.splice(index, 1);
                 localStorage.setItem('learning.goals', JSON.stringify(goals));
@@ -510,12 +524,12 @@
                 const achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
                 const achievementsList = document.getElementById('achievementsList');
                 const achievementCount = document.getElementById('achievementCount');
-                
+
                 // Auto-award achievements based on activity
                 const enrolledCount = enrolledCourses.length;
                 const completedCount = JSON.parse(localStorage.getItem('completed.courses') || '[]').length;
                 const quizScores = JSON.parse(localStorage.getItem('quiz.scores') || '[]');
-                
+
                 const availableAchievements = [
                     { id: 'first-course', name: 'First Steps', icon: 'book-open', color: 'blue', earned: enrolledCount > 0 },
                     { id: 'course-master', name: 'Course Master', icon: 'graduation-cap', color: 'purple', earned: completedCount >= 3 },
@@ -552,7 +566,7 @@
                 const recommended = allCourses
                     .filter(c => !enrolledIds.includes(c.id))
                     .slice(0, 3);
-                
+
                 const recommendedContainer = document.getElementById('recommendedCourses');
                 if (recommended.length === 0) {
                     recommendedContainer.innerHTML = `
@@ -598,7 +612,7 @@
             const grid = document.getElementById('myCoursesGrid');
             const courseProgress = JSON.parse(localStorage.getItem('course.progress') || '{}');
             const allCourses = JSON.parse(localStorage.getItem('admin.courses') || '[]');
-            
+
             if (enrolledCourses.length > 0) {
                 grid.innerHTML = '';
                 enrolledCourses.forEach(id => {
@@ -608,10 +622,10 @@
                         course = courseMap[id];
                         if (!course) return;
                     }
-                    
+
                     const progress = courseProgress[id] || 0;
                     const isCompleted = progress >= 100;
-                    
+
                     const card = document.createElement('article');
                     card.className = 'group p-4 border-2 border-gray-200 rounded-xl bg-white hover:shadow-md hover:border-indigo-300 transition overflow-hidden';
                     card.innerHTML = `
@@ -658,18 +672,18 @@
                 setTimeout(() => lucide.createIcons(), 100);
             }
 
-            window.markCourseComplete = function(courseId) {
+            window.markCourseComplete = function (courseId) {
                 if (confirm('Mark this course as complete?')) {
                     const progress = JSON.parse(localStorage.getItem('course.progress') || '{}');
                     progress[courseId] = 100;
                     localStorage.setItem('course.progress', JSON.stringify(progress));
-                    
+
                     const completed = JSON.parse(localStorage.getItem('completed.courses') || '[]');
                     if (!completed.includes(courseId)) {
                         completed.push(courseId);
                         localStorage.setItem('completed.courses', JSON.stringify(completed));
                     }
-                    
+
                     // Reload courses
                     const grid = document.getElementById('myCoursesGrid');
                     const enrolledCourses = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
@@ -723,11 +737,11 @@
                         grid.appendChild(card);
                     });
                     setTimeout(() => lucide.createIcons(), 100);
-                    
+
                     // Update stats
                     document.getElementById('statCompleted').textContent = completed.length;
                     loadAchievements();
-                    
+
                     if (typeof toast === 'function') {
                         toast('Course marked as complete! 🎉', 'success');
                     }

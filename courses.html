@@ -649,13 +649,13 @@
             const cards = Array.from(document.querySelectorAll('#courseGrid article'));
 
             // Sorting functionality
-            document.getElementById('sortBy')?.addEventListener('change', function() {
+            document.getElementById('sortBy')?.addEventListener('change', function () {
                 applyFilters();
             });
 
             function sortCourses(courses, sortBy) {
                 const sorted = [...courses];
-                switch(sortBy) {
+                switch (sortBy) {
                     case 'newest':
                         return sorted.sort((a, b) => {
                             const aDate = a.getAttribute('data-created') || '0';
@@ -690,7 +690,7 @@
                 const lev = level && level.value || '';
                 const cat = category && category.value || '';
                 const sortBy = document.getElementById('sortBy')?.value || 'newest';
-                
+
                 // Filter cards
                 const visibleCards = cards.filter(card => {
                     const title = (card.getAttribute('data-title') || '').toLowerCase();
@@ -701,13 +701,13 @@
                     const matchesCat = !cat || c === cat;
                     return matchesQuery && matchesLevel && matchesCat;
                 });
-                
+
                 // Sort visible cards
                 const sortedCards = sortCourses(visibleCards, sortBy);
-                
+
                 // Hide all cards first
                 cards.forEach(card => card.style.display = 'none');
-                
+
                 // Show and reorder visible cards
                 const grid = document.getElementById('courseGrid');
                 sortedCards.forEach(card => {
