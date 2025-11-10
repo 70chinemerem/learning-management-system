@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+
+    <!-- Header -->
+    <header id="mainHeader"
+        class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <img src="src/assets/logo.svg" alt="LMS Logo"
+                        class="h-8 md:h-9 transition-transform group-hover:scale-105">
+                    <span
+                        class="hidden sm:block text-lg font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">LMS
+                        Admin</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#courses" data-i18n="nav.courses">Courses</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#users" data-i18n="nav.users">Users</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#analytics" data-i18n="nav.analytics">Analytics</a>
+                    <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-gray-600" id="userEmail">Admin</span>
+                        <button id="logoutBtn"
+                            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                            <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuToggle"
+                    class="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+                    <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden border-t border-gray-200 bg-gray-50/50">
+                <nav class="px-4 py-4 space-y-1" aria-label="Mobile">
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#courses" data-i18n="nav.courses">Courses</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#users" data-i18n="nav.users">Users</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="#analytics" data-i18n="nav.analytics">Analytics</a>
+                    <div class="pt-2 mt-2 border-t border-gray-200">
+                        <div class="px-4 py-2 text-sm text-gray-600" id="mobileUserEmail">Admin</div>
+                        <button id="mobileLogoutBtn"
+                            class="block w-full px-4 py-2.5 text-sm font-medium text-center text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                            <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-7xl mx-auto px-4 py-8" role="main">
+        <!-- Welcome Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 md:p-8">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                            Admin Dashboard, <span id="userName">Admin</span>! 👋
+                        </h1>
+                        <p class="text-gray-600">Manage courses, users, and platform analytics</p>
+                    </div>
+                    <button id="addCourseBtn" class="btn-primary">
+                        <i data-lucide="plus" class="w-4 h-4 inline mr-2"></i>
+                        Add New Course
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Total Courses</div>
+                    <i data-lucide="book-open" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <div id="statTotalCourses" class="text-3xl font-bold text-gray-900">0</div>
+                <div class="text-xs text-gray-500 mt-1">Active courses</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Total Students</div>
+                    <i data-lucide="users" class="w-5 h-5 text-green-600"></i>
+                </div>
+                <div id="statTotalStudents" class="text-3xl font-bold text-gray-900">0</div>
+                <div class="text-xs text-gray-500 mt-1">Registered users</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Enrollments</div>
+                    <i data-lucide="user-check" class="w-5 h-5 text-yellow-600"></i>
+                </div>
+                <div id="statEnrollments" class="text-3xl font-bold text-gray-900">0</div>
+                <div class="text-xs text-gray-500 mt-1">Total enrollments</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Completion Rate</div>
+                    <i data-lucide="trending-up" class="w-5 h-5 text-purple-600"></i>
+                </div>
+                <div id="statCompletionRate" class="text-3xl font-bold text-gray-900">—</div>
+                <div class="text-xs text-gray-500 mt-1">Average completion</div>
+            </div>
+        </section>
+
+        <!-- Course Management Section -->
+        <section id="courses" class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-6 h-6 text-indigo-600"></i>
+                    <span>Course Management</span>
+                </h2>
+                <div class="flex gap-2">
+                    <input type="search" id="courseSearch" placeholder="Search courses..."
+                        class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select id="courseFilter"
+                        class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="all">All Courses</option>
+                        <option value="active">Active</option>
+                        <option value="draft">Draft</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+            </div>
+            <div id="coursesTableContainer" class="bg-white border-2 border-gray-200 rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Course</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Category</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Level</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Enrollments</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coursesTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Courses will be loaded here -->
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center text-gray-500">
+                                    <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                                    <p>No courses yet</p>
+                                    <button id="addFirstCourseBtn"
+                                        class="mt-2 text-indigo-600 hover:text-indigo-700 font-medium">
+                                        Add your first course
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Course Modal -->
+    <div id="courseModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                <h3 class="text-xl font-bold text-gray-900" id="modalTitle">Add New Course</h3>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form id="courseForm" class="p-6 space-y-4">
+                <input type="hidden" id="courseId" name="courseId">
+                <div>
+                    <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-1">Course Title *</label>
+                    <input type="text" id="courseTitle" name="title" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="e.g., JavaScript 101">
+                </div>
+                <div>
+                    <label for="courseDescription" class="block text-sm font-medium text-gray-700 mb-1">Description
+                        *</label>
+                    <textarea id="courseDescription" name="description" required rows="4"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="Enter course description..."></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="courseCategory" class="block text-sm font-medium text-gray-700 mb-1">Category
+                            *</label>
+                        <select id="courseCategory" name="category" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">Select category</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Design">Design</option>
+                            <option value="Data">Data</option>
+                            <option value="Business">Business</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="courseLevel" class="block text-sm font-medium text-gray-700 mb-1">Level *</label>
+                        <select id="courseLevel" name="level" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">Select level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="courseImage" class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                    <input type="url" id="courseImage" name="image"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="https://images.unsplash.com/...">
+                </div>
+                <div>
+                    <label for="courseStatus" class="block text-sm font-medium text-gray-700 mb-1">Status *</label>
+                    <select id="courseStatus" name="status" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="active">Active</option>
+                        <option value="draft">Draft</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 btn-primary">
+                        <i data-lucide="save" class="w-4 h-4 inline mr-2"></i>
+                        Save Course
+                    </button>
+                    <button type="button" id="cancelModalBtn"
+                        class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="src/lucide-init.js"></script>
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Admin Dashboard Script
+        (function () {
+            // Check authentication
+            const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+            if (!auth.email || auth.role !== 'admin') {
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            // Display user info
+            document.getElementById('userName').textContent = auth.name || auth.email.split('@')[0];
+            document.getElementById('userEmail').textContent = auth.email;
+            const mobileEmail = document.getElementById('mobileUserEmail');
+            if (mobileEmail) mobileEmail.textContent = auth.email;
+
+            // Logout functionality
+            function logout() {
+                localStorage.removeItem('auth');
+                window.location.href = 'signin.html';
+            }
+            document.getElementById('logoutBtn')?.addEventListener('click', logout);
+            document.getElementById('mobileLogoutBtn')?.addEventListener('click', logout);
+
+            // Course Management
+            let courses = JSON.parse(localStorage.getItem('admin.courses') || '[]');
+            let editingCourseId = null;
+
+            // Load and display courses
+            function loadCourses() {
+                const tbody = document.getElementById('coursesTableBody');
+                const searchTerm = document.getElementById('courseSearch').value.toLowerCase();
+                const filterStatus = document.getElementById('courseFilter').value;
+
+                let filteredCourses = courses.filter(course => {
+                    const matchesSearch = course.title.toLowerCase().includes(searchTerm) ||
+                        course.description.toLowerCase().includes(searchTerm);
+                    const matchesFilter = filterStatus === 'all' || course.status === filterStatus;
+                    return matchesSearch && matchesFilter;
+                });
+
+                if (filteredCourses.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="px-6 py-12 text-center text-gray-500">
+                                <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                                <p>No courses found</p>
+                            </td>
+                        </tr>
+                    `;
+                    setTimeout(() => lucide.createIcons(), 100);
+                    return;
+                }
+
+                tbody.innerHTML = filteredCourses.map(course => {
+                    const enrollments = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
+                    const enrollmentCount = enrollments.filter(id => id === course.id).length;
+                    return `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center gap-3">
+                                    ${course.image ? `<img src="${course.image}" alt="${course.title}" class="w-12 h-12 rounded-lg object-cover">` : '<div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center"><i data-lucide="book-open" class="w-6 h-6 text-gray-400"></i></div>'}
+                                    <div>
+                                        <div class="font-medium text-gray-900">${course.title}</div>
+                                        <div class="text-sm text-gray-500 truncate max-w-xs">${course.description.substring(0, 50)}...</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${course.category}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-medium rounded ${course.level === 'Beginner' ? 'bg-green-100 text-green-800' : course.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">${course.level}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${enrollmentCount}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-medium rounded ${course.status === 'active' ? 'bg-green-100 text-green-800' : course.status === 'draft' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}">${course.status}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="editCourse('${course.id}')" class="text-indigo-600 hover:text-indigo-900" title="Edit">
+                                        <i data-lucide="edit" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="deleteCourse('${course.id}')" class="text-red-600 hover:text-red-900" title="Delete">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+
+            // Update stats
+            function updateStats() {
+                document.getElementById('statTotalCourses').textContent = courses.filter(c => c.status === 'active').length;
+
+                const allUsers = JSON.parse(localStorage.getItem('users') || '[]');
+                const students = allUsers.filter(u => u.role === 'student');
+                document.getElementById('statTotalStudents').textContent = students.length;
+
+                const enrollments = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
+                document.getElementById('statEnrollments').textContent = enrollments.length;
+
+                const completed = JSON.parse(localStorage.getItem('completed.courses') || '[]');
+                const totalEnrollments = enrollments.length;
+                if (totalEnrollments > 0) {
+                    const rate = Math.round((completed.length / totalEnrollments) * 100);
+                    document.getElementById('statCompletionRate').textContent = rate + '%';
+                }
+            }
+
+            // Modal functions
+            const modal = document.getElementById('courseModal');
+            const form = document.getElementById('courseForm');
+            const addBtn = document.getElementById('addCourseBtn');
+            const addFirstBtn = document.getElementById('addFirstCourseBtn');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const cancelBtn = document.getElementById('cancelModalBtn');
+
+            function openModal(course = null) {
+                editingCourseId = course ? course.id : null;
+                document.getElementById('modalTitle').textContent = course ? 'Edit Course' : 'Add New Course';
+                if (course) {
+                    document.getElementById('courseId').value = course.id;
+                    document.getElementById('courseTitle').value = course.title;
+                    document.getElementById('courseDescription').value = course.description;
+                    document.getElementById('courseCategory').value = course.category;
+                    document.getElementById('courseLevel').value = course.level;
+                    document.getElementById('courseImage').value = course.image || '';
+                    document.getElementById('courseStatus').value = course.status;
+                } else {
+                    form.reset();
+                    document.getElementById('courseId').value = '';
+                }
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                form.reset();
+                editingCourseId = null;
+            }
+
+            addBtn?.addEventListener('click', () => openModal());
+            addFirstBtn?.addEventListener('click', () => openModal());
+            closeBtn?.addEventListener('click', closeModal);
+            cancelBtn?.addEventListener('click', closeModal);
+
+            // Form submission
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const courseData = {
+                    id: editingCourseId || 'course-' + Date.now(),
+                    title: formData.get('title'),
+                    description: formData.get('description'),
+                    category: formData.get('category'),
+                    level: formData.get('level'),
+                    image: formData.get('image') || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
+                    status: formData.get('status'),
+                    createdAt: editingCourseId ? courses.find(c => c.id === editingCourseId)?.createdAt : new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+
+                if (editingCourseId) {
+                    const index = courses.findIndex(c => c.id === editingCourseId);
+                    if (index !== -1) {
+                        courses[index] = courseData;
+                    }
+                } else {
+                    courses.push(courseData);
+                }
+
+                localStorage.setItem('admin.courses', JSON.stringify(courses));
+                loadCourses();
+                updateStats();
+                closeModal();
+
+                if (typeof toast === 'function') {
+                    toast(editingCourseId ? 'Course updated successfully' : 'Course added successfully');
+                }
+            });
+
+            // Global functions for edit/delete
+            window.editCourse = function (id) {
+                const course = courses.find(c => c.id === id);
+                if (course) openModal(course);
+            };
+
+            window.deleteCourse = function (id) {
+                if (confirm('Are you sure you want to delete this course?')) {
+                    courses = courses.filter(c => c.id !== id);
+                    localStorage.setItem('admin.courses', JSON.stringify(courses));
+                    loadCourses();
+                    updateStats();
+                    if (typeof toast === 'function') {
+                        toast('Course deleted successfully');
+                    }
+                }
+            };
+
+            // Search and filter
+            document.getElementById('courseSearch')?.addEventListener('input', loadCourses);
+            document.getElementById('courseFilter')?.addEventListener('change', loadCourses);
+
+            // Initialize
+            loadCourses();
+            updateStats();
+        })();
+    </script>
+</body>
+
+</html>

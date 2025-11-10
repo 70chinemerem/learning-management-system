@@ -2,8 +2,6 @@
 
 function getEl(id) { return document.getElementById(id); }
 
-// Initialize Lucide icons (handled by lucide-init.js)
-// Keep this here for backwards compatibility but don't duplicate the logic
 
 // Theme toggle with localStorage persistence
 const themeKey = 'ui.theme';
@@ -34,7 +32,10 @@ function toast(message, type = 'info') {
     const root = getEl('toast-root');
     if (!root) return;
     const div = document.createElement('div');
-    div.className = `px-3 py-2 rounded shadow text-sm ${type === 'error' ? 'bg-red-600 text-white' : 'bg-gray-900 text-white'}`;
+    let bgColor = 'bg-gray-900 text-white';
+    if (type === 'error') bgColor = 'bg-red-600 text-white';
+    else if (type === 'success') bgColor = 'bg-green-600 text-white';
+    div.className = `px-3 py-2 rounded shadow text-sm ${bgColor}`;
     div.textContent = message;
     div.setAttribute('role', 'status');
     div.setAttribute('aria-live', 'polite');
@@ -44,6 +45,100 @@ function toast(message, type = 'info') {
 
 // Validation helpers
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Authentication functions
+function authenticateUser(email, password) {
+    try {
+        // Get all registered users
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+        // Find user by email
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            toast('Invalid email or password', 'error');
+            return false;
+        }
+
+        // In a real app, passwords would be hashed. For demo, we check plain text.
+        if (user.password !== password) {
+            toast('Invalid email or password', 'error');
+            return false;
+        }
+
+        // Set authentication session
+        const authData = {
+            email: user.email,
+            name: user.name,
+            role: user.role || 'student',
+            loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('auth', JSON.stringify(authData));
+
+        toast('Signed in successfully', 'success');
+
+        // Redirect based on role
+        setTimeout(() => {
+            if (authData.role === 'admin') {
+                window.location.href = 'admin.html';
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        }, 500);
+
+        return true;
+    } catch (error) {
+        toast('An error occurred. Please try again.', 'error');
+        return false;
+    }
+}
+
+function registerUser(name, email, password) {
+    try {
+        // Get existing users
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+        // Check if user already exists
+        if (users.find(u => u.email === email)) {
+            toast('An account with this email already exists', 'error');
+            return false;
+        }
+
+        // Create new user (in production, password should be hashed)
+        const newUser = {
+            id: 'user-' + Date.now(),
+            name: name,
+            email: email,
+            password: password, // In production, hash this!
+            role: 'student', // Default role
+            createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+
+        toast('Account created successfully', 'success');
+
+        // Auto-login after registration
+        const authData = {
+            email: newUser.email,
+            name: newUser.name,
+            role: newUser.role,
+            loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('auth', JSON.stringify(authData));
+
+        // Redirect to dashboard
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 500);
+
+        return true;
+    } catch (error) {
+        toast('An error occurred. Please try again.', 'error');
+        return false;
+    }
+}
 
 function bindSignin() {
     const form = getEl('signinForm');
@@ -78,7 +173,13 @@ function bindSignin() {
         if (!ok) { toast('Please fix the errors', 'error'); return; }
         submit.disabled = true; submit.classList.add('opacity-60');
         try { remember.checked ? localStorage.setItem('auth.rememberEmail', email.value) : localStorage.removeItem('auth.rememberEmail'); } catch { }
-        setTimeout(() => { toast('Signed in successfully'); submit.disabled = false; submit.classList.remove('opacity-60'); }, 800);
+
+        // Authenticate user
+        const success = authenticateUser(email.value, password.value);
+        if (!success) {
+            submit.disabled = false;
+            submit.classList.remove('opacity-60');
+        }
     });
 }
 
@@ -121,14 +222,285 @@ function bindSignup() {
         if (confirm.value !== password.value) { confirmError.classList.remove('hidden'); ok = false; } else { confirmError.classList.add('hidden'); }
         if (!ok) { toast('Please fix the errors', 'error'); return; }
         submit.disabled = true; submit.classList.add('opacity-60');
-        setTimeout(() => { toast('Account created'); submit.disabled = false; submit.classList.remove('opacity-60'); }, 800);
+
+        // Register user
+        const success = registerUser(name.value.trim(), email.value, password.value);
+        if (!success) {
+            submit.disabled = false;
+            submit.classList.remove('opacity-60');
+        }
     });
+}
+
+// Initialize default admin user if none exists
+function initDefaultAdmin() {
+    try {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const adminExists = users.find(u => u.role === 'admin');
+
+        if (!adminExists) {
+            const defaultAdmin = {
+                id: 'admin-1',
+                name: 'Admin User',
+                email: 'admin@lms.com',
+                password: 'admin123', // In production, this should be hashed!
+                role: 'admin',
+                createdAt: new Date().toISOString()
+            };
+            users.push(defaultAdmin);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    } catch (error) {
+        console.error('Error initializing default admin:', error);
+    }
+}
+
+// Update navigation based on authentication status
+function updateNavigation() {
+    try {
+        const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+        const isAuthenticated = auth.email && auth.role;
+
+        if (!isAuthenticated) return;
+
+        const userName = auth.name || auth.email.split('@')[0];
+        const dashboardUrl = auth.role === 'admin' ? 'admin.html' : 'dashboard.html';
+        const dashboardText = auth.role === 'admin' ? 'Admin Dashboard' : 'Dashboard';
+
+        // Handle simple headers (signin, signup, forgot pages)
+        const simpleHeader = document.querySelector('header:not(#mainHeader)');
+        if (simpleHeader) {
+            // Check if header has language selector
+            const langWrapper = simpleHeader.querySelector('#langSelectorWrapper');
+            const headerContent = simpleHeader.querySelector('.max-w-6xl, .max-w-7xl');
+
+            if (langWrapper && headerContent) {
+                // Check if nav already added
+                if (!headerContent.querySelector('[data-auth-nav]')) {
+                    // Check if there's an existing nav element
+                    const existingNav = headerContent.querySelector('nav');
+                    let navContainer = existingNav;
+
+                    if (!existingNav) {
+                        // Create new nav container
+                        navContainer = document.createElement('nav');
+                        navContainer.className = 'hidden md:flex items-center gap-2';
+                        navContainer.setAttribute('data-auth-nav', 'true');
+                    } else {
+                        // Use existing nav and mark it
+                        existingNav.setAttribute('data-auth-nav', 'true');
+                    }
+
+                    // Check if user info already added
+                    if (!navContainer.querySelector('[data-auth-user-info]')) {
+                        const userInfo = document.createElement('span');
+                        userInfo.className = 'text-sm text-gray-600';
+                        userInfo.textContent = userName;
+                        userInfo.setAttribute('data-auth-user-info', 'true');
+
+                        const dashboardLink = document.createElement('a');
+                        dashboardLink.href = dashboardUrl;
+                        dashboardLink.className = 'px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all';
+                        dashboardLink.textContent = dashboardText;
+
+                        const separator = document.createElement('div');
+                        separator.className = 'h-6 w-px bg-gray-300 mx-2';
+
+                        const logoutBtn = document.createElement('button');
+                        logoutBtn.className = 'px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all';
+                        logoutBtn.innerHTML = '<i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i><span>Logout</span>';
+                        logoutBtn.addEventListener('click', () => {
+                            localStorage.removeItem('auth');
+                            window.location.href = 'index.html';
+                        });
+
+                        navContainer.appendChild(userInfo);
+                        navContainer.appendChild(dashboardLink);
+                        navContainer.appendChild(separator);
+                        navContainer.appendChild(logoutBtn);
+
+                        // Insert nav if it's new
+                        if (!existingNav && langWrapper && langWrapper.parentElement) {
+                            langWrapper.parentElement.insertBefore(navContainer, langWrapper);
+                        } else if (!existingNav) {
+                            headerContent.appendChild(navContainer);
+                        }
+
+                        setTimeout(() => {
+                            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                                lucide.createIcons();
+                            }
+                        }, 100);
+                    }
+                }
+            }
+        }
+
+        // Update desktop navigation sign-in links (full headers)
+        const desktopSignInLinks = document.querySelectorAll('a[href="signin.html"]');
+        desktopSignInLinks.forEach(link => {
+            // Skip mobile menu links
+            if (link.closest('#mobileMenu')) return;
+            // Create a container for user info and logout
+            const parent = link.parentElement;
+            const nav = link.closest('nav');
+
+            // Check if already updated
+            if (link.hasAttribute('data-auth-updated')) return;
+            link.setAttribute('data-auth-updated', 'true');
+
+            // Remove the sign-in link
+            link.remove();
+
+            // Create user info container
+            const userContainer = document.createElement('div');
+            userContainer.className = 'flex items-center gap-2';
+
+            // User email/name display
+            const userInfo = document.createElement('span');
+            userInfo.className = 'text-sm text-gray-600 hidden lg:block';
+            userInfo.textContent = userName;
+            userInfo.id = 'navUserEmail';
+
+            // Dashboard link
+            const dashboardLink = document.createElement('a');
+            dashboardLink.href = dashboardUrl;
+            dashboardLink.className = 'px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all';
+            dashboardLink.textContent = dashboardText;
+
+            // Separator
+            const separator = document.createElement('div');
+            separator.className = 'h-6 w-px bg-gray-300';
+
+            // Logout button
+            const logoutBtn = document.createElement('button');
+            logoutBtn.className = 'px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all';
+            logoutBtn.innerHTML = '<i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i><span>Logout</span>';
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('auth');
+                window.location.href = 'index.html';
+            });
+
+            userContainer.appendChild(userInfo);
+            userContainer.appendChild(dashboardLink);
+            userContainer.appendChild(separator);
+            userContainer.appendChild(logoutBtn);
+
+            // Insert before language selector or at the end of nav
+            const langWrapper = nav?.querySelector('#langSelectorWrapper');
+            if (langWrapper && langWrapper.parentElement) {
+                // Insert before the separator or language wrapper
+                const separator = langWrapper.previousElementSibling;
+                if (separator && separator.classList.contains('h-6')) {
+                    langWrapper.parentElement.insertBefore(userContainer, separator);
+                } else {
+                    langWrapper.parentElement.insertBefore(userContainer, langWrapper);
+                }
+            } else if (parent) {
+                parent.appendChild(userContainer);
+            }
+
+            // Initialize icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    lucide.createIcons();
+                }
+            }, 100);
+        });
+
+        // Update mobile navigation
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+            // Find mobile sign-in link
+            const mobileSignInLink = mobileMenu.querySelector('a[href="signin.html"]');
+            const mobileSignUpLink = mobileMenu.querySelector('a[href="signup.html"]');
+
+            // Check if already updated
+            if (mobileMenu.querySelector('[data-auth-mobile-updated]')) return;
+
+            if (mobileSignInLink || mobileSignUpLink) {
+                mobileMenu.setAttribute('data-auth-mobile-updated', 'true');
+
+                // Get the parent container (usually a div with border-t or the last item)
+                let parentContainer = null;
+                if (mobileSignInLink) {
+                    parentContainer = mobileSignInLink.closest('div.pt-2, div.border-t, div.mt-2');
+                } else if (mobileSignUpLink) {
+                    parentContainer = mobileSignUpLink.closest('div.pt-2, div.border-t, div.mt-2');
+                }
+
+                // Remove old sign-in and sign-up links
+                if (mobileSignInLink) mobileSignInLink.remove();
+                if (mobileSignUpLink) mobileSignUpLink.remove();
+
+                // Create new user section
+                const userSection = document.createElement('div');
+                userSection.className = 'pt-2 mt-2 border-t border-gray-200';
+
+                // User email display
+                const mobileUserEmail = document.createElement('div');
+                mobileUserEmail.className = 'px-4 py-2 text-sm text-gray-600';
+                mobileUserEmail.textContent = auth.email;
+                mobileUserEmail.id = 'mobileNavUserEmail';
+
+                // Dashboard link
+                const mobileDashboardLink = document.createElement('a');
+                mobileDashboardLink.href = dashboardUrl;
+                mobileDashboardLink.className = 'block w-full px-4 py-2.5 text-sm font-medium text-center text-violet-700 hover:bg-violet-50 rounded-lg transition-all mb-2';
+                mobileDashboardLink.textContent = dashboardText;
+
+                // Logout button
+                const mobileLogoutBtn = document.createElement('button');
+                mobileLogoutBtn.className = 'block w-full px-4 py-2.5 text-sm font-medium text-center text-red-600 hover:bg-red-50 rounded-lg transition-all';
+                mobileLogoutBtn.innerHTML = '<i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i><span>Logout</span>';
+                mobileLogoutBtn.addEventListener('click', () => {
+                    localStorage.removeItem('auth');
+                    window.location.href = 'index.html';
+                });
+
+                userSection.appendChild(mobileUserEmail);
+                userSection.appendChild(mobileDashboardLink);
+                userSection.appendChild(mobileLogoutBtn);
+
+                // Insert into mobile menu
+                if (parentContainer && parentContainer.parentElement) {
+                    parentContainer.parentElement.insertBefore(userSection, parentContainer);
+                    // Remove empty parent container if it has no other children
+                    if (parentContainer.children.length === 0) {
+                        parentContainer.remove();
+                    }
+                } else {
+                    // Append to mobile menu nav
+                    const nav = mobileMenu.querySelector('nav');
+                    if (nav) {
+                        nav.appendChild(userSection);
+                    } else {
+                        mobileMenu.appendChild(userSection);
+                    }
+                }
+
+                // Initialize icons
+                setTimeout(() => {
+                    if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                        lucide.createIcons();
+                    }
+                }, 100);
+            }
+        }
+    } catch (error) {
+        console.error('Error updating navigation:', error);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
+    initDefaultAdmin(); // Initialize default admin user
     bindSignin();
     bindSignup();
+    // Update navigation after a short delay to ensure language selector is initialized
+    setTimeout(() => {
+        updateNavigation(); // Update navigation based on auth status
+    }, 200);
     // Social buttons placeholder
     document.querySelectorAll('.socialBtn').forEach(btn => {
         btn.addEventListener('click', () => toast('Social sign-in not configured', 'info'));

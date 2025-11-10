@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard • Learning Management System</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
+        to main content</a>
+
+    <!-- Header -->
+    <header id="mainHeader"
+        class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <img src="src/assets/logo.svg" alt="LMS Logo"
+                        class="h-8 md:h-9 transition-transform group-hover:scale-105">
+                    <span
+                        class="hidden sm:block text-lg font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">LMS</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="courses.html" data-i18n="nav.browse">Courses</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="saved.html" data-i18n="nav.saved">Saved</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="analytics.html" data-i18n="nav.analytics">Analytics</a>
+                    <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-gray-600" id="userEmail">Student</span>
+                        <button id="logoutBtn"
+                            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                            <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuToggle"
+                    class="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+                    <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden border-t border-gray-200 bg-gray-50/50">
+                <nav class="px-4 py-4 space-y-1" aria-label="Mobile">
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="courses.html" data-i18n="nav.browse">Browse courses</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="saved.html" data-i18n="nav.saved">Saved</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="quiz.html" data-i18n="nav.quiz">Take a quiz</a>
+                    <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
+                        href="analytics.html" data-i18n="nav.analytics">View analytics</a>
+                    <div class="pt-2 mt-2 border-t border-gray-200">
+                        <div class="px-4 py-2 text-sm text-gray-600" id="mobileUserEmail">Student</div>
+                        <button id="mobileLogoutBtn"
+                            class="block w-full px-4 py-2.5 text-sm font-medium text-center text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                            <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="max-w-7xl mx-auto px-4 py-8" role="main">
+        <!-- Welcome Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 md:p-8">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                            Welcome back, <span id="userName">Student</span>! 👋
+                        </h1>
+                        <p class="text-gray-600">Continue your learning journey</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="courses.html" class="btn-primary">
+                            <i data-lucide="book-open" class="w-4 h-4 inline mr-2"></i>
+                            Browse Courses
+                        </a>
+                        <a href="quiz.html" class="btn-outline-indigo">
+                            <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-2"></i>
+                            Take Quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Enrolled Courses</div>
+                    <i data-lucide="book-open" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <div id="statEnrolled" class="text-3xl font-bold text-gray-900">0</div>
+                <div class="text-xs text-gray-500 mt-1">Active courses</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Completed</div>
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                </div>
+                <div id="statCompleted" class="text-3xl font-bold text-gray-900">0</div>
+                <div class="text-xs text-gray-500 mt-1">Courses finished</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Quiz Score</div>
+                    <i data-lucide="award" class="w-5 h-5 text-yellow-600"></i>
+                </div>
+                <div id="statQuizScore" class="text-3xl font-bold text-gray-900">—</div>
+                <div class="text-xs text-gray-500 mt-1">Average score</div>
+            </div>
+            <div
+                class="p-5 border-2 border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-indigo-300 transition">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm text-gray-500">Study Time</div>
+                    <i data-lucide="clock" class="w-5 h-5 text-purple-600"></i>
+                </div>
+                <div id="statStudyTime" class="text-3xl font-bold text-gray-900">0h</div>
+                <div class="text-xs text-gray-500 mt-1">This week</div>
+            </div>
+        </section>
+
+        <!-- My Courses Section -->
+        <section class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-6 h-6 text-indigo-600"></i>
+                    <span>My Courses</span>
+                </h2>
+                <a href="courses.html" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                    View all <i data-lucide="arrow-right" class="w-4 h-4 inline"></i>
+                </a>
+            </div>
+            <div id="myCoursesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Courses will be loaded here -->
+                <div class="col-span-full text-center py-12 text-gray-500">
+                    <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                    <p>No enrolled courses yet</p>
+                    <a href="courses.html" class="text-indigo-600 hover:text-indigo-700 mt-2 inline-block">
+                        Browse courses to get started
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i data-lucide="activity" class="w-6 h-6 text-indigo-600"></i>
+                <span>Recent Activity</span>
+            </h2>
+            <div id="recentActivity" class="bg-white border-2 border-gray-200 rounded-xl p-6">
+                <div class="space-y-4">
+                    <!-- Activity items will be loaded here -->
+                    <div class="text-center py-8 text-gray-500">
+                        <i data-lucide="clock" class="w-10 h-10 mx-auto mb-3 text-gray-300"></i>
+                        <p>No recent activity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6 border-t mt-12">
+        &copy; 2024 Learning Management System. All rights reserved.
+    </footer>
+    <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="src/lucide-init.js"></script>
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Check authentication
+        (function () {
+            const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+            if (!auth.email || auth.role !== 'student') {
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            // Display user info
+            document.getElementById('userName').textContent = auth.name || auth.email.split('@')[0];
+            document.getElementById('userEmail').textContent = auth.email;
+            const mobileEmail = document.getElementById('mobileUserEmail');
+            if (mobileEmail) mobileEmail.textContent = auth.email;
+
+            // Logout functionality
+            function logout() {
+                localStorage.removeItem('auth');
+                window.location.href = 'signin.html';
+            }
+            document.getElementById('logoutBtn')?.addEventListener('click', logout);
+            document.getElementById('mobileLogoutBtn')?.addEventListener('click', logout);
+
+            // Load dashboard data
+            const savedCourses = JSON.parse(localStorage.getItem('saved.courses') || '[]');
+            const enrolledCourses = JSON.parse(localStorage.getItem('enrolled.courses') || '[]');
+
+            // Update stats
+            document.getElementById('statEnrolled').textContent = enrolledCourses.length;
+            document.getElementById('statCompleted').textContent =
+                JSON.parse(localStorage.getItem('completed.courses') || '[]').length;
+
+            const quizScores = JSON.parse(localStorage.getItem('quiz.scores') || '[]');
+            if (quizScores.length > 0) {
+                const avg = Math.round(quizScores.reduce((a, b) => a + b, 0) / quizScores.length);
+                document.getElementById('statQuizScore').textContent = avg + '%';
+            }
+
+            // Load enrolled courses
+            const courseMap = {
+                'js-101': { title: 'JavaScript 101', category: 'Programming', level: 'Beginner', image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop' },
+                'py-201': { title: 'Python for Data', category: 'Data', level: 'Intermediate', image: 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=400&h=300&fit=crop' },
+                'ux-101': { title: 'UX Fundamentals', category: 'Design', level: 'Beginner', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop' },
+                'react-301': { title: 'React Fundamentals', category: 'Programming', level: 'Intermediate', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop' },
+                'ds-101': { title: 'Data Science Basics', category: 'Data', level: 'Beginner', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop' },
+                'css-advanced': { title: 'Advanced CSS', category: 'Design', level: 'Advanced', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop' },
+                'node-101': { title: 'Node.js 101', category: 'Programming', level: 'Beginner', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop' },
+                'sql-101': { title: 'SQL for Beginners', category: 'Data', level: 'Beginner', image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop' },
+                'ui-201': { title: 'UI Design Patterns', category: 'Design', level: 'Intermediate', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop' }
+            };
+
+            const grid = document.getElementById('myCoursesGrid');
+            if (enrolledCourses.length > 0) {
+                grid.innerHTML = '';
+                enrolledCourses.forEach(id => {
+                    const course = courseMap[id];
+                    if (!course) return;
+                    const card = document.createElement('article');
+                    card.className = 'group p-4 border-2 border-gray-200 rounded-xl bg-white hover:shadow-md hover:border-indigo-300 transition overflow-hidden';
+                    card.innerHTML = `
+                        <div class="relative rounded-lg overflow-hidden mb-4 h-40">
+                            <img src="${course.image}" alt="${course.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 text-gray-900">${course.title}</h3>
+                        <p class="text-sm text-gray-600 mb-3">${course.category} • ${course.level}</p>
+                        <a href="courses.html#${id}" class="text-indigo-600 hover:text-indigo-700 font-medium text-sm flex items-center gap-1">
+                            Continue learning <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    `;
+                    grid.appendChild(card);
+                });
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+        })();
+    </script>
+</body>
+
+</html>
