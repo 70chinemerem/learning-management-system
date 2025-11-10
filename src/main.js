@@ -1021,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'nav.features': 'सुविधाएं', 'nav.saved': 'सहेजे गए', 'nav.signin': 'साइन इन', 'nav.signup': 'साइन अप',
                 'nav.browse': 'पाठ्यक्रम ब्राउज़ करें', 'nav.quiz': 'क्विज़ लें', 'nav.analytics': 'विश्लेषण देखें',
                 'common.backHome': 'होम पर वापस', 'common.submit': 'सबमिट करें', 'common.reset': 'रीसेट', 'common.apply': 'अभी आवेदन करें',
-                'common.save': 'सहेजें', 'common.preview': 'पूर्वावलोकन', 'common.close': 'बंद करें',
+                'common.save': 'सहेजें', 'common.preview': 'पूर्वावलोकन', 'common.close': 'बंद करें', 'common.logout': 'लॉगआउट',
                 'hero.title': 'लर्निंग मैनेजमेंट सिस्टम', 'hero.subtitle': 'एक आधुनिक इंटरफ़ेस के साथ पाठ्यक्रम बनाएं, व्यवस्थित करें और ट्रैक करें।',
                 'hero.getStarted': 'शुरू करें', 'hero.createAccount': 'खाता बनाएं', 'hero.learnMore': 'अधिक जानें',
                 'quick.signin': 'साइन इन', 'quick.browse': 'पाठ्यक्रम ब्राउज़ करें', 'quick.quiz': 'क्विज़ लें', 'quick.analytics': 'विश्लेषण देखें',
