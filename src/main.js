@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dict = {
             en: {
                 'nav.features': 'Features', 'nav.saved': 'Saved', 'nav.signin': 'Sign in', 'nav.signup': 'Sign up',
-                'nav.browse': 'Browse courses', 'nav.quiz': 'Take a quiz', 'nav.analytics': 'View analytics',
+                'nav.browse': 'Browse courses', 'nav.quiz': 'Take a quiz', 'nav.analytics': 'View analytics', 'nav.users': 'Users', 'nav.courses': 'Courses',
                 'common.backHome': 'Back to home', 'common.submit': 'Submit', 'common.reset': 'Reset', 'common.apply': 'Apply now',
                 'common.save': 'Save', 'common.preview': 'Preview', 'common.close': 'Close', 'common.or': 'or',
                 'hero.title': 'Learning Management System', 'hero.subtitle': 'Create, organize, and track courses with a clean, modern interface.',
@@ -851,7 +851,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte',
                 'nav.browse': 'Parcourir les cours', 'nav.quiz': 'Passer un quiz', 'nav.analytics': 'Voir les analyses',
                 'common.backHome': "Retour à l'accueil", 'common.submit': 'Soumettre', 'common.reset': 'Réinitialiser', 'common.apply': 'Postuler',
-                'common.save': 'Enregistrer', 'common.preview': 'Aperçu', 'common.close': 'Fermer', 'common.or': 'ou', 'common.logout': 'Déconnexion', 'common.logout': 'Déconnexion',
+                'common.save': 'Enregistrer', 'common.preview': 'Aperçu', 'common.close': 'Fermer', 'common.or': 'ou', 'common.logout': 'Déconnexion',
                 'dashboard.welcome': 'Bon retour', 'dashboard.continue': 'Continuez votre parcours d\'apprentissage',
                 'dashboard.browseCourses': 'Parcourir les cours', 'dashboard.takeQuiz': 'Passer un quiz',
                 'dashboard.myCourses': 'Mes cours', 'dashboard.viewAll': 'Voir tout', 'dashboard.recentActivity': 'Activité récente',
@@ -864,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'dashboard.totalStudyTime': 'Temps d\'étude total aujourd\'hui', 'dashboard.recommended': 'Recommandé pour vous',
                 'dashboard.viewCourse': 'Voir le cours', 'dashboard.noRecommendations': 'Aucune recommandation pour le moment',
                 'dashboard.enrolled': 'Inscrits', 'dashboard.completed': 'Terminés', 'dashboard.quizScore': 'Score du quiz',
-                'dashboard.studyTime': 'Temps d\'étude'
+                'dashboard.studyTime': 'Temps d\'étude',
                 'hero.title': 'Plateforme de formation', 'hero.subtitle': 'Créez, organisez et suivez vos cours avec une interface moderne.',
                 'hero.getStarted': 'Commencer', 'hero.createAccount': 'Créer un compte', 'hero.learnMore': 'En savoir plus',
                 'quick.signin': 'Se connecter', 'quick.browse': 'Parcourir les cours', 'quick.quiz': 'Passer un quiz', 'quick.analytics': 'Voir les analyses',
@@ -921,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'nav.features': 'Funciones', 'nav.saved': 'Guardados', 'nav.signin': 'Iniciar sesión', 'nav.signup': 'Crear cuenta',
                 'nav.browse': 'Explorar cursos', 'nav.quiz': 'Hacer un quiz', 'nav.analytics': 'Ver analíticas',
                 'common.backHome': 'Volver al inicio', 'common.submit': 'Enviar', 'common.reset': 'Restablecer', 'common.apply': 'Aplicar ahora',
-                'common.save': 'Guardar', 'common.preview': 'Vista previa', 'common.close': 'Cerrar', 'common.or': 'o', 'common.logout': 'Cerrar sesión', 'common.logout': 'Cerrar sesión',
+                'common.save': 'Guardar', 'common.preview': 'Vista previa', 'common.close': 'Cerrar', 'common.or': 'o', 'common.logout': 'Cerrar sesión',
                 'dashboard.welcome': 'Bienvenido de nuevo', 'dashboard.continue': 'Continúa tu viaje de aprendizaje',
                 'dashboard.browseCourses': 'Explorar cursos', 'dashboard.takeQuiz': 'Hacer un quiz',
                 'dashboard.myCourses': 'Mis cursos', 'dashboard.viewAll': 'Ver todo', 'dashboard.recentActivity': 'Actividad reciente',
@@ -934,7 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'dashboard.totalStudyTime': 'Tiempo total de estudio hoy', 'dashboard.recommended': 'Recomendado para ti',
                 'dashboard.viewCourse': 'Ver curso', 'dashboard.noRecommendations': 'Aún no hay recomendaciones',
                 'dashboard.enrolled': 'Inscritos', 'dashboard.completed': 'Completados', 'dashboard.quizScore': 'Puntuación del quiz',
-                'dashboard.studyTime': 'Tiempo de estudio'
+                'dashboard.studyTime': 'Tiempo de estudio',
                 'hero.title': 'Plataforma de aprendizaje', 'hero.subtitle': 'Crea, organiza y sigue cursos con una interfaz moderna.',
                 'hero.getStarted': 'Empezar', 'hero.createAccount': 'Crear cuenta', 'hero.learnMore': 'Saber más',
                 'quick.signin': 'Iniciar sesión', 'quick.browse': 'Explorar cursos', 'quick.quiz': 'Hacer un quiz', 'quick.analytics': 'Ver analíticas',
@@ -985,7 +985,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'dashboard.totalStudyTime': 'Gesamte Lernzeit heute', 'dashboard.recommended': 'Empfohlen für Sie',
                 'dashboard.viewCourse': 'Kurs anzeigen', 'dashboard.noRecommendations': 'Noch keine Empfehlungen',
                 'dashboard.enrolled': 'Eingeschrieben', 'dashboard.completed': 'Abgeschlossen', 'dashboard.quizScore': 'Quiz-Punktzahl',
-                'dashboard.studyTime': 'Lernzeit'
+                'dashboard.studyTime': 'Lernzeit',
                 'hero.title': 'Lernplattform', 'hero.subtitle': 'Kurse erstellen, organisieren und nachverfolgen.',
                 'hero.getStarted': 'Loslegen', 'hero.createAccount': 'Konto erstellen', 'hero.learnMore': 'Mehr erfahren',
                 'quick.signin': 'Anmelden', 'quick.browse': 'Kurse durchsuchen', 'quick.quiz': 'Quiz machen', 'quick.analytics': 'Analysen ansehen',

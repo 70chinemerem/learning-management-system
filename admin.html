@@ -37,12 +37,16 @@
                     <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
                         href="#analytics" data-i18n="nav.analytics">Analytics</a>
                     <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <!-- Language Selector -->
+                    <div id="langSelectorWrapper" class="relative">
+                        <!-- Language selector will be inserted here by main.js -->
+                    </div>
                     <div class="flex items-center gap-2">
                         <span class="text-sm text-gray-600" id="userEmail">Admin</span>
                         <button id="logoutBtn"
                             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
                             <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
-                            <span>Logout</span>
+                            <span data-i18n="common.logout">Logout</span>
                         </button>
                     </div>
                 </nav>
@@ -64,12 +68,18 @@
                         href="#users" data-i18n="nav.users">Users</a>
                     <a class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
                         href="#analytics" data-i18n="nav.analytics">Analytics</a>
+                    <!-- Mobile Language Selector -->
+                    <div class="pt-2 border-t border-gray-200">
+                        <div id="mobileLangSelectorWrapper" class="px-4 py-2">
+                            <!-- Language selector will be inserted here by main.js -->
+                        </div>
+                    </div>
                     <div class="pt-2 mt-2 border-t border-gray-200">
                         <div class="px-4 py-2 text-sm text-gray-600" id="mobileUserEmail">Admin</div>
                         <button id="mobileLogoutBtn"
                             class="block w-full px-4 py-2.5 text-sm font-medium text-center text-red-600 hover:bg-red-50 rounded-lg transition-all">
                             <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>
-                            <span>Logout</span>
+                            <span data-i18n="common.logout">Logout</span>
                         </button>
                     </div>
                 </nav>
@@ -84,13 +94,14 @@
                 <div class="flex items-center justify-between flex-wrap gap-4">
                     <div>
                         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                            Admin Dashboard, <span id="userName">Admin</span>! 👋
+                            <span data-i18n="admin.welcome">Admin Dashboard</span>, <span id="userName">Admin</span>! 👋
                         </h1>
-                        <p class="text-gray-600">Manage courses, users, and platform analytics</p>
+                        <p class="text-gray-600" data-i18n="admin.subtitle">Manage courses, users, and platform
+                            analytics</p>
                     </div>
                     <button id="addCourseBtn" class="btn-primary">
                         <i data-lucide="plus" class="w-4 h-4 inline mr-2"></i>
-                        Add New Course
+                        <span data-i18n="admin.addCourse">Add New Course</span>
                     </button>
                 </div>
             </div>
