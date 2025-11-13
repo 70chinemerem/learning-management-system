@@ -860,7 +860,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.analytics.recentActivity': 'Recent Activity', 'admin.exportCourses': 'Export Courses', 'admin.exportUsers': 'Export Users',
                 'common.logout': 'Logout',
                 'chat.title': 'Live Chat', 'chat.subtitle': 'Students & Community', 'chat.noMessages': 'No messages yet. Start the conversation!',
-                'chat.inputPlaceholder': 'Type your message...', 'chat.info': 'Everyone can see your messages. Be respectful!'
+                'chat.inputPlaceholder': 'Type your message...', 'chat.info': 'Everyone can see your messages. Be respectful!',
+                'chat.clearMessages': 'Clear all messages', 'chat.confirmClear': 'Are you sure you want to clear all messages?'
             },
             fr: {
                 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte',
@@ -881,6 +882,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.analytics.recentActivity': 'Activité récente', 'admin.exportCourses': 'Exporter les cours', 'admin.exportUsers': 'Exporter les utilisateurs',
                 'chat.title': 'Chat en direct', 'chat.subtitle': 'Étudiants et communauté', 'chat.noMessages': 'Aucun message pour le moment. Commencez la conversation !',
                 'chat.inputPlaceholder': 'Tapez votre message...', 'chat.info': 'Tout le monde peut voir vos messages. Soyez respectueux !',
+                'chat.clearMessages': 'Effacer tous les messages', 'chat.confirmClear': 'Êtes-vous sûr de vouloir effacer tous les messages ?',
                 'dashboard.welcome': 'Bon retour', 'dashboard.continue': 'Continuez votre parcours d\'apprentissage',
                 'dashboard.browseCourses': 'Parcourir les cours', 'dashboard.takeQuiz': 'Passer un quiz',
                 'dashboard.myCourses': 'Mes cours', 'dashboard.viewAll': 'Voir tout', 'dashboard.recentActivity': 'Activité récente',
@@ -965,6 +967,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.analytics.recentActivity': 'Actividad reciente', 'admin.exportCourses': 'Exportar cursos', 'admin.exportUsers': 'Exportar usuarios',
                 'chat.title': 'Chat en vivo', 'chat.subtitle': 'Estudiantes y comunidad', 'chat.noMessages': 'Aún no hay mensajes. ¡Inicia la conversación!',
                 'chat.inputPlaceholder': 'Escribe tu mensaje...', 'chat.info': 'Todos pueden ver tus mensajes. ¡Sé respetuoso!',
+                'chat.clearMessages': 'Borrar todos los mensajes', 'chat.confirmClear': '¿Estás seguro de que quieres borrar todos los mensajes?',
                 'dashboard.welcome': 'Bienvenido de nuevo', 'dashboard.continue': 'Continúa tu viaje de aprendizaje',
                 'dashboard.browseCourses': 'Explorar cursos', 'dashboard.takeQuiz': 'Hacer un quiz',
                 'dashboard.myCourses': 'Mis cursos', 'dashboard.viewAll': 'Ver todo', 'dashboard.recentActivity': 'Actividad reciente',
@@ -1412,50 +1415,81 @@ document.addEventListener('DOMContentLoaded', () => {
             chatContainer.innerHTML = `
                 <!-- Chat Toggle Button -->
                 <button id="chatToggleBtn" 
-                    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center group"
+                    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center group backdrop-blur-sm"
                     aria-label="Open chat">
                     <i data-lucide="message-circle" class="w-6 h-6"></i>
-                    <span id="chatBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center text-white hidden">0</span>
+                    <span id="chatBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center text-white font-semibold hidden shadow-md">0</span>
                 </button>
 
                 <!-- Chat Window -->
                 <div id="chatWindow" 
-                    class="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-8rem)] bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col hidden transform transition-all duration-300">
+                    class="fixed bottom-24 right-6 z-50 w-[420px] max-w-[calc(100vw-3rem)] h-[640px] max-h-[calc(100vh-8rem)] bg-white rounded-xl shadow-2xl border border-gray-200/50 flex flex-col hidden transform transition-all duration-300 ease-out backdrop-blur-sm"
+                    style="box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
                     <!-- Chat Header -->
-                    <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-t-lg">
+                    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200/60 bg-gradient-to-r from-violet-600 via-violet-600 to-purple-600 text-white rounded-t-xl">
                         <div class="flex items-center gap-3">
-                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <div class="relative">
+                                <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
+                                <div class="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                            </div>
                             <div>
-                                <h3 class="font-semibold" data-i18n="chat.title">Live Chat</h3>
-                                <p class="text-xs text-violet-100" data-i18n="chat.subtitle">Students & Community</p>
+                                <h3 class="font-semibold text-base" data-i18n="chat.title">Live Chat</h3>
+                                <p class="text-xs text-violet-100/90 font-medium" data-i18n="chat.subtitle">Students & Community</p>
                             </div>
                         </div>
-                        <button id="chatCloseBtn" class="text-white hover:text-violet-200 transition-colors" aria-label="Close chat">
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                        </button>
+                        <div class="flex items-center gap-1.5">
+                            <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-1.5 rounded-lg hover:bg-white/15 active:bg-white/20" 
+                                aria-label="Clear messages" title="Clear all messages">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                            <button id="chatCloseBtn" class="text-white/90 hover:text-white transition-all p-1.5 rounded-lg hover:bg-white/15 active:bg-white/20" aria-label="Close chat">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Messages Container -->
-                    <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
-                        <div class="text-center text-sm text-gray-500 py-4" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
+                    <div id="chatMessages" class="flex-1 overflow-y-auto px-5 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+                        <style>
+                            #chatMessages::-webkit-scrollbar {
+                                width: 6px;
+                            }
+                            #chatMessages::-webkit-scrollbar-track {
+                                background: transparent;
+                            }
+                            #chatMessages::-webkit-scrollbar-thumb {
+                                background-color: rgba(156, 163, 175, 0.5);
+                                border-radius: 3px;
+                            }
+                            #chatMessages::-webkit-scrollbar-thumb:hover {
+                                background-color: rgba(156, 163, 175, 0.7);
+                            }
+                        </style>
+                        <div class="text-center text-sm text-gray-500 py-8" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
                     </div>
 
                     <!-- Chat Input -->
-                    <div class="p-4 border-t border-gray-200 bg-white rounded-b-lg">
-                        <div class="flex gap-2">
-                            <input type="text" 
-                                id="chatInput" 
-                                placeholder="Type your message..."
-                                data-i18n-placeholder="chat.inputPlaceholder"
-                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
-                                maxlength="500">
+                    <div class="px-5 py-4 border-t border-gray-200/60 bg-white rounded-b-xl">
+                        <div class="flex gap-2.5 items-end">
+                            <div class="flex-1 relative">
+                                <input type="text" 
+                                    id="chatInput" 
+                                    placeholder="Type your message..."
+                                    data-i18n-placeholder="chat.inputPlaceholder"
+                                    class="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all bg-gray-50 focus:bg-white text-sm"
+                                    maxlength="500">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" id="charCount">0/500</span>
+                            </div>
                             <button id="chatSendBtn" 
-                                class="px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                class="px-4 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center min-w-[44px]"
                                 aria-label="Send message">
                                 <i data-lucide="send" class="w-5 h-5"></i>
                             </button>
                         </div>
-                        <p class="text-xs text-gray-500 mt-2" data-i18n="chat.info">Everyone can see your messages. Be respectful!</p>
+                        <p class="text-xs text-gray-500 mt-2.5 flex items-center gap-1.5" data-i18n="chat.info">
+                            <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                            <span>Everyone can see your messages. Be respectful!</span>
+                        </p>
                     </div>
                 </div>
             `;
@@ -1473,31 +1507,88 @@ document.addEventListener('DOMContentLoaded', () => {
             // Chat functionality
             const toggleBtn = document.getElementById('chatToggleBtn');
             const closeBtn = document.getElementById('chatCloseBtn');
+            const clearBtn = document.getElementById('chatClearBtn');
             const chatWindow = document.getElementById('chatWindow');
             const chatInput = document.getElementById('chatInput');
             const chatSendBtn = document.getElementById('chatSendBtn');
             const chatMessages = document.getElementById('chatMessages');
             const chatBadge = document.getElementById('chatBadge');
+            const charCount = document.getElementById('charCount');
 
             let isOpen = false;
 
-            // Toggle chat window
+            // Throttled character count update
+            let charCountTimeout = null;
+            function updateCharCount() {
+                if (!charCount) return;
+                
+                // Debounce to avoid excessive updates
+                if (charCountTimeout) {
+                    clearTimeout(charCountTimeout);
+                }
+                
+                charCountTimeout = setTimeout(() => {
+                    const count = chatInput.value.length;
+                    charCount.textContent = `${count}/500`;
+                    if (count > 450) {
+                        charCount.classList.add('text-orange-500');
+                        charCount.classList.remove('text-gray-400');
+                    } else {
+                        charCount.classList.remove('text-orange-500');
+                        charCount.classList.add('text-gray-400');
+                    }
+                }, 100);
+            }
+
+            // Optimized toggle with GPU acceleration
             function toggleChat() {
                 isOpen = !isOpen;
                 if (isOpen) {
                     chatWindow.classList.remove('hidden');
-                    chatInput.focus();
-                    loadMessages();
+                    chatWindow.style.willChange = 'opacity, transform';
+                    chatWindow.style.opacity = '0';
+                    chatWindow.style.transform = 'translateY(20px) scale(0.95)';
+                    requestAnimationFrame(() => {
+                        chatWindow.style.transition = 'opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+                        chatWindow.style.opacity = '1';
+                        chatWindow.style.transform = 'translateY(0) scale(1)';
+                        setTimeout(() => {
+                            chatWindow.style.willChange = 'auto';
+                        }, 250);
+                    });
+                    requestAnimationFrame(() => {
+                        chatInput.focus();
+                        loadMessages();
+                    });
                     // Hide badge when chat is open
                     chatBadge.classList.add('hidden');
                 } else {
-                    chatWindow.classList.add('hidden');
+                    chatWindow.style.willChange = 'opacity, transform';
+                    chatWindow.style.transition = 'opacity 0.2s ease-in, transform 0.2s ease-in';
+                    chatWindow.style.opacity = '0';
+                    chatWindow.style.transform = 'translateY(20px) scale(0.95)';
+                    setTimeout(() => {
+                        chatWindow.classList.add('hidden');
+                        chatWindow.style.willChange = 'auto';
+                    }, 200);
                 }
             }
 
-            // Load and display messages
+            // Optimized message loading with document fragment
+            let lastRenderedMessages = null;
+            
             function loadMessages() {
                 const messages = getMessages();
+                
+                // Skip re-render if messages haven't changed
+                const messagesKey = JSON.stringify(messages.map(m => m.id));
+                if (lastRenderedMessages === messagesKey && chatMessages.children.length > 0) {
+                    return;
+                }
+                lastRenderedMessages = messagesKey;
+                
+                // Use document fragment for batch DOM updates
+                const fragment = document.createDocumentFragment();
                 chatMessages.innerHTML = '';
 
                 if (messages.length === 0) {
@@ -1505,7 +1596,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     emptyMsg.className = 'text-center text-sm text-gray-500 py-4';
                     emptyMsg.setAttribute('data-i18n', 'chat.noMessages');
                     emptyMsg.textContent = 'No messages yet. Start the conversation!';
-                    chatMessages.appendChild(emptyMsg);
+                    fragment.appendChild(emptyMsg);
+                    chatMessages.appendChild(fragment);
                     return;
                 }
 
@@ -1524,111 +1616,252 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (dateStr !== currentDate) {
                         currentDate = dateStr;
                         const dateDivider = document.createElement('div');
-                        dateDivider.className = 'flex items-center gap-2 my-4';
+                        dateDivider.className = 'flex items-center gap-3 my-5';
                         const line = document.createElement('div');
-                        line.className = 'flex-1 h-px bg-gray-300';
+                        line.className = 'flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent';
                         const dateLabel = document.createElement('div');
-                        dateLabel.className = 'text-xs text-gray-500 px-2';
+                        dateLabel.className = 'text-xs text-gray-500 px-3 py-1 bg-gray-50 rounded-full font-medium';
                         dateLabel.textContent = dateStr;
                         const line2 = document.createElement('div');
-                        line2.className = 'flex-1 h-px bg-gray-300';
+                        line2.className = 'flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent';
                         dateDivider.appendChild(line);
                         dateDivider.appendChild(dateLabel);
                         dateDivider.appendChild(line2);
-                        chatMessages.appendChild(dateDivider);
+                        fragment.appendChild(dateDivider);
                     }
 
                     const messageEl = createMessageElement(msg, index);
-                    chatMessages.appendChild(messageEl);
+                    fragment.appendChild(messageEl);
                 });
 
-                // Smooth scroll to bottom
-                setTimeout(() => {
+                // Batch DOM update
+                chatMessages.appendChild(fragment);
+                
+                // Smooth scroll to bottom using requestAnimationFrame
+                requestAnimationFrame(() => {
                     chatMessages.scrollTo({
                         top: chatMessages.scrollHeight,
                         behavior: 'smooth'
                     });
-                }, 100);
+                });
             }
 
             // Create message element
-            function createMessageElement(msg) {
+            function createMessageElement(msg, index) {
                 const user = getCurrentUser();
                 const isOwnMessage = msg.email === user.email;
+                const prevMsg = index > 0 ? getMessages()[index - 1] : null;
+                const showAvatar = !prevMsg || prevMsg.email !== msg.email || 
+                    (new Date(msg.timestamp) - new Date(prevMsg.timestamp)) > 300000; // 5 minutes
 
                 const messageDiv = document.createElement('div');
-                messageDiv.className = `flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`;
+                messageDiv.className = `flex gap-3 ${isOwnMessage ? 'justify-end' : 'justify-start'} mb-2 group`;
+
+                // Avatar (only for others' messages and when needed)
+                if (!isOwnMessage && showAvatar) {
+                    const avatar = document.createElement('div');
+                    avatar.className = 'w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0 shadow-md ring-2 ring-white';
+                    avatar.textContent = msg.user.charAt(0).toUpperCase();
+                    messageDiv.appendChild(avatar);
+                } else if (!isOwnMessage) {
+                    const spacer = document.createElement('div');
+                    spacer.className = 'w-9 flex-shrink-0';
+                    messageDiv.appendChild(spacer);
+                }
+
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = `flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'} max-w-[78%]`;
+
+                // User name (only show if new message from different user or time gap)
+                if (showAvatar || isOwnMessage) {
+                    const userName = document.createElement('div');
+                    userName.className = `text-xs font-semibold mb-1.5 px-1.5 ${isOwnMessage ? 'text-violet-600' : 'text-gray-700'}`;
+                    userName.textContent = msg.user + (msg.role === 'admin' ? ' 👑' : msg.role === 'student' ? ' 🎓' : '');
+                    messageWrapper.appendChild(userName);
+                }
 
                 const messageContent = document.createElement('div');
-                messageContent.className = `max-w-[75%] ${isOwnMessage ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white' : 'bg-white border border-gray-200'} rounded-lg p-3 shadow-sm`;
-
-                const userName = document.createElement('div');
-                userName.className = `text-xs font-semibold mb-1 ${isOwnMessage ? 'text-violet-100' : 'text-gray-600'}`;
-                userName.textContent = msg.user + (msg.role === 'admin' ? ' 👑' : msg.role === 'student' ? ' 🎓' : '');
+                messageContent.className = `${isOwnMessage ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white border border-gray-200/80 shadow-sm'} rounded-2xl ${isOwnMessage ? 'rounded-br-md' : 'rounded-bl-md'} px-4 py-2.5 hover:shadow-md transition-all`;
 
                 const messageText = document.createElement('div');
-                messageText.className = `text-sm ${isOwnMessage ? 'text-white' : 'text-gray-800'}`;
+                messageText.className = `text-sm leading-relaxed ${isOwnMessage ? 'text-white' : 'text-gray-800'} break-words whitespace-pre-wrap`;
                 messageText.textContent = msg.text;
 
                 const messageTime = document.createElement('div');
-                messageTime.className = `text-xs mt-1 ${isOwnMessage ? 'text-violet-100' : 'text-gray-500'}`;
-                messageTime.textContent = msg.time;
+                messageTime.className = `text-xs mt-2 flex items-center gap-1 ${isOwnMessage ? 'text-violet-100/90' : 'text-gray-500'}`;
+                messageTime.innerHTML = `<span>${msg.time}</span>`;
+                if (isOwnMessage) {
+                    const checkIcon = document.createElement('i');
+                    checkIcon.setAttribute('data-lucide', 'check');
+                    checkIcon.className = 'w-3 h-3';
+                    messageTime.appendChild(checkIcon);
+                }
 
-                messageContent.appendChild(userName);
                 messageContent.appendChild(messageText);
                 messageContent.appendChild(messageTime);
-                messageDiv.appendChild(messageContent);
+                messageWrapper.appendChild(messageContent);
+                messageDiv.appendChild(messageWrapper);
+
+                // Optimized animation using will-change and requestAnimationFrame
+                messageDiv.style.willChange = 'opacity, transform';
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(10px)';
+                requestAnimationFrame(() => {
+                    messageDiv.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
+                    messageDiv.style.opacity = '1';
+                    messageDiv.style.transform = 'translateY(0)';
+                    // Remove will-change after animation
+                    setTimeout(() => {
+                        messageDiv.style.willChange = 'auto';
+                    }, 200);
+                });
 
                 return messageDiv;
             }
 
-            // Send message
+            // Optimized send message
             function sendMessage() {
                 const text = chatInput.value.trim();
                 if (!text) return;
 
+                // Disable send button to prevent double-sends
+                chatSendBtn.disabled = true;
+                
                 const newMessage = addMessage(text);
                 if (newMessage) {
                     chatInput.value = '';
-                    loadMessages();
-                    // Update badge count
-                    updateBadge();
+                    updateCharCount();
+                    
+                    // Use requestAnimationFrame for smooth updates
+                    requestAnimationFrame(() => {
+                        loadMessages();
+                        updateBadge();
+                        chatSendBtn.disabled = false;
+                    });
+                } else {
+                    chatSendBtn.disabled = false;
                 }
             }
 
-            // Update badge with unread count (simplified - shows total messages)
+            // Optimized badge update
+            let lastBadgeCount = -1;
             function updateBadge() {
                 const messages = getMessages();
-                if (messages.length > 0 && !isOpen) {
-                    chatBadge.textContent = messages.length > 99 ? '99+' : messages.length;
+                const count = messages.length;
+                
+                // Only update if count changed
+                if (count === lastBadgeCount) return;
+                lastBadgeCount = count;
+                
+                if (count > 0 && !isOpen) {
+                    const displayCount = count > 99 ? '99+' : count.toString();
+                    if (chatBadge.textContent !== displayCount) {
+                        chatBadge.textContent = displayCount;
+                    }
                     chatBadge.classList.remove('hidden');
                 } else {
                     chatBadge.classList.add('hidden');
                 }
             }
 
-            // Event listeners
-            toggleBtn.addEventListener('click', toggleChat);
-            closeBtn.addEventListener('click', toggleChat);
-            chatSendBtn.addEventListener('click', sendMessage);
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
+            // Clear only current user's messages
+            function clearMessages() {
+                // Get translation for confirm dialog
+                const savedLang = localStorage.getItem('ui.lang') || 'en';
+                const translations = {
+                    en: 'Are you sure you want to clear your messages? This will only delete your own messages, not messages from others.',
+                    fr: 'Êtes-vous sûr de vouloir effacer vos messages ? Cela supprimera uniquement vos propres messages, pas ceux des autres.',
+                    es: '¿Estás seguro de que quieres borrar tus mensajes? Esto solo eliminará tus propios mensajes, no los de otros.'
+                };
+                const confirmText = translations[savedLang] || translations.en;
+                
+                if (confirm(confirmText)) {
+                    try {
+                        const user = getCurrentUser();
+                        const allMessages = getMessages();
+                        
+                        // Filter out only the current user's messages
+                        const otherUsersMessages = allMessages.filter(msg => msg.email !== user.email);
+                        
+                        // Save only other users' messages
+                        saveMessages(otherUsersMessages);
+                        
+                        loadMessages();
+                        updateBadge();
+                        
+                        const successMessages = {
+                            en: 'Your messages have been cleared',
+                            fr: 'Vos messages ont été effacés',
+                            es: 'Tus mensajes han sido borrados'
+                        };
+                        toast(successMessages[savedLang] || successMessages.en, 'success');
+                    } catch (error) {
+                        toast('Failed to clear messages', 'error');
+                    }
                 }
-            });
+            }
 
-            // Load messages on init
-            loadMessages();
-            updateBadge();
-
-            // Auto-refresh messages every 2 seconds (simulate real-time)
-            setInterval(() => {
+            // Optimized auto-refresh with throttling
+            let lastMessageCount = 0;
+            let refreshInterval = null;
+            
+            function optimizedRefresh() {
                 if (isOpen) {
-                    loadMessages();
+                    const messages = getMessages();
+                    // Only reload if message count changed
+                    if (messages.length !== lastMessageCount) {
+                        lastMessageCount = messages.length;
+                        loadMessages();
+                    }
                 } else {
                     updateBadge();
                 }
-            }, 2000);
+            }
+            
+            // Use requestAnimationFrame for smooth updates
+            function startRefreshLoop() {
+                if (refreshInterval) clearInterval(refreshInterval);
+                refreshInterval = setInterval(() => {
+                    requestAnimationFrame(optimizedRefresh);
+                }, 3000); // Increased to 3 seconds to reduce load
+            }
+            
+            // Wrapper for toggleChat to track message count
+            function toggleChatWrapper() {
+                toggleChat();
+                if (isOpen) {
+                    lastMessageCount = getMessages().length;
+                }
+            }
+            
+            // Event listeners with optimized handlers
+            toggleBtn.addEventListener('click', toggleChatWrapper, { passive: true });
+            closeBtn.addEventListener('click', toggleChatWrapper, { passive: true });
+            clearBtn?.addEventListener('click', clearMessages, { passive: true });
+            chatSendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            chatInput.addEventListener('input', updateCharCount, { passive: true });
+            
+            // Initialize character count
+            updateCharCount();
+            
+            // Load messages on init
+            loadMessages();
+            updateBadge();
+            
+            // Start refresh loop
+            startRefreshLoop();
+            
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                if (refreshInterval) clearInterval(refreshInterval);
+                if (charCountTimeout) clearTimeout(charCountTimeout);
+            });
 
             // Re-apply translations when language changes
             if (window.applyTranslations) {
