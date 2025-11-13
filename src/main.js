@@ -858,7 +858,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.users.title': 'User Management', 'admin.users.search': 'Search users...', 'admin.users.view': 'View', 'admin.users.delete': 'Delete',
                 'admin.analytics.title': 'Analytics', 'admin.analytics.coursePerformance': 'Course Performance', 'admin.analytics.enrollmentTrends': 'Enrollment Trends',
                 'admin.analytics.recentActivity': 'Recent Activity', 'admin.exportCourses': 'Export Courses', 'admin.exportUsers': 'Export Users',
-                'common.logout': 'Logout'
+                'common.logout': 'Logout',
+                'chat.title': 'Live Chat', 'chat.subtitle': 'Students & Community', 'chat.noMessages': 'No messages yet. Start the conversation!',
+                'chat.inputPlaceholder': 'Type your message...', 'chat.info': 'Everyone can see your messages. Be respectful!'
             },
             fr: {
                 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte',
@@ -877,6 +879,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.users.title': 'Gestion des utilisateurs', 'admin.users.search': 'Rechercher des utilisateurs...', 'admin.users.view': 'Voir', 'admin.users.delete': 'Supprimer',
                 'admin.analytics.title': 'Analyses', 'admin.analytics.coursePerformance': 'Performance des cours', 'admin.analytics.enrollmentTrends': 'Tendances d\'inscription',
                 'admin.analytics.recentActivity': 'Activité récente', 'admin.exportCourses': 'Exporter les cours', 'admin.exportUsers': 'Exporter les utilisateurs',
+                'chat.title': 'Chat en direct', 'chat.subtitle': 'Étudiants et communauté', 'chat.noMessages': 'Aucun message pour le moment. Commencez la conversation !',
+                'chat.inputPlaceholder': 'Tapez votre message...', 'chat.info': 'Tout le monde peut voir vos messages. Soyez respectueux !',
                 'dashboard.welcome': 'Bon retour', 'dashboard.continue': 'Continuez votre parcours d\'apprentissage',
                 'dashboard.browseCourses': 'Parcourir les cours', 'dashboard.takeQuiz': 'Passer un quiz',
                 'dashboard.myCourses': 'Mes cours', 'dashboard.viewAll': 'Voir tout', 'dashboard.recentActivity': 'Activité récente',
@@ -959,6 +963,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'admin.users.title': 'Gestión de usuarios', 'admin.users.search': 'Buscar usuarios...', 'admin.users.view': 'Ver', 'admin.users.delete': 'Eliminar',
                 'admin.analytics.title': 'Analíticas', 'admin.analytics.coursePerformance': 'Rendimiento del curso', 'admin.analytics.enrollmentTrends': 'Tendencias de inscripción',
                 'admin.analytics.recentActivity': 'Actividad reciente', 'admin.exportCourses': 'Exportar cursos', 'admin.exportUsers': 'Exportar usuarios',
+                'chat.title': 'Chat en vivo', 'chat.subtitle': 'Estudiantes y comunidad', 'chat.noMessages': 'Aún no hay mensajes. ¡Inicia la conversación!',
+                'chat.inputPlaceholder': 'Escribe tu mensaje...', 'chat.info': 'Todos pueden ver tus mensajes. ¡Sé respetuoso!',
                 'dashboard.welcome': 'Bienvenido de nuevo', 'dashboard.continue': 'Continúa tu viaje de aprendizaje',
                 'dashboard.browseCourses': 'Explorar cursos', 'dashboard.takeQuiz': 'Hacer un quiz',
                 'dashboard.myCourses': 'Mis cursos', 'dashboard.viewAll': 'Ver todo', 'dashboard.recentActivity': 'Actividad reciente',
@@ -1334,6 +1340,289 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial apply
         applyTranslations(savedLang);
     })();
+
+    // Live Chat Feature
+    (function initLiveChat() {
+        // Chat storage key
+        const CHAT_STORAGE_KEY = 'lms.chat.messages';
+        const MAX_MESSAGES = 100; // Limit stored messages
+
+        // Get current user info
+        function getCurrentUser() {
+            try {
+                const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+                return {
+                    name: auth.name || 'Guest',
+                    email: auth.email || 'guest@example.com',
+                    role: auth.role || 'guest'
+                };
+            } catch {
+                return { name: 'Guest', email: 'guest@example.com', role: 'guest' };
+            }
+        }
+
+        // Get messages from storage
+        function getMessages() {
+            try {
+                return JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        // Save messages to storage
+        function saveMessages(messages) {
+            try {
+                // Keep only last MAX_MESSAGES messages
+                const limited = messages.slice(-MAX_MESSAGES);
+                localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(limited));
+            } catch (error) {
+                console.error('Failed to save chat messages:', error);
+            }
+        }
+
+        // Add a new message
+        function addMessage(text) {
+            if (!text || !text.trim()) return;
+
+            const user = getCurrentUser();
+            const messages = getMessages();
+            const newMessage = {
+                id: 'msg-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+                text: text.trim(),
+                user: user.name,
+                email: user.email,
+                role: user.role,
+                timestamp: new Date().toISOString(),
+                time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+            };
+
+            messages.push(newMessage);
+            saveMessages(messages);
+            return newMessage;
+        }
+
+        // Create chat UI
+        function createChatUI() {
+            // Check if chat already exists
+            if (document.getElementById('liveChatWidget')) return;
+
+            const chatContainer = document.createElement('div');
+            chatContainer.id = 'liveChatWidget';
+            chatContainer.innerHTML = `
+                <!-- Chat Toggle Button -->
+                <button id="chatToggleBtn" 
+                    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center group"
+                    aria-label="Open chat">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    <span id="chatBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center text-white hidden">0</span>
+                </button>
+
+                <!-- Chat Window -->
+                <div id="chatWindow" 
+                    class="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-8rem)] bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col hidden transform transition-all duration-300">
+                    <!-- Chat Header -->
+                    <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-t-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <div>
+                                <h3 class="font-semibold" data-i18n="chat.title">Live Chat</h3>
+                                <p class="text-xs text-violet-100" data-i18n="chat.subtitle">Students & Community</p>
+                            </div>
+                        </div>
+                        <button id="chatCloseBtn" class="text-white hover:text-violet-200 transition-colors" aria-label="Close chat">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Messages Container -->
+                    <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                        <div class="text-center text-sm text-gray-500 py-4" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="p-4 border-t border-gray-200 bg-white rounded-b-lg">
+                        <div class="flex gap-2">
+                            <input type="text" 
+                                id="chatInput" 
+                                placeholder="Type your message..."
+                                data-i18n-placeholder="chat.inputPlaceholder"
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                                maxlength="500">
+                            <button id="chatSendBtn" 
+                                class="px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                aria-label="Send message">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2" data-i18n="chat.info">Everyone can see your messages. Be respectful!</p>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(chatContainer);
+
+            // Initialize Lucide icons for chat
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                setTimeout(() => {
+                    const chatIcons = chatContainer.querySelectorAll('[data-lucide]');
+                    lucide.createIcons({ icons: chatIcons });
+                }, 100);
+            }
+
+            // Chat functionality
+            const toggleBtn = document.getElementById('chatToggleBtn');
+            const closeBtn = document.getElementById('chatCloseBtn');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatInput = document.getElementById('chatInput');
+            const chatSendBtn = document.getElementById('chatSendBtn');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatBadge = document.getElementById('chatBadge');
+
+            let isOpen = false;
+
+            // Toggle chat window
+            function toggleChat() {
+                isOpen = !isOpen;
+                if (isOpen) {
+                    chatWindow.classList.remove('hidden');
+                    chatInput.focus();
+                    loadMessages();
+                    // Hide badge when chat is open
+                    chatBadge.classList.add('hidden');
+                } else {
+                    chatWindow.classList.add('hidden');
+                }
+            }
+
+            // Load and display messages
+            function loadMessages() {
+                const messages = getMessages();
+                chatMessages.innerHTML = '';
+
+                if (messages.length === 0) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'text-center text-sm text-gray-500 py-4';
+                    emptyMsg.setAttribute('data-i18n', 'chat.noMessages');
+                    emptyMsg.textContent = 'No messages yet. Start the conversation!';
+                    chatMessages.appendChild(emptyMsg);
+                    return;
+                }
+
+                messages.forEach(msg => {
+                    const messageEl = createMessageElement(msg);
+                    chatMessages.appendChild(messageEl);
+                });
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Create message element
+            function createMessageElement(msg) {
+                const user = getCurrentUser();
+                const isOwnMessage = msg.email === user.email;
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`;
+
+                const messageContent = document.createElement('div');
+                messageContent.className = `max-w-[75%] ${isOwnMessage ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white' : 'bg-white border border-gray-200'} rounded-lg p-3 shadow-sm`;
+
+                const userName = document.createElement('div');
+                userName.className = `text-xs font-semibold mb-1 ${isOwnMessage ? 'text-violet-100' : 'text-gray-600'}`;
+                userName.textContent = msg.user + (msg.role === 'admin' ? ' 👑' : msg.role === 'student' ? ' 🎓' : '');
+
+                const messageText = document.createElement('div');
+                messageText.className = `text-sm ${isOwnMessage ? 'text-white' : 'text-gray-800'}`;
+                messageText.textContent = msg.text;
+
+                const messageTime = document.createElement('div');
+                messageTime.className = `text-xs mt-1 ${isOwnMessage ? 'text-violet-100' : 'text-gray-500'}`;
+                messageTime.textContent = msg.time;
+
+                messageContent.appendChild(userName);
+                messageContent.appendChild(messageText);
+                messageContent.appendChild(messageTime);
+                messageDiv.appendChild(messageContent);
+
+                return messageDiv;
+            }
+
+            // Send message
+            function sendMessage() {
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                const newMessage = addMessage(text);
+                if (newMessage) {
+                    chatInput.value = '';
+                    loadMessages();
+                    // Update badge count
+                    updateBadge();
+                }
+            }
+
+            // Update badge with unread count (simplified - shows total messages)
+            function updateBadge() {
+                const messages = getMessages();
+                if (messages.length > 0 && !isOpen) {
+                    chatBadge.textContent = messages.length > 99 ? '99+' : messages.length;
+                    chatBadge.classList.remove('hidden');
+                } else {
+                    chatBadge.classList.add('hidden');
+                }
+            }
+
+            // Event listeners
+            toggleBtn.addEventListener('click', toggleChat);
+            closeBtn.addEventListener('click', toggleChat);
+            chatSendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Load messages on init
+            loadMessages();
+            updateBadge();
+
+            // Auto-refresh messages every 2 seconds (simulate real-time)
+            setInterval(() => {
+                if (isOpen) {
+                    loadMessages();
+                } else {
+                    updateBadge();
+                }
+            }, 2000);
+
+            // Re-apply translations when language changes
+            if (window.applyTranslations) {
+                const originalApplyTranslations = window.applyTranslations;
+                window.applyTranslations = function(lang) {
+                    originalApplyTranslations(lang);
+                    // Re-apply translations to chat elements
+                    if (chatContainer && chatContainer.parentElement) {
+                        setTimeout(() => {
+                            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                                const chatIcons = chatContainer.querySelectorAll('[data-lucide]');
+                                lucide.createIcons({ icons: chatIcons });
+                            }
+                        }, 100);
+                    }
+                };
+            }
+        }
+
+        // Initialize chat when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createChatUI);
+        } else {
+            createChatUI();
+        }
+    })();
+
     // Announcement bar (dismissible)
     (function () {
         const key = 'ui.announce.dismissed.v1';
