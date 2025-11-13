@@ -447,7 +447,7 @@
                         Save Course
                     </button>
                     <button type="button" id="cancelModalBtn"
-                        class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                        class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
                         Cancel
                     </button>
                 </div>
@@ -767,7 +767,11 @@
             addBtn?.addEventListener('click', () => openModal());
             addFirstBtn?.addEventListener('click', () => openModal());
             closeBtn?.addEventListener('click', closeModal);
-            cancelBtn?.addEventListener('click', closeModal);
+            cancelBtn?.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closeModal();
+            });
 
             // Form submission
             form.addEventListener('submit', (e) => {

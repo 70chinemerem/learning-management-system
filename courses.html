@@ -625,7 +625,7 @@
                         <i data-lucide="play" class="w-4 h-4"></i>
                         <span>Start now</span>
                     </a>
-                    <button id="previewCancel"
+                    <button type="button" id="previewCancel"
                         class="flex items-center gap-2 border-2 border-gray-200 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition">
                         <i data-lucide="x" class="w-4 h-4"></i>
                         <span>Close</span>
@@ -923,7 +923,11 @@
                     if (card) openFor(card);
                 });
             });
-            [closeBtn, cancelBtn].forEach(b => b && b.addEventListener('click', close));
+            [closeBtn, cancelBtn].forEach(b => b && b.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                close();
+            }));
             modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
         })();

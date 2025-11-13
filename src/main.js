@@ -1509,13 +1509,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                messages.forEach(msg => {
-                    const messageEl = createMessageElement(msg);
+                // Group messages by date
+                let currentDate = '';
+                messages.forEach((msg, index) => {
+                    const msgDate = new Date(msg.timestamp);
+                    const dateStr = msgDate.toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+
+                    // Add date separator if date changed
+                    if (dateStr !== currentDate) {
+                        currentDate = dateStr;
+                        const dateDivider = document.createElement('div');
+                        dateDivider.className = 'flex items-center gap-2 my-4';
+                        const line = document.createElement('div');
+                        line.className = 'flex-1 h-px bg-gray-300';
+                        const dateLabel = document.createElement('div');
+                        dateLabel.className = 'text-xs text-gray-500 px-2';
+                        dateLabel.textContent = dateStr;
+                        const line2 = document.createElement('div');
+                        line2.className = 'flex-1 h-px bg-gray-300';
+                        dateDivider.appendChild(line);
+                        dateDivider.appendChild(dateLabel);
+                        dateDivider.appendChild(line2);
+                        chatMessages.appendChild(dateDivider);
+                    }
+
+                    const messageEl = createMessageElement(msg, index);
                     chatMessages.appendChild(messageEl);
                 });
 
-                // Scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Smooth scroll to bottom
+                setTimeout(() => {
+                    chatMessages.scrollTo({
+                        top: chatMessages.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }
 
             // Create message element
