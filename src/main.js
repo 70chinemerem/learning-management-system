@@ -1889,6 +1889,683 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })();
 
+    // AI Live Chat Feature - Answers questions about the platform (only for logged-in users)
+    (function initAIChat() {
+        // Check if user is logged in
+        function isUserLoggedIn() {
+            try {
+                const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+                return !!(auth.email && auth.role);
+            } catch {
+                return false;
+            }
+        }
+
+        // Don't initialize if user is not logged in
+        if (!isUserLoggedIn()) {
+            return;
+        }
+
+        // AI Chat storage key
+        const AI_CHAT_STORAGE_KEY = 'lms.ai.chat.messages';
+        const MAX_AI_MESSAGES = 50;
+
+        // Knowledge base about the LMS platform
+        const knowledgeBase = {
+            features: {
+                keywords: ['feature', 'features', 'what can', 'what does', 'capabilities', 'functionality', 'what offer'],
+                response: `Our Learning Management System offers powerful features including:
+
+📚 **Course Management** - Create and organize courses with lessons, videos, and assessments
+📝 **Quizzes & Assessments** - Interactive quizzes with instant scoring and feedback
+📊 **Analytics & Reporting** - Track engagement, completion rates, and learner progress
+👥 **User Management** - Role-based access for students, instructors, and admins
+💾 **Save Courses** - Bookmark your favorite courses for easy access
+🌍 **Multi-language Support** - Available in 20+ languages with RTL support
+📱 **Mobile Responsive** - Works seamlessly on all devices
+🎯 **Learning Goals** - Set and track your learning objectives
+🏆 **Achievements** - Earn badges and certificates as you progress
+📈 **Study Streaks** - Build daily learning habits
+⏱️ **Study Timer** - Track your study time
+
+Would you like to know more about any specific feature?`
+            },
+            signup: {
+                keywords: ['sign up', 'signup', 'register', 'create account', 'account', 'join', 'get started'],
+                response: `To create an account:
+
+1. Click on "Sign up" or "Get Started" in the navigation
+2. Fill in your full name, email, and password
+3. Confirm your password
+4. Agree to the terms and privacy policy
+5. Click "Create account"
+
+**Benefits of creating an account:**
+✅ Save your progress across courses
+✅ Track your learning journey
+✅ Save favorite courses
+✅ Set learning goals
+✅ Earn achievements and badges
+✅ Build study streaks
+✅ Access personalized recommendations
+
+It's completely free to start - no credit card required!`
+            },
+            courses: {
+                keywords: ['course', 'courses', 'browse', 'enroll', 'enrollment', 'learn', 'learning'],
+                response: `Our course catalog includes courses across multiple categories:
+
+**How to browse courses:**
+1. Click "Browse courses" in the navigation
+2. Use filters to find courses by category, level, or search by title
+3. Sort by newest, most popular, highest rated, or title
+4. Click on a course to see details and enroll
+
+**Course Features:**
+• Progress tracking
+• Interactive content
+• Quizzes and assessments
+• Completion certificates
+• Save courses for later
+
+You can also view saved courses in the "Saved" section. Would you like help finding a specific course?`
+            },
+            pricing: {
+                keywords: ['price', 'pricing', 'cost', 'free', 'paid', 'subscription', 'money', 'payment'],
+                response: `Our platform is **100% free to start**! 🎉
+
+**Free Tier Includes:**
+✅ Full access to all courses
+✅ Progress tracking
+✅ Quizzes and assessments
+✅ Learning goals and achievements
+✅ Study streaks and timer
+✅ Analytics dashboard
+✅ Multi-language support
+✅ Mobile access
+
+**No credit card required** - you can start learning immediately!
+
+We may offer premium features in the future, but the core learning experience will always remain free.`
+            },
+            help: {
+                keywords: ['help', 'support', 'assistance', 'how', 'guide', 'tutorial'],
+                response: `I'm here to help! I can answer questions about:
+
+• **Features** - What the platform offers
+• **Signing up** - How to create an account
+• **Courses** - How to browse and enroll
+• **Pricing** - Cost and free features
+• **Navigation** - How to use the platform
+• **Account** - Managing your profile
+• **Quizzes** - Taking assessments
+• **Analytics** - Viewing your progress
+
+Just ask me anything about the platform! You can also:
+- Visit the FAQ page for common questions
+- Check the Features page for detailed information
+- Contact support if you need additional help`
+            },
+            navigation: {
+                keywords: ['navigate', 'navigation', 'menu', 'where', 'find', 'location'],
+                response: `Here's how to navigate the platform:
+
+**Main Navigation:**
+• **Features** - See all platform features
+• **Saved** - View your bookmarked courses
+• **Courses** - Browse the course catalog
+• **Quiz** - Take interactive quizzes
+• **Analytics** - View your learning progress
+
+**User Actions:**
+• **Sign in** - Access your account
+• **Sign up** - Create a new account
+• **Dashboard** - Your personal learning hub (after sign in)
+• **Admin Dashboard** - For administrators
+
+**Quick Tips:**
+- Use the search bar on the courses page to find specific content
+- Filter courses by category and level
+- Save courses you're interested in for later
+- Check your dashboard for personalized recommendations
+
+Need help finding something specific?`
+            },
+            account: {
+                keywords: ['account', 'profile', 'settings', 'manage', 'my account', 'dashboard'],
+                response: `Your account gives you access to:
+
+**Dashboard Features:**
+📊 Learning statistics and progress
+🎯 Learning goals you've set
+🏆 Achievements and badges earned
+🔥 Study streak counter
+⏱️ Study timer
+📚 Your enrolled courses
+💡 Personalized course recommendations
+
+**Account Management:**
+- View your learning progress
+- Set and track learning goals
+- See your achievements
+- Manage saved courses
+- Track study time and streaks
+
+**To access your dashboard:**
+1. Sign in to your account
+2. Click "Dashboard" in the navigation
+3. Explore all your learning data
+
+Your progress is automatically saved as you learn!`
+            },
+            quiz: {
+                keywords: ['quiz', 'quizzes', 'test', 'assessment', 'exam', 'question'],
+                response: `Our quiz system offers:
+
+**Features:**
+✅ Interactive quizzes with multiple question types
+✅ Instant feedback on answers
+✅ Auto-grading
+✅ Performance tracking over time
+✅ Score history
+
+**How to take a quiz:**
+1. Click "Quiz" in the navigation
+2. Select a quiz to take
+3. Answer the questions
+4. Submit to see your results
+5. Review your score and feedback
+
+**Quiz Benefits:**
+• Test your knowledge
+• Track improvement over time
+• Identify areas for improvement
+• Earn achievements for high scores
+
+Quizzes are integrated into courses and can also be taken independently. Ready to test your knowledge?`
+            },
+            analytics: {
+                keywords: ['analytics', 'stats', 'statistics', 'progress', 'report', 'data', 'metrics'],
+                response: `Our analytics dashboard provides:
+
+**Key Metrics:**
+📈 Active learners count
+✅ Course completion rates
+⚠️ At-risk students identification
+⏱️ Average session time
+📊 Quiz pass rates
+📚 Enrollment trends
+
+**What You Can Track:**
+• Your learning progress
+• Time spent studying
+• Courses completed
+• Quiz scores
+• Study streaks
+• Goals achieved
+
+**To view analytics:**
+1. Sign in to your account
+2. Click "Analytics" in the navigation
+3. View detailed reports and charts
+
+Analytics help you understand your learning patterns and improve your study habits!`
+            },
+            default: {
+                response: `I'm the AI assistant for this Learning Management System. I can help you with:
+
+• Platform features and capabilities
+• How to sign up or create an account
+• Browsing and enrolling in courses
+• Using quizzes and assessments
+• Understanding analytics and progress
+• Navigation and finding content
+• Account management
+
+Try asking me:
+- "What features do you offer?"
+- "How do I sign up?"
+- "How do I browse courses?"
+- "Is this free?"
+- "What can I do on my dashboard?"
+
+What would you like to know?`
+            }
+        };
+
+        // AI Response Generator
+        function generateAIResponse(userMessage) {
+            const message = userMessage.toLowerCase().trim();
+            
+            // Check each knowledge base category
+            for (const [category, data] of Object.entries(knowledgeBase)) {
+                if (category === 'default') continue;
+                
+                // Check if any keyword matches
+                const matches = data.keywords.some(keyword => 
+                    message.includes(keyword)
+                );
+                
+                if (matches) {
+                    return data.response;
+                }
+            }
+            
+            // Check for greeting
+            const greetings = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'];
+            if (greetings.some(g => message.startsWith(g))) {
+                return `Hello! 👋 I'm your AI assistant for the Learning Management System. I can answer questions about:
+
+• Platform features
+• Signing up
+• Courses and enrollment
+• Quizzes and assessments
+• Analytics and progress
+• Navigation
+
+What would you like to know?`;
+            }
+            
+            // Check for thank you
+            if (message.includes('thank') || message.includes('thanks')) {
+                return `You're welcome! 😊 
+
+Is there anything else you'd like to know about the platform? I'm here to help!`;
+            }
+            
+            // Default response
+            return knowledgeBase.default.response;
+        }
+
+        // Get AI chat messages
+        function getAIMessages() {
+            try {
+                return JSON.parse(localStorage.getItem(AI_CHAT_STORAGE_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        // Save AI chat messages
+        function saveAIMessages(messages) {
+            try {
+                const limited = messages.slice(-MAX_AI_MESSAGES);
+                localStorage.setItem(AI_CHAT_STORAGE_KEY, JSON.stringify(limited));
+            } catch (error) {
+                console.error('Failed to save AI chat messages:', error);
+            }
+        }
+
+        // Create AI Chat UI
+        function createAIChatUI() {
+            // Check if AI chat already exists
+            if (document.getElementById('aiChatWidget')) return;
+
+            const aiChatContainer = document.createElement('div');
+            aiChatContainer.id = 'aiChatWidget';
+            aiChatContainer.innerHTML = `
+                <!-- AI Chat Toggle Button -->
+                <button id="aiChatToggleBtn" 
+                    class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center group backdrop-blur-sm"
+                    aria-label="Open AI chat">
+                    <i data-lucide="bot" class="w-6 h-6"></i>
+                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+                </button>
+
+                <!-- AI Chat Window -->
+                <div id="aiChatWindow" 
+                    class="fixed bottom-24 left-6 z-50 w-[420px] max-w-[calc(100vw-3rem)] h-[640px] max-h-[calc(100vh-8rem)] bg-white rounded-xl shadow-2xl border border-gray-200/50 flex flex-col hidden transform transition-all duration-300 ease-out backdrop-blur-sm"
+                    style="box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+                    <!-- AI Chat Header -->
+                    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200/60 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white rounded-t-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                    <i data-lucide="bot" class="w-6 h-6"></i>
+                                </div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-base">AI Assistant</h3>
+                                <p class="text-xs text-blue-100/90 font-medium">Ask me anything about the platform</p>
+                            </div>
+                        </div>
+                        <button id="aiChatCloseBtn" class="text-white/90 hover:text-white transition-all p-1.5 rounded-lg hover:bg-white/15 active:bg-white/20" aria-label="Close AI chat">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- AI Messages Container -->
+                    <div id="aiChatMessages" class="flex-1 overflow-y-auto px-5 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+                        <style>
+                            #aiChatMessages::-webkit-scrollbar {
+                                width: 6px;
+                            }
+                            #aiChatMessages::-webkit-scrollbar-track {
+                                background: transparent;
+                            }
+                            #aiChatMessages::-webkit-scrollbar-thumb {
+                                background-color: rgba(156, 163, 175, 0.5);
+                                border-radius: 3px;
+                            }
+                            #aiChatMessages::-webkit-scrollbar-thumb:hover {
+                                background-color: rgba(156, 163, 175, 0.7);
+                            }
+                        </style>
+                        <div class="text-center text-sm text-gray-500 py-8">
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                                <i data-lucide="bot" class="w-8 h-8 text-blue-600"></i>
+                            </div>
+                            <p class="font-semibold text-gray-700 mb-2">Hello! I'm your AI assistant</p>
+                            <p class="text-gray-600">Ask me anything about the platform, features, courses, or how to get started!</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Chat Input -->
+                    <div class="px-5 py-4 border-t border-gray-200/60 bg-white rounded-b-xl">
+                        <div class="flex gap-2.5 items-end">
+                            <div class="flex-1 relative">
+                                <input type="text" 
+                                    id="aiChatInput" 
+                                    placeholder="Ask me anything about the platform..."
+                                    class="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all bg-gray-50 focus:bg-white text-sm"
+                                    maxlength="500">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" id="aiCharCount">0/500</span>
+                            </div>
+                            <button id="aiChatSendBtn" 
+                                class="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-500 hover:to-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center min-w-[44px]"
+                                aria-label="Send message">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2.5 flex items-center gap-1.5">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            <span>Powered by AI • Ask about features, courses, signup, and more</span>
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(aiChatContainer);
+
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                setTimeout(() => {
+                    const aiIcons = aiChatContainer.querySelectorAll('[data-lucide]');
+                    lucide.createIcons({ icons: aiIcons });
+                }, 100);
+            }
+
+            // AI Chat functionality
+            const aiToggleBtn = document.getElementById('aiChatToggleBtn');
+            const aiCloseBtn = document.getElementById('aiChatCloseBtn');
+            const aiChatWindow = document.getElementById('aiChatWindow');
+            const aiChatInput = document.getElementById('aiChatInput');
+            const aiChatSendBtn = document.getElementById('aiChatSendBtn');
+            const aiChatMessages = document.getElementById('aiChatMessages');
+            const aiCharCount = document.getElementById('aiCharCount');
+
+            let aiIsOpen = false;
+
+            // Toggle AI chat
+            function toggleAIChat() {
+                aiIsOpen = !aiIsOpen;
+                if (aiIsOpen) {
+                    aiChatWindow.classList.remove('hidden');
+                    aiChatWindow.style.willChange = 'opacity, transform';
+                    aiChatWindow.style.opacity = '0';
+                    aiChatWindow.style.transform = 'translateY(20px) scale(0.95)';
+                    requestAnimationFrame(() => {
+                        aiChatWindow.style.transition = 'opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+                        aiChatWindow.style.opacity = '1';
+                        aiChatWindow.style.transform = 'translateY(0) scale(1)';
+                        setTimeout(() => {
+                            aiChatWindow.style.willChange = 'auto';
+                        }, 250);
+                    });
+                    requestAnimationFrame(() => {
+                        aiChatInput.focus();
+                        loadAIMessages();
+                    });
+                } else {
+                    aiChatWindow.style.willChange = 'opacity, transform';
+                    aiChatWindow.style.transition = 'opacity 0.2s ease-in, transform 0.2s ease-in';
+                    aiChatWindow.style.opacity = '0';
+                    aiChatWindow.style.transform = 'translateY(20px) scale(0.95)';
+                    setTimeout(() => {
+                        aiChatWindow.classList.add('hidden');
+                        aiChatWindow.style.willChange = 'auto';
+                    }, 200);
+                }
+            }
+
+            // Load AI messages
+            function loadAIMessages() {
+                const messages = getAIMessages();
+                aiChatMessages.innerHTML = '';
+
+                if (messages.length === 0) {
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.className = 'text-center text-sm text-gray-500 py-8';
+                    welcomeMsg.innerHTML = `
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                            <i data-lucide="bot" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <p class="font-semibold text-gray-700 mb-2">Hello! I'm your AI assistant</p>
+                        <p class="text-gray-600">Ask me anything about the platform, features, courses, or how to get started!</p>
+                    `;
+                    aiChatMessages.appendChild(welcomeMsg);
+                    if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                        lucide.createIcons();
+                    }
+                    return;
+                }
+
+                const fragment = document.createDocumentFragment();
+                messages.forEach((msg) => {
+                    const messageEl = createAIMessageElement(msg);
+                    fragment.appendChild(messageEl);
+                });
+                aiChatMessages.appendChild(fragment);
+
+                requestAnimationFrame(() => {
+                    aiChatMessages.scrollTo({
+                        top: aiChatMessages.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Create AI message element
+            function createAIMessageElement(msg) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex gap-3 ${msg.type === 'user' ? 'justify-end' : 'justify-start'} mb-4 group`;
+
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = `flex flex-col ${msg.type === 'user' ? 'items-end' : 'items-start'} max-w-[85%]`;
+
+                if (msg.type === 'ai') {
+                    // AI avatar
+                    const avatar = document.createElement('div');
+                    avatar.className = 'w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0 shadow-md ring-2 ring-white mb-1';
+                    avatar.innerHTML = '<i data-lucide="bot" class="w-4 h-4"></i>';
+                    messageWrapper.appendChild(avatar);
+                }
+
+                const messageContent = document.createElement('div');
+                messageContent.className = `${msg.type === 'user' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md' : 'bg-white border border-gray-200/80 shadow-sm'} rounded-2xl ${msg.type === 'user' ? 'rounded-br-md' : 'rounded-bl-md'} px-4 py-3 hover:shadow-md transition-all`;
+
+                const messageText = document.createElement('div');
+                messageText.className = `text-sm leading-relaxed ${msg.type === 'user' ? 'text-white' : 'text-gray-800'} break-words whitespace-pre-wrap`;
+                messageText.textContent = msg.text;
+
+                const messageTime = document.createElement('div');
+                messageTime.className = `text-xs mt-2 flex items-center gap-1 ${msg.type === 'user' ? 'text-blue-100/90' : 'text-gray-500'}`;
+                messageTime.innerHTML = `<span>${msg.time}</span>`;
+
+                messageContent.appendChild(messageText);
+                messageContent.appendChild(messageTime);
+                messageWrapper.appendChild(messageContent);
+                messageDiv.appendChild(messageWrapper);
+
+                // Animation
+                messageDiv.style.willChange = 'opacity, transform';
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(10px)';
+                requestAnimationFrame(() => {
+                    messageDiv.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
+                    messageDiv.style.opacity = '1';
+                    messageDiv.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        messageDiv.style.willChange = 'auto';
+                    }, 200);
+                });
+
+                // Initialize icons for AI messages
+                if (msg.type === 'ai' && typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    setTimeout(() => lucide.createIcons(), 50);
+                }
+
+                return messageDiv;
+            }
+
+            // Send message to AI
+            function sendAIMessage() {
+                const text = aiChatInput.value.trim();
+                if (!text) return;
+
+                aiChatSendBtn.disabled = true;
+
+                // Add user message
+                const userMessage = {
+                    id: 'ai-msg-' + Date.now() + '-user',
+                    text: text,
+                    type: 'user',
+                    timestamp: new Date().toISOString(),
+                    time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+                };
+
+                const messages = getAIMessages();
+                messages.push(userMessage);
+                saveAIMessages(messages);
+                loadAIMessages();
+
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'flex gap-3 justify-start mb-4';
+                typingIndicator.innerHTML = `
+                    <div class="flex flex-col items-start">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0 shadow-md ring-2 ring-white mb-1">
+                            <i data-lucide="bot" class="w-4 h-4"></i>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
+                            <div class="flex gap-1">
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                aiChatMessages.appendChild(typingIndicator);
+                aiChatMessages.scrollTo({ top: aiChatMessages.scrollHeight, behavior: 'smooth' });
+
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    lucide.createIcons();
+                }
+
+                // Generate AI response (simulate thinking time)
+                setTimeout(() => {
+                    typingIndicator.remove();
+                    const aiResponse = generateAIResponse(text);
+                    
+                    const aiMessage = {
+                        id: 'ai-msg-' + Date.now() + '-ai',
+                        text: aiResponse,
+                        type: 'ai',
+                        timestamp: new Date().toISOString(),
+                        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+                    };
+
+                    messages.push(aiMessage);
+                    saveAIMessages(messages);
+                    loadAIMessages();
+                    aiChatInput.value = '';
+                    updateAICharCount();
+                    aiChatSendBtn.disabled = false;
+                }, 800 + Math.random() * 400); // 800-1200ms delay
+            }
+
+            // Update character count
+            let aiCharCountTimeout = null;
+            function updateAICharCount() {
+                if (!aiCharCount) return;
+                if (aiCharCountTimeout) clearTimeout(aiCharCountTimeout);
+                aiCharCountTimeout = setTimeout(() => {
+                    const count = aiChatInput.value.length;
+                    aiCharCount.textContent = `${count}/500`;
+                    if (count > 450) {
+                        aiCharCount.classList.add('text-orange-500');
+                        aiCharCount.classList.remove('text-gray-400');
+                    } else {
+                        aiCharCount.classList.remove('text-orange-500');
+                        aiCharCount.classList.add('text-gray-400');
+                    }
+                }, 100);
+            }
+
+            // Event listeners
+            aiToggleBtn.addEventListener('click', toggleAIChat, { passive: true });
+            aiCloseBtn.addEventListener('click', toggleAIChat, { passive: true });
+            aiChatSendBtn.addEventListener('click', sendAIMessage);
+            aiChatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAIMessage();
+                }
+            });
+            aiChatInput.addEventListener('input', updateAICharCount, { passive: true });
+
+            // Initialize
+            updateAICharCount();
+            loadAIMessages();
+        }
+
+        // Initialize AI chat when DOM is ready
+        function initializeAIChat() {
+            // Check authentication again before creating UI
+            if (isUserLoggedIn()) {
+                createAIChatUI();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeAIChat);
+        } else {
+            initializeAIChat();
+        }
+
+        // Monitor authentication changes (e.g., after login/logout)
+        // Check periodically if chat should be shown/hidden
+        let lastAuthState = isUserLoggedIn();
+        setInterval(() => {
+            const currentAuthState = isUserLoggedIn();
+            const aiChatWidget = document.getElementById('aiChatWidget');
+            
+            if (currentAuthState !== lastAuthState) {
+                lastAuthState = currentAuthState;
+                
+                if (currentAuthState && !aiChatWidget) {
+                    // User just logged in - create chat
+                    createAIChatUI();
+                } else if (!currentAuthState && aiChatWidget) {
+                    // User just logged out - remove chat
+                    aiChatWidget.remove();
+                }
+            }
+        }, 1000); // Check every second
+    })();
+
     // Announcement bar (dismissible)
     (function () {
         const key = 'ui.announce.dismissed.v1';
