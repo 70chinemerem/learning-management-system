@@ -1397,11 +1397,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentPage = window.location.pathname.split('/').pop() || window.location.href;
         const isDashboard = currentPage === 'dashboard.html' || currentPage.includes('dashboard.html');
         const isAdmin = currentPage === 'admin.html' || currentPage.includes('admin.html');
-        
+
         if (!isDashboard && !isAdmin) {
             return; // Don't initialize chat on other pages
         }
-        
+
         // Check if user is admin
         function isAdminUser() {
             try {
@@ -1411,7 +1411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return false;
             }
         }
-        
+
         const isAdminMode = isAdminUser();
 
         // Chat storage key
@@ -1498,7 +1498,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const todayMessages = messages.filter(msg => new Date(msg.timestamp) >= today);
-            
+
             return {
                 totalMessages: messages.length,
                 totalUsers: users.length,
@@ -1522,7 +1522,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const chatSection = document.createElement('section');
             chatSection.id = 'liveChatSection';
             chatSection.className = 'mb-8 mt-12';
-            
+
             // Admin mode: Advanced chat interface
             if (isAdminMode) {
                 chatSection.innerHTML = `
@@ -2102,7 +2102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const searchInput = document.getElementById('chatSearchInput');
                 const filterRole = document.getElementById('chatFilterRole');
                 const filterUser = document.getElementById('chatFilterUser');
-                
+
                 if (!isAdminMode) {
                     loadMessages();
                     return;
@@ -2114,7 +2114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Search filter
                 if (searchInput && searchInput.value.trim()) {
                     const searchTerm = searchInput.value.toLowerCase();
-                    filtered = filtered.filter(msg => 
+                    filtered = filtered.filter(msg =>
                         msg.text.toLowerCase().includes(searchTerm) ||
                         msg.user.toLowerCase().includes(searchTerm) ||
                         msg.email.toLowerCase().includes(searchTerm)
@@ -2196,7 +2196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const stats = getChatStats();
                 const users = getUniqueUsers();
-                
+
                 content.innerHTML = `
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
