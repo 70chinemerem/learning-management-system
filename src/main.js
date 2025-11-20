@@ -47,21 +47,26 @@ function toast(message, type = 'info') {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Authentication functions
-function authenticateUser(email, password) {
+// Make authenticateUser globally accessible for demo login button
+window.authenticateUser = function authenticateUser(email, password) {
     try {
         // Get all registered users
         const users = JSON.parse(localStorage.getItem('users') || '[]');
+        console.log('Attempting to authenticate:', email);
+        console.log('Total users in storage:', users.length);
 
         // Find user by email
         const user = users.find(u => u.email === email);
 
         if (!user) {
+            console.log('User not found:', email);
             toast('Invalid email or password', 'error');
             return false;
         }
 
         // In a real app, passwords would be hashed. For demo, we check plain text.
         if (user.password !== password) {
+            console.log('Password mismatch for user:', email);
             toast('Invalid email or password', 'error');
             return false;
         }
@@ -74,6 +79,7 @@ function authenticateUser(email, password) {
             loginTime: new Date().toISOString()
         };
         localStorage.setItem('auth', JSON.stringify(authData));
+        console.log('Authentication successful:', authData);
 
         toast('Signed in successfully', 'success');
 
@@ -88,10 +94,11 @@ function authenticateUser(email, password) {
 
         return true;
     } catch (error) {
+        console.error('Authentication error:', error);
         toast('An error occurred. Please try again.', 'error');
         return false;
     }
-}
+};
 
 function registerUser(name, email, password) {
     try {
@@ -142,7 +149,12 @@ function registerUser(name, email, password) {
 
 function bindSignin() {
     const form = getEl('signinForm');
-    if (!form) return;
+    if (!form) {
+        console.log('Signin form not found');
+        return;
+    }
+    console.log('Signin form found, binding events...');
+
     const email = getEl('email');
     const emailError = getEl('emailError');
     const password = getEl('password');
@@ -150,6 +162,11 @@ function bindSignin() {
     const toggle = getEl('togglePassword');
     const remember = getEl('rememberMe');
     const submit = getEl('signinSubmit');
+
+    if (!email || !password || !submit) {
+        console.error('Required form elements not found');
+        return;
+    }
 
     // Prefill remember me
     try {
@@ -167,12 +184,34 @@ function bindSignin() {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        console.log('Form submitted');
+
         let ok = true;
-        if (!emailRegex.test(email.value)) { emailError.classList.remove('hidden'); ok = false; } else { emailError.classList.add('hidden'); }
-        if (!password.value) { passwordError.classList.remove('hidden'); ok = false; } else { passwordError.classList.add('hidden'); }
-        if (!ok) { toast('Please fix the errors', 'error'); return; }
-        submit.disabled = true; submit.classList.add('opacity-60');
-        try { remember.checked ? localStorage.setItem('auth.rememberEmail', email.value) : localStorage.removeItem('auth.rememberEmail'); } catch { }
+        if (!emailRegex.test(email.value)) {
+            emailError.classList.remove('hidden');
+            ok = false;
+        } else {
+            emailError.classList.add('hidden');
+        }
+
+        if (!password.value) {
+            passwordError.classList.remove('hidden');
+            ok = false;
+        } else {
+            passwordError.classList.add('hidden');
+        }
+
+        if (!ok) {
+            toast('Please fix the errors', 'error');
+            return;
+        }
+
+        submit.disabled = true;
+        submit.classList.add('opacity-60');
+
+        try {
+            remember.checked ? localStorage.setItem('auth.rememberEmail', email.value) : localStorage.removeItem('auth.rememberEmail');
+        } catch { }
 
         // Authenticate user
         const success = authenticateUser(email.value, password.value);
@@ -181,6 +220,8 @@ function bindSignin() {
             submit.classList.remove('opacity-60');
         }
     });
+
+    console.log('Signin form events bound successfully');
 }
 
 function bindSignup() {
@@ -236,7 +277,7 @@ function bindSignup() {
 function initDefaultAdmin() {
     try {
         const users = JSON.parse(localStorage.getItem('users') || '[]');
-        const adminExists = users.find(u => u.role === 'admin');
+        const adminExists = users.find(u => u.role === 'admin' && u.email === 'admin@lms.com');
 
         if (!adminExists) {
             const defaultAdmin = {
@@ -249,6 +290,9 @@ function initDefaultAdmin() {
             };
             users.push(defaultAdmin);
             localStorage.setItem('users', JSON.stringify(users));
+            console.log('Default admin user created:', defaultAdmin.email);
+        } else {
+            console.log('Admin user already exists');
         }
     } catch (error) {
         console.error('Error initializing default admin:', error);
@@ -861,7 +905,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'common.logout': 'Logout',
                 'chat.title': 'Live Chat', 'chat.subtitle': 'Students & Community', 'chat.noMessages': 'No messages yet. Start the conversation!',
                 'chat.inputPlaceholder': 'Type your message...', 'chat.info': 'Everyone can see your messages. Be respectful!',
-                'chat.clearMessages': 'Clear all messages', 'chat.confirmClear': 'Are you sure you want to clear all messages?'
+                'chat.clearMessages': 'Clear all messages', 'chat.confirmClear': 'Are you sure you want to clear all messages?',
+                'chat.clear': 'Clear'
             },
             fr: {
                 'nav.features': 'Fonctionnalités', 'nav.saved': 'Favoris', 'nav.signin': 'Se connecter', 'nav.signup': 'Créer un compte',
@@ -883,6 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'chat.title': 'Chat en direct', 'chat.subtitle': 'Étudiants et communauté', 'chat.noMessages': 'Aucun message pour le moment. Commencez la conversation !',
                 'chat.inputPlaceholder': 'Tapez votre message...', 'chat.info': 'Tout le monde peut voir vos messages. Soyez respectueux !',
                 'chat.clearMessages': 'Effacer tous les messages', 'chat.confirmClear': 'Êtes-vous sûr de vouloir effacer tous les messages ?',
+                'chat.clear': 'Effacer',
                 'dashboard.welcome': 'Bon retour', 'dashboard.continue': 'Continuez votre parcours d\'apprentissage',
                 'dashboard.browseCourses': 'Parcourir les cours', 'dashboard.takeQuiz': 'Passer un quiz',
                 'dashboard.myCourses': 'Mes cours', 'dashboard.viewAll': 'Voir tout', 'dashboard.recentActivity': 'Activité récente',
@@ -968,6 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'chat.title': 'Chat en vivo', 'chat.subtitle': 'Estudiantes y comunidad', 'chat.noMessages': 'Aún no hay mensajes. ¡Inicia la conversación!',
                 'chat.inputPlaceholder': 'Escribe tu mensaje...', 'chat.info': 'Todos pueden ver tus mensajes. ¡Sé respetuoso!',
                 'chat.clearMessages': 'Borrar todos los mensajes', 'chat.confirmClear': '¿Estás seguro de que quieres borrar todos los mensajes?',
+                'chat.clear': 'Borrar',
                 'dashboard.welcome': 'Bienvenido de nuevo', 'dashboard.continue': 'Continúa tu viaje de aprendizaje',
                 'dashboard.browseCourses': 'Explorar cursos', 'dashboard.takeQuiz': 'Hacer un quiz',
                 'dashboard.myCourses': 'Mis cursos', 'dashboard.viewAll': 'Ver todo', 'dashboard.recentActivity': 'Actividad reciente',
@@ -1344,8 +1391,29 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTranslations(savedLang);
     })();
 
-    // Live Chat Feature
+    // Live Chat Feature (dashboard and admin pages)
     (function initLiveChat() {
+        // Only initialize chat on dashboard or admin pages
+        const currentPage = window.location.pathname.split('/').pop() || window.location.href;
+        const isDashboard = currentPage === 'dashboard.html' || currentPage.includes('dashboard.html');
+        const isAdmin = currentPage === 'admin.html' || currentPage.includes('admin.html');
+        
+        if (!isDashboard && !isAdmin) {
+            return; // Don't initialize chat on other pages
+        }
+        
+        // Check if user is admin
+        function isAdminUser() {
+            try {
+                const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+                return auth.role === 'admin';
+            } catch {
+                return false;
+            }
+        }
+        
+        const isAdminMode = isAdminUser();
+
         // Chat storage key
         const CHAT_STORAGE_KEY = 'lms.chat.messages';
         const MAX_MESSAGES = 100; // Limit stored messages
@@ -1405,6 +1473,41 @@ document.addEventListener('DOMContentLoaded', () => {
             return newMessage;
         }
 
+        // Get unique users from messages
+        function getUniqueUsers() {
+            const messages = getMessages();
+            const userMap = new Map();
+            messages.forEach(msg => {
+                if (!userMap.has(msg.email)) {
+                    userMap.set(msg.email, {
+                        name: msg.user,
+                        email: msg.email,
+                        role: msg.role,
+                        messageCount: 0
+                    });
+                }
+                userMap.get(msg.email).messageCount++;
+            });
+            return Array.from(userMap.values());
+        }
+
+        // Get chat statistics
+        function getChatStats() {
+            const messages = getMessages();
+            const users = getUniqueUsers();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayMessages = messages.filter(msg => new Date(msg.timestamp) >= today);
+            
+            return {
+                totalMessages: messages.length,
+                totalUsers: users.length,
+                todayMessages: todayMessages.length,
+                adminMessages: messages.filter(m => m.role === 'admin').length,
+                studentMessages: messages.filter(m => m.role === 'student').length
+            };
+        }
+
         // Create chat UI as a page section
         function createChatUI() {
             // Check if chat already exists
@@ -1419,73 +1522,212 @@ document.addEventListener('DOMContentLoaded', () => {
             const chatSection = document.createElement('section');
             chatSection.id = 'liveChatSection';
             chatSection.className = 'mb-8 mt-12';
-            chatSection.innerHTML = `
-                <!-- Chat Section Container -->
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
-                    <!-- Chat Header -->
-                    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200/60 bg-gradient-to-r from-violet-600 via-violet-600 to-purple-600 text-white">
-                        <div class="flex items-center gap-3">
-                            <div class="relative">
-                                <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
-                                <div class="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping opacity-75"></div>
+            
+            // Admin mode: Advanced chat interface
+            if (isAdminMode) {
+                chatSection.innerHTML = `
+                    <!-- Advanced Admin Chat Container -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
+                        <!-- Admin Chat Header -->
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200/60 bg-gradient-to-r from-red-600 via-red-600 to-orange-600 text-white">
+                            <div class="flex items-center gap-3">
+                                <div class="relative">
+                                    <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
+                                    <div class="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                                </div>
+                                <div>
+                                    <h2 class="font-semibold text-xl flex items-center gap-2">
+                                        <span>Admin Chat Control</span>
+                                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">ADMIN</span>
+                                    </h2>
+                                    <p class="text-sm text-red-100/90 font-medium">Moderation & Analytics Dashboard</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 class="font-semibold text-xl" data-i18n="chat.title">Live Chat</h2>
-                                <p class="text-sm text-violet-100/90 font-medium" data-i18n="chat.subtitle">Students & Community</p>
+                            <div class="flex items-center gap-2">
+                                <button id="chatStatsBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
+                                    aria-label="View statistics" title="View chat statistics">
+                                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+                                </button>
+                                <button id="chatExportBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
+                                    aria-label="Export messages" title="Export all messages">
+                                    <i data-lucide="download" class="w-4 h-4"></i>
+                                </button>
+                                <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
+                                    aria-label="Clear messages" title="Clear all messages">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    <span class="text-sm font-medium">Clear</span>
+                                </button>
                             </div>
                         </div>
-                        <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
-                            aria-label="Clear messages" title="Clear all messages">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            <span class="text-sm font-medium" data-i18n="chat.clear">Clear</span>
-                        </button>
-                    </div>
 
-                    <!-- Messages Container -->
-                    <div id="chatMessages" class="h-[500px] overflow-y-auto px-6 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
-                        <style>
-                            #chatMessages::-webkit-scrollbar {
-                                width: 6px;
-                            }
-                            #chatMessages::-webkit-scrollbar-track {
-                                background: transparent;
-                            }
-                            #chatMessages::-webkit-scrollbar-thumb {
-                                background-color: rgba(156, 163, 175, 0.5);
-                                border-radius: 3px;
-                            }
-                            #chatMessages::-webkit-scrollbar-thumb:hover {
-                                background-color: rgba(156, 163, 175, 0.7);
-                            }
-                        </style>
-                        <div class="text-center text-sm text-gray-500 py-8" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
-                    </div>
-
-                    <!-- Chat Input -->
-                    <div class="px-6 py-4 border-t border-gray-200/60 bg-white">
-                        <div class="flex gap-2.5 items-end">
-                            <div class="flex-1 relative">
+                        <!-- Admin Controls Bar -->
+                        <div class="px-6 py-3 border-b border-gray-200/60 bg-gray-50 flex flex-wrap items-center gap-3">
+                            <div class="flex-1 min-w-[200px]">
                                 <input type="text" 
-                                    id="chatInput" 
-                                    placeholder="Type your message..."
-                                    data-i18n-placeholder="chat.inputPlaceholder"
-                                    class="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all bg-gray-50 focus:bg-white text-sm"
-                                    maxlength="500">
-                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" id="charCount">0/500</span>
+                                    id="chatSearchInput" 
+                                    placeholder="Search messages..."
+                                    class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all bg-white">
                             </div>
-                            <button id="chatSendBtn" 
-                                class="px-4 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center min-w-[44px]"
-                                aria-label="Send message">
-                                <i data-lucide="send" class="w-5 h-5"></i>
+                            <select id="chatFilterRole" class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 bg-white">
+                                <option value="all">All Roles</option>
+                                <option value="admin">Admin Only</option>
+                                <option value="student">Students Only</option>
+                            </select>
+                            <select id="chatFilterUser" class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 bg-white">
+                                <option value="all">All Users</option>
+                            </select>
+                            <button id="chatToggleUsers" class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition-all bg-white flex items-center gap-2">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                <span>Users</span>
                             </button>
                         </div>
-                        <p class="text-xs text-gray-500 mt-2.5 flex items-center gap-1.5" data-i18n="chat.info">
-                            <i data-lucide="info" class="w-3.5 h-3.5"></i>
-                            <span>Everyone can see your messages. Be respectful!</span>
-                        </p>
+
+                        <div class="flex">
+                            <!-- User List Sidebar (Admin Only) -->
+                            <div id="chatUsersSidebar" class="hidden w-64 border-r border-gray-200/60 bg-gray-50 flex flex-col">
+                                <div class="px-4 py-3 border-b border-gray-200/60 bg-white">
+                                    <h3 class="font-semibold text-sm text-gray-700">Active Users</h3>
+                                    <p class="text-xs text-gray-500 mt-1" id="chatUsersCount">0 users</p>
+                                </div>
+                                <div id="chatUsersList" class="flex-1 overflow-y-auto p-2">
+                                    <!-- User list will be populated here -->
+                                </div>
+                            </div>
+
+                            <!-- Main Chat Area -->
+                            <div class="flex-1 flex flex-col">
+                                <!-- Messages Container -->
+                                <div id="chatMessages" class="h-[500px] overflow-y-auto px-6 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+                                    <style>
+                                        #chatMessages::-webkit-scrollbar {
+                                            width: 6px;
+                                        }
+                                        #chatMessages::-webkit-scrollbar-track {
+                                            background: transparent;
+                                        }
+                                        #chatMessages::-webkit-scrollbar-thumb {
+                                            background-color: rgba(156, 163, 175, 0.5);
+                                            border-radius: 3px;
+                                        }
+                                        #chatMessages::-webkit-scrollbar-thumb:hover {
+                                            background-color: rgba(156, 163, 175, 0.7);
+                                        }
+                                    </style>
+                                    <div class="text-center text-sm text-gray-500 py-8" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
+                                </div>
+
+                                <!-- Chat Input -->
+                                <div class="px-6 py-4 border-t border-gray-200/60 bg-white">
+                                    <div class="flex gap-2.5 items-end">
+                                        <div class="flex-1 relative">
+                                            <input type="text" 
+                                                id="chatInput" 
+                                                placeholder="Type your message or announcement..."
+                                                data-i18n-placeholder="chat.inputPlaceholder"
+                                                class="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all bg-gray-50 focus:bg-white text-sm"
+                                                maxlength="500">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" id="charCount">0/500</span>
+                                        </div>
+                                        <button id="chatSendBtn" 
+                                            class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg hover:from-red-500 hover:to-orange-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center min-w-[44px]"
+                                            aria-label="Send message">
+                                            <i data-lucide="send" class="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-2.5 flex items-center gap-1.5">
+                                        <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                                        <span>Admin mode: You can moderate messages and view analytics</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `;
+
+                    <!-- Statistics Modal -->
+                    <div id="chatStatsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+                            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+                                <h3 class="font-semibold text-lg">Chat Statistics</h3>
+                                <button id="chatStatsClose" class="text-white/90 hover:text-white transition-all p-1 rounded-lg hover:bg-white/15">
+                                    <i data-lucide="x" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div id="chatStatsContent" class="p-6">
+                                <!-- Stats will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Regular user mode: Simple chat interface
+                chatSection.innerHTML = `
+                    <!-- Chat Section Container -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
+                        <!-- Chat Header -->
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200/60 bg-gradient-to-r from-violet-600 via-violet-600 to-purple-600 text-white">
+                            <div class="flex items-center gap-3">
+                                <div class="relative">
+                                    <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
+                                    <div class="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                                </div>
+                                <div>
+                                    <h2 class="font-semibold text-xl" data-i18n="chat.title">Live Chat</h2>
+                                    <p class="text-sm text-violet-100/90 font-medium" data-i18n="chat.subtitle">Students & Community</p>
+                                </div>
+                            </div>
+                            <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
+                                aria-label="Clear messages" title="Clear all messages">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                <span class="text-sm font-medium" data-i18n="chat.clear">Clear</span>
+                            </button>
+                        </div>
+
+                        <!-- Messages Container -->
+                        <div id="chatMessages" class="h-[500px] overflow-y-auto px-6 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+                            <style>
+                                #chatMessages::-webkit-scrollbar {
+                                    width: 6px;
+                                }
+                                #chatMessages::-webkit-scrollbar-track {
+                                    background: transparent;
+                                }
+                                #chatMessages::-webkit-scrollbar-thumb {
+                                    background-color: rgba(156, 163, 175, 0.5);
+                                    border-radius: 3px;
+                                }
+                                #chatMessages::-webkit-scrollbar-thumb:hover {
+                                    background-color: rgba(156, 163, 175, 0.7);
+                                }
+                            </style>
+                            <div class="text-center text-sm text-gray-500 py-8" data-i18n="chat.noMessages">No messages yet. Start the conversation!</div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="px-6 py-4 border-t border-gray-200/60 bg-white">
+                            <div class="flex gap-2.5 items-end">
+                                <div class="flex-1 relative">
+                                    <input type="text" 
+                                        id="chatInput" 
+                                        placeholder="Type your message..."
+                                        data-i18n-placeholder="chat.inputPlaceholder"
+                                        class="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all bg-gray-50 focus:bg-white text-sm"
+                                        maxlength="500">
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" id="charCount">0/500</span>
+                                </div>
+                                <button id="chatSendBtn" 
+                                    class="px-4 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center min-w-[44px]"
+                                    aria-label="Send message">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2.5 flex items-center gap-1.5" data-i18n="chat.info">
+                                <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                                <span>Everyone can see your messages. Be respectful!</span>
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
 
             // Insert chat section into main content or body
             if (main) {
@@ -1497,34 +1739,28 @@ document.addEventListener('DOMContentLoaded', () => {
             // Initialize Lucide icons for chat
             if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
                 setTimeout(() => {
-                    const chatIcons = chatContainer.querySelectorAll('[data-lucide]');
+                    const chatIcons = chatSection.querySelectorAll('[data-lucide]');
                     lucide.createIcons({ icons: chatIcons });
                 }, 100);
             }
 
             // Chat functionality
-            const toggleBtn = document.getElementById('chatToggleBtn');
-            const closeBtn = document.getElementById('chatCloseBtn');
             const clearBtn = document.getElementById('chatClearBtn');
-            const chatWindow = document.getElementById('chatWindow');
             const chatInput = document.getElementById('chatInput');
             const chatSendBtn = document.getElementById('chatSendBtn');
             const chatMessages = document.getElementById('chatMessages');
-            const chatBadge = document.getElementById('chatBadge');
             const charCount = document.getElementById('charCount');
-
-            let isOpen = false;
 
             // Throttled character count update
             let charCountTimeout = null;
             function updateCharCount() {
                 if (!charCount) return;
-                
+
                 // Debounce to avoid excessive updates
                 if (charCountTimeout) {
                     clearTimeout(charCountTimeout);
                 }
-                
+
                 charCountTimeout = setTimeout(() => {
                     const count = chatInput.value.length;
                     charCount.textContent = `${count}/500`;
@@ -1538,53 +1774,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 100);
             }
 
-            // Optimized toggle with GPU acceleration
-            function toggleChat() {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    chatWindow.classList.remove('hidden');
-                    chatWindow.style.willChange = 'opacity, transform';
-                    chatWindow.style.opacity = '0';
-                    chatWindow.style.transform = 'translateY(20px) scale(0.95)';
-                    requestAnimationFrame(() => {
-                        chatWindow.style.transition = 'opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-                        chatWindow.style.opacity = '1';
-                        chatWindow.style.transform = 'translateY(0) scale(1)';
-                        setTimeout(() => {
-                            chatWindow.style.willChange = 'auto';
-                        }, 250);
-                    });
-                    requestAnimationFrame(() => {
+            // Focus input when section is visible
+            function focusChatInput() {
+                if (chatInput && document.getElementById('liveChatSection')) {
+                    const rect = chatSection.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                    if (isVisible) {
                         chatInput.focus();
-                        loadMessages();
-                    });
-                    // Hide badge when chat is open
-                    chatBadge.classList.add('hidden');
-                } else {
-                    chatWindow.style.willChange = 'opacity, transform';
-                    chatWindow.style.transition = 'opacity 0.2s ease-in, transform 0.2s ease-in';
-                    chatWindow.style.opacity = '0';
-                    chatWindow.style.transform = 'translateY(20px) scale(0.95)';
-                    setTimeout(() => {
-                        chatWindow.classList.add('hidden');
-                        chatWindow.style.willChange = 'auto';
-                    }, 200);
+                    }
                 }
             }
 
             // Optimized message loading with document fragment
             let lastRenderedMessages = null;
-            
+
             function loadMessages() {
                 const messages = getMessages();
-                
+
                 // Skip re-render if messages haven't changed
                 const messagesKey = JSON.stringify(messages.map(m => m.id));
                 if (lastRenderedMessages === messagesKey && chatMessages.children.length > 0) {
                     return;
                 }
                 lastRenderedMessages = messagesKey;
-                
+
                 // Use document fragment for batch DOM updates
                 const fragment = document.createDocumentFragment();
                 chatMessages.innerHTML = '';
@@ -1603,11 +1816,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentDate = '';
                 messages.forEach((msg, index) => {
                     const msgDate = new Date(msg.timestamp);
-                    const dateStr = msgDate.toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
+                    const dateStr = msgDate.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
                     });
 
                     // Add date separator if date changed
@@ -1634,7 +1847,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Batch DOM update
                 chatMessages.appendChild(fragment);
-                
+
                 // Smooth scroll to bottom using requestAnimationFrame
                 requestAnimationFrame(() => {
                     chatMessages.scrollTo({
@@ -1649,7 +1862,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const user = getCurrentUser();
                 const isOwnMessage = msg.email === user.email;
                 const prevMsg = index > 0 ? getMessages()[index - 1] : null;
-                const showAvatar = !prevMsg || prevMsg.email !== msg.email || 
+                const showAvatar = !prevMsg || prevMsg.email !== msg.email ||
                     (new Date(msg.timestamp) - new Date(prevMsg.timestamp)) > 300000; // 5 minutes
 
                 const messageDiv = document.createElement('div');
@@ -1679,20 +1892,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const messageContent = document.createElement('div');
-                messageContent.className = `${isOwnMessage ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white border border-gray-200/80 shadow-sm'} rounded-2xl ${isOwnMessage ? 'rounded-br-md' : 'rounded-bl-md'} px-4 py-2.5 hover:shadow-md transition-all`;
+                messageContent.className = `${isOwnMessage ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : isAdminMode && msg.role === 'admin' ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-md' : 'bg-white border border-gray-200/80 shadow-sm'} rounded-2xl ${isOwnMessage ? 'rounded-br-md' : 'rounded-bl-md'} px-4 py-2.5 hover:shadow-md transition-all relative group`;
 
                 const messageText = document.createElement('div');
-                messageText.className = `text-sm leading-relaxed ${isOwnMessage ? 'text-white' : 'text-gray-800'} break-words whitespace-pre-wrap`;
+                messageText.className = `text-sm leading-relaxed ${isOwnMessage || (isAdminMode && msg.role === 'admin') ? 'text-white' : 'text-gray-800'} break-words whitespace-pre-wrap`;
                 messageText.textContent = msg.text;
 
                 const messageTime = document.createElement('div');
-                messageTime.className = `text-xs mt-2 flex items-center gap-1 ${isOwnMessage ? 'text-violet-100/90' : 'text-gray-500'}`;
+                messageTime.className = `text-xs mt-2 flex items-center gap-1 ${isOwnMessage || (isAdminMode && msg.role === 'admin') ? 'text-white/90' : 'text-gray-500'}`;
                 messageTime.innerHTML = `<span>${msg.time}</span>`;
                 if (isOwnMessage) {
                     const checkIcon = document.createElement('i');
                     checkIcon.setAttribute('data-lucide', 'check');
                     checkIcon.className = 'w-3 h-3';
                     messageTime.appendChild(checkIcon);
+                }
+
+                // Admin delete button
+                if (isAdminMode) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg hover:bg-red-600';
+                    deleteBtn.setAttribute('data-message-id', msg.id);
+                    deleteBtn.setAttribute('aria-label', 'Delete message');
+                    deleteBtn.innerHTML = '<i data-lucide="x" class="w-3 h-3"></i>';
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (confirm('Delete this message?')) {
+                            deleteMessage(msg.id);
+                        }
+                    });
+                    messageContent.appendChild(deleteBtn);
                 }
 
                 messageContent.appendChild(messageText);
@@ -1724,16 +1953,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Disable send button to prevent double-sends
                 chatSendBtn.disabled = true;
-                
+
                 const newMessage = addMessage(text);
                 if (newMessage) {
                     chatInput.value = '';
                     updateCharCount();
-                    
+
                     // Use requestAnimationFrame for smooth updates
                     requestAnimationFrame(() => {
                         loadMessages();
-                        updateBadge();
+                        if (isAdminMode) {
+                            updateUsersList();
+                            updateUserFilter();
+                        }
                         chatSendBtn.disabled = false;
                     });
                 } else {
@@ -1741,26 +1973,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Optimized badge update
-            let lastBadgeCount = -1;
-            function updateBadge() {
-                const messages = getMessages();
-                const count = messages.length;
-                
-                // Only update if count changed
-                if (count === lastBadgeCount) return;
-                lastBadgeCount = count;
-                
-                if (count > 0 && !isOpen) {
-                    const displayCount = count > 99 ? '99+' : count.toString();
-                    if (chatBadge.textContent !== displayCount) {
-                        chatBadge.textContent = displayCount;
-                    }
-                    chatBadge.classList.remove('hidden');
-                } else {
-                    chatBadge.classList.add('hidden');
-                }
-            }
+            // Badge update removed - no longer needed for section-based chat
 
             // Clear only current user's messages
             function clearMessages() {
@@ -1772,21 +1985,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     es: '¿Estás seguro de que quieres borrar tus mensajes? Esto solo eliminará tus propios mensajes, no los de otros.'
                 };
                 const confirmText = translations[savedLang] || translations.en;
-                
+
                 if (confirm(confirmText)) {
                     try {
                         const user = getCurrentUser();
                         const allMessages = getMessages();
-                        
+
                         // Filter out only the current user's messages
                         const otherUsersMessages = allMessages.filter(msg => msg.email !== user.email);
-                        
+
                         // Save only other users' messages
                         saveMessages(otherUsersMessages);
-                        
+
                         loadMessages();
-                        updateBadge();
-                        
+
                         const successMessages = {
                             en: 'Your messages have been cleared',
                             fr: 'Vos messages ont été effacés',
@@ -1802,39 +2014,246 @@ document.addEventListener('DOMContentLoaded', () => {
             // Optimized auto-refresh with throttling
             let lastMessageCount = 0;
             let refreshInterval = null;
-            
+
             function optimizedRefresh() {
-                if (isOpen) {
-                    const messages = getMessages();
-                    // Only reload if message count changed
-                    if (messages.length !== lastMessageCount) {
-                        lastMessageCount = messages.length;
-                        loadMessages();
-                    }
-                } else {
-                    updateBadge();
+                const messages = getMessages();
+                // Only reload if message count changed
+                if (messages.length !== lastMessageCount) {
+                    lastMessageCount = messages.length;
+                    loadMessages();
                 }
             }
-            
+
             // Use requestAnimationFrame for smooth updates
             function startRefreshLoop() {
                 if (refreshInterval) clearInterval(refreshInterval);
                 refreshInterval = setInterval(() => {
                     requestAnimationFrame(optimizedRefresh);
-                }, 3000); // Increased to 3 seconds to reduce load
+                }, 3000); // Check every 3 seconds
             }
-            
-            // Wrapper for toggleChat to track message count
-            function toggleChatWrapper() {
-                toggleChat();
-                if (isOpen) {
-                    lastMessageCount = getMessages().length;
+
+            // Admin-specific functions
+            function deleteMessage(messageId) {
+                const messages = getMessages();
+                const filtered = messages.filter(m => m.id !== messageId);
+                saveMessages(filtered);
+                loadMessages();
+                updateUsersList();
+                toast('Message deleted', 'success');
+            }
+
+            function updateUsersList() {
+                if (!isAdminMode) return;
+                const usersList = document.getElementById('chatUsersList');
+                const usersCount = document.getElementById('chatUsersCount');
+                if (!usersList) return;
+
+                const users = getUniqueUsers();
+                if (usersCount) {
+                    usersCount.textContent = `${users.length} ${users.length === 1 ? 'user' : 'users'}`;
+                }
+
+                usersList.innerHTML = '';
+                users.forEach(user => {
+                    const userEl = document.createElement('div');
+                    userEl.className = 'flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-all cursor-pointer';
+                    userEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold">
+                            ${user.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-gray-700 truncate">${user.name}</div>
+                            <div class="text-xs text-gray-500 flex items-center gap-1">
+                                <span>${user.messageCount} ${user.messageCount === 1 ? 'msg' : 'msgs'}</span>
+                                <span>•</span>
+                                <span class="text-xs px-1.5 py-0.5 rounded ${user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}">${user.role}</span>
+                            </div>
+                        </div>
+                    `;
+                    userEl.addEventListener('click', () => {
+                        const filterUser = document.getElementById('chatFilterUser');
+                        if (filterUser) {
+                            filterUser.value = user.email;
+                            filterUser.dispatchEvent(new Event('change'));
+                        }
+                    });
+                    usersList.appendChild(userEl);
+                });
+            }
+
+            function updateUserFilter() {
+                if (!isAdminMode) return;
+                const filterUser = document.getElementById('chatFilterUser');
+                if (!filterUser) return;
+
+                const users = getUniqueUsers();
+                const currentValue = filterUser.value;
+                filterUser.innerHTML = '<option value="all">All Users</option>';
+                users.forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user.email;
+                    option.textContent = `${user.name} (${user.messageCount} msgs)`;
+                    filterUser.appendChild(option);
+                });
+                filterUser.value = currentValue;
+            }
+
+            function applyFilters() {
+                const searchInput = document.getElementById('chatSearchInput');
+                const filterRole = document.getElementById('chatFilterRole');
+                const filterUser = document.getElementById('chatFilterUser');
+                
+                if (!isAdminMode) {
+                    loadMessages();
+                    return;
+                }
+
+                const messages = getMessages();
+                let filtered = messages;
+
+                // Search filter
+                if (searchInput && searchInput.value.trim()) {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    filtered = filtered.filter(msg => 
+                        msg.text.toLowerCase().includes(searchTerm) ||
+                        msg.user.toLowerCase().includes(searchTerm) ||
+                        msg.email.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                // Role filter
+                if (filterRole && filterRole.value !== 'all') {
+                    filtered = filtered.filter(msg => msg.role === filterRole.value);
+                }
+
+                // User filter
+                if (filterUser && filterUser.value !== 'all') {
+                    filtered = filtered.filter(msg => msg.email === filterUser.value);
+                }
+
+                // Render filtered messages
+                renderFilteredMessages(filtered);
+            }
+
+            function renderFilteredMessages(messages) {
+                const fragment = document.createDocumentFragment();
+                chatMessages.innerHTML = '';
+
+                if (messages.length === 0) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'text-center text-sm text-gray-500 py-8';
+                    emptyMsg.textContent = 'No messages match your filters.';
+                    fragment.appendChild(emptyMsg);
+                    chatMessages.appendChild(fragment);
+                    return;
+                }
+
+                let currentDate = '';
+                messages.forEach((msg, index) => {
+                    const msgDate = new Date(msg.timestamp);
+                    const dateStr = msgDate.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    if (dateStr !== currentDate) {
+                        currentDate = dateStr;
+                        const dateDivider = document.createElement('div');
+                        dateDivider.className = 'flex items-center gap-3 my-5';
+                        const line = document.createElement('div');
+                        line.className = 'flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent';
+                        const dateLabel = document.createElement('div');
+                        dateLabel.className = 'text-xs text-gray-500 px-3 py-1 bg-gray-50 rounded-full font-medium';
+                        dateLabel.textContent = dateStr;
+                        const line2 = document.createElement('div');
+                        line2.className = 'flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent';
+                        dateDivider.appendChild(line);
+                        dateDivider.appendChild(dateLabel);
+                        dateDivider.appendChild(line2);
+                        fragment.appendChild(dateDivider);
+                    }
+
+                    const messageEl = createMessageElement(msg, index);
+                    fragment.appendChild(messageEl);
+                });
+
+                chatMessages.appendChild(fragment);
+                requestAnimationFrame(() => {
+                    chatMessages.scrollTo({
+                        top: chatMessages.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            function showStats() {
+                if (!isAdminMode) return;
+                const modal = document.getElementById('chatStatsModal');
+                const content = document.getElementById('chatStatsContent');
+                if (!modal || !content) return;
+
+                const stats = getChatStats();
+                const users = getUniqueUsers();
+                
+                content.innerHTML = `
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                            <div class="text-2xl font-bold text-blue-700">${stats.totalMessages}</div>
+                            <div class="text-sm text-blue-600 mt-1">Total Messages</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+                            <div class="text-2xl font-bold text-green-700">${stats.totalUsers}</div>
+                            <div class="text-sm text-green-600 mt-1">Active Users</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+                            <div class="text-2xl font-bold text-purple-700">${stats.todayMessages}</div>
+                            <div class="text-sm text-purple-600 mt-1">Today's Messages</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg border border-orange-200">
+                            <div class="text-2xl font-bold text-orange-700">${stats.adminMessages}</div>
+                            <div class="text-sm text-orange-600 mt-1">Admin Messages</div>
+                        </div>
+                    </div>
+                    <div class="border-t pt-4">
+                        <h4 class="font-semibold text-gray-700 mb-3">Top Users</h4>
+                        <div class="space-y-2">
+                            ${users.sort((a, b) => b.messageCount - a.messageCount).slice(0, 5).map((user, idx) => `
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-medium text-gray-500">#${idx + 1}</span>
+                                        <span class="text-sm font-medium text-gray-700">${user.name}</span>
+                                        <span class="text-xs px-2 py-0.5 rounded ${user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}">${user.role}</span>
+                                    </div>
+                                    <span class="text-sm text-gray-600 font-semibold">${user.messageCount}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                modal.classList.remove('hidden');
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    setTimeout(() => lucide.createIcons(), 100);
                 }
             }
-            
+
+            function exportMessages() {
+                if (!isAdminMode) return;
+                const messages = getMessages();
+                const dataStr = JSON.stringify(messages, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `chat-messages-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                toast('Messages exported successfully', 'success');
+            }
+
             // Event listeners with optimized handlers
-            toggleBtn.addEventListener('click', toggleChatWrapper, { passive: true });
-            closeBtn.addEventListener('click', toggleChatWrapper, { passive: true });
             clearBtn?.addEventListener('click', clearMessages, { passive: true });
             chatSendBtn.addEventListener('click', sendMessage);
             chatInput.addEventListener('keypress', (e) => {
@@ -1844,17 +2263,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             chatInput.addEventListener('input', updateCharCount, { passive: true });
-            
+
+            // Admin-specific event listeners
+            if (isAdminMode) {
+                const searchInput = document.getElementById('chatSearchInput');
+                const filterRole = document.getElementById('chatFilterRole');
+                const filterUser = document.getElementById('chatFilterUser');
+                const toggleUsers = document.getElementById('chatToggleUsers');
+                const usersSidebar = document.getElementById('chatUsersSidebar');
+                const statsBtn = document.getElementById('chatStatsBtn');
+                const statsClose = document.getElementById('chatStatsClose');
+                const statsModal = document.getElementById('chatStatsModal');
+                const exportBtn = document.getElementById('chatExportBtn');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', () => {
+                        applyFilters();
+                    });
+                }
+
+                if (filterRole) {
+                    filterRole.addEventListener('change', () => {
+                        applyFilters();
+                    });
+                }
+
+                if (filterUser) {
+                    filterUser.addEventListener('change', () => {
+                        applyFilters();
+                    });
+                }
+
+                if (toggleUsers && usersSidebar) {
+                    toggleUsers.addEventListener('click', () => {
+                        usersSidebar.classList.toggle('hidden');
+                        updateUsersList();
+                    });
+                }
+
+                if (statsBtn) {
+                    statsBtn.addEventListener('click', showStats);
+                }
+
+                if (statsClose && statsModal) {
+                    statsClose.addEventListener('click', () => {
+                        statsModal.classList.add('hidden');
+                    });
+                    statsModal.addEventListener('click', (e) => {
+                        if (e.target === statsModal) {
+                            statsModal.classList.add('hidden');
+                        }
+                    });
+                }
+
+                if (exportBtn) {
+                    exportBtn.addEventListener('click', exportMessages);
+                }
+
+                // Initialize admin features
+                updateUserFilter();
+                updateUsersList();
+            }
+
             // Initialize character count
             updateCharCount();
-            
+
             // Load messages on init
             loadMessages();
-            updateBadge();
-            
+            lastMessageCount = getMessages().length;
+
             // Start refresh loop
             startRefreshLoop();
-            
+
+            // Focus input when section comes into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => focusChatInput(), 300);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            if (chatSection) {
+                observer.observe(chatSection);
+            }
+
             // Cleanup on page unload
             window.addEventListener('beforeunload', () => {
                 if (refreshInterval) clearInterval(refreshInterval);
@@ -1864,13 +2357,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-apply translations when language changes
             if (window.applyTranslations) {
                 const originalApplyTranslations = window.applyTranslations;
-                window.applyTranslations = function(lang) {
+                window.applyTranslations = function (lang) {
                     originalApplyTranslations(lang);
                     // Re-apply translations to chat elements
-                    if (chatContainer && chatContainer.parentElement) {
+                    if (chatSection && chatSection.parentElement) {
                         setTimeout(() => {
                             if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-                                const chatIcons = chatContainer.querySelectorAll('[data-lucide]');
+                                const chatIcons = chatSection.querySelectorAll('[data-lucide]');
                                 lucide.createIcons({ icons: chatIcons });
                             }
                         }, 100);
@@ -2134,21 +2627,21 @@ What would you like to know?`
         // AI Response Generator
         function generateAIResponse(userMessage) {
             const message = userMessage.toLowerCase().trim();
-            
+
             // Check each knowledge base category
             for (const [category, data] of Object.entries(knowledgeBase)) {
                 if (category === 'default') continue;
-                
+
                 // Check if any keyword matches
-                const matches = data.keywords.some(keyword => 
+                const matches = data.keywords.some(keyword =>
                     message.includes(keyword)
                 );
-                
+
                 if (matches) {
                     return data.response;
                 }
             }
-            
+
             // Check for greeting
             const greetings = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'];
             if (greetings.some(g => message.startsWith(g))) {
@@ -2163,14 +2656,14 @@ What would you like to know?`
 
 What would you like to know?`;
             }
-            
+
             // Check for thank you
             if (message.includes('thank') || message.includes('thanks')) {
                 return `You're welcome! 😊 
 
 Is there anything else you'd like to know about the platform? I'm here to help!`;
             }
-            
+
             // Default response
             return knowledgeBase.default.response;
         }
@@ -2476,7 +2969,7 @@ Is there anything else you'd like to know about the platform? I'm here to help!`
                 setTimeout(() => {
                     typingIndicator.remove();
                     const aiResponse = generateAIResponse(text);
-                    
+
                     const aiMessage = {
                         id: 'ai-msg-' + Date.now() + '-ai',
                         text: aiResponse,
@@ -2549,10 +3042,10 @@ Is there anything else you'd like to know about the platform? I'm here to help!`
         setInterval(() => {
             const currentAuthState = isUserLoggedIn();
             const aiChatWidget = document.getElementById('aiChatWidget');
-            
+
             if (currentAuthState !== lastAuthState) {
                 lastAuthState = currentAuthState;
-                
+
                 if (currentAuthState && !aiChatWidget) {
                     // User just logged in - create chat
                     createAIChatUI();
