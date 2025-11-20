@@ -50,33 +50,56 @@
 </head>
 
 <body data-page="home">
+  <!-- Modern Header with Glassmorphism -->
   <header id="mainHeader"
-    class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-shadow duration-300">
+    class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/50 shadow-lg shadow-gray-900/5 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="h-16 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="start.html" class="flex items-center gap-2 group">
-          <img src="src/assets/logo.svg" alt="LMS Logo" class="h-8 md:h-9 transition-transform group-hover:scale-105">
+        <!-- Modern Logo -->
+        <a href="start.html" class="flex items-center gap-3 group">
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity">
+            </div>
+            <img src="src/assets/logo.svg" alt="LMS Logo"
+              class="relative h-9 md:h-10 transition-transform group-hover:scale-110 group-hover:rotate-3">
+          </div>
           <span
-            class="hidden sm:block text-lg font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">LMS</span>
+            class="hidden sm:block text-xl font-extrabold bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">LMS</span>
         </a>
 
-        <!-- Desktop Navigation -->
-        <nav id="desktopNav" class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
-          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-            href="features.html" data-i18n="nav.features">Features</a>
-          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-            href="saved.html" data-i18n="nav.saved">Saved</a>
-          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-            href="courses.html" data-i18n="nav.browse">Courses</a>
-          <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-            href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-          <div class="h-6 w-px bg-gray-300 mx-2"></div>
+        <!-- Modern Desktop Navigation -->
+        <nav id="desktopNav" class="hidden md:flex items-center gap-2" aria-label="Primary">
+          <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+            href="features.html" data-i18n="nav.features">
+            <span class="relative z-10">Features</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+            href="saved.html" data-i18n="nav.saved">
+            <span class="relative z-10">Saved</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+            href="courses.html" data-i18n="nav.browse">
+            <span class="relative z-10">Courses</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+            href="quiz.html" data-i18n="nav.quiz">
+            <span class="relative z-10">Quiz</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <div class="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent mx-2"></div>
           <!-- Language Selector -->
           <div id="langSelectorWrapper" class="relative">
             <!-- Language selector will be inserted here by main.js -->
           </div>
-          <a class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all"
+          <a class="px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:via-purple-500 hover:to-pink-500 rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105 active:scale-95 transition-all duration-200"
             href="signin.html" data-i18n="nav.signin">Sign in</a>
         </nav>
 
@@ -183,7 +206,7 @@
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-start">
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-between">
             <a href="signup.html"
               class="group relative inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-2xl hover:shadow-violet-500/50 hover:scale-105 transform duration-300 overflow-hidden">
               <span
@@ -191,11 +214,7 @@
               <span data-i18n="hero.getStarted">Get Started Free</span>
               <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
             </a>
-            <a href="signin.html"
-              class="inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-semibold border-2 border-violet-300 text-violet-700 bg-white/90 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all shadow-lg hover:scale-105 transform duration-300">
-              <i data-lucide="log-in" class="w-5 h-5"></i>
-              <span data-i18n="hero.signIn">Sign In</span>
-            </a>
+
           </div>
 
           <!-- Trust Indicators -->
