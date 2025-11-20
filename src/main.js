@@ -1405,51 +1405,44 @@ document.addEventListener('DOMContentLoaded', () => {
             return newMessage;
         }
 
-        // Create chat UI
+        // Create chat UI as a page section
         function createChatUI() {
             // Check if chat already exists
-            if (document.getElementById('liveChatWidget')) return;
+            if (document.getElementById('liveChatSection')) return;
 
-            const chatContainer = document.createElement('div');
-            chatContainer.id = 'liveChatWidget';
-            chatContainer.innerHTML = `
-                <!-- Chat Toggle Button -->
-                <button id="chatToggleBtn" 
-                    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center group backdrop-blur-sm"
-                    aria-label="Open chat">
-                    <i data-lucide="message-circle" class="w-6 h-6"></i>
-                    <span id="chatBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center text-white font-semibold hidden shadow-md">0</span>
-                </button>
+            // Find the main content area or create a section
+            const main = document.querySelector('main');
+            if (!main) {
+                console.warn('Main element not found, chat section will be added to body');
+            }
 
-                <!-- Chat Window -->
-                <div id="chatWindow" 
-                    class="fixed bottom-24 right-6 z-50 w-[420px] max-w-[calc(100vw-3rem)] h-[640px] max-h-[calc(100vh-8rem)] bg-white rounded-xl shadow-2xl border border-gray-200/50 flex flex-col hidden transform transition-all duration-300 ease-out backdrop-blur-sm"
-                    style="box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+            const chatSection = document.createElement('section');
+            chatSection.id = 'liveChatSection';
+            chatSection.className = 'mb-8 mt-12';
+            chatSection.innerHTML = `
+                <!-- Chat Section Container -->
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
                     <!-- Chat Header -->
-                    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200/60 bg-gradient-to-r from-violet-600 via-violet-600 to-purple-600 text-white rounded-t-xl">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200/60 bg-gradient-to-r from-violet-600 via-violet-600 to-purple-600 text-white">
                         <div class="flex items-center gap-3">
                             <div class="relative">
                                 <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
                                 <div class="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping opacity-75"></div>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-base" data-i18n="chat.title">Live Chat</h3>
-                                <p class="text-xs text-violet-100/90 font-medium" data-i18n="chat.subtitle">Students & Community</p>
+                                <h2 class="font-semibold text-xl" data-i18n="chat.title">Live Chat</h2>
+                                <p class="text-sm text-violet-100/90 font-medium" data-i18n="chat.subtitle">Students & Community</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-1.5 rounded-lg hover:bg-white/15 active:bg-white/20" 
-                                aria-label="Clear messages" title="Clear all messages">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                            <button id="chatCloseBtn" class="text-white/90 hover:text-white transition-all p-1.5 rounded-lg hover:bg-white/15 active:bg-white/20" aria-label="Close chat">
-                                <i data-lucide="x" class="w-5 h-5"></i>
-                            </button>
-                        </div>
+                        <button id="chatClearBtn" class="text-white/90 hover:text-white transition-all p-2 rounded-lg hover:bg-white/15 active:bg-white/20 flex items-center gap-2" 
+                            aria-label="Clear messages" title="Clear all messages">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            <span class="text-sm font-medium" data-i18n="chat.clear">Clear</span>
+                        </button>
                     </div>
 
                     <!-- Messages Container -->
-                    <div id="chatMessages" class="flex-1 overflow-y-auto px-5 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+                    <div id="chatMessages" class="h-[500px] overflow-y-auto px-6 py-4 bg-gradient-to-b from-gray-50 to-white scroll-smooth" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
                         <style>
                             #chatMessages::-webkit-scrollbar {
                                 width: 6px;
@@ -1469,7 +1462,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
 
                     <!-- Chat Input -->
-                    <div class="px-5 py-4 border-t border-gray-200/60 bg-white rounded-b-xl">
+                    <div class="px-6 py-4 border-t border-gray-200/60 bg-white">
                         <div class="flex gap-2.5 items-end">
                             <div class="flex-1 relative">
                                 <input type="text" 
@@ -1494,7 +1487,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            document.body.appendChild(chatContainer);
+            // Insert chat section into main content or body
+            if (main) {
+                main.appendChild(chatSection);
+            } else {
+                document.body.appendChild(chatSection);
+            }
 
             // Initialize Lucide icons for chat
             if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
