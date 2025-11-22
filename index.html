@@ -46,6 +46,132 @@
     #carouselDots button:hover {
       background-color: rgba(255, 255, 255, 0.8);
     }
+
+    /* Modern Animations */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+      }
+    }
+
+    @keyframes gradient-shift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    .gradient-animate {
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease infinite;
+    }
+
+    .shimmer-effect {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer-effect::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    /* Glassmorphism enhancement */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* 3D Transform effects */
+    .transform-3d {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Particle effect background */
+    .particle-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.1);
+      animation: float 15s infinite ease-in-out;
+    }
+
+    /* Text gradient animation */
+    .text-gradient-animate {
+      background: linear-gradient(90deg, #1e1b4b, #7c3aed, #a855f7, #ec4899, #7c3aed);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-shift 5s linear infinite;
+    }
   </style>
 </head>
 
@@ -142,34 +268,56 @@
   </header>
   <!-- HERO TEMPLATE SECTION -->
   <section
-    class="relative min-h-[70vh] flex items-center bg-gradient-to-br from-indigo-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
-    <!-- Abstract Background Waves -->
+    class="relative min-h-[85vh] flex items-center bg-gradient-to-br from-indigo-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
+    <!-- Animated Particle Background -->
+    <div class="particle-bg">
+      <div class="particle" style="width: 80px; height: 80px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+      <div class="particle" style="width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: 2s;"></div>
+      <div class="particle" style="width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s;"></div>
+      <div class="particle" style="width: 100px; height: 100px; top: 30%; right: 30%; animation-delay: 6s;"></div>
+      <div class="particle" style="width: 70px; height: 70px; bottom: 40%; right: 10%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- Enhanced Abstract Background Waves with Animation -->
     <svg aria-hidden="true" class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 1200 800"
       preserveAspectRatio="none">
       <defs>
         <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#6b21a8" stop-opacity="0.1" />
-          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.15" />
+          <stop offset="0%" stop-color="#6b21a8" stop-opacity="0.15" />
+          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.2" />
         </linearGradient>
         <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.12" />
-          <stop offset="100%" stop-color="#ec4899" stop-opacity="0.08" />
+          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.15" />
+          <stop offset="100%" stop-color="#ec4899" stop-opacity="0.12" />
         </linearGradient>
         <linearGradient id="waveGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.08" />
-          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.12" />
+          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12" />
+          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.15" />
         </linearGradient>
       </defs>
-      <!-- Wave 1 -->
-      <path d="M0,200 Q300,150 600,180 T1200,160 L1200,0 L0,0 Z" fill="url(#waveGrad1)" />
-      <!-- Wave 2 -->
-      <path d="M0,300 Q400,250 800,280 T1200,260 L1200,0 L0,0 Z" fill="url(#waveGrad2)" />
-      <!-- Wave 3 -->
-      <path d="M0,400 Q500,350 1000,380 T1200,360 L1200,0 L0,0 Z" fill="url(#waveGrad3)" />
+      <!-- Animated Wave 1 -->
+      <path d="M0,200 Q300,150 600,180 T1200,160 L1200,0 L0,0 Z" fill="url(#waveGrad1)" class="animate-float" />
+      <!-- Animated Wave 2 -->
+      <path d="M0,300 Q400,250 800,280 T1200,260 L1200,0 L0,0 Z" fill="url(#waveGrad2)" style="animation-delay: 1s;"
+        class="animate-float" />
+      <!-- Animated Wave 3 -->
+      <path d="M0,400 Q500,350 1000,380 T1200,360 L1200,0 L0,0 Z" fill="url(#waveGrad3)" style="animation-delay: 2s;"
+        class="animate-float" />
     </svg>
 
-    <!-- Collaboration Illustration (Subtle) -->
-    <div class="absolute top-10 left-10 opacity-5">
+    <!-- Floating Geometric Shapes -->
+    <div
+      class="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-violet-400/20 to-purple-400/20 rounded-3xl blur-xl animate-float transform rotate-45">
+    </div>
+    <div
+      class="absolute bottom-32 left-16 w-40 h-40 bg-gradient-to-br from-pink-400/20 to-rose-400/20 rounded-full blur-2xl animate-float"
+      style="animation-delay: 2s;"></div>
+    <div
+      class="absolute top-1/2 right-1/4 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-blue-400/20 rounded-2xl blur-xl animate-float"
+      style="animation-delay: 4s;"></div>
+
+    <!-- Enhanced Collaboration Illustration -->
+    <div class="absolute top-10 left-10 opacity-10 animate-float">
       <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="30" fill="#6b21a8" />
         <circle cx="150" cy="50" r="30" fill="#6366f1" />
@@ -184,69 +332,129 @@
 
         <!-- Left Column: Text Content -->
         <div class="relative z-10 text-center lg:text-left">
-          <!-- Badge/Pill -->
+          <!-- Enhanced Badge/Pill with Animation -->
           <div
-            class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 text-sm font-semibold text-violet-700">
-            <i data-lucide="sparkles" class="w-4 h-4"></i>
-            <span>Modern Learning Platform</span>
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-100 via-purple-100 to-pink-100 rounded-full mb-6 text-sm font-bold text-violet-700 shadow-lg hover:shadow-xl transition-all hover:scale-105 animate-pulse-glow border border-violet-200/50">
+            <i data-lucide="sparkles" class="w-4 h-4 animate-spin" style="animation-duration: 3s;"></i>
+            <span class="text-gradient-animate">✨ Modern Learning Platform</span>
           </div>
 
-          <!-- Main Heading -->
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700"
-              data-i18n="hero.title">
-              Learning Management System
+          <!-- Enhanced Main Heading with Animated Gradient -->
+          <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+            <span class="text-gradient-animate block mb-2" data-i18n="hero.title">
+              Learning Management
+            </span>
+            <span class="text-gradient-animate block"
+              style="background: linear-gradient(90deg, #1e1b4b, #7c3aed, #a855f7, #ec4899, #7c3aed); background-size: 200% auto; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradient-shift 5s linear infinite;">
+              System
             </span>
           </h1>
 
-          <!-- Subtitle -->
-          <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+          <!-- Enhanced Subtitle -->
+          <p class="text-xl sm:text-2xl md:text-3xl text-gray-700 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
             data-i18n="hero.subtitle">
-            Create, organize, and track courses with a clean, modern interface.
+            Transform your learning journey with our <span class="font-bold text-violet-600">cutting-edge</span>
+            platform. Create, organize, and track courses with an <span
+              class="font-bold text-purple-600">intuitive</span> interface.
           </p>
 
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-between">
+          <!-- Enhanced CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
             <a href="signup.html"
-              class="group relative inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-2xl hover:shadow-violet-500/50 hover:scale-105 transform duration-300 overflow-hidden">
+              class="group relative inline-flex items-center justify-center gap-3 rounded-2xl px-10 md:px-12 py-5 text-lg md:text-xl font-black text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-2xl hover:shadow-violet-500/50 hover:scale-110 transform duration-300 overflow-hidden animate-pulse-glow shimmer-effect">
               <span
-                class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
-              <span data-i18n="hero.getStarted">Get Started Free</span>
-              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+              <span class="relative z-10" data-i18n="hero.getStarted">Get Started Free</span>
+              <i data-lucide="arrow-right"
+                class="w-6 h-6 group-hover:translate-x-2 transition-transform relative z-10"></i>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-violet-400/50 to-purple-400/50 opacity-0 group-hover:opacity-100 transition-opacity blur-xl">
+              </div>
             </a>
-
+            <a href="courses.html"
+              class="group relative inline-flex items-center justify-center gap-3 rounded-2xl px-10 md:px-12 py-5 text-lg md:text-xl font-bold border-3 border-violet-300 text-violet-700 bg-white/80 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all shadow-xl hover:shadow-2xl hover:scale-110 transform duration-300">
+              <i data-lucide="play-circle" class="w-6 h-6 group-hover:scale-125 transition-transform"></i>
+              <span>Watch Demo</span>
+            </a>
           </div>
 
-          <!-- Trust Indicators -->
-          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 justify-center lg:justify-start">
-            <div class="flex items-center gap-2">
-              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
-              <span>Free to start</span>
+          <!-- Enhanced Trust Indicators with Icons -->
+          <div
+            class="flex flex-wrap items-center gap-4 md:gap-6 text-base md:text-lg text-gray-700 justify-center lg:justify-start font-bold">
+            <div
+              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-green-200/50 hover:border-green-300 group">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
+                <i data-lucide="check-circle" class="w-7 h-7 text-green-600"></i>
+              </div>
+              <span class="group-hover:text-green-700 transition-colors">Free to start</span>
             </div>
-            <div class="flex items-center gap-2">
-              <i data-lucide="shield-check" class="w-5 h-5 text-blue-500"></i>
-              <span>Secure & Private</span>
+            <div
+              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-blue-200/50 hover:border-blue-300 group">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
+                <i data-lucide="shield-check" class="w-7 h-7 text-blue-600"></i>
+              </div>
+              <span class="group-hover:text-blue-700 transition-colors">Secure & Private</span>
             </div>
-            <div class="flex items-center gap-2">
-              <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i>
-              <span>No credit card required</span>
+            <div
+              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-yellow-200/50 hover:border-yellow-300 group">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
+                <i data-lucide="zap" class="w-7 h-7 text-yellow-600"></i>
+              </div>
+              <span class="group-hover:text-yellow-700 transition-colors">No credit card</span>
+            </div>
+          </div>
+
+          <!-- Enhanced Social Proof Stats -->
+          <div class="mt-12 flex flex-wrap items-center gap-6 md:gap-8 justify-center lg:justify-start">
+            <div
+              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-violet-200/50">
+              <div
+                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                50K+</div>
+              <div class="text-sm text-gray-700 font-bold">Active Learners</div>
+              <div class="text-xs text-gray-500 mt-1">+12% this month</div>
+            </div>
+            <div class="h-16 w-px bg-gradient-to-b from-transparent via-gray-400 to-transparent"></div>
+            <div
+              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-purple-200/50">
+              <div
+                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 flex items-center justify-center lg:justify-start gap-1">
+                <span>4.9</span>
+                <i data-lucide="star" class="w-6 h-6 text-yellow-500 fill-yellow-500"></i>
+              </div>
+              <div class="text-sm text-gray-700 font-bold">Average Rating</div>
+              <div class="text-xs text-gray-500 mt-1">From 25K+ reviews</div>
+            </div>
+            <div class="h-16 w-px bg-gradient-to-b from-transparent via-gray-400 to-transparent"></div>
+            <div
+              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-indigo-200/50">
+              <div
+                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                1,200+</div>
+              <div class="text-sm text-gray-700 font-bold">Courses</div>
+              <div class="text-xs text-gray-500 mt-1">New weekly</div>
             </div>
           </div>
 
         </div>
 
         <!-- Right Column: Visual Content -->
-        <div class="relative z-10 lg:order-last">
+        <div class="relative z-10 lg:order-last transform-3d">
           <div class="relative">
-            <!-- Decorative glow effect -->
+            <!-- Enhanced Decorative glow effects with animation -->
             <div
-              class="absolute -inset-4 bg-gradient-to-br from-violet-400/20 via-purple-400/20 to-pink-400/20 rounded-3xl blur-2xl">
+              class="absolute -inset-8 bg-gradient-to-br from-violet-400/30 via-purple-400/30 to-pink-400/30 rounded-3xl blur-3xl animate-pulse-glow">
             </div>
-            <div class="absolute -inset-2 bg-gradient-to-br from-violet-300/10 to-purple-300/10 rounded-2xl"></div>
+            <div class="absolute -inset-4 bg-gradient-to-br from-violet-300/20 to-purple-300/20 rounded-2xl blur-xl">
+            </div>
+            <div class="absolute -inset-2 bg-gradient-to-br from-indigo-200/10 to-pink-200/10 rounded-2xl"></div>
 
-            <!-- Image container with frame -->
+            <!-- Enhanced Image container with 3D effects -->
             <div
-              class="relative bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+              class="relative bg-gradient-to-br from-gray-50 via-white to-violet-50/30 rounded-3xl shadow-2xl border-2 border-violet-100/50 overflow-hidden transform hover:scale-[1.03] hover:rotate-1 transition-all duration-500 hover-lift">
               <!-- Browser frame effect -->
               <div
                 class="bg-gradient-to-r from-gray-100 to-gray-50 px-4 py-3 flex items-center gap-3 border-b border-gray-200">
@@ -331,11 +539,31 @@
               </div>
             </div>
 
-            <!-- Floating badge -->
+            <!-- Enhanced Floating badges with animations -->
             <div
-              class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl border-2 border-violet-200 px-4 py-2 flex items-center gap-2 transform rotate-3 hover:rotate-0 transition-transform">
-              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span class="text-xs font-semibold text-gray-700">Live</span>
+              class="absolute -bottom-6 -right-6 bg-gradient-to-br from-white via-violet-50 to-purple-50 rounded-2xl shadow-2xl border-2 border-violet-300 px-6 py-4 flex items-center gap-3 transform rotate-3 hover:rotate-0 transition-all hover:scale-110 animate-float z-20">
+              <div class="relative">
+                <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+                <div class="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <div>
+                <span class="text-sm font-black text-gray-900 block">Live Now</span>
+                <span class="text-xs text-gray-600">2,450 online</span>
+              </div>
+            </div>
+            <!-- Additional floating element -->
+            <div
+              class="absolute -top-4 -left-4 bg-gradient-to-br from-yellow-400 via-orange-400 to-pink-400 rounded-full shadow-2xl px-5 py-3 flex items-center gap-2 transform -rotate-12 hover:rotate-0 transition-all animate-float z-20"
+              style="animation-delay: 1s;">
+              <i data-lucide="trending-up" class="w-5 h-5 text-white animate-pulse"></i>
+              <span class="text-xs font-black text-white">#1 Trending</span>
+            </div>
+            <!-- Achievement badge -->
+            <div
+              class="absolute top-1/2 -right-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-2xl px-4 py-3 flex flex-col items-center gap-1 transform rotate-12 hover:rotate-0 transition-all animate-float z-20"
+              style="animation-delay: 3s;">
+              <i data-lucide="trophy" class="w-6 h-6 text-white"></i>
+              <span class="text-xs font-bold text-white text-center">Award<br>Winner</span>
             </div>
           </div>
         </div>
@@ -344,10 +572,17 @@
   </section>
 
   <!-- Quick Actions Section -->
-  <section class="relative bg-white border-t border-gray-100 py-12 md:py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section
+    class="relative bg-gradient-to-b from-white via-violet-50/20 to-white border-t border-gray-100 py-16 md:py-20 overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-violet-400 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400 rounded-full blur-3xl animate-float"
+        style="animation-delay: 2s;"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
       <div
-        class="bg-gradient-to-br from-violet-50/50 to-purple-50/30 rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8">
+        class="bg-gradient-to-br from-violet-50/80 via-purple-50/60 to-indigo-50/40 rounded-3xl shadow-2xl border-2 border-violet-100/50 p-8 md:p-10 backdrop-blur-sm hover:shadow-3xl transition-all duration-500">
         <div class="text-center mb-6 md:mb-8">
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-3">
             <i data-lucide="zap" class="w-4 h-4 text-violet-600"></i>
@@ -356,44 +591,55 @@
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <a href="signin.html"
-            class="group block p-5 border border-gray-200 rounded-xl bg-white hover:border-violet-300 hover:shadow-lg transition-all text-center"
+            class="group block p-6 md:p-8 border-2 border-gray-200 rounded-2xl bg-white/90 backdrop-blur-sm hover:border-violet-400 hover:shadow-2xl transition-all text-center hover-lift transform-3d"
             aria-label="Sign in">
             <div
-              class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-violet-50 to-violet-100 rounded-xl flex items-center justify-center group-hover:from-violet-100 group-hover:to-violet-200 transition-all">
-              <i data-lucide="lock" class="w-7 h-7 text-violet-600"></i>
+              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br from-violet-100 to-violet-200 rounded-2xl flex items-center justify-center group-hover:from-violet-200 group-hover:to-violet-300 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
+              <i data-lucide="lock" class="w-8 h-8 md:w-10 md:h-10 text-violet-600 group-hover:text-violet-700"></i>
             </div>
-            <div class="text-sm font-semibold text-gray-800 group-hover:text-violet-700" data-i18n="quick.signin">Sign
+            <div class="text-base md:text-lg font-bold text-gray-800 group-hover:text-violet-700 transition-colors"
+              data-i18n="quick.signin">Sign
               in</div>
+            <div class="text-xs text-gray-500 mt-1 group-hover:text-violet-600">Access your account</div>
           </a>
           <a href="courses.html"
-            class="group block p-5 border border-gray-200 rounded-xl bg-white hover:border-indigo-300 hover:shadow-lg transition-all text-center"
+            class="group block p-6 md:p-8 border-2 border-gray-200 rounded-2xl bg-white/90 backdrop-blur-sm hover:border-indigo-400 hover:shadow-2xl transition-all text-center hover-lift transform-3d"
             aria-label="Browse courses">
             <div
-              class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl flex items-center justify-center group-hover:from-indigo-100 group-hover:to-indigo-200 transition-all">
-              <i data-lucide="book-open" class="w-7 h-7 text-indigo-600"></i>
+              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-2xl flex items-center justify-center group-hover:from-indigo-200 group-hover:to-indigo-300 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
+              <i data-lucide="book-open"
+                class="w-8 h-8 md:w-10 md:h-10 text-indigo-600 group-hover:text-indigo-700"></i>
             </div>
-            <div class="text-sm font-semibold text-gray-800 group-hover:text-indigo-700" data-i18n="quick.browse">Browse
+            <div class="text-base md:text-lg font-bold text-gray-800 group-hover:text-indigo-700 transition-colors"
+              data-i18n="quick.browse">Browse
               courses</div>
+            <div class="text-xs text-gray-500 mt-1 group-hover:text-indigo-600">Explore 1,200+ courses</div>
           </a>
           <a href="quiz.html"
-            class="group block p-5 border border-gray-200 rounded-xl bg-white hover:border-purple-300 hover:shadow-lg transition-all text-center"
+            class="group block p-6 md:p-8 border-2 border-gray-200 rounded-2xl bg-white/90 backdrop-blur-sm hover:border-purple-400 hover:shadow-2xl transition-all text-center hover-lift transform-3d"
             aria-label="Take a quiz">
             <div
-              class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center group-hover:from-purple-100 group-hover:to-purple-200 transition-all">
-              <i data-lucide="file-text" class="w-7 h-7 text-purple-600"></i>
+              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center group-hover:from-purple-200 group-hover:to-purple-300 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
+              <i data-lucide="file-text"
+                class="w-8 h-8 md:w-10 md:h-10 text-purple-600 group-hover:text-purple-700"></i>
             </div>
-            <div class="text-sm font-semibold text-gray-800 group-hover:text-purple-700" data-i18n="quick.quiz">Take a
+            <div class="text-base md:text-lg font-bold text-gray-800 group-hover:text-purple-700 transition-colors"
+              data-i18n="quick.quiz">Take a
               quiz</div>
+            <div class="text-xs text-gray-500 mt-1 group-hover:text-purple-600">Test your knowledge</div>
           </a>
           <a href="analytics.html"
-            class="group block p-5 border border-gray-200 rounded-xl bg-white hover:border-emerald-300 hover:shadow-lg transition-all text-center"
+            class="group block p-6 md:p-8 border-2 border-gray-200 rounded-2xl bg-white/90 backdrop-blur-sm hover:border-emerald-400 hover:shadow-2xl transition-all text-center hover-lift transform-3d"
             aria-label="View analytics">
             <div
-              class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl flex items-center justify-center group-hover:from-emerald-100 group-hover:to-emerald-200 transition-all">
-              <i data-lucide="bar-chart-3" class="w-7 h-7 text-emerald-600"></i>
+              class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center group-hover:from-emerald-200 group-hover:to-emerald-300 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
+              <i data-lucide="bar-chart-3"
+                class="w-8 h-8 md:w-10 md:h-10 text-emerald-600 group-hover:text-emerald-700"></i>
             </div>
-            <div class="text-sm font-semibold text-gray-800 group-hover:text-emerald-700" data-i18n="quick.analytics">
+            <div class="text-base md:text-lg font-bold text-gray-800 group-hover:text-emerald-700 transition-colors"
+              data-i18n="quick.analytics">
               View analytics</div>
+            <div class="text-xs text-gray-500 mt-1 group-hover:text-emerald-600">Track your progress</div>
           </a>
         </div>
       </div>
@@ -452,6 +698,1250 @@
           <div
             class="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
             CourseLab</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section
+    class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 overflow-hidden py-20 md:py-28">
+    <!-- Enhanced Background Pattern with Animation -->
+    <div class="absolute inset-0 opacity-15">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-float"
+        style="animation-delay: 2s;"></div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 rounded-full blur-3xl animate-pulse">
+      </div>
+    </div>
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-5"
+      style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;">
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <!-- Stat 1: Students -->
+        <div class="text-center group transform-3d">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white/30 backdrop-blur-md rounded-3xl mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl border-2 border-white/20">
+            <i data-lucide="users"
+              class="w-10 h-10 md:w-12 md:h-12 text-white group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-2xl" data-stat="students">
+            50K+</div>
+          <div class="text-base md:text-lg text-white font-semibold">Active Students</div>
+          <div class="mt-2 text-xs text-white/80">Growing daily</div>
+        </div>
+        <!-- Stat 2: Courses -->
+        <div class="text-center group transform-3d">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white/30 backdrop-blur-md rounded-3xl mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl border-2 border-white/20">
+            <i data-lucide="book-open"
+              class="w-10 h-10 md:w-12 md:h-12 text-white group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-2xl" data-stat="courses">
+            1,200+</div>
+          <div class="text-base md:text-lg text-white font-semibold">Online Courses</div>
+          <div class="mt-2 text-xs text-white/80">New weekly</div>
+        </div>
+        <!-- Stat 3: Instructors -->
+        <div class="text-center group transform-3d">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white/30 backdrop-blur-md rounded-3xl mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl border-2 border-white/20">
+            <i data-lucide="graduation-cap"
+              class="w-10 h-10 md:w-12 md:h-12 text-white group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-2xl"
+            data-stat="instructors">500+</div>
+          <div class="text-base md:text-lg text-white font-semibold">Expert Instructors</div>
+          <div class="mt-2 text-xs text-white/80">Industry leaders</div>
+        </div>
+        <!-- Stat 4: Completion Rate -->
+        <div class="text-center group transform-3d">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white/30 backdrop-blur-md rounded-3xl mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl border-2 border-white/20">
+            <i data-lucide="award"
+              class="w-10 h-10 md:w-12 md:h-12 text-white group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-2xl"
+            data-stat="completion">95%</div>
+          <div class="text-base md:text-lg text-white font-semibold">Completion Rate</div>
+          <div class="mt-2 text-xs text-white/80">Above industry avg</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Courses Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="trending-up" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Popular Courses</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Start Learning Today
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Explore our most popular courses and start your learning journey
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Course Card 1 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-violet-400 hover:shadow-2xl transition-all hover-lift transform-3d">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop"
+              alt="Web Development Course"
+              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div
+              class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-violet-700">
+              Bestseller
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-2 py-1 rounded">Development</span>
+              <div class="flex items-center gap-1 text-yellow-500">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <span class="text-sm font-semibold text-gray-700">4.8</span>
+                <span class="text-xs text-gray-500">(2.5k)</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-violet-700 transition-colors">
+              Complete Web Development Bootcamp
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              Master HTML, CSS, JavaScript, React, Node.js and more. Build real-world projects.
+            </p>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-4 text-sm text-gray-500">
+                <div class="flex items-center gap-1">
+                  <i data-lucide="clock" class="w-4 h-4"></i>
+                  <span>40h</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                  <span>12.5k</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold text-gray-900">$89</span>
+                <span class="text-sm text-gray-500 line-through ml-2">$199</span>
+              </div>
+              <a href="courses.html"
+                class="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-xl hover:from-violet-500 hover:to-purple-500 transition-all font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transform duration-200">
+                Enroll Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Course Card 2 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-indigo-400 hover:shadow-2xl transition-all hover-lift transform-3d">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop"
+              alt="Data Science Course"
+              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div
+              class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-indigo-700">
+              New
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Data Science</span>
+              <div class="flex items-center gap-1 text-yellow-500">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <span class="text-sm font-semibold text-gray-700">4.9</span>
+                <span class="text-xs text-gray-500">(1.8k)</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-700 transition-colors">
+              Data Science & Machine Learning
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              Learn Python, pandas, scikit-learn, TensorFlow. Build ML models from scratch.
+            </p>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-4 text-sm text-gray-500">
+                <div class="flex items-center gap-1">
+                  <i data-lucide="clock" class="w-4 h-4"></i>
+                  <span>55h</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                  <span>8.2k</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold text-gray-900">$99</span>
+                <span class="text-sm text-gray-500 line-through ml-2">$249</span>
+              </div>
+              <a href="courses.html"
+                class="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl hover:from-indigo-500 hover:to-blue-500 transition-all font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transform duration-200">
+                Enroll Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Course Card 3 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 hover:shadow-2xl transition-all hover-lift transform-3d">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=300&fit=crop"
+              alt="UI/UX Design Course"
+              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div
+              class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-emerald-700">
+              Popular
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Design</span>
+              <div class="flex items-center gap-1 text-yellow-500">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <span class="text-sm font-semibold text-gray-700">4.7</span>
+                <span class="text-xs text-gray-500">(3.1k)</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
+              UI/UX Design Masterclass
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              Learn Figma, design systems, user research, and create stunning interfaces.
+            </p>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-4 text-sm text-gray-500">
+                <div class="flex items-center gap-1">
+                  <i data-lucide="clock" class="w-4 h-4"></i>
+                  <span>35h</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                  <span>15.3k</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold text-gray-900">$79</span>
+                <span class="text-sm text-gray-500 line-through ml-2">$179</span>
+              </div>
+              <a href="courses.html"
+                class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:from-emerald-500 hover:to-teal-500 transition-all font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transform duration-200">
+                Enroll Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <a href="courses.html"
+          class="inline-flex items-center gap-2 px-6 py-3 border-2 border-violet-300 text-violet-700 rounded-xl hover:bg-violet-50 hover:border-violet-400 hover:shadow-lg transition-all font-semibold group">
+          <span>View All Courses</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Categories Section -->
+  <section class="relative bg-gradient-to-b from-gray-50 to-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="grid" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Browse by Category</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Explore Learning Paths
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Find the perfect course for your career goals
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- Category 1: Development -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-violet-100 to-purple-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-violet-100 to-violet-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="code" class="w-7 h-7 text-violet-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-violet-700 transition-colors">Development
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">320+ courses</p>
+            <div class="flex items-center gap-1 text-violet-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 2: Design -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-pink-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="palette" class="w-7 h-7 text-pink-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-pink-700 transition-colors">Design</h3>
+            <p class="text-sm text-gray-600 mb-3">180+ courses</p>
+            <div class="flex items-center gap-1 text-pink-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 3: Business -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="briefcase" class="w-7 h-7 text-blue-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">Business</h3>
+            <p class="text-sm text-gray-600 mb-3">250+ courses</p>
+            <div class="flex items-center gap-1 text-blue-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 4: Marketing -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-orange-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="megaphone" class="w-7 h-7 text-orange-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-orange-700 transition-colors">Marketing
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">145+ courses</p>
+            <div class="flex items-center gap-1 text-orange-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 5: Data Science -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-100 to-blue-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="database" class="w-7 h-7 text-indigo-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-indigo-700 transition-colors">Data Science
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">195+ courses</p>
+            <div class="flex items-center gap-1 text-indigo-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 6: Photography -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-cyan-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="camera" class="w-7 h-7 text-cyan-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-cyan-700 transition-colors">Photography
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">120+ courses</p>
+            <div class="flex items-center gap-1 text-cyan-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 7: Music -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-purple-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="music" class="w-7 h-7 text-purple-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">Music</h3>
+            <p class="text-sm text-gray-600 mb-3">95+ courses</p>
+            <div class="flex items-center gap-1 text-purple-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+        <!-- Category 8: Health & Fitness -->
+        <a href="courses.html"
+          class="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-emerald-300 hover:shadow-xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-100 to-green-100 rounded-full -mr-12 -mt-12 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+              <i data-lucide="heart" class="w-7 h-7 text-emerald-600"></i>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">Health &
+              Fitness</h3>
+            <p class="text-sm text-gray-600 mb-3">110+ courses</p>
+            <div class="flex items-center gap-1 text-emerald-600 text-sm font-semibold">
+              <span>Explore</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="route" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Structured Learning</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Guided Learning Paths
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Follow curated paths designed by experts to master new skills step by step
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Learning Path 1 -->
+        <div
+          class="group relative bg-gradient-to-br from-violet-50 to-purple-50 border-2 border-violet-200 rounded-2xl p-8 hover:border-violet-300 hover:shadow-2xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-200 to-purple-200 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-violet-600 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg">
+              <i data-lucide="code-2" class="w-8 h-8 text-white"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-semibold text-violet-700 bg-violet-100 px-3 py-1 rounded-full">Beginner to
+                Advanced</span>
+              <span class="text-xs text-gray-500">• 6 months</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-violet-700 transition-colors">
+              Full-Stack Developer
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Master frontend and backend development. Build real-world applications from scratch.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-violet-600"></i>
+                <span>12 Courses</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-violet-600"></i>
+                <span>50+ Projects</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-violet-600"></i>
+                <span>Certificate</span>
+              </div>
+            </div>
+            <a href="courses.html"
+              class="inline-flex items-center gap-2 text-violet-700 font-semibold hover:text-violet-800 group-hover:gap-3 transition-all">
+              <span>Start Learning Path</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Learning Path 2 -->
+        <div
+          class="group relative bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-8 hover:border-blue-300 hover:shadow-2xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg">
+              <i data-lucide="brain" class="w-8 h-8 text-white"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full">Intermediate</span>
+              <span class="text-xs text-gray-500">• 4 months</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors">
+              Data Scientist
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Learn Python, statistics, machine learning, and data visualization.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-blue-600"></i>
+                <span>10 Courses</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-blue-600"></i>
+                <span>30+ Projects</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-blue-600"></i>
+                <span>Portfolio Ready</span>
+              </div>
+            </div>
+            <a href="courses.html"
+              class="inline-flex items-center gap-2 text-blue-700 font-semibold hover:text-blue-800 group-hover:gap-3 transition-all">
+              <span>Start Learning Path</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Learning Path 3 -->
+        <div
+          class="group relative bg-gradient-to-br from-pink-50 to-rose-50 border-2 border-pink-200 rounded-2xl p-8 hover:border-pink-300 hover:shadow-2xl transition-all overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-75 transition-opacity">
+          </div>
+          <div class="relative">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-pink-600 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg">
+              <i data-lucide="palette" class="w-8 h-8 text-white"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-semibold text-pink-700 bg-pink-100 px-3 py-1 rounded-full">All Levels</span>
+              <span class="text-xs text-gray-500">• 3 months</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-pink-700 transition-colors">
+              UI/UX Designer
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Master design principles, tools, and user research. Create beautiful interfaces.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-pink-600"></i>
+                <span>8 Courses</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-pink-600"></i>
+                <span>25+ Projects</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-700">
+                <i data-lucide="check-circle" class="w-4 h-4 text-pink-600"></i>
+                <span>Design Portfolio</span>
+              </div>
+            </div>
+            <a href="courses.html"
+              class="inline-flex items-center gap-2 text-pink-700 font-semibold hover:text-pink-800 group-hover:gap-3 transition-all">
+              <span>Start Learning Path</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Preview Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="play-circle" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">See It In Action</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Experience Our Platform
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Watch how thousands of learners are transforming their careers with our platform
+        </p>
+      </div>
+      <div class="relative max-w-5xl mx-auto">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+          <!-- Video placeholder with play button overlay -->
+          <div class="relative aspect-video bg-gradient-to-br from-violet-900 via-purple-900 to-indigo-900">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=675&fit=crop"
+              alt="Platform demo" class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <!-- Play button -->
+            <button class="absolute inset-0 flex items-center justify-center group" aria-label="Play video">
+              <div
+                class="w-24 h-24 md:w-32 md:h-32 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                <div
+                  class="w-0 h-0 border-l-[20px] md:border-l-[28px] border-l-violet-600 border-t-[14px] md:border-t-[20px] border-t-transparent border-b-[14px] md:border-b-[20px] border-b-transparent ml-1">
+                </div>
+              </div>
+            </button>
+            <!-- Video stats overlay -->
+            <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
+              <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-xl">
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                  <span class="text-sm font-semibold">2.5M+ Views</span>
+                </div>
+                <div class="flex items-center gap-2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-xl">
+                  <i data-lucide="thumbs-up" class="w-5 h-5"></i>
+                  <span class="text-sm font-semibold">98% Like</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Video features below -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div
+            class="text-center p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-violet-300 transition-all">
+            <i data-lucide="zap" class="w-8 h-8 text-violet-600 mx-auto mb-3"></i>
+            <h3 class="font-bold text-lg text-gray-900 mb-2">Fast & Reliable</h3>
+            <p class="text-sm text-gray-600">99.9% uptime guarantee</p>
+          </div>
+          <div
+            class="text-center p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-violet-300 transition-all">
+            <i data-lucide="shield-check" class="w-8 h-8 text-violet-600 mx-auto mb-3"></i>
+            <h3 class="font-bold text-lg text-gray-900 mb-2">Secure Platform</h3>
+            <p class="text-sm text-gray-600">Enterprise-grade security</p>
+          </div>
+          <div
+            class="text-center p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-violet-300 transition-all">
+            <i data-lucide="smartphone" class="w-8 h-8 text-violet-600 mx-auto mb-3"></i>
+            <h3 class="font-bold text-lg text-gray-900 mb-2">Mobile Ready</h3>
+            <p class="text-sm text-gray-600">Learn on any device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="relative bg-gradient-to-b from-gray-50 to-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="tag" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Simple Pricing</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Choose Your Plan
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Start free and upgrade as you grow. All plans include our core features.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Free Plan -->
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all relative">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+            <div class="mb-4">
+              <span class="text-5xl font-extrabold text-gray-900">$0</span>
+              <span class="text-gray-600">/month</span>
+            </div>
+            <p class="text-sm text-gray-600">Perfect for getting started</p>
+          </div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Access to 50+ free courses</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Basic progress tracking</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Community support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Mobile app access</span>
+            </li>
+          </ul>
+          <a href="signup.html"
+            class="block w-full text-center px-6 py-3 border-2 border-violet-300 text-violet-700 rounded-xl hover:bg-violet-50 font-semibold transition-all">
+            Get Started Free
+          </a>
+        </div>
+        <!-- Pro Plan (Popular) -->
+        <div
+          class="bg-gradient-to-br from-violet-600 to-purple-600 rounded-2xl p-8 hover:shadow-2xl transition-all relative transform scale-105 border-4 border-violet-400">
+          <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
+            MOST POPULAR
+          </div>
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-white mb-2">Pro</h3>
+            <div class="mb-4">
+              <span class="text-5xl font-extrabold text-white">$29</span>
+              <span class="text-violet-100">/month</span>
+            </div>
+            <p class="text-sm text-violet-100">For serious learners</p>
+          </div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-white"></i>
+              <span class="text-white">Unlimited course access</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-white"></i>
+              <span class="text-white">Advanced analytics</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-white"></i>
+              <span class="text-white">Certificates of completion</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-white"></i>
+              <span class="text-white">Priority support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-white"></i>
+              <span class="text-white">Offline downloads</span>
+            </li>
+          </ul>
+          <a href="signup.html"
+            class="block w-full text-center px-6 py-3 bg-white text-violet-600 rounded-xl hover:bg-gray-50 font-bold transition-all shadow-lg">
+            Start Pro Trial
+          </a>
+        </div>
+        <!-- Enterprise Plan -->
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all relative">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+            <div class="mb-4">
+              <span class="text-5xl font-extrabold text-gray-900">Custom</span>
+            </div>
+            <p class="text-sm text-gray-600">For teams & organizations</p>
+          </div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Everything in Pro</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Team management</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Custom branding</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">Dedicated support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-700">SSO & integrations</span>
+            </li>
+          </ul>
+          <a href="signup.html"
+            class="block w-full text-center px-6 py-3 border-2 border-violet-300 text-violet-700 rounded-xl hover:bg-violet-50 font-semibold transition-all">
+            Contact Sales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificate Showcase Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 text-sm font-semibold text-violet-700">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span>Verified Certificates</span>
+          </div>
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+            Earn Recognized Certificates
+          </h2>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            Complete courses and earn industry-recognized certificates that you can share on LinkedIn, add to your
+            resume, or display on your profile.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check-circle" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-1">Industry Recognized</h3>
+                <p class="text-gray-600">Certificates verified by leading industry experts</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="share-2" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-1">Shareable Credentials</h3>
+                <p class="text-gray-600">Export and share your achievements on social media</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="shield-check" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-1">Verifiable</h3>
+                <p class="text-gray-600">Employers can verify your certificates online</p>
+              </div>
+            </div>
+          </div>
+          <a href="courses.html"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-xl hover:from-violet-500 hover:to-purple-500 transition-all font-semibold shadow-lg">
+            <span>Start Earning Certificates</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <div class="relative">
+          <!-- Certificate mockup -->
+          <div
+            class="relative bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-8 border-4 border-violet-200 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform">
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+              <div class="text-center mb-6 border-b-2 border-violet-100 pb-4">
+                <div
+                  class="w-20 h-20 bg-gradient-to-br from-violet-600 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <i data-lucide="award" class="w-10 h-10 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Certificate of Completion</h3>
+                <p class="text-gray-600">This certifies that</p>
+              </div>
+              <div class="text-center mb-6">
+                <p class="text-3xl font-bold text-violet-600 mb-2">John Doe</p>
+                <p class="text-gray-700 mb-4">has successfully completed</p>
+                <p class="text-xl font-semibold text-gray-900 mb-2">Full-Stack Web Development</p>
+                <p class="text-sm text-gray-600">Issued on March 15, 2024</p>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                <div class="text-xs text-gray-500">
+                  <p class="font-semibold">Certificate ID</p>
+                  <p>LMS-2024-FSWD-12345</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-green-500"></i>
+                  <span class="text-xs font-semibold text-green-600">Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div
+            class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl border-2 border-violet-200 px-4 py-2 flex items-center gap-2">
+            <i data-lucide="users" class="w-5 h-5 text-violet-600"></i>
+            <span class="text-sm font-semibold text-gray-700">50K+ Certificates Issued</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile App Promotion Section -->
+  <section
+    class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 overflow-hidden py-20 md:py-28">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="text-white">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4 text-sm font-semibold">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <span>Mobile Learning</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Learn On The Go
+          </h2>
+          <p class="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+            Take your learning anywhere with our mobile app. Download courses for offline access, track your progress,
+            and never miss a lesson.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <i data-lucide="download" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Offline Access</h3>
+                <p class="text-white/80">Download courses and learn without internet</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <i data-lucide="bell" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Push Notifications</h3>
+                <p class="text-white/80">Get reminders and stay on track</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <i data-lucide="sync" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Sync Across Devices</h3>
+                <p class="text-white/80">Seamlessly continue on any device</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#"
+              class="inline-flex items-center gap-3 bg-black/20 backdrop-blur-sm hover:bg-black/30 rounded-xl px-6 py-3 transition-all border-2 border-white/20">
+              <i data-lucide="apple" class="w-6 h-6"></i>
+              <div class="text-left">
+                <div class="text-xs text-white/80">Download on the</div>
+                <div class="text-sm font-bold">App Store</div>
+              </div>
+            </a>
+            <a href="#"
+              class="inline-flex items-center gap-3 bg-black/20 backdrop-blur-sm hover:bg-black/30 rounded-xl px-6 py-3 transition-all border-2 border-white/20">
+              <i data-lucide="play" class="w-6 h-6"></i>
+              <div class="text-left">
+                <div class="text-xs text-white/80">Get it on</div>
+                <div class="text-sm font-bold">Google Play</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <!-- Phone mockup -->
+          <div class="relative mx-auto max-w-sm">
+            <div class="relative bg-gray-900 rounded-[3rem] p-4 shadow-2xl">
+              <div class="bg-white rounded-[2.5rem] overflow-hidden">
+                <div class="bg-gradient-to-r from-violet-600 to-purple-600 p-6 text-white">
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg">My Courses</h3>
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                  </div>
+                </div>
+                <div class="p-4 space-y-3">
+                  <div class="bg-gray-50 rounded-xl p-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-16 h-12 bg-gradient-to-br from-violet-400 to-purple-400 rounded-lg"></div>
+                      <div class="flex-1">
+                        <div class="h-3 bg-gray-300 rounded mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-2/3"></div>
+                      </div>
+                    </div>
+                    <div class="mt-2 h-2 bg-violet-200 rounded-full">
+                      <div class="h-2 bg-violet-600 rounded-full" style="width: 65%"></div>
+                    </div>
+                  </div>
+                  <div class="bg-gray-50 rounded-xl p-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-16 h-12 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-lg"></div>
+                      <div class="flex-1">
+                        <div class="h-3 bg-gray-300 rounded mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-2/3"></div>
+                      </div>
+                    </div>
+                    <div class="mt-2 h-2 bg-blue-200 rounded-full">
+                      <div class="h-2 bg-blue-600 rounded-full" style="width: 80%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="trending-up" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Success Stories</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Real Results from Real Learners
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          See how our platform has helped thousands achieve their career goals
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Success Story 1 -->
+        <div
+          class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-8 border-2 border-violet-100 hover:shadow-xl transition-all">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+              alt="Success story" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+            <div>
+              <h3 class="font-bold text-lg text-gray-900">Michael Chen</h3>
+              <p class="text-sm text-gray-600">Software Engineer at Google</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex items-center gap-1 mb-2">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            </div>
+            <p class="text-gray-700 italic mb-4">"Completed the Full-Stack Developer path and landed my dream job at
+              Google within 3 months. The structured learning approach was exactly what I needed."</p>
+            <div class="flex items-center gap-2 text-sm text-violet-600">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <span class="font-semibold">+$45K salary increase</span>
+            </div>
+          </div>
+        </div>
+        <!-- Success Story 2 -->
+        <div
+          class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-100 hover:shadow-xl transition-all">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
+              alt="Success story" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+            <div>
+              <h3 class="font-bold text-lg text-gray-900">Sarah Johnson</h3>
+              <p class="text-sm text-gray-600">Data Scientist at Microsoft</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex items-center gap-1 mb-2">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            </div>
+            <p class="text-gray-700 italic mb-4">"The Data Science path gave me the skills to transition from marketing
+              to data science. Now I'm working on cutting-edge ML projects!"</p>
+            <div class="flex items-center gap-2 text-sm text-blue-600">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <span class="font-semibold">Career transition success</span>
+            </div>
+          </div>
+        </div>
+        <!-- Success Story 3 -->
+        <div
+          class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 border-2 border-emerald-100 hover:shadow-xl transition-all">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face"
+              alt="Success story" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+            <div>
+              <h3 class="font-bold text-lg text-gray-900">David Martinez</h3>
+              <p class="text-sm text-gray-600">UI/UX Designer at Apple</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex items-center gap-1 mb-2">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            </div>
+            <p class="text-gray-700 italic mb-4">"The design courses helped me build a portfolio that got me noticed by
+              Apple. The feedback from instructors was invaluable."</p>
+            <div class="flex items-center gap-2 text-sm text-emerald-600">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <span class="font-semibold">Portfolio featured by Apple</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructor Highlights Section -->
+  <section class="relative bg-gradient-to-b from-gray-50 to-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="user-check" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Expert Instructors</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Learn from Industry Experts
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Our instructors are professionals with years of real-world experience
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <!-- Instructor 1 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-xl transition-all text-center">
+          <div class="relative inline-block mb-4">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+              alt="Instructor"
+              class="w-24 h-24 rounded-full object-cover border-4 border-violet-100 group-hover:border-violet-300 transition-colors mx-auto"
+              loading="lazy">
+            <div class="absolute -bottom-2 -right-2 bg-violet-600 rounded-full p-2 border-4 border-white">
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-gray-900 mb-1">Alex Johnson</h3>
+          <p class="text-sm text-gray-600 mb-3">Senior Developer at Google</p>
+          <div class="flex items-center justify-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            <span class="text-sm font-semibold text-gray-700">4.9</span>
+            <span class="text-xs text-gray-500">(12.5k students)</span>
+          </div>
+          <div class="text-sm text-gray-600 mb-4">
+            <div class="flex items-center justify-center gap-1">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>15 Courses</span>
+            </div>
+          </div>
+          <a href="courses.html"
+            class="text-sm text-violet-600 font-semibold hover:text-violet-700 inline-flex items-center gap-1">
+            <span>View Courses</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+        <!-- Instructor 2 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-xl transition-all text-center">
+          <div class="relative inline-block mb-4">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+              alt="Instructor"
+              class="w-24 h-24 rounded-full object-cover border-4 border-indigo-100 group-hover:border-indigo-300 transition-colors mx-auto"
+              loading="lazy">
+            <div class="absolute -bottom-2 -right-2 bg-indigo-600 rounded-full p-2 border-4 border-white">
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-gray-900 mb-1">Sarah Chen</h3>
+          <p class="text-sm text-gray-600 mb-3">Data Scientist at Microsoft</p>
+          <div class="flex items-center justify-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            <span class="text-sm font-semibold text-gray-700">4.8</span>
+            <span class="text-xs text-gray-500">(8.2k students)</span>
+          </div>
+          <div class="text-sm text-gray-600 mb-4">
+            <div class="flex items-center justify-center gap-1">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>12 Courses</span>
+            </div>
+          </div>
+          <a href="courses.html"
+            class="text-sm text-indigo-600 font-semibold hover:text-indigo-700 inline-flex items-center gap-1">
+            <span>View Courses</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+        <!-- Instructor 3 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-pink-300 hover:shadow-xl transition-all text-center">
+          <div class="relative inline-block mb-4">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
+              alt="Instructor"
+              class="w-24 h-24 rounded-full object-cover border-4 border-pink-100 group-hover:border-pink-300 transition-colors mx-auto"
+              loading="lazy">
+            <div class="absolute -bottom-2 -right-2 bg-pink-600 rounded-full p-2 border-4 border-white">
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-gray-900 mb-1">Michael Rodriguez</h3>
+          <p class="text-sm text-gray-600 mb-3">Lead Designer at Apple</p>
+          <div class="flex items-center justify-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            <span class="text-sm font-semibold text-gray-700">4.9</span>
+            <span class="text-xs text-gray-500">(15.3k students)</span>
+          </div>
+          <div class="text-sm text-gray-600 mb-4">
+            <div class="flex items-center justify-center gap-1">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>18 Courses</span>
+            </div>
+          </div>
+          <a href="courses.html"
+            class="text-sm text-pink-600 font-semibold hover:text-pink-700 inline-flex items-center gap-1">
+            <span>View Courses</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+        <!-- Instructor 4 -->
+        <div
+          class="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-emerald-300 hover:shadow-xl transition-all text-center">
+          <div class="relative inline-block mb-4">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+              alt="Instructor"
+              class="w-24 h-24 rounded-full object-cover border-4 border-emerald-100 group-hover:border-emerald-300 transition-colors mx-auto"
+              loading="lazy">
+            <div class="absolute -bottom-2 -right-2 bg-emerald-600 rounded-full p-2 border-4 border-white">
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-gray-900 mb-1">Emily Watson</h3>
+          <p class="text-sm text-gray-600 mb-3">Marketing Director at Meta</p>
+          <div class="flex items-center justify-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+            <span class="text-sm font-semibold text-gray-700">4.7</span>
+            <span class="text-xs text-gray-500">(9.8k students)</span>
+          </div>
+          <div class="text-sm text-gray-600 mb-4">
+            <div class="flex items-center justify-center gap-1">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>10 Courses</span>
+            </div>
+          </div>
+          <a href="courses.html"
+            class="text-sm text-emerald-600 font-semibold hover:text-emerald-700 inline-flex items-center gap-1">
+            <span>View Courses</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -799,6 +2289,218 @@
     </div>
   </section>
 
+  <!-- Achievement Badges Section -->
+  <section class="relative bg-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 md:mb-6">
+          <i data-lucide="trophy" class="w-4 h-4 text-violet-600"></i>
+          <span class="text-sm font-semibold text-violet-700">Gamification</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+          Earn Achievements & Badges
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Stay motivated with gamified learning. Unlock badges, earn points, and compete on leaderboards.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <!-- Badge 1 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="trophy" class="w-10 h-10 md:w-12 md:h-12 text-yellow-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full border-2 border-white flex items-center justify-center">
+              <i data-lucide="check" class="w-3 h-3 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">First Course</h3>
+          <p class="text-xs text-gray-600">Complete your first course</p>
+        </div>
+        <!-- Badge 2 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="flame" class="w-10 h-10 md:w-12 md:h-12 text-blue-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-xs font-bold text-white">7</span>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">7 Day Streak</h3>
+          <p class="text-xs text-gray-600">Learn 7 days in a row</p>
+        </div>
+        <!-- Badge 3 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="star" class="w-10 h-10 md:w-12 md:h-12 text-purple-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-purple-400 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-xs font-bold text-white">A+</span>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">Perfect Score</h3>
+          <p class="text-xs text-gray-600">Score 100% on a quiz</p>
+        </div>
+        <!-- Badge 4 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="graduation-cap" class="w-10 h-10 md:w-12 md:h-12 text-green-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-xs font-bold text-white">10</span>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">Scholar</h3>
+          <p class="text-xs text-gray-600">Complete 10 courses</p>
+        </div>
+        <!-- Badge 5 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="heart" class="w-10 h-10 md:w-12 md:h-12 text-pink-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-pink-400 rounded-full border-2 border-white flex items-center justify-center">
+              <i data-lucide="users" class="w-3 h-3 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">Community Hero</h3>
+          <p class="text-xs text-gray-600">Help 50 learners</p>
+        </div>
+        <!-- Badge 6 -->
+        <div class="text-center group">
+          <div class="relative inline-block mb-4">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-lg">
+              <i data-lucide="crown" class="w-10 h-10 md:w-12 md:h-12 text-orange-600"></i>
+            </div>
+            <div
+              class="absolute -top-2 -right-2 w-6 h-6 bg-orange-400 rounded-full border-2 border-white flex items-center justify-center">
+              <span class="text-xs font-bold text-white">#1</span>
+            </div>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-900 mb-1">Top Learner</h3>
+          <p class="text-xs text-gray-600">Rank #1 on leaderboard</p>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <a href="courses.html"
+          class="inline-flex items-center gap-2 px-6 py-3 border-2 border-violet-300 text-violet-700 rounded-xl hover:bg-violet-50 hover:border-violet-400 hover:shadow-lg transition-all font-semibold group">
+          <span>Start Earning Badges</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Outcomes Section -->
+  <section class="relative bg-gradient-to-b from-gray-50 to-white border-t overflow-hidden py-20 md:py-28">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4 text-sm font-semibold text-violet-700">
+            <i data-lucide="target" class="w-4 h-4"></i>
+            <span>What You'll Learn</span>
+          </div>
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 bg-clip-text text-transparent">
+            Skills That Get You Hired
+          </h2>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+            Our courses are designed with industry needs in mind. Learn the skills that employers are looking for.
+          </p>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check-circle-2" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Industry-Relevant Skills</h3>
+                <p class="text-gray-600">Learn technologies and tools used by top companies worldwide</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check-circle-2" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Portfolio Projects</h3>
+                <p class="text-gray-600">Build real-world projects to showcase your skills to employers</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check-circle-2" class="w-6 h-6 text-violet-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Career Support</h3>
+                <p class="text-gray-600">Get resume reviews, interview prep, and job placement assistance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-xl">
+            <h3 class="font-bold text-xl text-gray-900 mb-6">Top Skills Employers Want</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-violet-50 rounded-xl">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="code" class="w-6 h-6 text-violet-600"></i>
+                  <span class="font-semibold text-gray-900">Full-Stack Development</span>
+                </div>
+                <div class="text-sm font-bold text-violet-600">+45%</div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-blue-50 rounded-xl">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="database" class="w-6 h-6 text-blue-600"></i>
+                  <span class="font-semibold text-gray-900">Data Science & ML</span>
+                </div>
+                <div class="text-sm font-bold text-blue-600">+38%</div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-purple-50 rounded-xl">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="palette" class="w-6 h-6 text-purple-600"></i>
+                  <span class="font-semibold text-gray-900">UI/UX Design</span>
+                </div>
+                <div class="text-sm font-bold text-purple-600">+32%</div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-emerald-50 rounded-xl">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="cloud" class="w-6 h-6 text-emerald-600"></i>
+                  <span class="font-semibold text-gray-900">Cloud Computing</span>
+                </div>
+                <div class="text-sm font-bold text-emerald-600">+28%</div>
+              </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <p class="text-sm text-gray-600 text-center">
+                <span class="font-semibold text-gray-900">85%</span> of our graduates land jobs within 6 months
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Final CTA Section -->
   <section
     class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 overflow-hidden py-20 md:py-28">
@@ -912,6 +2614,27 @@
       &copy; 2024 Learning Management System. All rights reserved.
     </div>
   </footer>
+  <!-- Live Chat Support Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button
+      class="group relative w-16 h-16 bg-gradient-to-br from-violet-600 to-purple-600 rounded-full shadow-2xl hover:shadow-violet-500/50 hover:scale-110 transition-all flex items-center justify-center"
+      aria-label="Open live chat support">
+      <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+      <!-- Pulse animation -->
+      <span class="absolute inset-0 rounded-full bg-violet-600 animate-ping opacity-75"></span>
+      <!-- Online indicator -->
+      <span class="absolute top-0 right-0 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></span>
+    </button>
+    <!-- Tooltip -->
+    <div
+      class="absolute bottom-full right-0 mb-2 px-4 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+      Chat with Support
+      <div
+        class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900">
+      </div>
+    </div>
+  </div>
+
   <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
   <script>
     // Simple testimonial rotator
@@ -1073,6 +2796,137 @@
 
       // Start carousel
       startCarousel();
+    })();
+
+    /**
+     * Statistics Counter Animation
+     * Animates statistics numbers when they come into view using Intersection Observer API.
+     * This creates an engaging visual effect that draws attention to key metrics.
+     */
+    (function () {
+      // Get all statistic elements with data-stat attribute
+      const stats = document.querySelectorAll('[data-stat]');
+      if (!stats.length) return;
+
+      // Intersection Observer configuration
+      // Triggers animation when 50% of the element is visible
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+      };
+
+      /**
+       * Intersection Observer callback
+       * Animates each statistic counter when it becomes visible
+       */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const statElement = entry.target;
+            const statType = statElement.getAttribute('data-stat');
+            const finalValue = statElement.textContent;
+
+            // Extract number and unit from the final value (e.g., "50K+" -> 50, "+")
+            const match = finalValue.match(/([\d.]+)(.*)/);
+            if (!match) return;
+
+            const targetNumber = parseFloat(match[1]);
+            const unit = match[2] || '';
+            const steps = 60; // Number of animation steps
+            const increment = targetNumber / steps;
+            let current = 0;
+            let step = 0;
+
+            /**
+             * Animation function that updates the counter value
+             * Uses requestAnimationFrame for smooth 60fps animation
+             */
+            const updateCounter = () => {
+              step++;
+              current = Math.min(current + increment, targetNumber);
+
+              // Format display value based on statistic type
+              let displayValue;
+              if (statType === 'students' || statType === 'courses' || statType === 'instructors') {
+                // Format large numbers with commas (e.g., 50,000)
+                displayValue = Math.floor(current).toLocaleString() + unit;
+              } else if (statType === 'completion') {
+                // Percentage values (e.g., 95%)
+                displayValue = Math.floor(current) + unit;
+              } else {
+                // Default formatting
+                displayValue = Math.floor(current).toLocaleString() + unit;
+              }
+
+              statElement.textContent = displayValue;
+
+              // Continue animation until all steps are complete
+              if (step < steps) {
+                requestAnimationFrame(updateCounter);
+              } else {
+                // Ensure final value matches exactly (handles rounding)
+                statElement.textContent = finalValue;
+              }
+            };
+
+            // Start the animation
+            updateCounter();
+            // Stop observing this element after animation starts
+            observer.unobserve(statElement);
+          }
+        });
+      }, observerOptions);
+
+      // Start observing all statistic elements
+      stats.forEach(stat => observer.observe(stat));
+    })();
+
+    /**
+     * Scroll-triggered animations for enhanced visual appeal
+     * Adds fade-in and slide-up effects to elements as they enter viewport
+     */
+    (function () {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards and sections for animation
+      const animatedElements = document.querySelectorAll('.hover-lift, .transform-3d, section > div > div');
+      animatedElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
+      });
+    })();
+
+    /**
+     * Parallax effect for hero section
+     * Creates depth by moving background elements at different speeds
+     */
+    (function () {
+      const hero = document.querySelector('section.relative.min-h-\\[85vh\\]');
+      if (!hero) return;
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const particles = hero.querySelectorAll('.particle');
+        particles.forEach((particle, index) => {
+          const speed = 0.5 + (index * 0.1);
+          particle.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
     })();
   </script>
   <script src="https://unpkg.com/lucide@latest"></script>

@@ -13,30 +13,54 @@
     <a href="#main"
         class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded">Skip
         to main content</a>
-    <div class="min-h-screen bg-gray-50 flex flex-col">
-        <header class="border-b bg-white">
-            <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-                <a href="index.html"><img src="src/assets/logo.svg" alt="LMS Logo" class="h-8"></a>
-                <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary">
-                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-                        href="features.html" data-i18n="nav.features">Features</a>
-                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-                        href="saved.html" data-i18n="nav.saved">Saved</a>
-                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-                        href="courses.html" data-i18n="nav.browse">Courses</a>
-                    <a class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-700 hover:bg-violet-50 rounded-lg transition-all"
-                        href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-                    <div class="h-6 w-px bg-gray-300 mx-2"></div>
-                    <!-- Language Selector -->
-                    <div id="langSelectorWrapper" class="relative">
-                        <!-- Language selector will be inserted here by main.js -->
-                    </div>
-                    <a class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all"
-                        href="signin.html" data-i18n="nav.signin">Sign in</a>
-                </nav>
-                <button id="mobileMenuToggle" class="inline-flex items-center justify-center h-9 w-9 rounded border"
-                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i data-lucide="menu"
-                        class="w-5 h-5"></i></button>
+    <div class="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 flex flex-col">
+        <!-- Modern Header with Glassmorphism -->
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/50 shadow-lg shadow-gray-900/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="h-16 flex items-center justify-between">
+                    <!-- Modern Logo -->
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                            <img src="src/assets/logo.svg" alt="LMS Logo" class="relative h-9 md:h-10 transition-transform group-hover:scale-110 group-hover:rotate-3">
+                        </div>
+                        <span class="hidden sm:block text-xl font-extrabold bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">LMS</span>
+                    </a>
+                    <!-- Modern Desktop Navigation -->
+                    <nav class="hidden md:flex items-center gap-2" aria-label="Primary">
+                        <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+                            href="features.html" data-i18n="nav.features">
+                            <span class="relative z-10">Features</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                        </a>
+                        <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+                            href="saved.html" data-i18n="nav.saved">
+                            <span class="relative z-10">Saved</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                        </a>
+                        <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+                            href="courses.html" data-i18n="nav.browse">
+                            <span class="relative z-10">Courses</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                        </a>
+                        <a class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-violet-600 hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 rounded-xl transition-all duration-200 relative group"
+                            href="quiz.html" data-i18n="nav.quiz">
+                            <span class="relative z-10">Quiz</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                        </a>
+                        <div class="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent mx-2"></div>
+                        <!-- Language Selector -->
+                        <div id="langSelectorWrapper" class="relative">
+                            <!-- Language selector will be inserted here by main.js -->
+                        </div>
+                        <a class="px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:via-purple-500 hover:to-pink-500 rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105 active:scale-95 transition-all duration-200"
+                            href="signin.html" data-i18n="nav.signin">Sign in</a>
+                    </nav>
+                    <button id="mobileMenuToggle" class="inline-flex items-center justify-center h-10 w-10 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                        aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+                        <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
+                    </button>
+                </div>
             </div>
             <div id="mobileMenu" class="hidden border-t">
                 <nav class="max-w-6xl mx-auto px-4 py-3 grid gap-2 text-sm" aria-label="Mobile">
@@ -60,90 +84,114 @@
                 </nav>
             </div>
         </header>
-        <br>
-        <div id="main" class="min-h-screen flex flex-col items-center justify-center bg-gray-100" role="main">
-            <div class="w-full max-w-md mb-4 px-4"><a href="index.html"
-                    class="inline-flex items-center gap-1 text-sm text-blue-700 hover:underline"
-                    data-i18n="common.backHome"><i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Back to
-                        home</span></a>
+        <div id="main" class="flex-1 flex flex-col items-center justify-center py-12 px-4" role="main">
+            <div class="w-full max-w-md mb-6">
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-violet-600 hover:text-violet-700 transition-colors"
+                    data-i18n="common.backHome">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to home</span>
+                </a>
             </div>
             <header class="mb-8 text-center">
-                <h1 class="text-4xl font-bold text-blue-700 mb-2" data-i18n="signin.title">Sign in to your account</h1>
-                <p class="text-gray-700" data-i18n="signin.helper">Welcome back. Please enter your details.</p>
-                <!-- Demo Credentials -->
-                <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg text-left max-w-md mx-auto">
-                    <p class="text-sm font-semibold text-blue-900 mb-3">Quick Demo Login:</p>
-                    <div class="space-y-2">
+                <div class="mb-4">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-600 shadow-lg shadow-violet-500/25 mb-4">
+                        <i data-lucide="log-in" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3" data-i18n="signin.title">Sign in to your account</h1>
+                <p class="text-gray-600 text-lg" data-i18n="signin.helper">Welcome back. Please enter your details.</p>
+                <!-- Modern Demo Credentials -->
+                <div class="mt-8 p-6 bg-gradient-to-br from-violet-50 to-purple-50 border-2 border-violet-200/50 rounded-2xl text-left max-w-md mx-auto shadow-lg shadow-violet-500/10">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="zap" class="w-5 h-5 text-violet-600"></i>
+                        <p class="text-sm font-bold text-violet-900">Quick Demo Login:</p>
+                    </div>
+                    <div class="space-y-3">
                         <button id="demoLoginBtn"
-                            class="w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-500 hover:to-indigo-500 transition-all shadow-md hover:shadow-lg font-medium text-sm flex items-center justify-center gap-2">
+                            class="w-full px-5 py-3.5 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 text-white rounded-xl hover:from-violet-500 hover:via-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105 active:scale-95 font-bold text-sm flex items-center justify-center gap-2">
                             <i data-lucide="zap" class="w-4 h-4"></i>
                             <span>Login as Admin (Demo)</span>
                         </button>
-                        <div class="text-xs text-blue-700 pt-2 border-t border-blue-200">
-                            <div class="flex items-center justify-between mb-1">
-                                <span class="font-medium">Or fill form manually:</span>
+                        <div class="text-xs text-violet-700 pt-3 border-t border-violet-200/50">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-semibold">Or fill form manually:</span>
                                 <button id="demoAdminBtn"
-                                    class="text-blue-600 hover:text-blue-800 underline font-medium">
+                                    class="text-violet-600 hover:text-violet-800 underline font-bold text-xs">
                                     Use Admin Credentials
                                 </button>
                             </div>
-                            <div class="text-blue-600 pl-2">
-                                <span>Email: admin@lms.com</span><br>
-                                <span>Password: admin123</span>
+                            <div class="text-violet-600 pl-2 space-y-1 font-mono">
+                                <div>Email: <span class="font-bold">admin@lms.com</span></div>
+                                <div>Password: <span class="font-bold">admin123</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
-            <main class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-                <div class="mb-4">
-                    <button type="button" class="socialBtn w-full mb-2 border rounded px-4 py-2 text-sm"
-                        data-i18n="signup.google">Sign up with
-                        Google</button>
-                    <button type="button" class="socialBtn w-full border rounded px-4 py-2 text-sm"
-                        data-i18n="signup.github">Sign up with
-                        GitHub</button>
-                    <div class="flex items-center gap-2 my-4">
+            <main class="w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl shadow-violet-500/20 border-2 border-violet-100/50 p-8 md:p-10">
+                <div class="mb-6">
+                    <button type="button" class="socialBtn w-full mb-3 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                        data-i18n="signup.google">
+                        <i data-lucide="chrome" class="w-5 h-5"></i>
+                        <span>Continue with Google</span>
+                    </button>
+                    <button type="button" class="socialBtn w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                        data-i18n="signup.github">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <span>Continue with GitHub</span>
+                    </button>
+                    <div class="flex items-center gap-3 my-6">
                         <div class="h-px bg-gray-200 flex-1"></div>
-                        <span class="text-xs text-gray-400" data-i18n="common.or">or</span>
+                        <span class="text-xs text-gray-500 font-medium" data-i18n="common.or">or continue with email</span>
                         <div class="h-px bg-gray-200 flex-1"></div>
                     </div>
                 </div>
-                <form id="signinForm" class="flex flex-col gap-4" novalidate>
+                <form id="signinForm" class="flex flex-col gap-5" novalidate>
                     <div>
-                        <label for="email" class="block text-gray-600 mb-1" data-i18n="signin.email">Email</label>
-                        <input type="email" id="email" name="email" autocomplete="username" required
-                            class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            data-i18n-placeholder="signin.emailPlaceholder" placeholder="you@example.com" />
-                        <p id="emailError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.emailError">Please
-                            enter a valid email.</p>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="signin.email">Email address</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                            <input type="email" id="email" name="email" autocomplete="username" required
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 focus:outline-none transition-all bg-gray-50 focus:bg-white"
+                                data-i18n-placeholder="signin.emailPlaceholder" placeholder="you@example.com" />
+                        </div>
+                        <p id="emailError" class="mt-2 text-xs text-red-600 hidden flex items-center gap-1" data-i18n="signin.emailError">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                            <span>Please enter a valid email.</span>
+                        </p>
                     </div>
                     <div>
-                        <label for="password" class="block text-gray-600 mb-1"
+                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-2"
                             data-i18n="signin.password">Password</label>
                         <div class="relative">
+                            <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
                             <input type="password" id="password" name="password" autocomplete="current-password"
                                 required
-                                class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                class="w-full pl-10 pr-12 py-3 rounded-xl border-2 border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 focus:outline-none transition-all bg-gray-50 focus:bg-white"
                                 data-i18n-placeholder="signin.passwordPlaceholder" placeholder="••••••••" />
                             <button type="button" id="togglePassword"
-                                class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-600"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-violet-600 hover:text-violet-700 font-semibold"
                                 data-i18n="signin.show">Show</button>
                         </div>
-                        <p id="passwordError" class="mt-1 text-xs text-red-600 hidden" data-i18n="signin.passwordError">
-                            Password is required.</p>
+                        <p id="passwordError" class="mt-2 text-xs text-red-600 hidden flex items-center gap-1" data-i18n="signin.passwordError">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                            <span>Password is required.</span>
+                        </p>
                     </div>
                     <div class="flex items-center justify-between text-sm">
-                        <label class="inline-flex items-center gap-2">
-                            <input id="rememberMe" type="checkbox" class="rounded border-gray-300"> <span
-                                data-i18n="signin.remember">Remember me</span>
+                        <label class="inline-flex items-center gap-2 cursor-pointer">
+                            <input id="rememberMe" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"> 
+                            <span class="text-gray-700" data-i18n="signin.remember">Remember me</span>
                         </label>
-                        <a href="forgot.html" class="text-blue-600 hover:underline" data-i18n="signin.forgot">Forgot
-                            password?</a>
+                        <a href="forgot.html" class="text-violet-600 hover:text-violet-700 font-semibold hover:underline transition-colors" data-i18n="signin.forgot">Forgot password?</a>
                     </div>
-                    <button id="signinSubmit" type="submit" class="mt-2 btn-primary duration-200"
-                        data-i18n="signin.submit">Sign
-                        In</button>
+                    <button id="signinSubmit" type="submit" 
+                        class="mt-2 w-full px-6 py-3.5 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 text-white rounded-xl hover:from-violet-500 hover:via-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105 active:scale-95 font-bold text-sm duration-200 flex items-center justify-center gap-2"
+                        data-i18n="signin.submit">
+                        <span>Sign In</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
                 </form>
                 <div class="mt-6 text-center text-gray-500 text-sm">
                     <p><span data-i18n="signin.noAccount">Don't have an account?</span> <a href="signup.html"
