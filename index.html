@@ -268,63 +268,31 @@
   </header>
   <!-- HERO TEMPLATE SECTION -->
   <section
-    class="relative min-h-[85vh] flex items-center bg-gradient-to-br from-indigo-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
-    <!-- Animated Particle Background -->
-    <div class="particle-bg">
-      <div class="particle" style="width: 80px; height: 80px; top: 10%; left: 10%; animation-delay: 0s;"></div>
-      <div class="particle" style="width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: 2s;"></div>
-      <div class="particle" style="width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s;"></div>
-      <div class="particle" style="width: 100px; height: 100px; top: 30%; right: 30%; animation-delay: 6s;"></div>
-      <div class="particle" style="width: 70px; height: 70px; bottom: 40%; right: 10%; animation-delay: 8s;"></div>
+    class="relative min-h-[90vh] flex items-center bg-gradient-to-br from-indigo-50 via-purple-50/40 to-pink-50/30 overflow-hidden">
+    <!-- Subtle Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-violet-400 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-400 rounded-full blur-3xl"></div>
     </div>
 
-    <!-- Enhanced Abstract Background Waves with Animation -->
+    <!-- Simplified Abstract Background Waves -->
     <svg aria-hidden="true" class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 1200 800"
       preserveAspectRatio="none">
       <defs>
         <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#6b21a8" stop-opacity="0.15" />
-          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.2" />
+          <stop offset="0%" stop-color="#6b21a8" stop-opacity="0.08" />
+          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.12" />
         </linearGradient>
         <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.15" />
-          <stop offset="100%" stop-color="#ec4899" stop-opacity="0.12" />
-        </linearGradient>
-        <linearGradient id="waveGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12" />
-          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.15" />
+          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.06" />
+          <stop offset="100%" stop-color="#ec4899" stop-opacity="0.08" />
         </linearGradient>
       </defs>
-      <!-- Animated Wave 1 -->
-      <path d="M0,200 Q300,150 600,180 T1200,160 L1200,0 L0,0 Z" fill="url(#waveGrad1)" class="animate-float" />
-      <!-- Animated Wave 2 -->
-      <path d="M0,300 Q400,250 800,280 T1200,260 L1200,0 L0,0 Z" fill="url(#waveGrad2)" style="animation-delay: 1s;"
-        class="animate-float" />
-      <!-- Animated Wave 3 -->
-      <path d="M0,400 Q500,350 1000,380 T1200,360 L1200,0 L0,0 Z" fill="url(#waveGrad3)" style="animation-delay: 2s;"
-        class="animate-float" />
+      <!-- Wave 1 -->
+      <path d="M0,200 Q300,150 600,180 T1200,160 L1200,0 L0,0 Z" fill="url(#waveGrad1)" />
+      <!-- Wave 2 -->
+      <path d="M0,400 Q500,350 1000,380 T1200,360 L1200,0 L0,0 Z" fill="url(#waveGrad2)" />
     </svg>
-
-    <!-- Floating Geometric Shapes -->
-    <div
-      class="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-violet-400/20 to-purple-400/20 rounded-3xl blur-xl animate-float transform rotate-45">
-    </div>
-    <div
-      class="absolute bottom-32 left-16 w-40 h-40 bg-gradient-to-br from-pink-400/20 to-rose-400/20 rounded-full blur-2xl animate-float"
-      style="animation-delay: 2s;"></div>
-    <div
-      class="absolute top-1/2 right-1/4 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-blue-400/20 rounded-2xl blur-xl animate-float"
-      style="animation-delay: 4s;"></div>
-
-    <!-- Enhanced Collaboration Illustration -->
-    <div class="absolute top-10 left-10 opacity-10 animate-float">
-      <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30" fill="#6b21a8" />
-        <circle cx="150" cy="50" r="30" fill="#6366f1" />
-        <circle cx="100" cy="150" r="30" fill="#a855f7" />
-        <path d="M50 50 L100 150 M150 50 L100 150" stroke="#6b21a8" stroke-width="3" opacity="0.3" />
-      </svg>
-    </div>
 
     <!-- Main Hero Content -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 z-10">
@@ -332,129 +300,91 @@
 
         <!-- Left Column: Text Content -->
         <div class="relative z-10 text-center lg:text-left">
-          <!-- Enhanced Badge/Pill with Animation -->
+          <!-- Clean Badge/Pill -->
           <div
-            class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-100 via-purple-100 to-pink-100 rounded-full mb-6 text-sm font-bold text-violet-700 shadow-lg hover:shadow-xl transition-all hover:scale-105 animate-pulse-glow border border-violet-200/50">
-            <i data-lucide="sparkles" class="w-4 h-4 animate-spin" style="animation-duration: 3s;"></i>
-            <span class="text-gradient-animate">✨ Modern Learning Platform</span>
+            class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-6 text-sm font-semibold text-violet-700 shadow-sm">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span data-i18n="hero.badge">Modern Learning Platform</span>
           </div>
 
-          <!-- Enhanced Main Heading with Animated Gradient -->
-          <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-            <span class="text-gradient-animate block mb-2" data-i18n="hero.title">
+          <!-- Balanced Main Heading -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-violet-700 to-purple-700 block mb-2"
+              data-i18n="hero.title">
               Learning Management
             </span>
-            <span class="text-gradient-animate block"
-              style="background: linear-gradient(90deg, #1e1b4b, #7c3aed, #a855f7, #ec4899, #7c3aed); background-size: 200% auto; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradient-shift 5s linear infinite;">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 block">
               System
             </span>
           </h1>
 
-          <!-- Enhanced Subtitle -->
-          <p class="text-xl sm:text-2xl md:text-3xl text-gray-700 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+          <!-- Clean Subtitle -->
+          <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
             data-i18n="hero.subtitle">
-            Transform your learning journey with our <span class="font-bold text-violet-600">cutting-edge</span>
-            platform. Create, organize, and track courses with an <span
-              class="font-bold text-purple-600">intuitive</span> interface.
+            Create, organize, and track courses with a clean, modern interface designed for educators and learners.
           </p>
 
-          <!-- Enhanced CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
+          <!-- Clean CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-start">
             <a href="signup.html"
-              class="group relative inline-flex items-center justify-center gap-3 rounded-2xl px-10 md:px-12 py-5 text-lg md:text-xl font-black text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-2xl hover:shadow-violet-500/50 hover:scale-110 transform duration-300 overflow-hidden animate-pulse-glow shimmer-effect">
-              <span
-                class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
-              <span class="relative z-10" data-i18n="hero.getStarted">Get Started Free</span>
-              <i data-lucide="arrow-right"
-                class="w-6 h-6 group-hover:translate-x-2 transition-transform relative z-10"></i>
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-violet-400/50 to-purple-400/50 opacity-0 group-hover:opacity-100 transition-opacity blur-xl">
-              </div>
+              class="group inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:via-purple-500 hover:to-indigo-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform duration-200">
+              <span data-i18n="hero.getStarted">Get Started Free</span>
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
             </a>
             <a href="courses.html"
-              class="group relative inline-flex items-center justify-center gap-3 rounded-2xl px-10 md:px-12 py-5 text-lg md:text-xl font-bold border-3 border-violet-300 text-violet-700 bg-white/80 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all shadow-xl hover:shadow-2xl hover:scale-110 transform duration-300">
-              <i data-lucide="play-circle" class="w-6 h-6 group-hover:scale-125 transition-transform"></i>
+              class="group inline-flex items-center justify-center gap-2 rounded-xl px-8 md:px-10 py-4 text-lg font-semibold border-2 border-violet-300 text-violet-700 bg-white/90 backdrop-blur-sm hover:bg-violet-50 hover:border-violet-400 transition-all shadow-md hover:shadow-lg">
+              <i data-lucide="play-circle" class="w-5 h-5"></i>
               <span>Watch Demo</span>
             </a>
           </div>
 
-          <!-- Enhanced Trust Indicators with Icons -->
-          <div
-            class="flex flex-wrap items-center gap-4 md:gap-6 text-base md:text-lg text-gray-700 justify-center lg:justify-start font-bold">
-            <div
-              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-green-200/50 hover:border-green-300 group">
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
-                <i data-lucide="check-circle" class="w-7 h-7 text-green-600"></i>
-              </div>
-              <span class="group-hover:text-green-700 transition-colors">Free to start</span>
+          <!-- Clean Trust Indicators -->
+          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 justify-center lg:justify-start mb-8">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span>Free to start</span>
             </div>
-            <div
-              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-blue-200/50 hover:border-blue-300 group">
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
-                <i data-lucide="shield-check" class="w-7 h-7 text-blue-600"></i>
-              </div>
-              <span class="group-hover:text-blue-700 transition-colors">Secure & Private</span>
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-blue-500"></i>
+              <span>Secure & Private</span>
             </div>
-            <div
-              class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-110 border-2 border-yellow-200/50 hover:border-yellow-300 group">
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
-                <i data-lucide="zap" class="w-7 h-7 text-yellow-600"></i>
-              </div>
-              <span class="group-hover:text-yellow-700 transition-colors">No credit card</span>
+            <div class="flex items-center gap-2">
+              <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i>
+              <span>No credit card required</span>
             </div>
           </div>
 
-          <!-- Enhanced Social Proof Stats -->
-          <div class="mt-12 flex flex-wrap items-center gap-6 md:gap-8 justify-center lg:justify-start">
-            <div
-              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-violet-200/50">
-              <div
-                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                50K+</div>
-              <div class="text-sm text-gray-700 font-bold">Active Learners</div>
-              <div class="text-xs text-gray-500 mt-1">+12% this month</div>
+          <!-- Clean Social Proof Stats -->
+          <div class="flex flex-wrap items-center gap-6 md:gap-8 justify-center lg:justify-start pt-6 border-t border-gray-200/50">
+            <div class="text-center lg:text-left">
+              <div class="text-3xl md:text-4xl font-extrabold text-violet-600 mb-1" data-stat="students">50K+</div>
+              <div class="text-sm text-gray-600 font-medium">Active Learners</div>
             </div>
-            <div class="h-16 w-px bg-gradient-to-b from-transparent via-gray-400 to-transparent"></div>
-            <div
-              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-purple-200/50">
-              <div
-                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 flex items-center justify-center lg:justify-start gap-1">
-                <span>4.9</span>
-                <i data-lucide="star" class="w-6 h-6 text-yellow-500 fill-yellow-500"></i>
-              </div>
-              <div class="text-sm text-gray-700 font-bold">Average Rating</div>
-              <div class="text-xs text-gray-500 mt-1">From 25K+ reviews</div>
+            <div class="h-12 w-px bg-gray-300"></div>
+            <div class="text-center lg:text-left">
+              <div class="text-3xl md:text-4xl font-extrabold text-purple-600 mb-1">4.9★</div>
+              <div class="text-sm text-gray-600 font-medium">Average Rating</div>
             </div>
-            <div class="h-16 w-px bg-gradient-to-b from-transparent via-gray-400 to-transparent"></div>
-            <div
-              class="text-center lg:text-left bg-white/60 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 border-2 border-indigo-200/50">
-              <div
-                class="text-4xl md:text-5xl font-black bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent mb-2">
-                1,200+</div>
-              <div class="text-sm text-gray-700 font-bold">Courses</div>
-              <div class="text-xs text-gray-500 mt-1">New weekly</div>
+            <div class="h-12 w-px bg-gray-300"></div>
+            <div class="text-center lg:text-left">
+              <div class="text-3xl md:text-4xl font-extrabold text-indigo-600 mb-1" data-stat="courses">1,200+</div>
+              <div class="text-sm text-gray-600 font-medium">Courses</div>
             </div>
           </div>
 
         </div>
 
         <!-- Right Column: Visual Content -->
-        <div class="relative z-10 lg:order-last transform-3d">
+        <div class="relative z-10 lg:order-last">
           <div class="relative">
-            <!-- Enhanced Decorative glow effects with animation -->
+            <!-- Subtle Decorative glow -->
             <div
-              class="absolute -inset-8 bg-gradient-to-br from-violet-400/30 via-purple-400/30 to-pink-400/30 rounded-3xl blur-3xl animate-pulse-glow">
+              class="absolute -inset-4 bg-gradient-to-br from-violet-400/20 via-purple-400/20 to-pink-400/20 rounded-2xl blur-2xl">
             </div>
-            <div class="absolute -inset-4 bg-gradient-to-br from-violet-300/20 to-purple-300/20 rounded-2xl blur-xl">
-            </div>
-            <div class="absolute -inset-2 bg-gradient-to-br from-indigo-200/10 to-pink-200/10 rounded-2xl"></div>
 
-            <!-- Enhanced Image container with 3D effects -->
+            <!-- Clean Image container -->
             <div
-              class="relative bg-gradient-to-br from-gray-50 via-white to-violet-50/30 rounded-3xl shadow-2xl border-2 border-violet-100/50 overflow-hidden transform hover:scale-[1.03] hover:rotate-1 transition-all duration-500 hover-lift">
+              class="relative bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
               <!-- Browser frame effect -->
               <div
                 class="bg-gradient-to-r from-gray-100 to-gray-50 px-4 py-3 flex items-center gap-3 border-b border-gray-200">
@@ -539,32 +469,6 @@
               </div>
             </div>
 
-            <!-- Enhanced Floating badges with animations -->
-            <div
-              class="absolute -bottom-6 -right-6 bg-gradient-to-br from-white via-violet-50 to-purple-50 rounded-2xl shadow-2xl border-2 border-violet-300 px-6 py-4 flex items-center gap-3 transform rotate-3 hover:rotate-0 transition-all hover:scale-110 animate-float z-20">
-              <div class="relative">
-                <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-                <div class="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping opacity-75"></div>
-              </div>
-              <div>
-                <span class="text-sm font-black text-gray-900 block">Live Now</span>
-                <span class="text-xs text-gray-600">2,450 online</span>
-              </div>
-            </div>
-            <!-- Additional floating element -->
-            <div
-              class="absolute -top-4 -left-4 bg-gradient-to-br from-yellow-400 via-orange-400 to-pink-400 rounded-full shadow-2xl px-5 py-3 flex items-center gap-2 transform -rotate-12 hover:rotate-0 transition-all animate-float z-20"
-              style="animation-delay: 1s;">
-              <i data-lucide="trending-up" class="w-5 h-5 text-white animate-pulse"></i>
-              <span class="text-xs font-black text-white">#1 Trending</span>
-            </div>
-            <!-- Achievement badge -->
-            <div
-              class="absolute top-1/2 -right-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-2xl px-4 py-3 flex flex-col items-center gap-1 transform rotate-12 hover:rotate-0 transition-all animate-float z-20"
-              style="animation-delay: 3s;">
-              <i data-lucide="trophy" class="w-6 h-6 text-white"></i>
-              <span class="text-xs font-bold text-white text-center">Award<br>Winner</span>
-            </div>
           </div>
         </div>
       </div>
@@ -2614,26 +2518,6 @@
       &copy; 2024 Learning Management System. All rights reserved.
     </div>
   </footer>
-  <!-- Live Chat Support Button -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <button
-      class="group relative w-16 h-16 bg-gradient-to-br from-violet-600 to-purple-600 rounded-full shadow-2xl hover:shadow-violet-500/50 hover:scale-110 transition-all flex items-center justify-center"
-      aria-label="Open live chat support">
-      <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
-      <!-- Pulse animation -->
-      <span class="absolute inset-0 rounded-full bg-violet-600 animate-ping opacity-75"></span>
-      <!-- Online indicator -->
-      <span class="absolute top-0 right-0 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></span>
-    </button>
-    <!-- Tooltip -->
-    <div
-      class="absolute bottom-full right-0 mb-2 px-4 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-      Chat with Support
-      <div
-        class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900">
-      </div>
-    </div>
-  </div>
 
   <div id="toast-root" class="fixed top-4 right-4 space-y-2 z-50"></div>
   <script>
